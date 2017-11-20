@@ -22,19 +22,29 @@ import SpriteKit
 
 public final class BattleFieldScene: SKScene {
     
+    // MARK: BattleField
+    
+    public struct BattleField {
+        
+        public static let homeName = "//homePokemon"
+        
+        public static let guestName = "//guestPokemon"
+        
+    }
+    
     // MARK: Property
     
     public final weak var sceneDataProvider: BattleFieldSceneDataProvider?
     
     public final var homePokemonSpriteNode: SKSpriteNode? {
         
-        return childNode(withName: "//homePokemon") as? SKSpriteNode
+        return childNode(withName: BattleField.homeName) as? SKSpriteNode
         
     }
     
     public final var guestPokemonSpriteNode: SKSpriteNode? {
         
-        return childNode(withName: "//guestPokemon") as? SKSpriteNode
+        return childNode(withName: BattleField.guestName) as? SKSpriteNode
         
     }
     
@@ -62,7 +72,7 @@ public final class BattleFieldScene: SKScene {
             )
         )
         
-        homeSpriteNode.name = "//homePokemon"
+        homeSpriteNode.name = BattleField.homeName
         
         addChild(homeSpriteNode)
         
@@ -78,7 +88,7 @@ public final class BattleFieldScene: SKScene {
             )
         )
         
-        guestSpriteNode.name = "//guestPokemon"
+        guestSpriteNode.name = BattleField.guestName
         
         addChild(guestSpriteNode)
         

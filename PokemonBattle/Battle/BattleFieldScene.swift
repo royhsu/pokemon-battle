@@ -10,9 +10,9 @@
 
 public protocol BattleFieldSceneDataProvider: class {
     
-    var homePokemonSpriteNode: SKSpriteNode { get }
+    var homePokemon: Pokemon { get }
     
-    var guestPokemonSpriteNode: SKSpriteNode { get }
+    var guestPokemon: Pokemon { get }
     
 }
 
@@ -26,35 +26,59 @@ public final class BattleFieldScene: SKScene {
     
     public final weak var sceneDataProvider: BattleFieldSceneDataProvider?
     
-    public final var homePokemonSpriteNode: SKSpriteNode?
-    
-    public final var guestPokemonSpriteNode: SKSpriteNode?
-    
-    // MARK: Life Cycle
-    
-    public final override func didMove(to view: SKView) {
+    public final var homePokemonSpriteNode: SKSpriteNode? {
         
-        
+        return childNode(withName: "//homePokemon") as? SKSpriteNode
         
     }
     
+    public final var guestPokemonSpriteNode: SKSpriteNode? {
+        
+        return childNode(withName: "//guestPokemon") as? SKSpriteNode
+        
+    }
+    
+    // MARK: Life Cycle
+    
+    public final override func didMove(to view: SKView) { }
+    
     public final func updateData() {
         
-        homePokemonSpriteNode?.removeFromParent()
+        self.homePokemonSpriteNode?.removeFromParent()
         
-        guestPokemonSpriteNode?.removeFromParent()
+        self.guestPokemonSpriteNode?.removeFromParent()
         
         guard
             let sceneDataProvider = sceneDataProvider
         else { return }
         
-        let homeSpriteNode = sceneDataProvider.homePokemonSpriteNode
-
+        let homePokemonType = type(of: sceneDataProvider.homePokemon)
+        
+        let homeSpriteNode = SKSpriteNode(
+            texture: SKTexture(image: homePokemonType.image),
+            size: CGSize(
+                width: 100.0,
+                height: 120.0
+            )
+        )
+        
+        homeSpriteNode.name = "//homePokemon"
+        
         addChild(homeSpriteNode)
         
         setUpHomePokemonSpriteNode(homeSpriteNode)
 
-        let guestSpriteNode = sceneDataProvider.guestPokemonSpriteNode
+        let guestPokemonType = type(of: sceneDataProvider.guestPokemon)
+        
+        let guestSpriteNode = SKSpriteNode(
+            texture: SKTexture(image: guestPokemonType.image),
+            size: CGSize(
+                width: 100.0,
+                height: 120.0
+            )
+        )
+        
+        guestSpriteNode.name = "//guestPokemon"
         
         addChild(guestSpriteNode)
         

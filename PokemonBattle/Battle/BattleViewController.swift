@@ -20,10 +20,6 @@ public final class BattleViewController: UIViewController {
     
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
-    public final let homePokemon: Pokemon = Pikachu()
-    
-    public final let guestPokemon: Pokemon = Charmander()
-    
     // MARK: View Life Cycle
     
     public final override func loadView() { self.view = rootView }
@@ -125,42 +121,12 @@ extension BattleViewController: BattleStateMachineDelegate {
     
 }
 
+// MARK: - BattleFieldSceneDataProvider
+
 extension BattleViewController: BattleFieldSceneDataProvider {
     
-    public var homePokemonSpriteNode: SKSpriteNode {
-        
-        let homePokemonType = type(of: homePokemon)
-        
-        let spriteNode = SKSpriteNode(
-            texture: SKTexture(image: homePokemonType.image),
-            size: CGSize(
-                width: 100.0,
-                height: 120.0
-            )
-        )
-        
-        spriteNode.name = "homePokemon"
-        
-        return spriteNode
-        
-    }
+    public var homePokemon: Pokemon { return Pikachu() }
     
-    public var guestPokemonSpriteNode: SKSpriteNode {
-        
-        let guestPokemonType = type(of: guestPokemon)
-        
-        let spriteNode = SKSpriteNode(
-            texture: SKTexture(image: guestPokemonType.image),
-            size: CGSize(
-                width: 100.0,
-                height: 120.0
-            )
-        )
-        
-        spriteNode.name = "guestPokemon"
-        
-        return spriteNode
-        
-    }
+    public var guestPokemon: Pokemon { return Charmander() }
     
 }

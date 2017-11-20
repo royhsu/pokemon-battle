@@ -32,17 +32,11 @@ public final class BattleViewController: UIViewController {
         
         setUpStateMachine(stateMachine)
         
-        let scence = makeScene(for: stateMachine.state)
+        let startScene = SKScene(fileNamed: "BattleStartScene")!
         
-        rootView.presentScene(scence)
+        startScene.scaleMode = .aspectFill
         
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        
-        super.viewDidAppear(animated)
-        
-        if stateMachine.state == .start { stateMachine.state = .preparing }
+        rootView.presentScene(startScene)
         
     }
     
@@ -63,24 +57,6 @@ public final class BattleViewController: UIViewController {
         stateMachine.stateMachineDelegate = self
         
     }
-    
-    fileprivate final func makeScene(for state: BattleState) -> SKScene {
-        
-        switch state {
-        
-        case .start:
-            
-            let startScene = SKScene(fileNamed: "BattleStartScene")!
-            
-            startScene.scaleMode = .aspectFill
-            
-            return startScene
-            
-        case .preparing, .fighting, .result, .end: fatalError("Scene not implemented.")
-            
-        }
-        
-    }
 
     // MARK: Appearance
 
@@ -96,9 +72,7 @@ extension BattleViewController: BattleStateMachineDelegate {
         _ stateMachine: BattleStateMachine,
         didTranstionFrom from: BattleState,
         to: BattleState
-    ) {
-        
-    }
+    ) { }
     
     public func stateMachine(
         _ stateMachine: BattleStateMachine,
@@ -106,6 +80,7 @@ extension BattleViewController: BattleStateMachineDelegate {
     ) {
         
         // Todo: error handling
+        
         print("\(error)")
         
     }

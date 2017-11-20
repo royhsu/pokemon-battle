@@ -16,27 +16,31 @@ public final class BattleViewController: UIViewController {
 
     // MARK: Property
     
-    public final let rootView = SKView()
+    public final let battleFieldView = SKView()
+    
+    public final let battleMenuView = BattleMenuView()
     
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
     // MARK: View Life Cycle
     
-    public final override func loadView() { self.view = rootView }
-    
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        setUpRootView(rootView)
+        setUpRootView(
+            view,
+            battleFieldView: battleFieldView,
+            battleMenuView: battleMenuView
+        )
         
         setUpStateMachine(stateMachine)
-        
+
         let startScene = SKScene(fileNamed: "BattleStartScene")!
-        
+
         startScene.scaleMode = .aspectFill
-        
-        rootView.presentScene(startScene)
+
+        battleFieldView.presentScene(startScene)
         
     }
     
@@ -45,22 +49,77 @@ public final class BattleViewController: UIViewController {
         super.viewDidAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            
+
             self.stateMachine.state = .preparing
-            
+
         }
         
     }
     
     // MARK: Set Up
     
-    fileprivate final func setUpRootView(_ view: SKView) {
+    fileprivate final func setUpRootView(
+        _ view: UIView,
+        battleFieldView: SKView,
+        battleMenuView: UIView
+    ) {
         
-        view.ignoresSiblingOrder = true
+        battleFieldView.ignoresSiblingOrder = true
         
-        view.showsFPS = true
+        battleFieldView.showsFPS = true
         
-        view.showsNodeCount = true
+        battleFieldView.showsNodeCount = true
+        
+        view.addSubview(battleFieldView)
+        
+        view.addSubview(battleMenuView)
+        
+        battleFieldView.translatesAutoresizingMaskIntoConstraints = false
+        
+        battleMenuView.translatesAutoresizingMaskIntoConstraints = false
+        
+        battleFieldView
+            .leadingAnchor
+            .constraint(equalTo: view.leadingAnchor)
+            .isActive = true
+        
+        battleFieldView
+            .topAnchor
+            .constraint(equalTo: view.topAnchor)
+            .isActive = true
+        
+        battleFieldView
+            .bottomAnchor
+            .constraint(equalTo: view.bottomAnchor)
+            .isActive = true
+        
+        battleFieldView
+            .trailingAnchor
+            .constraint(equalTo: battleMenuView.leadingAnchor)
+            .isActive = true
+        
+        battleFieldView
+            .widthAnchor
+            .constraint(
+                equalTo: battleMenuView.widthAnchor,
+                multiplier: 2.0
+            )
+            .isActive = true
+        
+        battleMenuView
+            .topAnchor
+            .constraint(equalTo: view.topAnchor)
+            .isActive = true
+        
+        battleMenuView
+            .trailingAnchor
+            .constraint(equalTo: view.trailingAnchor)
+            .isActive = true
+        
+        battleMenuView
+            .bottomAnchor
+            .constraint(equalTo: view.bottomAnchor)
+            .isActive = true
         
     }
     
@@ -100,7 +159,7 @@ extension BattleViewController: BattleStateMachineDelegate {
             
             battleFieldScene.updateData()
             
-            rootView.presentScene(battleFieldScene)
+            battleFieldView.presentScene(battleFieldScene)
             
         default: break
             

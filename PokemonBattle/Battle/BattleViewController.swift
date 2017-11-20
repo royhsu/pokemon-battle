@@ -20,6 +20,10 @@ public final class BattleViewController: UIViewController {
     
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
+    public final let homePokemon: Pokemon = Pikachu()
+    
+    public final let guestPokemon: Pokemon = Charmander()
+    
     // MARK: View Life Cycle
     
     public final override func loadView() { self.view = rootView }
@@ -37,6 +41,18 @@ public final class BattleViewController: UIViewController {
         startScene.scaleMode = .aspectFill
         
         rootView.presentScene(startScene)
+        
+    }
+    
+    public final override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            
+            self.stateMachine.state = .preparing
+            
+        }
         
     }
     
@@ -72,7 +88,29 @@ extension BattleViewController: BattleStateMachineDelegate {
         _ stateMachine: BattleStateMachine,
         didTranstionFrom from: BattleState,
         to: BattleState
-    ) { }
+    ) {
+        
+        switch (from, to) {
+            
+        case (.start, .preparing):
+            
+            let battleFieldScene = BattleFieldScene(
+                size: view.bounds.size
+            )
+            
+            battleFieldScene.sceneDataProvider = self
+            
+            battleFieldScene.scaleMode = .aspectFill
+            
+            battleFieldScene.updateData()
+            
+            rootView.presentScene(battleFieldScene)
+            
+        default: break
+            
+        }
+        
+    }
     
     public func stateMachine(
         _ stateMachine: BattleStateMachine,
@@ -82,6 +120,46 @@ extension BattleViewController: BattleStateMachineDelegate {
         // Todo: error handling
         
         print("\(error)")
+        
+    }
+    
+}
+
+extension BattleViewController: BattleFieldSceneDataProvider {
+    
+    public var homePokemonSpriteNode: SKSpriteNode {
+        
+        let homePokemonType = type(of: homePokemon)
+        
+        let spriteNode = SKSpriteNode(
+            texture: SKTexture(image: homePokemonType.image),
+            size: CGSize(
+                width: 100.0,
+                height: 120.0
+            )
+        )
+        
+        spriteNode.name = "homePokemon"
+        
+        return spriteNode
+        
+    }
+    
+    public var guestPokemonSpriteNode: SKSpriteNode {
+        
+        let guestPokemonType = type(of: guestPokemon)
+        
+        let spriteNode = SKSpriteNode(
+            texture: SKTexture(image: guestPokemonType.image),
+            size: CGSize(
+                width: 100.0,
+                height: 120.0
+            )
+        )
+        
+        spriteNode.name = "guestPokemon"
+        
+        return spriteNode
         
     }
     

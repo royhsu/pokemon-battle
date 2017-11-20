@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0012E111FC3105600812D69 /* Pikachu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0012E101FC3105600812D69 /* Pikachu.swift */; };
+		B0012E131FC3108F00812D69 /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0012E121FC3108F00812D69 /* Charmander.swift */; };
+		B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */; };
+		B0124DA21FC2F68000A3A58C /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0124DA11FC2F68000A3A58C /* Pokemon.swift */; };
 		B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */; };
 		B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA761FC2ABB000421C05 /* BattleViewController.swift */; };
 		B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B041FA7B1FC2ABB000421C05 /* Assets.xcassets */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B0012E101FC3105600812D69 /* Pikachu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikachu.swift; sourceTree = "<group>"; };
+		B0012E121FC3108F00812D69 /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
+		B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldScene.swift; sourceTree = "<group>"; };
+		B0124DA11FC2F68000A3A58C /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		B041FA6B1FC2ABB000421C05 /* PokemonBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B041FA761FC2ABB000421C05 /* BattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +51,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B0124DA01FC2F67600A3A58C /* Pokemon */ = {
+			isa = PBXGroup;
+			children = (
+				B0124DA11FC2F68000A3A58C /* Pokemon.swift */,
+				B0012E101FC3105600812D69 /* Pikachu.swift */,
+				B0012E121FC3108F00812D69 /* Charmander.swift */,
+			);
+			path = Pokemon;
+			sourceTree = "<group>";
+		};
 		B041FA621FC2ABB000421C05 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +80,7 @@
 		B041FA6D1FC2ABB000421C05 /* PokemonBattle */ = {
 			isa = PBXGroup;
 			children = (
+				B0124DA01FC2F67600A3A58C /* Pokemon */,
 				B041FA861FC2AC9B00421C05 /* Battle */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
@@ -80,6 +99,7 @@
 				B041FA761FC2ABB000421C05 /* BattleViewController.swift */,
 				B041FA901FC2C03D00421C05 /* BattleStartScene.sks */,
 				B041FA921FC2C04600421C05 /* BattleStartScene.swift */,
+				B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */,
 			);
 			path = Battle;
 			sourceTree = "<group>";
@@ -157,11 +177,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B041FA8C1FC2B51400421C05 /* BattleStateMachine.swift in Sources */,
+				B0124DA21FC2F68000A3A58C /* Pokemon.swift in Sources */,
 				B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */,
+				B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */,
 				B041FA8A1FC2B46200421C05 /* BattleState.swift in Sources */,
 				B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */,
+				B0012E131FC3108F00812D69 /* Charmander.swift in Sources */,
 				B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
+				B0012E111FC3105600812D69 /* Pikachu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

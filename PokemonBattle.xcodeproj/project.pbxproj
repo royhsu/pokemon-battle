@@ -11,10 +11,12 @@
 		B041FA711FC2ABB000421C05 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B041FA701FC2ABB000421C05 /* GameScene.sks */; };
 		B041FA731FC2ABB000421C05 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = B041FA721FC2ABB000421C05 /* Actions.sks */; };
 		B041FA751FC2ABB000421C05 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA741FC2ABB000421C05 /* GameScene.swift */; };
-		B041FA771FC2ABB000421C05 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA761FC2ABB000421C05 /* GameViewController.swift */; };
-		B041FA7A1FC2ABB000421C05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B041FA781FC2ABB000421C05 /* Main.storyboard */; };
+		B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA761FC2ABB000421C05 /* BattleViewController.swift */; };
 		B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B041FA7B1FC2ABB000421C05 /* Assets.xcassets */; };
 		B041FA7F1FC2ABB000421C05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */; };
+		B041FA8A1FC2B46200421C05 /* BattleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA891FC2B46200421C05 /* BattleState.swift */; };
+		B041FA8C1FC2B51400421C05 /* BattleStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA8B1FC2B51400421C05 /* BattleStateMachine.swift */; };
+		B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA8D1FC2B98100421C05 /* BattleStateMachineError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +25,13 @@
 		B041FA701FC2ABB000421C05 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		B041FA721FC2ABB000421C05 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		B041FA741FC2ABB000421C05 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		B041FA761FC2ABB000421C05 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		B041FA791FC2ABB000421C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B041FA761FC2ABB000421C05 /* BattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		B041FA7B1FC2ABB000421C05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B041FA7E1FC2ABB000421C05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B041FA801FC2ABB000421C05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B041FA891FC2B46200421C05 /* BattleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleState.swift; sourceTree = "<group>"; };
+		B041FA8B1FC2B51400421C05 /* BattleStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleStateMachine.swift; sourceTree = "<group>"; };
+		B041FA8D1FC2B98100421C05 /* BattleStateMachineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleStateMachineError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +64,27 @@
 		B041FA6D1FC2ABB000421C05 /* PokemonBattle */ = {
 			isa = PBXGroup;
 			children = (
+				B041FA861FC2AC9B00421C05 /* Battle */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
 				B041FA701FC2ABB000421C05 /* GameScene.sks */,
 				B041FA721FC2ABB000421C05 /* Actions.sks */,
 				B041FA741FC2ABB000421C05 /* GameScene.swift */,
-				B041FA761FC2ABB000421C05 /* GameViewController.swift */,
-				B041FA781FC2ABB000421C05 /* Main.storyboard */,
+				B041FA761FC2ABB000421C05 /* BattleViewController.swift */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
 				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
 				B041FA801FC2ABB000421C05 /* Info.plist */,
 			);
 			path = PokemonBattle;
+			sourceTree = "<group>";
+		};
+		B041FA861FC2AC9B00421C05 /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				B041FA891FC2B46200421C05 /* BattleState.swift */,
+				B041FA8B1FC2B51400421C05 /* BattleStateMachine.swift */,
+				B041FA8D1FC2B98100421C05 /* BattleStateMachineError.swift */,
+			);
+			path = Battle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,7 +146,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B041FA7A1FC2ABB000421C05 /* Main.storyboard in Resources */,
 				B041FA711FC2ABB000421C05 /* GameScene.sks in Resources */,
 				B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */,
 				B041FA7F1FC2ABB000421C05 /* LaunchScreen.storyboard in Resources */,
@@ -147,8 +160,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B041FA8C1FC2B51400421C05 /* BattleStateMachine.swift in Sources */,
 				B041FA751FC2ABB000421C05 /* GameScene.swift in Sources */,
-				B041FA771FC2ABB000421C05 /* GameViewController.swift in Sources */,
+				B041FA8A1FC2B46200421C05 /* BattleState.swift in Sources */,
+				B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */,
+				B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,14 +172,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B041FA781FC2ABB000421C05 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B041FA791FC2ABB000421C05 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

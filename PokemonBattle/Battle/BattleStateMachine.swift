@@ -53,13 +53,11 @@ public final class BattleStateMachine {
             
             let oldValue = _state
             
-            let isValid = shouldTransition(
-                from: oldValue,
-                to: newValue
-            )
-            
             guard
-                isValid
+                shouldTransition(
+                    from: oldValue,
+                    to: newValue
+                )
             else {
                 
                 let error: BattleStateMachineError = .invalidTransition(

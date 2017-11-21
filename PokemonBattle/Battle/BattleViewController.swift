@@ -33,7 +33,7 @@ public final class BattleViewController: UIViewController {
             
             guard
                 let battleFieldScene = battleFieldScene
-            else { fatalError("Battle field scene not found.") }
+            else { fatalError("Battle field scene not currently presented.") }
             
             battleFieldScene.updateData()
             

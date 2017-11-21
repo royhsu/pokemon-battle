@@ -24,6 +24,8 @@ public final class BattleViewController: UIViewController {
     
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
+    internal final let battleDelegate: BattleDelegate
+    
     public final var homeBattlePokemon = BattlePokemon(
         identifier: "1",
         pokemon: Pikachu(),
@@ -46,13 +48,40 @@ public final class BattleViewController: UIViewController {
         identifier: "2",
         pokemon: Charmander(),
         healthPoint: 100.0
-    )
+    ) {
+        
+        didSet {
+            
+            guard
+                let battleFieldScene = battleFieldScene
+                else { fatalError("Battle field scene not currently presented.") }
+            
+            battleFieldScene.updateData()
+            
+        }
+        
+    }
     
     public final var battleFieldScene: BattleFieldScene? {
         
         return battleFieldView.scene as? BattleFieldScene
         
     }
+    
+    // MARK: Init
+    
+    public init(battleDelegate: BattleDelegate) {
+        
+        self.battleDelegate = battleDelegate
+        
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
+        
+    }
+    
+    public required init?(coder aDecoder: NSCoder) { fatalError("Not implemented.") }
     
     // MARK: View Life Cycle
     
@@ -188,7 +217,25 @@ public final class BattleViewController: UIViewController {
     
     @objc final func selectActionFromMenu(_ sender: Any) {
         
-        homeBattlePokemon.healthPoint -= 10.0
+        let battlePokemon = guestBattlePokemon
+        
+        battleDelegate.battlePokemons.append(battlePokemon)
+        
+        do {
+        
+            try battleDelegate.addBattleAction(
+                PhysicalAttackBattleAction(),
+                toPokemonWithIdentifier: battlePokemon.identifier
+            )
+            
+            battleDelegate.performAllBattleActions()
+            
+            let index = battleDelegate.battlePokemons.index(where: { $0.identifier == battlePokemon.identifier })!
+            
+            guestBattlePokemon = battleDelegate.battlePokemons[index]
+            
+        }
+        catch { fatalError("\(error)") }
         
     }
     

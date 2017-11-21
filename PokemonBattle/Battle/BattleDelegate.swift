@@ -18,6 +18,8 @@ public protocol BattleAction {
 
 public protocol BattleDelegate: class {
     
+    var battlePokemons: [BattlePokemon] { get set }
+    
     func addBattleAction(
         _ action: BattleAction,
         toPokemonWithIdentifier identifier: String

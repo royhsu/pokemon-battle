@@ -27,7 +27,9 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        let battleViewController = BattleViewController()
+        let battleViewController = BattleViewController(
+            battleDelegate: BattleManager()
+        )
         
         window.rootViewController = battleViewController
         

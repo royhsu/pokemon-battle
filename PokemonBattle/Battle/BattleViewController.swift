@@ -154,7 +154,7 @@ extension BattleViewController: BattleStateMachineDelegate {
         case (.start, .preparing):
             
             let battleFieldScene = BattleFieldScene(
-                size: view.bounds.size
+                size: battleFieldView.bounds.size
             )
             
             battleFieldScene.sceneDataProvider = self

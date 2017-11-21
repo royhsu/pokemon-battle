@@ -38,6 +38,8 @@ public final class BattleViewController: UIViewController {
             battleMenuView: battleMenuView
         )
         
+        setUpBattleMenuView(battleMenuView)
+        
         setUpStateMachine(stateMachine)
 
         let startScene = SKScene(fileNamed: "BattleStartScene")!
@@ -127,6 +129,21 @@ public final class BattleViewController: UIViewController {
         
     }
     
+    fileprivate final func setUpBattleMenuView(_ view: BattleMenuView) {
+        
+        view.button.addTarget(
+            self,
+            action: #selector(selectActionFromMenu),
+            for: .touchUpInside
+        )
+        
+        view.button.setTitle(
+            "Attack",
+            for: .normal
+        )
+        
+    }
+    
     fileprivate final func setUpStateMachine(_ stateMachine: BattleStateMachine) {
         
         stateMachine.stateMachineDelegate = self
@@ -136,6 +153,14 @@ public final class BattleViewController: UIViewController {
     // MARK: Appearance
 
     public final override var prefersStatusBarHidden: Bool { return true }
+    
+    // MARK: Action
+    
+    @objc final func selectActionFromMenu(_ sender: Any) {
+        
+        print(#function)
+        
+    }
     
 }
 

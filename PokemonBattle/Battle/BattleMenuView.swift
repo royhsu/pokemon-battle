@@ -21,12 +21,22 @@ public final class BattleMenuView: UIView {
     public override init(frame: CGRect) {
         
         super.init(frame: frame)
-    
+        
+        setUpButton(
+            button,
+            on: self
+        )
+        
     }
     
     public required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
+        
+        setUpButton(
+            button,
+            on: self
+        )
         
     }
     
@@ -41,13 +51,25 @@ public final class BattleMenuView: UIView {
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        button.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        button
+            .leadingAnchor
+            .constraint(equalTo: view.leadingAnchor)
+            .isActive = true
         
-        button.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        button
+            .topAnchor
+            .constraint(equalTo: view.topAnchor)
+            .isActive = true
         
-        button.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        button
+            .trailingAnchor
+            .constraint(equalTo: view.trailingAnchor)
+            .isActive = true
         
-        button.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        button
+            .bottomAnchor
+            .constraint(equalTo: view.bottomAnchor)
+            .isActive = true
         
     }
     

@@ -16,7 +16,7 @@ public final class BattleViewController: UIViewController {
 
     // MARK: Property
     
-    public final let rootView = SKView()
+    public final let gameView = SKView()
     
     public final let battleFieldView = SKView()
     
@@ -26,14 +26,14 @@ public final class BattleViewController: UIViewController {
     
     // MARK: View Life Cycle
     
-    public override func loadView() { self.view = rootView }
+    public override func loadView() { self.view = gameView }
     
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        setUpRootView(
-            rootView,
+        setUpGameView(
+            gameView,
             battleFieldView: battleFieldView,
             battleMenuView: battleMenuView
         )
@@ -62,21 +62,21 @@ public final class BattleViewController: UIViewController {
     
     // MARK: Set Up
     
-    fileprivate final func setUpRootView(
-        _ view: SKView,
+    fileprivate final func setUpGameView(
+        _ gameView: SKView,
         battleFieldView: SKView,
         battleMenuView: UIView
     ) {
         
-        view.ignoresSiblingOrder = true
+        gameView.ignoresSiblingOrder = true
         
-        view.showsFPS = true
+        gameView.showsFPS = true
         
-        view.showsNodeCount = true
+        gameView.showsNodeCount = true
         
-        view.addSubview(battleFieldView)
+        gameView.addSubview(battleFieldView)
         
-        view.addSubview(battleMenuView)
+        gameView.addSubview(battleMenuView)
         
         battleFieldView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -84,17 +84,17 @@ public final class BattleViewController: UIViewController {
         
         battleFieldView
             .leadingAnchor
-            .constraint(equalTo: view.leadingAnchor)
+            .constraint(equalTo: gameView.leadingAnchor)
             .isActive = true
         
         battleFieldView
             .topAnchor
-            .constraint(equalTo: view.topAnchor)
+            .constraint(equalTo: gameView.topAnchor)
             .isActive = true
         
         battleFieldView
             .bottomAnchor
-            .constraint(equalTo: view.bottomAnchor)
+            .constraint(equalTo: gameView.bottomAnchor)
             .isActive = true
         
         battleFieldView
@@ -112,17 +112,17 @@ public final class BattleViewController: UIViewController {
         
         battleMenuView
             .topAnchor
-            .constraint(equalTo: view.topAnchor)
+            .constraint(equalTo: gameView.topAnchor)
             .isActive = true
         
         battleMenuView
             .trailingAnchor
-            .constraint(equalTo: view.trailingAnchor)
+            .constraint(equalTo: gameView.trailingAnchor)
             .isActive = true
         
         battleMenuView
             .bottomAnchor
-            .constraint(equalTo: view.bottomAnchor)
+            .constraint(equalTo: gameView.bottomAnchor)
             .isActive = true
         
     }

@@ -10,9 +10,9 @@
 
 public protocol BattleFieldSceneDataProvider: class {
     
-    var homePokemon: Pokemon { get }
+    var homeBattlePokemon: BattlePokemon { get }
     
-    var guestPokemon: Pokemon { get }
+    var guestBattlePokemon: BattlePokemon { get }
     
 }
 
@@ -48,21 +48,37 @@ public final class BattleFieldScene: SKScene {
         
     }
     
+    public final let homeHpLabelNode = SKLabelNode(text: nil)
+    
+    public final let guestHpLabelNode = SKLabelNode(text: nil)
+    
     // MARK: Life Cycle
     
-    public final override func didMove(to view: SKView) { }
+    public final override func didMove(to view: SKView) {
+        
+        setUpHomeHpLabelNode(homeHpLabelNode)
+        
+        setUpGuestHpLabelNode(guestHpLabelNode)
+        
+    }
+    
+    // MARK: Update
     
     public final func updateData() {
         
         self.homePokemonSpriteNode?.removeFromParent()
         
+        self.homeHpLabelNode.removeFromParent()
+        
         self.guestPokemonSpriteNode?.removeFromParent()
+        
+        self.guestHpLabelNode.removeFromParent()
         
         guard
             let sceneDataProvider = sceneDataProvider
         else { return }
         
-        let homePokemonType = type(of: sceneDataProvider.homePokemon)
+        let homePokemonType = type(of: sceneDataProvider.homeBattlePokemon.pokemon)
         
         let homeSpriteNode = SKSpriteNode(
             texture: SKTexture(image: homePokemonType.image),
@@ -77,8 +93,12 @@ public final class BattleFieldScene: SKScene {
         addChild(homeSpriteNode)
         
         setUpHomePokemonSpriteNode(homeSpriteNode)
+        
+        addChild(homeHpLabelNode)
+        
+        setUpHomeHpLabelNode(homeHpLabelNode)
 
-        let guestPokemonType = type(of: sceneDataProvider.guestPokemon)
+        let guestPokemonType = type(of: sceneDataProvider.guestBattlePokemon.pokemon)
         
         let guestSpriteNode = SKSpriteNode(
             texture: SKTexture(image: guestPokemonType.image),
@@ -93,6 +113,10 @@ public final class BattleFieldScene: SKScene {
         addChild(guestSpriteNode)
         
         setUpGuestPokemonSpriteNode(guestSpriteNode)
+        
+        addChild(guestHpLabelNode)
+        
+        setUpGuestHpLabelNode(guestHpLabelNode)
         
     }
     
@@ -113,6 +137,52 @@ public final class BattleFieldScene: SKScene {
             x: frame.maxX - 100.0,
             y: frame.maxY - 100.0
         )
+        
+    }
+    
+    fileprivate final func setUpHomeHpLabelNode(_ labelNode: SKLabelNode) {
+        
+        labelNode.position = CGPoint(
+            x: frame.maxX - 100.0,
+            y: 100.0 + frame.minY
+        )
+        
+        guard
+            let sceneDataProvider = sceneDataProvider
+        else {
+            
+            labelNode.text = "HP: 0"
+            
+            return
+            
+        }
+        
+        let healthPoint = sceneDataProvider.homeBattlePokemon.healthPoint
+        
+        labelNode.text = "HP: \(healthPoint)"
+        
+    }
+    
+    fileprivate final func setUpGuestHpLabelNode(_ labelNode: SKLabelNode) {
+        
+        labelNode.position = CGPoint(
+            x: 100.0 + frame.minX,
+            y: frame.maxY - 100.0
+        )
+        
+        guard
+            let sceneDataProvider = sceneDataProvider
+        else {
+            
+            labelNode.text = "HP: 0"
+            
+            return
+                
+        }
+        
+        let healthPoint = sceneDataProvider.guestBattlePokemon.healthPoint
+        
+        labelNode.text = "HP: \(healthPoint)"
         
     }
  

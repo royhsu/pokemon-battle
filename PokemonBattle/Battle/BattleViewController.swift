@@ -24,6 +24,34 @@ public final class BattleViewController: UIViewController {
     
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
+    public final var homeBattlePokemon = BattlePokemon(
+        pokemon: Pikachu(),
+        healthPoint: 100.0
+    ) {
+        
+        didSet {
+            
+            guard
+                let battleFieldScene = battleFieldScene
+            else { fatalError("Battle field scene not found.") }
+            
+            battleFieldScene.updateData()
+            
+        }
+        
+    }
+    
+    public final var guestBattlePokemon = BattlePokemon(
+        pokemon: Charmander(),
+        healthPoint: 100.0
+    )
+    
+    public final var battleFieldScene: BattleFieldScene? {
+        
+        return battleFieldView.scene as? BattleFieldScene
+        
+    }
+    
     // MARK: View Life Cycle
     
     public override func loadView() { self.view = gameView }
@@ -158,7 +186,7 @@ public final class BattleViewController: UIViewController {
     
     @objc final func selectActionFromMenu(_ sender: Any) {
         
-        print(#function)
+        homeBattlePokemon.healthPoint -= 10.0
         
     }
     
@@ -181,6 +209,8 @@ extension BattleViewController: BattleStateMachineDelegate {
             let battleFieldScene = BattleFieldScene(
                 size: battleFieldView.bounds.size
             )
+            
+            battleFieldScene.name = "//battleScene"
             
             battleFieldScene.sceneDataProvider = self
             
@@ -211,10 +241,4 @@ extension BattleViewController: BattleStateMachineDelegate {
 
 // MARK: - BattleFieldSceneDataProvider
 
-extension BattleViewController: BattleFieldSceneDataProvider {
-    
-    public var homePokemon: Pokemon { return Pikachu() }
-    
-    public var guestPokemon: Pokemon { return Charmander() }
-    
-}
+extension BattleViewController: BattleFieldSceneDataProvider { }

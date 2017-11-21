@@ -6,14 +6,6 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleAction
-
-public protocol BattleAction {
-    
-    func applied(battlePokemon: BattlePokemon) -> BattlePokemon
-    
-}
-
 // MARK: - BattleDelegate
 
 public protocol BattleDelegate: class {

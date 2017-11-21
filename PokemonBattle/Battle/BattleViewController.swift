@@ -16,6 +16,8 @@ public final class BattleViewController: UIViewController {
 
     // MARK: Property
     
+    public final let rootView = SKView()
+    
     public final let battleFieldView = SKView()
     
     public final let battleMenuView = BattleMenuView()
@@ -24,12 +26,14 @@ public final class BattleViewController: UIViewController {
     
     // MARK: View Life Cycle
     
+    public override func loadView() { self.view = rootView }
+    
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setUpRootView(
-            view,
+            rootView,
             battleFieldView: battleFieldView,
             battleMenuView: battleMenuView
         )
@@ -59,16 +63,16 @@ public final class BattleViewController: UIViewController {
     // MARK: Set Up
     
     fileprivate final func setUpRootView(
-        _ view: UIView,
+        _ view: SKView,
         battleFieldView: SKView,
         battleMenuView: UIView
     ) {
         
-        battleFieldView.ignoresSiblingOrder = true
+        view.ignoresSiblingOrder = true
         
-        battleFieldView.showsFPS = true
+        view.showsFPS = true
         
-        battleFieldView.showsNodeCount = true
+        view.showsNodeCount = true
         
         view.addSubview(battleFieldView)
         

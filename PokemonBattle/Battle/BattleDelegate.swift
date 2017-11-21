@@ -8,7 +8,11 @@
 
 // MARK: - BattleAction
 
-public protocol BattleAction { }
+public protocol BattleAction {
+    
+    func applied(battlePokemon: BattlePokemon) -> BattlePokemon
+    
+}
 
 // MARK: - BattleDelegate
 

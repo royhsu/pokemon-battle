@@ -12,6 +12,8 @@ public struct BattlePokemon {
     
     // MARK: Property
     
+    public let identifier: String
+    
     public let pokemon: Pokemon
     
     public var healthPoint: Double

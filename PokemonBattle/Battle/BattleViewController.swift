@@ -25,6 +25,7 @@ public final class BattleViewController: UIViewController {
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
     public final var homeBattlePokemon = BattlePokemon(
+        identifier: "1",
         pokemon: Pikachu(),
         healthPoint: 100.0
     ) {
@@ -42,6 +43,7 @@ public final class BattleViewController: UIViewController {
     }
     
     public final var guestBattlePokemon = BattlePokemon(
+        identifier: "2",
         pokemon: Charmander(),
         healthPoint: 100.0
     )

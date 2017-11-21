@@ -22,6 +22,7 @@
 		B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA8D1FC2B98100421C05 /* BattleStateMachineError.swift */; };
 		B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B041FA901FC2C03D00421C05 /* BattleStartScene.sks */; };
 		B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA921FC2C04600421C05 /* BattleStartScene.swift */; };
+		B064E68B1FC45125005476BA /* BattleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E68A1FC45125005476BA /* BattleManager.swift */; };
 		B0EAAA351FC3277C00FC633C /* BattleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		B041FA8D1FC2B98100421C05 /* BattleStateMachineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleStateMachineError.swift; sourceTree = "<group>"; };
 		B041FA901FC2C03D00421C05 /* BattleStartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BattleStartScene.sks; sourceTree = "<group>"; };
 		B041FA921FC2C04600421C05 /* BattleStartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleStartScene.swift; sourceTree = "<group>"; };
+		B064E68A1FC45125005476BA /* BattleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleManager.swift; sourceTree = "<group>"; };
 		B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +111,7 @@
 				B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */,
 				B02215591FC4224000E7AD76 /* BattlePokemon.swift */,
 				B022155B1FC44D0E00E7AD76 /* BattleDelegate.swift */,
+				B064E68A1FC45125005476BA /* BattleManager.swift */,
 			);
 			path = Battle;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */,
 				B0012E131FC3108F00812D69 /* Charmander.swift in Sources */,
 				B022155A1FC4224000E7AD76 /* BattlePokemon.swift in Sources */,
+				B064E68B1FC45125005476BA /* BattleManager.swift in Sources */,
 				B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */,
 				B0EAAA351FC3277C00FC633C /* BattleMenuView.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,

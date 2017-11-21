@@ -22,7 +22,7 @@ public final class BattleManager: BattleDelegate {
     
     // MARK: Property
     
-    private final var battleMap: [String: Array<BattleAction>] = [:]
+    internal final var battleMap: [String: Array<BattleAction>] = [:]
     
     public final var battlePokemons: [BattlePokemon] = []
     
@@ -42,9 +42,9 @@ public final class BattleManager: BattleDelegate {
             
         }
         
-        var actions = battleMap[identifier]
+        var actions = battleMap[identifier] ?? []
         
-        actions?.append(action)
+        actions.append(action)
         
         battleMap[identifier] = actions
         

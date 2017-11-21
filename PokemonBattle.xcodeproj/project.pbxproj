@@ -23,8 +23,21 @@
 		B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B041FA901FC2C03D00421C05 /* BattleStartScene.sks */; };
 		B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA921FC2C04600421C05 /* BattleStartScene.swift */; };
 		B064E68B1FC45125005476BA /* BattleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E68A1FC45125005476BA /* BattleManager.swift */; };
+		B064E69C1FC4590B005476BA /* BattleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69B1FC4590B005476BA /* BattleManagerTests.swift */; };
+		B064E69E1FC45A76005476BA /* PhysicalAttackBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */; };
+		B064E6A01FC45A9E005476BA /* PhysicalAttackBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */; };
 		B0EAAA351FC3277C00FC633C /* BattleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B064E6951FC458BB005476BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B041FA631FC2ABB000421C05 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B041FA6A1FC2ABB000421C05;
+			remoteInfo = PokemonBattle;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B0012E101FC3105600812D69 /* Pikachu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikachu.swift; sourceTree = "<group>"; };
@@ -45,11 +58,23 @@
 		B041FA901FC2C03D00421C05 /* BattleStartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BattleStartScene.sks; sourceTree = "<group>"; };
 		B041FA921FC2C04600421C05 /* BattleStartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleStartScene.swift; sourceTree = "<group>"; };
 		B064E68A1FC45125005476BA /* BattleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleManager.swift; sourceTree = "<group>"; };
+		B064E6901FC458BB005476BA /* PokemonBattleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonBattleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B064E6941FC458BB005476BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B064E69B1FC4590B005476BA /* BattleManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleManagerTests.swift; sourceTree = "<group>"; };
+		B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAttackBattleAction.swift; sourceTree = "<group>"; };
+		B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAttackBattleAction.swift; sourceTree = "<group>"; };
 		B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B041FA681FC2ABB000421C05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B064E68D1FC458BB005476BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -73,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				B041FA6D1FC2ABB000421C05 /* PokemonBattle */,
+				B064E6911FC458BB005476BA /* PokemonBattleTests */,
 				B041FA6C1FC2ABB000421C05 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -81,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				B041FA6B1FC2ABB000421C05 /* PokemonBattle.app */,
+				B064E6901FC458BB005476BA /* PokemonBattleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +139,25 @@
 				B02215591FC4224000E7AD76 /* BattlePokemon.swift */,
 				B022155B1FC44D0E00E7AD76 /* BattleDelegate.swift */,
 				B064E68A1FC45125005476BA /* BattleManager.swift */,
+				B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */,
+			);
+			path = Battle;
+			sourceTree = "<group>";
+		};
+		B064E6911FC458BB005476BA /* PokemonBattleTests */ = {
+			isa = PBXGroup;
+			children = (
+				B064E69A1FC458FC005476BA /* Battle */,
+				B064E6941FC458BB005476BA /* Info.plist */,
+			);
+			path = PokemonBattleTests;
+			sourceTree = "<group>";
+		};
+		B064E69A1FC458FC005476BA /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				B064E69B1FC4590B005476BA /* BattleManagerTests.swift */,
+				B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */,
 			);
 			path = Battle;
 			sourceTree = "<group>";
@@ -136,6 +182,24 @@
 			productReference = B041FA6B1FC2ABB000421C05 /* PokemonBattle.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B064E68F1FC458BB005476BA /* PokemonBattleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B064E6971FC458BB005476BA /* Build configuration list for PBXNativeTarget "PokemonBattleTests" */;
+			buildPhases = (
+				B064E68C1FC458BB005476BA /* Sources */,
+				B064E68D1FC458BB005476BA /* Frameworks */,
+				B064E68E1FC458BB005476BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B064E6961FC458BB005476BA /* PBXTargetDependency */,
+			);
+			name = PokemonBattleTests;
+			productName = PokemonBattleTests;
+			productReference = B064E6901FC458BB005476BA /* PokemonBattleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,6 +213,12 @@
 					B041FA6A1FC2ABB000421C05 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+					};
+					B064E68F1FC458BB005476BA = {
+						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B041FA6A1FC2ABB000421C05;
 					};
 				};
 			};
@@ -166,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				B041FA6A1FC2ABB000421C05 /* PokemonBattle */,
+				B064E68F1FC458BB005476BA /* PokemonBattleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -181,6 +252,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B064E68E1FC458BB005476BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -193,6 +271,7 @@
 				B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */,
 				B022155C1FC44D0E00E7AD76 /* BattleDelegate.swift in Sources */,
 				B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */,
+				B064E69E1FC45A76005476BA /* PhysicalAttackBattleAction.swift in Sources */,
 				B041FA8A1FC2B46200421C05 /* BattleState.swift in Sources */,
 				B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */,
 				B0012E131FC3108F00812D69 /* Charmander.swift in Sources */,
@@ -205,7 +284,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B064E68C1FC458BB005476BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B064E6A01FC45A9E005476BA /* PhysicalAttackBattleAction.swift in Sources */,
+				B064E69C1FC4590B005476BA /* BattleManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B064E6961FC458BB005476BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B041FA6A1FC2ABB000421C05 /* PokemonBattle */;
+			targetProxy = B064E6951FC458BB005476BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */ = {
@@ -356,6 +452,43 @@
 			};
 			name = Release;
 		};
+		B064E6981FC458BB005476BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5CE6946X84;
+				INFOPLIST_FILE = PokemonBattleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tinyworld.PokemonBattleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokemonBattle.app/PokemonBattle";
+			};
+			name = Debug;
+		};
+		B064E6991FC458BB005476BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5CE6946X84;
+				INFOPLIST_FILE = PokemonBattleTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tinyworld.PokemonBattleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PokemonBattle.app/PokemonBattle";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -373,6 +506,15 @@
 			buildConfigurations = (
 				B041FA841FC2ABB000421C05 /* Debug */,
 				B041FA851FC2ABB000421C05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B064E6971FC458BB005476BA /* Build configuration list for PBXNativeTarget "PokemonBattleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B064E6981FC458BB005476BA /* Debug */,
+				B064E6991FC458BB005476BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -26,9 +26,9 @@ public final class BattleFieldScene: SKScene {
     
     public struct BattleField {
         
-        public static let homeName = "//homePokemon"
+        public static let homeName = "homePokemon"
         
-        public static let guestName = "//guestPokemon"
+        public static let guestName = "guestPokemon"
         
     }
     
@@ -36,17 +36,9 @@ public final class BattleFieldScene: SKScene {
     
     public final weak var sceneDataProvider: BattleFieldSceneDataProvider?
     
-    public final var homePokemonSpriteNode: SKSpriteNode? {
-        
-        return childNode(withName: BattleField.homeName) as? SKSpriteNode
-        
-    }
+    public final let homePokemonSpriteNode = SKSpriteNode()
     
-    public final var guestPokemonSpriteNode: SKSpriteNode? {
-        
-        return childNode(withName: BattleField.guestName) as? SKSpriteNode
-        
-    }
+    public final let guestPokemonSpriteNode = SKSpriteNode()
     
     public final let homeHpLabelNode = SKLabelNode(text: nil)
     
@@ -56,7 +48,19 @@ public final class BattleFieldScene: SKScene {
     
     public final override func didMove(to view: SKView) {
         
+        addChild(homePokemonSpriteNode)
+        
+        setUpHomePokemonSpriteNode(homePokemonSpriteNode)
+        
+        addChild(homeHpLabelNode)
+        
         setUpHomeHpLabelNode(homeHpLabelNode)
+        
+        addChild(guestPokemonSpriteNode)
+        
+        setUpGuestPokemonSpriteNode(guestPokemonSpriteNode)
+        
+        addChild(guestHpLabelNode)
         
         setUpGuestHpLabelNode(guestHpLabelNode)
         
@@ -66,55 +70,19 @@ public final class BattleFieldScene: SKScene {
     
     public final func updateData() {
         
-        self.homePokemonSpriteNode?.removeFromParent()
-        
-        self.homeHpLabelNode.removeFromParent()
-        
-        self.guestPokemonSpriteNode?.removeFromParent()
-        
-        self.guestHpLabelNode.removeFromParent()
-        
         guard
             let sceneDataProvider = sceneDataProvider
         else { return }
         
         let homePokemonType = type(of: sceneDataProvider.homeBattlePokemon.pokemon)
         
-        let homeSpriteNode = SKSpriteNode(
-            texture: SKTexture(image: homePokemonType.image),
-            size: CGSize(
-                width: 100.0,
-                height: 120.0
-            )
-        )
-        
-        homeSpriteNode.name = BattleField.homeName
-        
-        addChild(homeSpriteNode)
-        
-        setUpHomePokemonSpriteNode(homeSpriteNode)
-        
-        addChild(homeHpLabelNode)
+        homePokemonSpriteNode.texture = SKTexture(image: homePokemonType.image)
         
         setUpHomeHpLabelNode(homeHpLabelNode)
 
         let guestPokemonType = type(of: sceneDataProvider.guestBattlePokemon.pokemon)
-        
-        let guestSpriteNode = SKSpriteNode(
-            texture: SKTexture(image: guestPokemonType.image),
-            size: CGSize(
-                width: 100.0,
-                height: 120.0
-            )
-        )
-        
-        guestSpriteNode.name = BattleField.guestName
-        
-        addChild(guestSpriteNode)
-        
-        setUpGuestPokemonSpriteNode(guestSpriteNode)
-        
-        addChild(guestHpLabelNode)
+
+        guestPokemonSpriteNode.texture = SKTexture(image: guestPokemonType.image)
         
         setUpGuestHpLabelNode(guestHpLabelNode)
         
@@ -124,6 +92,11 @@ public final class BattleFieldScene: SKScene {
     
     fileprivate final func setUpHomePokemonSpriteNode(_ spriteNode: SKSpriteNode) {
         
+        spriteNode.size = CGSize(
+            width: 100.0,
+            height: 120.0
+        )
+        
         spriteNode.position = CGPoint(
             x: 100.0 + frame.minX,
             y: 100.0 + frame.minY
@@ -132,6 +105,11 @@ public final class BattleFieldScene: SKScene {
     }
     
     fileprivate final func setUpGuestPokemonSpriteNode(_ spriteNode: SKSpriteNode) {
+        
+        spriteNode.size = CGSize(
+            width: 100.0,
+            height: 120.0
+        )
         
         spriteNode.position = CGPoint(
             x: frame.maxX - 100.0,

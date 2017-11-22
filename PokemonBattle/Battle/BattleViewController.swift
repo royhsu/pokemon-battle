@@ -226,7 +226,20 @@ public final class BattleViewController: UIViewController {
                     attackPoint: homeBattlePokemon.pokemon.attackPoint,
                     animation: { oldValue, newValue in
                         
-                        
+                        self.battleFieldScene?
+                            .guestPokemonSpriteNode
+                            .run(
+                                .sequence(
+                                    [
+                                        .fadeOut(withDuration: 0.2),
+                                        .fadeIn(withDuration: 0.2),
+                                        .fadeOut(withDuration: 0.2),
+                                        .fadeIn(withDuration: 0.2),
+                                        .fadeOut(withDuration: 0.2),
+                                        .fadeIn(withDuration: 0.2)
+                                    ]
+                                )
+                            )
                         
                     }
                 ),

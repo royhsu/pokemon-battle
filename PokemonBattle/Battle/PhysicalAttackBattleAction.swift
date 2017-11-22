@@ -14,8 +14,6 @@ public struct PhysicalAttackBattleAction: BattleAction {
     
     public let attackPoint: Double
     
-    public let animation: BattleActionAnimation?
-    
     // MARK: BattleAction
     
     public func apply(on battlePokemon: BattlePokemon) -> BattlePokemon {
@@ -23,8 +21,6 @@ public struct PhysicalAttackBattleAction: BattleAction {
         var updatedBattlePokemon = battlePokemon
         
         updatedBattlePokemon.healthPoint -= attackPoint
-        
-        animation?(battlePokemon, updatedBattlePokemon)
         
         return updatedBattlePokemon
         

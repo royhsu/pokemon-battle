@@ -26,41 +26,41 @@ public final class BattleViewController: UIViewController {
     
     internal final let battleDelegate: BattleDelegate
     
-    public final var homeBattlePokemon = BattlePokemon(
-        id: "1",
-        pokemon: Pikachu(),
-        healthPoint: 100.0
-    ) {
-        
-        didSet {
-            
-            guard
-                let battleFieldScene = battleFieldScene
-            else { fatalError("Battle field scene not currently presented.") }
-            
-            battleFieldScene.updateData()
-            
-        }
-        
-    }
-    
-    public final var guestBattlePokemon = BattlePokemon(
-        id: "2",
-        pokemon: Charmander(),
-        healthPoint: 100.0
-    ) {
-        
-        didSet {
-            
-            guard
-                let battleFieldScene = battleFieldScene
-                else { fatalError("Battle field scene not currently presented.") }
-            
-            battleFieldScene.updateData()
-            
-        }
-        
-    }
+//    public final var homeBattlePokemon = BattlePokemon(
+//        id: "1",
+//        pokemon: Pikachu(),
+//        healthPoint: 100.0
+//    ) {
+//
+//        didSet {
+//
+//            guard
+//                let battleFieldScene = battleFieldScene
+//            else { fatalError("Battle field scene not currently presented.") }
+//
+//            battleFieldScene.updateData()
+//
+//        }
+//
+//    }
+//
+//    public final var guestBattlePokemon = BattlePokemon(
+//        id: "2",
+//        pokemon: Charmander(),
+//        healthPoint: 100.0
+//    ) {
+//
+//        didSet {
+//
+//            guard
+//                let battleFieldScene = battleFieldScene
+//                else { fatalError("Battle field scene not currently presented.") }
+//
+//            battleFieldScene.updateData()
+//
+//        }
+//
+//    }
     
     public final var battleFieldScene: BattleFieldScene? {
         
@@ -82,6 +82,16 @@ public final class BattleViewController: UIViewController {
     }
     
     public required init?(coder aDecoder: NSCoder) { fatalError("Not implemented.") }
+    
+    deinit {
+    
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .battlePokemonDataProviderDataDidChange,
+            object: nil
+        )
+        
+    }
     
     // MARK: View Life Cycle
     
@@ -106,6 +116,13 @@ public final class BattleViewController: UIViewController {
         startScene.scaleMode = .aspectFill
 
         battleFieldView.presentScene(startScene)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(update),
+            name: .battlePokemonDataProviderDataDidChange,
+            object: nil
+        )
         
     }
     
@@ -215,15 +232,34 @@ public final class BattleViewController: UIViewController {
     
     // MARK: Action
     
+    @objc public final func update(_ sender: Any) {
+        
+        battleFieldScene?.updateData()
+        
+    }
+    
     @objc final func selectActionFromMenu(_ sender: Any) {
     
-//        battleDelegate.battlePokemons.append(guestBattlePokemon)
-//        
+        // Todo: find a better way instead of using magic string home and guest.
+        guard
+            let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider,
+            let homeBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "home"),
+            let guestBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "guest")
+        else { return }
+        
+        battleDelegate.addBattleAction(
+            PhysicalAttackBattleAction(
+                attackPoint: homeBattlePokemon.pokemon.attackPoint
+            ),
+            targetBattlePokemonId: guestBattlePokemon.id
+        )
+        
+        battleDelegate.performAllBattleActions()
+        
 //        do {
         
 //            try battleDelegate.addBattleAction(
-//                PhysicalAttackBattleAction(
-//                    attackPoint: homeBattlePokemon.pokemon.attackPoint,
+//
 //                    animation: { oldValue, newValue in
 //                        
 //                        self.battleFieldScene?
@@ -308,4 +344,28 @@ extension BattleViewController: BattleStateMachineDelegate {
 
 // MARK: - BattleFieldSceneDataProvider
 
-extension BattleViewController: BattleFieldSceneDataProvider { }
+extension BattleViewController: BattleFieldSceneDataProvider {
+    
+    // Todo: find a better way instead of using magic string home and guest.
+    public var homeBattlePokemon: BattlePokemon {
+        
+        let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider!
+        
+        let homeBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "home")!
+        
+        return homeBattlePokemon
+        
+    }
+    
+    // Todo: find a better way instead of using magic string home and guest.
+    public var guestBattlePokemon: BattlePokemon {
+        
+        let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider!
+        
+        let guestBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "guest")!
+        
+        return guestBattlePokemon
+        
+    }
+    
+}

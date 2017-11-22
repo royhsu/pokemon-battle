@@ -16,6 +16,19 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Property
     
     public final var window: UIWindow?
+    
+    public final let basicBattlePokemonDataProvider = BasicBattlePokemonDataProvider(
+        homeBattlePokemon: BattlePokemon(
+            id: "home",
+            pokemon: Pikachu(),
+            healthPoint: 100.0
+        ),
+        guestBattlePokemon: BattlePokemon(
+            id: "guest",
+            pokemon: Charmander(),
+            healthPoint: 100.0
+        )
+    )
 
     // MARK: UIApplicationDelegate
 
@@ -27,8 +40,12 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
+        let battleManager = BattleManager()
+        
+        battleManager.battlePokemonDataProvider = basicBattlePokemonDataProvider
+        
         let battleViewController = BattleViewController(
-            battleDelegate: BattleManager()
+            battleDelegate: battleManager
         )
         
         window.rootViewController = battleViewController

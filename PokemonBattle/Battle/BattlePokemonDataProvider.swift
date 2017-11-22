@@ -18,3 +18,13 @@ public protocol BattlePokemonDataProvider: class {
     func battlePokemon(id: String) -> BattlePokemon?
     
 }
+
+// MARK: - Notification
+
+import Foundation
+
+extension Notification.Name {
+    
+    public static let battlePokemonDataProviderDataDidChange = Notification.Name(rawValue: "battle-pokemon-data-provider.data-did-change")
+    
+}

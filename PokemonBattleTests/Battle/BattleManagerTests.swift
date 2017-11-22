@@ -48,7 +48,7 @@ public final class BattleManagerTests: XCTestCase {
         
         let stubData = StubData(
             battlePokemon: BattlePokemon(
-                identifier: "1",
+                id: "1",
                 pokemon: Pikachu(),
                 healthPoint: 100.0
             )
@@ -64,52 +64,45 @@ public final class BattleManagerTests: XCTestCase {
             
         }
         
-        battleManager.battlePokemons.append(
-            stubData.battlePokemon
+        let battlePokemonDataProvider = StubBattlePokemonDataProvider(
+            stubBattlePokemons: [
+                stubData.battlePokemon
+            ]
         )
         
-        do {
-            
-            let identifier = stubData.battlePokemon.identifier
-            
-            let battleAction = PhysicalAttackBattleAction()
-            
-            try battleManager.addBattleAction(
-                battleAction,
-                toPokemonWithIdentifier: identifier
-            )
-            XCTAssertNotNil(battleManager.battleMap[identifier])
-            
-            battleManager.performAllBattleActions()
-            
-            guard
-                let index = battleManager.battlePokemons.index(
-                    where: { $0.identifier == stubData.battlePokemon.identifier }
-                )
-            else {
-                
-                XCTFail("Battle pokemon not found.")
-                
-                return
-                
-            }
-            
-            let updatedBattlePokemon = battleManager.battlePokemons[index]
-            
-            let expectedBattlePokemon = battleAction.applied(battlePokemon: stubData.battlePokemon)
-            
-            XCTAssertEqual(
-                updatedBattlePokemon.identifier,
-                expectedBattlePokemon.identifier
-            )
-            
-            XCTAssertEqual(
-                updatedBattlePokemon.healthPoint,
-                expectedBattlePokemon.healthPoint
-            )
-            
-        }
-        catch { XCTFail("\(error)") }
+        battleManager.battlePokemonDataProvider = battlePokemonDataProvider
+        
+        let battleAction = PhysicalAttackBattleAction(attackPoint: stubData.battlePokemon.pokemon.attackPoint, animation: nil)
+        
+        let battlePokemonId = stubData.battlePokemon.id
+        
+        battleManager.addBattleAction(
+            battleAction,
+            targetBattlePokemonId: battlePokemonId
+        )
+        
+        XCTAssertEqual(
+            battleManager.actions
+                .filter { $0.battlePokemonId == battlePokemonId }
+                .count,
+            1
+        )
+        
+        battleManager.performAllBattleActions()
+        
+        let updatedBattlePokemon = battleManager.battlePokemonDataProvider?.battlePokemon(id: battlePokemonId)
+        
+        let expectedBattlePokemon = battleAction.apply(on: stubData.battlePokemon)
+        
+        XCTAssertEqual(
+            updatedBattlePokemon?.id,
+            expectedBattlePokemon.id
+        )
+        
+        XCTAssertEqual(
+            updatedBattlePokemon?.healthPoint,
+            expectedBattlePokemon.healthPoint
+        )
         
     }
     

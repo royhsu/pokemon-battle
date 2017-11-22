@@ -12,7 +12,25 @@ public enum BattleManagerError: Error {
     
     // MARK: Case
     
-    case battlePokemonNotFound(identifier: String)
+    case battlePokemonDataPrivderNotFound
+    
+}
+
+// MARK: - BattleManagerDelegate
+
+public protocol BattleManagerDelegate: class {
+    
+    func battleManager(
+        _  battleManager: BattleManager,
+        didApply battleAction: BattleAction,
+        on oldBattlePokemon: BattlePokemon,
+        resultIn newBattlePokemon: BattlePokemon
+    )
+    
+    func battleManager(
+        _ battleManager: BattleManager,
+        didFailWith error: Error
+    )
     
 }
 
@@ -22,57 +40,68 @@ public final class BattleManager: BattleDelegate {
     
     // MARK: Property
     
-    internal final var battleMap: [String: Array<BattleAction>] = [:]
+    internal typealias Action = (battlePokemonId: String, battleAction: BattleAction)
     
-    public final var battlePokemons: [BattlePokemon] = []
+    internal final var actions: [Action] = []
+    
+    public final weak var battlePokemonDataProvider: BattlePokemonDataProvider?
+    
+    public final weak var battleManagerDelegate: BattleManagerDelegate?
     
     // MARK: BattleDelegate
     
-    public final func addBattleAction(
+    public func addBattleAction(
         _ action: BattleAction,
-        toPokemonWithIdentifier identifier: String
-    )
-    throws {
+        targetBattlePokemonId id: String
+    ) {
         
-        let isExisting = battlePokemons.contains { $0.identifier == identifier }
-        
-        if !isExisting {
-            
-            throw BattleManagerError.battlePokemonNotFound(identifier: identifier)
-            
-        }
-        
-        var actions = battleMap[identifier] ?? []
-        
-        actions.append(action)
-        
-        battleMap[identifier] = actions
+        actions.append(
+            Action(
+                battlePokemonId: id,
+                battleAction: action
+            )
+        )
         
     }
     
     public final func performAllBattleActions() {
         
-        for index in 0..<battlePokemons.count {
+        guard
+            let battlePokemonDataProvider = battlePokemonDataProvider
+        else {
             
-            let battlePokemon = battlePokemons[index]
+            battleManagerDelegate?.battleManager(
+                self,
+                didFailWith: BattleManagerError.battlePokemonDataPrivderNotFound
+            )
             
-            let identifier = battlePokemon.identifier
-            
-            guard
-                let actions = battleMap.removeValue(forKey: identifier)
-            else { continue }
-            
-            let updatedBattlePokemon: BattlePokemon = actions.reduce(battlePokemon) { currentBattlePokemon, action in
-                
-                let nextBattlePokemon = action.applied(battlePokemon: currentBattlePokemon)
-                
-                return nextBattlePokemon
-                
-            }
-            
-            battlePokemons[index] = updatedBattlePokemon
+            return
             
         }
+        
+        if actions.isEmpty { return }
+        
+        let action = actions.removeFirst()
+        
+        if let targetBattlePokemon = battlePokemonDataProvider.battlePokemon(id: action.battlePokemonId) {
+            
+            let updatedBattlePokemon = action.battleAction.apply(on: targetBattlePokemon)
+            
+            battlePokemonDataProvider.replaceBattlePokemon(
+                id: action.battlePokemonId,
+                with: updatedBattlePokemon
+            )
+            
+            battleManagerDelegate?.battleManager(
+                self,
+                didApply: action.battleAction,
+                on: targetBattlePokemon,
+                resultIn: updatedBattlePokemon
+            )
+            
+        }
+        
+        performAllBattleActions()
         
     }
     

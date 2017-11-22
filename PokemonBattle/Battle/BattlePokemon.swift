@@ -12,7 +12,7 @@ public struct BattlePokemon {
     
     // MARK: Property
     
-    public let identifier: String
+    public let id: String
     
     public let pokemon: Pokemon
     

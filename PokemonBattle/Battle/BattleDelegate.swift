@@ -10,14 +10,14 @@
 
 public protocol BattleDelegate: class {
     
-    var battlePokemons: [BattlePokemon] { get set }
+    var battlePokemonDataProvider: BattlePokemonDataProvider? { get set }
     
     func addBattleAction(
         _ action: BattleAction,
-        toPokemonWithIdentifier identifier: String
+        targetBattlePokemonId id: String
     )
-    throws
-    
+
+    // If a performing action can't find the target battle pokemon with the given identifier, this action should be skipped.
     func performAllBattleActions()
     
 }

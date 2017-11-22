@@ -18,7 +18,7 @@ public struct PhysicalAttackBattleAction: BattleAction {
     
     // MARK: BattleAction
     
-    public func applied(battlePokemon: BattlePokemon) -> BattlePokemon {
+    public func apply(on battlePokemon: BattlePokemon) -> BattlePokemon {
         
         var updatedBattlePokemon = battlePokemon
         

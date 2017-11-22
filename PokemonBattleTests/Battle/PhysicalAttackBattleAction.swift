@@ -26,23 +26,26 @@ internal final class PhysicalAttackBattleActionTests: XCTestCase {
         
         let stubData = StubData(
             battlePokemon: BattlePokemon(
-                identifier: "1",
+                id: "1",
                 pokemon: Pikachu(),
                 healthPoint: 100.0
             )
         )
         
-        let battleAction = PhysicalAttackBattleAction()
+        let battleAction = PhysicalAttackBattleAction(
+            attackPoint: stubData.battlePokemon.pokemon.attackPoint,
+            animation: nil
+        )
         
-        let updatedBattlePokemon = battleAction.applied(battlePokemon: stubData.battlePokemon)
+        let updatedBattlePokemon = battleAction.apply(on: stubData.battlePokemon)
         
         var expectedBattlePokemon = stubData.battlePokemon
         
-        expectedBattlePokemon.healthPoint -= 10.0
+        expectedBattlePokemon.healthPoint -= stubData.battlePokemon.pokemon.attackPoint
         
         XCTAssertEqual(
-            updatedBattlePokemon.identifier,
-            expectedBattlePokemon.identifier
+            updatedBattlePokemon.id,
+            expectedBattlePokemon.id
         )
         
         XCTAssertEqual(

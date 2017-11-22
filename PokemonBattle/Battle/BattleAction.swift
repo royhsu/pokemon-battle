@@ -9,7 +9,7 @@
 // MARK: - BattleAction
 
 public protocol BattleAction {
-    
-    func applied(battlePokemon: BattlePokemon) -> BattlePokemon
+
+    func apply(on battlePokemon: BattlePokemon) -> BattlePokemon
     
 }

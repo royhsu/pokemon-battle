@@ -27,7 +27,7 @@ public final class BattleViewController: UIViewController {
     internal final let battleDelegate: BattleDelegate
     
     public final var homeBattlePokemon = BattlePokemon(
-        identifier: "1",
+        id: "1",
         pokemon: Pikachu(),
         healthPoint: 100.0
     ) {
@@ -45,7 +45,7 @@ public final class BattleViewController: UIViewController {
     }
     
     public final var guestBattlePokemon = BattlePokemon(
-        identifier: "2",
+        id: "2",
         pokemon: Charmander(),
         healthPoint: 100.0
     ) {
@@ -217,43 +217,43 @@ public final class BattleViewController: UIViewController {
     
     @objc final func selectActionFromMenu(_ sender: Any) {
     
-        battleDelegate.battlePokemons.append(guestBattlePokemon)
+//        battleDelegate.battlePokemons.append(guestBattlePokemon)
+//        
+//        do {
         
-        do {
-        
-            try battleDelegate.addBattleAction(
-                PhysicalAttackBattleAction(
-                    attackPoint: homeBattlePokemon.pokemon.attackPoint,
-                    animation: { oldValue, newValue in
-                        
-                        self.battleFieldScene?
-                            .guestPokemonSpriteNode
-                            .run(
-                                .sequence(
-                                    [
-                                        .fadeOut(withDuration: 0.2),
-                                        .fadeIn(withDuration: 0.2),
-                                        .fadeOut(withDuration: 0.2),
-                                        .fadeIn(withDuration: 0.2),
-                                        .fadeOut(withDuration: 0.2),
-                                        .fadeIn(withDuration: 0.2)
-                                    ]
-                                )
-                            )
-                        
-                    }
-                ),
-                toPokemonWithIdentifier: guestBattlePokemon.identifier
-            )
+//            try battleDelegate.addBattleAction(
+//                PhysicalAttackBattleAction(
+//                    attackPoint: homeBattlePokemon.pokemon.attackPoint,
+//                    animation: { oldValue, newValue in
+//                        
+//                        self.battleFieldScene?
+//                            .guestPokemonSpriteNode
+//                            .run(
+//                                .sequence(
+//                                    [
+//                                        .fadeOut(withDuration: 0.2),
+//                                        .fadeIn(withDuration: 0.2),
+//                                        .fadeOut(withDuration: 0.2),
+//                                        .fadeIn(withDuration: 0.2),
+//                                        .fadeOut(withDuration: 0.2),
+//                                        .fadeIn(withDuration: 0.2)
+//                                    ]
+//                                )
+//                            )
+//
+//                    }
+//                ),
+//                toPokemonWithIdentifier: guestBattlePokemon.identifier
+//            )
             
-            battleDelegate.performAllBattleActions()
-            
-            let index = battleDelegate.battlePokemons.index(where: { $0.identifier == guestBattlePokemon.identifier })!
-            
-            guestBattlePokemon = battleDelegate.battlePokemons[index]
-            
-        }
-        catch { fatalError("\(error)") }
+//            battleDelegate.performAllBattleActions()
+//
+//            let index = battleDelegate.battlePokemons.index(where: { $0.identifier == guestBattlePokemon.identifier })!
+//
+//            guestBattlePokemon = battleDelegate.battlePokemons[index]
+//
+//        }
+//        catch { fatalError("\(error)") }
         
     }
     

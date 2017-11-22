@@ -14,6 +14,8 @@ public protocol Pokemon {
     
     var attackPoint: Double { get }
     
+    var healthPoint: Double { get }
+    
 }
 
 // MARK: Image

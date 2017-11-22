@@ -16,6 +16,19 @@ public struct BattlePokemon {
     
     public let pokemon: Pokemon
     
-    public var healthPoint: Double
+    public var remainingHealthPoint: Double
+    
+    public init(
+        id: String,
+        pokemon: Pokemon
+    ) {
+        
+        self.id = id
+
+        self.pokemon = pokemon
+        
+        self.remainingHealthPoint = pokemon.healthPoint
+        
+    }
     
 }

@@ -24,7 +24,7 @@ public struct PhysicalAttackBattleAction: BattleAction {
         
         var updatedBattlePokemon = battlePokemon
         
-        updatedBattlePokemon.healthPoint -= attackPoint
+        updatedBattlePokemon.remainingHealthPoint -= attackPoint
         
         return updatedBattlePokemon
         

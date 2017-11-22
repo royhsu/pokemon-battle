@@ -27,8 +27,7 @@ internal final class PhysicalAttackBattleActionTests: XCTestCase {
         let stubData = StubData(
             battlePokemon: BattlePokemon(
                 id: "1",
-                pokemon: Pikachu(),
-                healthPoint: 100.0
+                pokemon: Pikachu()
             )
         )
         
@@ -41,7 +40,7 @@ internal final class PhysicalAttackBattleActionTests: XCTestCase {
         
         var expectedBattlePokemon = stubData.battlePokemon
         
-        expectedBattlePokemon.healthPoint -= stubData.battlePokemon.pokemon.attackPoint
+        expectedBattlePokemon.remainingHealthPoint -= stubData.battlePokemon.pokemon.attackPoint
         
         XCTAssertEqual(
             updatedBattlePokemon.id,
@@ -49,8 +48,8 @@ internal final class PhysicalAttackBattleActionTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            updatedBattlePokemon.healthPoint,
-            expectedBattlePokemon.healthPoint
+            updatedBattlePokemon.remainingHealthPoint,
+            expectedBattlePokemon.remainingHealthPoint
         )
         
     }

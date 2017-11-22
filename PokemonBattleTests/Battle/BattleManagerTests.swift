@@ -51,13 +51,11 @@ public final class BattleManagerTests: XCTestCase {
         let stubData = StubData(
             homeBattlePokemon: BattlePokemon(
                 id: "1",
-                pokemon: Pikachu(),
-                healthPoint: 100.0
+                pokemon: Pikachu()
             ),
             guestBattlePokemon: BattlePokemon(
                 id: "2",
-                pokemon: Charmander(),
-                healthPoint: 100.0
+                pokemon: Charmander()
             )
         )
         
@@ -107,8 +105,8 @@ public final class BattleManagerTests: XCTestCase {
         )
         
         XCTAssertEqual(
-            updatedBattlePokemon?.healthPoint,
-            expectedBattlePokemon.healthPoint
+            updatedBattlePokemon?.remainingHealthPoint,
+            expectedBattlePokemon.remainingHealthPoint
         )
         
     }

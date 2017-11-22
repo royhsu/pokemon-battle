@@ -14,4 +14,6 @@ public struct Pikachu: Pokemon {
     
     public let attackPoint = 8.0
     
+    public let healthPoint = 40.0
+    
 }

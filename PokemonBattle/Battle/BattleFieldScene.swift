@@ -162,7 +162,7 @@ public final class BattleFieldScene: SKScene {
             
         }
         
-        let healthPoint = battlePokemon.healthPoint
+        let healthPoint = battlePokemon.remainingHealthPoint
         
         labelNode.text = "HP: \(healthPoint)"
         
@@ -188,7 +188,7 @@ public final class BattleFieldScene: SKScene {
                 
         }
         
-        let healthPoint = battlePokemon.healthPoint
+        let healthPoint = battlePokemon.remainingHealthPoint
         
         labelNode.text = "HP: \(healthPoint)"
         

@@ -14,4 +14,6 @@ public struct Charmander: Pokemon {
     
     public let attackPoint = 10.0
     
+    public let healthPoint = 46.0
+    
 }

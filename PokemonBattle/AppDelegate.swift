@@ -20,13 +20,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     public final let basicBattlePokemonDataProvider = BasicBattlePokemonDataProvider(
         homeBattlePokemon: BattlePokemon(
             id: "home",
-            pokemon: Pikachu(),
-            healthPoint: 100.0
+            pokemon: Pikachu()
         ),
         guestBattlePokemon: BattlePokemon(
             id: "guest",
-            pokemon: Charmander(),
-            healthPoint: 100.0
+            pokemon: Charmander()
         )
     )
 

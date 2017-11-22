@@ -83,25 +83,39 @@ public final class BattleManager: BattleDelegate {
         
         let action = actions.removeFirst()
         
-        if let targetBattlePokemon = battlePokemonDataProvider.battlePokemon(id: action.battlePokemonId) {
+        guard
+            let targetBattlePokemon = battlePokemonDataProvider.battlePokemon(id: action.battlePokemonId)
+        else {
             
-            let updatedBattlePokemon = action.battleAction.apply(on: targetBattlePokemon)
+            performAllBattleActions()
             
-            battlePokemonDataProvider.replaceBattlePokemon(
-                id: action.battlePokemonId,
-                with: updatedBattlePokemon
-            )
-            
-            battleManagerDelegate?.battleManager(
-                self,
-                didApply: action.battleAction,
-                on: targetBattlePokemon,
-                resultIn: updatedBattlePokemon
-            )
+            return
             
         }
         
-        performAllBattleActions()
+        let updatedBattlePokemon = action.battleAction.apply(on: targetBattlePokemon)
+        
+        action.battleAction.animateBattlePokemon(
+            from: targetBattlePokemon,
+            to: updatedBattlePokemon,
+            completion: {
+                
+                battlePokemonDataProvider.replaceBattlePokemon(
+                    id: action.battlePokemonId,
+                    with: updatedBattlePokemon
+                )
+                
+                self.battleManagerDelegate?.battleManager(
+                    self,
+                    didApply: action.battleAction,
+                    on: targetBattlePokemon,
+                    resultIn: updatedBattlePokemon
+                )
+                
+                self.performAllBattleActions()
+                
+            }
+        )
         
     }
     

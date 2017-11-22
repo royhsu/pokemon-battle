@@ -206,6 +206,7 @@ public final class BattleViewController: UIViewController {
     
         // Todo: find a better way instead of using magic string home and guest.
         guard
+            let battleFieldScene = battleFieldScene,
             let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider,
             let homeBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "home"),
             let guestBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "guest")
@@ -213,47 +214,13 @@ public final class BattleViewController: UIViewController {
         
         battleDelegate.addBattleAction(
             PhysicalAttackBattleAction(
-                attackPoint: homeBattlePokemon.pokemon.attackPoint
+                attackPoint: homeBattlePokemon.pokemon.attackPoint,
+                battleFieldScene: battleFieldScene
             ),
             targetBattlePokemonId: guestBattlePokemon.id
         )
         
         battleDelegate.performAllBattleActions()
-        
-//        do {
-        
-//            try battleDelegate.addBattleAction(
-//
-//                    animation: { oldValue, newValue in
-//                        
-//                        self.battleFieldScene?
-//                            .guestPokemonSpriteNode
-//                            .run(
-//                                .sequence(
-//                                    [
-//                                        .fadeOut(withDuration: 0.2),
-//                                        .fadeIn(withDuration: 0.2),
-//                                        .fadeOut(withDuration: 0.2),
-//                                        .fadeIn(withDuration: 0.2),
-//                                        .fadeOut(withDuration: 0.2),
-//                                        .fadeIn(withDuration: 0.2)
-//                                    ]
-//                                )
-//                            )
-//
-//                    }
-//                ),
-//                toPokemonWithIdentifier: guestBattlePokemon.identifier
-//            )
-            
-//            battleDelegate.performAllBattleActions()
-//
-//            let index = battleDelegate.battlePokemons.index(where: { $0.identifier == guestBattlePokemon.identifier })!
-//
-//            guestBattlePokemon = battleDelegate.battlePokemons[index]
-//
-//        }
-//        catch { fatalError("\(error)") }
         
     }
     

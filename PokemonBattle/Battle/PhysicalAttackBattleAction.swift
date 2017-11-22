@@ -8,11 +8,15 @@
 
 // MARK: - PhysicalAttackBattleAction
 
+import SpriteKit
+
 public struct PhysicalAttackBattleAction: BattleAction {
     
     // MARK: Property
     
     public let attackPoint: Double
+    
+    public let battleFieldScene: BattleFieldScene
     
     // MARK: BattleAction
     
@@ -23,6 +27,54 @@ public struct PhysicalAttackBattleAction: BattleAction {
         updatedBattlePokemon.healthPoint -= attackPoint
         
         return updatedBattlePokemon
+        
+    }
+    
+    public func animateBattlePokemon(
+        from oldValue: BattlePokemon,
+        to newValue: BattlePokemon,
+        completion: @escaping () -> Void
+    ) {
+        
+        if oldValue.id == "home" {
+            
+            battleFieldScene
+                .homePokemonSpriteNode
+                .run(
+                    .sequence(
+                        [
+                            .fadeOut(withDuration: 0.2),
+                            .fadeIn(withDuration: 0.2),
+                            .fadeOut(withDuration: 0.2),
+                            .fadeIn(withDuration: 0.2),
+                            .fadeOut(withDuration: 0.2),
+                            .fadeIn(withDuration: 0.2)
+                        ]
+                    ),
+                    completion: completion
+                )
+            
+        }
+        else if oldValue.id == "guest" {
+            
+            battleFieldScene
+                .guestPokemonSpriteNode
+                .run(
+                    .sequence(
+                        [
+                            .fadeOut(withDuration: 0.2),
+                            .fadeIn(withDuration: 0.2),
+                            .fadeOut(withDuration: 0.2),
+                            .fadeIn(withDuration: 0.2),
+                            .fadeOut(withDuration: 0.2),
+                            .fadeIn(withDuration: 0.2)
+                        ]
+                    ),
+                    completion: completion
+                )
+            
+        }
+        else { completion() }
         
     }
     

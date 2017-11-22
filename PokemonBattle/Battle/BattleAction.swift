@@ -12,4 +12,10 @@ public protocol BattleAction {
 
     func apply(on battlePokemon: BattlePokemon) -> BattlePokemon
     
+    func animateBattlePokemon(
+        from oldValue: BattlePokemon,
+        to newValue: BattlePokemon,
+        completion: @escaping () -> Void
+    )
+    
 }

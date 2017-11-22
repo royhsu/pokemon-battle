@@ -26,42 +26,6 @@ public final class BattleViewController: UIViewController {
     
     internal final let battleDelegate: BattleDelegate
     
-//    public final var homeBattlePokemon = BattlePokemon(
-//        id: "1",
-//        pokemon: Pikachu(),
-//        healthPoint: 100.0
-//    ) {
-//
-//        didSet {
-//
-//            guard
-//                let battleFieldScene = battleFieldScene
-//            else { fatalError("Battle field scene not currently presented.") }
-//
-//            battleFieldScene.updateData()
-//
-//        }
-//
-//    }
-//
-//    public final var guestBattlePokemon = BattlePokemon(
-//        id: "2",
-//        pokemon: Charmander(),
-//        healthPoint: 100.0
-//    ) {
-//
-//        didSet {
-//
-//            guard
-//                let battleFieldScene = battleFieldScene
-//                else { fatalError("Battle field scene not currently presented.") }
-//
-//            battleFieldScene.updateData()
-//
-//        }
-//
-//    }
-    
     public final var battleFieldScene: BattleFieldScene? {
         
         return battleFieldView.scene as? BattleFieldScene

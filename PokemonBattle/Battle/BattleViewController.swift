@@ -220,6 +220,14 @@ public final class BattleViewController: UIViewController {
             targetBattlePokemonId: guestBattlePokemon.id
         )
         
+        battleDelegate.addBattleAction(
+            PhysicalAttackBattleAction(
+                attackPoint: guestBattlePokemon.pokemon.attackPoint,
+                battleFieldScene: battleFieldScene
+            ),
+            targetBattlePokemonId: homeBattlePokemon.id
+        )
+        
         battleDelegate.performAllBattleActions()
         
     }

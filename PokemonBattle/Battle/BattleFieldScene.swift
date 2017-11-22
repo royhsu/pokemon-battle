@@ -22,16 +22,6 @@ import SpriteKit
 
 public final class BattleFieldScene: SKScene {
     
-    // MARK: BattleField
-    
-    public struct BattleField {
-        
-        public static let homeName = "home"
-        
-        public static let guestName = "guest"
-        
-    }
-    
     // MARK: Property
     
     public final weak var sceneDataProvider: BattleFieldSceneDataProvider?

@@ -46,45 +46,69 @@ public struct PhysicalAttackBattleAction: BattleAction {
             
         }
         
-        if oldValue.id == "home" {
+        var attackingPokemonSpriteNode: SKSpriteNode?
+        
+        var targetPokemonSpriteNode: SKSpriteNode?
+        
+        var offsetX: CGFloat = 0.0
+        
+        if oldValue.id == BattleField.homeName {
             
-            battleFieldScene
-                .homePokemonSpriteNode
-                .run(
-                    .sequence(
-                        [
-                            .fadeOut(withDuration: 0.2),
-                            .fadeIn(withDuration: 0.2),
-                            .fadeOut(withDuration: 0.2),
-                            .fadeIn(withDuration: 0.2),
-                            .fadeOut(withDuration: 0.2),
-                            .fadeIn(withDuration: 0.2)
-                        ]
-                    ),
-                    completion: completion
-                )
+            attackingPokemonSpriteNode = battleFieldScene.guestPokemonSpriteNode
+            
+            targetPokemonSpriteNode = battleFieldScene.homePokemonSpriteNode
+            
+            offsetX -= 15.0
             
         }
-        else if oldValue.id == "guest" {
+        else if oldValue.id == BattleField.guestName {
             
-            battleFieldScene
-                .guestPokemonSpriteNode
-                .run(
-                    .sequence(
-                        [
-                            .fadeOut(withDuration: 0.2),
-                            .fadeIn(withDuration: 0.2),
-                            .fadeOut(withDuration: 0.2),
-                            .fadeIn(withDuration: 0.2),
-                            .fadeOut(withDuration: 0.2),
-                            .fadeIn(withDuration: 0.2)
-                        ]
-                    ),
-                    completion: completion
-                )
+            attackingPokemonSpriteNode = battleFieldScene.homePokemonSpriteNode
+            
+            targetPokemonSpriteNode = battleFieldScene.guestPokemonSpriteNode
+            
+            offsetX += 15.0
             
         }
-        else { completion() }
+        else {
+            
+            completion()
+            
+            return
+            
+        }
+        
+        attackingPokemonSpriteNode?.run(
+            .sequence(
+                [
+                    .moveBy(
+                        x: offsetX,
+                        y: 0.0,
+                        duration: 0.3
+                    ),
+                    .moveBy(
+                        x: -offsetX,
+                        y: 0.0,
+                        duration: 0.3
+                    )
+                ]
+            )
+        )
+       
+        targetPokemonSpriteNode?.run(
+            .sequence(
+                [
+                    .wait(forDuration: 0.2),
+                    .fadeOut(withDuration: 0.2),
+                    .fadeIn(withDuration: 0.2),
+                    .fadeOut(withDuration: 0.2),
+                    .fadeIn(withDuration: 0.2),
+                    .fadeOut(withDuration: 0.2),
+                    .fadeIn(withDuration: 0.2)
+                ]
+            ),
+            completion: completion
+        )
         
     }
     

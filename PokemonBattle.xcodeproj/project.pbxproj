@@ -28,6 +28,7 @@
 		B064E6A01FC45A9E005476BA /* PhysicalAttackBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */; };
 		B064E6A61FC46E05005476BA /* BattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E6A51FC46E05005476BA /* BattleAction.swift */; };
 		B064E6AA1FC519BB005476BA /* BattleActionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E6A91FC519BB005476BA /* BattleActionAnimation.swift */; };
+		B0CE4EF11FC5BA0B00343937 /* BattleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4EF01FC5BA0B00343937 /* BattleField.swift */; };
 		B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */; };
 		B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */; };
 		B0EAAA351FC3277C00FC633C /* BattleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */; };
@@ -69,6 +70,7 @@
 		B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAttackBattleAction.swift; sourceTree = "<group>"; };
 		B064E6A51FC46E05005476BA /* BattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleAction.swift; sourceTree = "<group>"; };
 		B064E6A91FC519BB005476BA /* BattleActionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleActionAnimation.swift; sourceTree = "<group>"; };
+		B0CE4EF01FC5BA0B00343937 /* BattleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleField.swift; sourceTree = "<group>"; };
 		B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				B041FA761FC2ABB000421C05 /* BattleViewController.swift */,
 				B041FA901FC2C03D00421C05 /* BattleStartScene.sks */,
 				B041FA921FC2C04600421C05 /* BattleStartScene.swift */,
+				B0CE4EF01FC5BA0B00343937 /* BattleField.swift */,
 				B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */,
 				B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */,
 				B02215591FC4224000E7AD76 /* BattlePokemon.swift */,
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0CE4EF11FC5BA0B00343937 /* BattleField.swift in Sources */,
 				B041FA8C1FC2B51400421C05 /* BattleStateMachine.swift in Sources */,
 				B0124DA21FC2F68000A3A58C /* Pokemon.swift in Sources */,
 				B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */,

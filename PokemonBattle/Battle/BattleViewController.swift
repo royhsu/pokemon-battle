@@ -59,7 +59,7 @@ public final class BattleViewController: UIViewController {
     
     // MARK: View Life Cycle
     
-    public override func loadView() { self.view = gameView }
+    public final override func loadView() { self.view = gameView }
     
     public final override func viewDidLoad() {
         
@@ -204,12 +204,11 @@ public final class BattleViewController: UIViewController {
     
     @objc final func selectActionFromMenu(_ sender: Any) {
     
-        // Todo: find a better way instead of using magic string home and guest.
         guard
             let battleFieldScene = battleFieldScene,
             let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider,
-            let homeBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "home"),
-            let guestBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "guest")
+            let homeBattlePokemon = battlePokemonDataProvider.homeBattlePokemon,
+            let guestBattlePokemon = battlePokemonDataProvider.guestBattlePokemon
         else { return }
         
         battleDelegate.addBattleAction(
@@ -252,7 +251,7 @@ extension BattleViewController: BattleStateMachineDelegate {
                 size: battleFieldView.bounds.size
             )
             
-            battleFieldScene.name = "//battleScene"
+            battleFieldScene.name = "battleScene"
             
             battleFieldScene.sceneDataProvider = self
             
@@ -271,13 +270,7 @@ extension BattleViewController: BattleStateMachineDelegate {
     public func stateMachine(
         _ stateMachine: BattleStateMachine,
         didFailWith error: Error
-    ) {
-        
-        // Todo: error handling
-        
-        print("\(error)")
-        
-    }
+    ) { print("\(error)") }
     
 }
 
@@ -285,25 +278,15 @@ extension BattleViewController: BattleStateMachineDelegate {
 
 extension BattleViewController: BattleFieldSceneDataProvider {
     
-    // Todo: find a better way instead of using magic string home and guest.
-    public var homeBattlePokemon: BattlePokemon {
+    public final var homeBattlePokemon: BattlePokemon? {
         
-        let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider!
-        
-        let homeBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "home")!
-        
-        return homeBattlePokemon
+        return battleDelegate.battlePokemonDataProvider?.homeBattlePokemon
         
     }
     
-    // Todo: find a better way instead of using magic string home and guest.
-    public var guestBattlePokemon: BattlePokemon {
+    public final var guestBattlePokemon: BattlePokemon? {
         
-        let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider!
-        
-        let guestBattlePokemon = battlePokemonDataProvider.battlePokemon(id: "guest")!
-        
-        return guestBattlePokemon
+        return battleDelegate.battlePokemonDataProvider?.guestBattlePokemon
         
     }
     

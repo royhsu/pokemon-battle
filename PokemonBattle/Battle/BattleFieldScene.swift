@@ -10,9 +10,9 @@
 
 public protocol BattleFieldSceneDataProvider: class {
     
-    var homeBattlePokemon: BattlePokemon { get }
+    var homeBattlePokemon: BattlePokemon? { get }
     
-    var guestBattlePokemon: BattlePokemon { get }
+    var guestBattlePokemon: BattlePokemon? { get }
     
 }
 
@@ -26,9 +26,9 @@ public final class BattleFieldScene: SKScene {
     
     public struct BattleField {
         
-        public static let homeName = "homePokemon"
+        public static let homeName = "home"
         
-        public static let guestName = "guestPokemon"
+        public static let guestName = "guest"
         
     }
     
@@ -48,49 +48,50 @@ public final class BattleFieldScene: SKScene {
     
     public final override func didMove(to view: SKView) {
         
-        addChild(homePokemonSpriteNode)
-        
-        setUpHomePokemonSpriteNode(homePokemonSpriteNode)
-        
         addChild(homeHpLabelNode)
         
-        setUpHomeHpLabelNode(homeHpLabelNode)
-        
-        addChild(guestPokemonSpriteNode)
-        
-        setUpGuestPokemonSpriteNode(guestPokemonSpriteNode)
+        addChild(homePokemonSpriteNode)
         
         addChild(guestHpLabelNode)
         
-        setUpGuestHpLabelNode(guestHpLabelNode)
+        addChild(guestPokemonSpriteNode)
+        
+        updateData()
         
     }
     
     // MARK: Update
     
     public final func updateData() {
+    
+        setUpHomeHpLabelNode(
+            homeHpLabelNode,
+            battlePokemon: sceneDataProvider?.homeBattlePokemon
+        )
         
-        guard
-            let sceneDataProvider = sceneDataProvider
-        else { return }
+        setUpHomePokemonSpriteNode(
+            homePokemonSpriteNode,
+            battlePokemon: sceneDataProvider?.homeBattlePokemon
+        )
         
-        let homePokemonType = type(of: sceneDataProvider.homeBattlePokemon.pokemon)
+        setUpGuestHpLabelNode(
+            guestHpLabelNode,
+            battlePokemon: sceneDataProvider?.guestBattlePokemon
+        )
         
-        homePokemonSpriteNode.texture = SKTexture(image: homePokemonType.image)
-        
-        setUpHomeHpLabelNode(homeHpLabelNode)
-
-        let guestPokemonType = type(of: sceneDataProvider.guestBattlePokemon.pokemon)
-
-        guestPokemonSpriteNode.texture = SKTexture(image: guestPokemonType.image)
-        
-        setUpGuestHpLabelNode(guestHpLabelNode)
+        setUpGuestPokemonSpriteNode(
+            guestPokemonSpriteNode,
+            battlePokemon: sceneDataProvider?.guestBattlePokemon
+        )
         
     }
     
     // MARK: Set Up
     
-    fileprivate final func setUpHomePokemonSpriteNode(_ spriteNode: SKSpriteNode) {
+    fileprivate final func setUpHomePokemonSpriteNode(
+        _ spriteNode: SKSpriteNode,
+        battlePokemon: BattlePokemon?
+    ) {
         
         spriteNode.size = CGSize(
             width: 100.0,
@@ -102,9 +103,22 @@ public final class BattleFieldScene: SKScene {
             y: 100.0 + frame.minY
         )
         
+        spriteNode.texture = nil
+        
+        guard
+            let pokemon = battlePokemon?.pokemon
+        else { return }
+            
+        let pokemonType = type(of: pokemon)
+        
+        spriteNode.texture = SKTexture(image: pokemonType.image)
+        
     }
     
-    fileprivate final func setUpGuestPokemonSpriteNode(_ spriteNode: SKSpriteNode) {
+    fileprivate final func setUpGuestPokemonSpriteNode(
+        _ spriteNode: SKSpriteNode,
+        battlePokemon: BattlePokemon?
+    ) {
         
         spriteNode.size = CGSize(
             width: 100.0,
@@ -116,9 +130,22 @@ public final class BattleFieldScene: SKScene {
             y: frame.maxY - 100.0
         )
         
+        spriteNode.texture = nil
+        
+        guard
+            let pokemon = battlePokemon?.pokemon
+        else { return }
+        
+        let pokemonType = type(of: pokemon)
+        
+        spriteNode.texture = SKTexture(image: pokemonType.image)
+        
     }
     
-    fileprivate final func setUpHomeHpLabelNode(_ labelNode: SKLabelNode) {
+    fileprivate final func setUpHomeHpLabelNode(
+        _ labelNode: SKLabelNode,
+        battlePokemon: BattlePokemon?
+    ) {
         
         labelNode.position = CGPoint(
             x: frame.maxX - 100.0,
@@ -126,7 +153,7 @@ public final class BattleFieldScene: SKScene {
         )
         
         guard
-            let sceneDataProvider = sceneDataProvider
+            let battlePokemon = battlePokemon
         else {
             
             labelNode.text = "HP: 0"
@@ -135,13 +162,16 @@ public final class BattleFieldScene: SKScene {
             
         }
         
-        let healthPoint = sceneDataProvider.homeBattlePokemon.healthPoint
+        let healthPoint = battlePokemon.healthPoint
         
         labelNode.text = "HP: \(healthPoint)"
         
     }
     
-    fileprivate final func setUpGuestHpLabelNode(_ labelNode: SKLabelNode) {
+    fileprivate final func setUpGuestHpLabelNode(
+        _ labelNode: SKLabelNode,
+        battlePokemon: BattlePokemon?
+    ) {
         
         labelNode.position = CGPoint(
             x: 100.0 + frame.minX,
@@ -149,7 +179,7 @@ public final class BattleFieldScene: SKScene {
         )
         
         guard
-            let sceneDataProvider = sceneDataProvider
+            let battlePokemon = battlePokemon
         else {
             
             labelNode.text = "HP: 0"
@@ -158,7 +188,7 @@ public final class BattleFieldScene: SKScene {
                 
         }
         
-        let healthPoint = sceneDataProvider.guestBattlePokemon.healthPoint
+        let healthPoint = battlePokemon.healthPoint
         
         labelNode.text = "HP: \(healthPoint)"
         

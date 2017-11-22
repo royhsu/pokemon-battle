@@ -42,14 +42,21 @@ public final class BattleManagerTests: XCTestCase {
         
         struct StubData {
             
-            let battlePokemon: BattlePokemon
+            let homeBattlePokemon: BattlePokemon
+            
+            let guestBattlePokemon: BattlePokemon
             
         }
         
         let stubData = StubData(
-            battlePokemon: BattlePokemon(
+            homeBattlePokemon: BattlePokemon(
                 id: "1",
                 pokemon: Pikachu(),
+                healthPoint: 100.0
+            ),
+            guestBattlePokemon: BattlePokemon(
+                id: "2",
+                pokemon: Charmander(),
                 healthPoint: 100.0
             )
         )
@@ -64,35 +71,35 @@ public final class BattleManagerTests: XCTestCase {
             
         }
         
-        let battlePokemonDataProvider = StubBattlePokemonDataProvider(
-            stubBattlePokemons: [
-                stubData.battlePokemon
-            ]
+        let battlePokemonDataProvider = BasicBattlePokemonDataProvider(
+            homeBattlePokemon: stubData.homeBattlePokemon,
+            guestBattlePokemon: stubData.guestBattlePokemon
         )
         
         battleManager.battlePokemonDataProvider = battlePokemonDataProvider
         
-        let battleAction = PhysicalAttackBattleAction(attackPoint: stubData.battlePokemon.pokemon.attackPoint, animation: nil)
-        
-        let battlePokemonId = stubData.battlePokemon.id
+        let battleAction = PhysicalAttackBattleAction(
+            attackPoint: stubData.homeBattlePokemon.pokemon.attackPoint,
+            battleFieldScene: nil
+        )
         
         battleManager.addBattleAction(
             battleAction,
-            targetBattlePokemonId: battlePokemonId
+            targetBattlePokemonId: stubData.guestBattlePokemon.id
         )
         
         XCTAssertEqual(
             battleManager.actions
-                .filter { $0.battlePokemonId == battlePokemonId }
+                .filter { $0.battlePokemonId == stubData.guestBattlePokemon.id }
                 .count,
             1
         )
         
         battleManager.performAllBattleActions()
         
-        let updatedBattlePokemon = battleManager.battlePokemonDataProvider?.battlePokemon(id: battlePokemonId)
+        let updatedBattlePokemon = battlePokemonDataProvider.guestBattlePokemon
         
-        let expectedBattlePokemon = battleAction.apply(on: stubData.battlePokemon)
+        let expectedBattlePokemon = battleAction.apply(on: stubData.guestBattlePokemon)
         
         XCTAssertEqual(
             updatedBattlePokemon?.id,

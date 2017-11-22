@@ -16,7 +16,7 @@ public struct PhysicalAttackBattleAction: BattleAction {
     
     public let attackPoint: Double
     
-    public let battleFieldScene: BattleFieldScene
+    public let battleFieldScene: BattleFieldScene?
     
     // MARK: BattleAction
     
@@ -35,6 +35,16 @@ public struct PhysicalAttackBattleAction: BattleAction {
         to newValue: BattlePokemon,
         completion: @escaping () -> Void
     ) {
+        
+        guard
+            let battleFieldScene = battleFieldScene
+        else {
+            
+            completion()
+            
+            return
+            
+        }
         
         if oldValue.id == "home" {
             

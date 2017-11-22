@@ -10,6 +10,10 @@
 
 public protocol BattlePokemonDataProvider: class {
     
+    var homeBattlePokemon: BattlePokemon? { get }
+    
+    var guestBattlePokemon: BattlePokemon? { get }
+    
     func replaceBattlePokemon(
         id: String,
         with newBattlePokemon: BattlePokemon

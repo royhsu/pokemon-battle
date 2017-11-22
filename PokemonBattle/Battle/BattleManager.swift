@@ -44,9 +44,9 @@ public final class BattleManager: BattleDelegate {
     
     internal final var actions: [Action] = []
     
-    public final weak var battlePokemonDataProvider: BattlePokemonDataProvider?
+    public final var battlePokemonDataProvider: BattlePokemonDataProvider?
     
-    public final weak var battleManagerDelegate: BattleManagerDelegate?
+    public final var battleManagerDelegate: BattleManagerDelegate?
     
     // MARK: BattleDelegate
     

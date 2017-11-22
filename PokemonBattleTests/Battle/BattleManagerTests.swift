@@ -78,7 +78,6 @@ public final class BattleManagerTests: XCTestCase {
                 battleAction,
                 toPokemonWithIdentifier: identifier
             )
-            
             XCTAssertNotNil(battleManager.battleMap[identifier])
             
             battleManager.performAllBattleActions()

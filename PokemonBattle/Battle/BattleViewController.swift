@@ -216,21 +216,26 @@ public final class BattleViewController: UIViewController {
     // MARK: Action
     
     @objc final func selectActionFromMenu(_ sender: Any) {
-        
-        let battlePokemon = guestBattlePokemon
-        
-        battleDelegate.battlePokemons.append(battlePokemon)
+    
+        battleDelegate.battlePokemons.append(guestBattlePokemon)
         
         do {
         
             try battleDelegate.addBattleAction(
-                PhysicalAttackBattleAction(),
-                toPokemonWithIdentifier: battlePokemon.identifier
+                PhysicalAttackBattleAction(
+                    attackPoint: homeBattlePokemon.pokemon.attackPoint,
+                    animation: { oldValue, newValue in
+                        
+                        
+                        
+                    }
+                ),
+                toPokemonWithIdentifier: guestBattlePokemon.identifier
             )
             
             battleDelegate.performAllBattleActions()
             
-            let index = battleDelegate.battlePokemons.index(where: { $0.identifier == battlePokemon.identifier })!
+            let index = battleDelegate.battlePokemons.index(where: { $0.identifier == guestBattlePokemon.identifier })!
             
             guestBattlePokemon = battleDelegate.battlePokemons[index]
             

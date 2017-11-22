@@ -10,7 +10,11 @@
 
 import UIKit
 
-public protocol Pokemon { }
+public protocol Pokemon {
+    
+    var attackPoint: Double { get }
+    
+}
 
 // MARK: Image
 

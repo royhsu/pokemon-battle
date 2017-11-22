@@ -8,4 +8,10 @@
 
 // MARK: - Charmander
 
-public struct Charmander: Pokemon { }
+public struct Charmander: Pokemon {
+    
+    // MARK: Property
+    
+    public let attackPoint = 10.0
+    
+}

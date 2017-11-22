@@ -8,4 +8,10 @@
 
 // MARK: - Pikachu
 
-public struct Pikachu: Pokemon { }
+public struct Pikachu: Pokemon {
+    
+    // MARK: Property
+    
+    public let attackPoint = 8.0
+    
+}

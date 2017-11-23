@@ -77,7 +77,7 @@ public final class BattleManagerTests: XCTestCase {
         battleManager.battlePokemonDataProvider = battlePokemonDataProvider
         
         let battleAction = PhysicalAttackBattleAction(
-            attackPoint: stubData.homeBattlePokemon.pokemon.attackPoint,
+            pokemon: stubData.homeBattlePokemon.pokemon,
             battleFieldScene: nil
         )
         

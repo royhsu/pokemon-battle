@@ -32,7 +32,7 @@ internal final class PhysicalAttackBattleActionTests: XCTestCase {
         )
         
         let battleAction = PhysicalAttackBattleAction(
-            attackPoint: stubData.battlePokemon.pokemon.attackPoint,
+            pokemon: stubData.battlePokemon.pokemon,
             battleFieldScene: nil
         )
         

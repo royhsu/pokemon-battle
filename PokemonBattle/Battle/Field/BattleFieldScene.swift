@@ -34,6 +34,8 @@ public final class BattleFieldScene: SKScene {
     
     public final let guestHpLabelNode = SKLabelNode(text: nil)
     
+    public final let backgroundSound = SKAudioNode(fileNamed: "Battle.mp3")
+    
     // MARK: Life Cycle
     
     public final override func didMove(to view: SKView) {
@@ -45,6 +47,8 @@ public final class BattleFieldScene: SKScene {
         addChild(guestHpLabelNode)
         
         addChild(guestPokemonSpriteNode)
+        
+        addChild(backgroundSound)
         
         updateData()
         

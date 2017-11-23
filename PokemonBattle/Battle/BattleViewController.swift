@@ -246,6 +246,10 @@ extension BattleViewController: BattleStateMachineDelegate {
             
             battleFieldView.presentScene(battleFieldScene)
             
+            battleFieldScene.backgroundSound.run(
+                .play()
+            )
+            
             battleMenuTableViewController.menuDataProvider = battleDelegate.battlePokemonDataProvider as? BattleMenuDataProvider
             battleMenuTableViewController.tableView.reloadData()
             

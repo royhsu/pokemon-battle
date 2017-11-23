@@ -100,6 +100,13 @@ public struct PhysicalAttackBattleAction: BattleAction {
                 ]
             )
         )
+        
+        targetPokemonSpriteNode?.run(
+            .playSoundFileNamed(
+                "BodySlam.wav",
+                waitForCompletion: false
+            )
+        )
        
         targetPokemonSpriteNode?.run(
             .sequence(

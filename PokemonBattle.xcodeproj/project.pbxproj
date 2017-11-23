@@ -39,6 +39,10 @@
 		B0CE4F101FC6BD3700343937 /* Lightning.sks in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F0F1FC6BD3700343937 /* Lightning.sks */; };
 		B0CE4F121FC6C33900343937 /* LightningBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F111FC6C33900343937 /* LightningBattleAction.swift */; };
 		B0CE4F141FC6C3D500343937 /* LightningPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F131FC6C3D500343937 /* LightningPokemonSkill.swift */; };
+		B0CE4F171FC6CEC000343937 /* ThunderShock.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F161FC6CEC000343937 /* ThunderShock.wav */; };
+		B0CE4F191FC6D0A900343937 /* FireBlast.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F181FC6D0A900343937 /* FireBlast.wav */; };
+		B0CE4F1B1FC6D18B00343937 /* BodySlam.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F1A1FC6D18B00343937 /* BodySlam.wav */; };
+		B0CE4F1D1FC6D28800343937 /* Battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F1C1FC6D28800343937 /* Battle.mp3 */; };
 		B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */; };
 		B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +94,10 @@
 		B0CE4F0F1FC6BD3700343937 /* Lightning.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Lightning.sks; sourceTree = "<group>"; };
 		B0CE4F111FC6C33900343937 /* LightningBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningBattleAction.swift; sourceTree = "<group>"; };
 		B0CE4F131FC6C3D500343937 /* LightningPokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningPokemonSkill.swift; sourceTree = "<group>"; };
+		B0CE4F161FC6CEC000343937 /* ThunderShock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThunderShock.wav; sourceTree = "<group>"; };
+		B0CE4F181FC6D0A900343937 /* FireBlast.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireBlast.wav; sourceTree = "<group>"; };
+		B0CE4F1A1FC6D18B00343937 /* BodySlam.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BodySlam.wav; sourceTree = "<group>"; };
+		B0CE4F1C1FC6D28800343937 /* Battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Battle.mp3; sourceTree = "<group>"; };
 		B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +152,7 @@
 		B041FA6D1FC2ABB000421C05 /* PokemonBattle */ = {
 			isa = PBXGroup;
 			children = (
+				B0CE4F151FC6CEB400343937 /* Sounds */,
 				B0CE4EF21FC6931900343937 /* Effects */,
 				B0124DA01FC2F67600A3A58C /* Pokemon */,
 				B041FA861FC2AC9B00421C05 /* Battle */,
@@ -260,6 +269,17 @@
 			path = Action;
 			sourceTree = "<group>";
 		};
+		B0CE4F151FC6CEB400343937 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B0CE4F1C1FC6D28800343937 /* Battle.mp3 */,
+				B0CE4F1A1FC6D18B00343937 /* BodySlam.wav */,
+				B0CE4F161FC6CEC000343937 /* ThunderShock.wav */,
+				B0CE4F181FC6D0A900343937 /* FireBlast.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,6 +368,10 @@
 				B0CE4F101FC6BD3700343937 /* Lightning.sks in Resources */,
 				B0CE4EF51FC6935800343937 /* Fire.sks in Resources */,
 				B041FA7F1FC2ABB000421C05 /* LaunchScreen.storyboard in Resources */,
+				B0CE4F171FC6CEC000343937 /* ThunderShock.wav in Resources */,
+				B0CE4F1D1FC6D28800343937 /* Battle.mp3 in Resources */,
+				B0CE4F191FC6D0A900343937 /* FireBlast.wav in Resources */,
+				B0CE4F1B1FC6D18B00343937 /* BodySlam.wav in Resources */,
 				B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */,
 				B0CE4EF61FC6935800343937 /* Assets.xcassets in Resources */,
 			);

@@ -86,6 +86,13 @@ public struct LightningBattleAction: BattleAction {
         battleFieldScene?.addChild(lightningEmitterSpriteNode)
         
         targetPokemonSpriteNode?.run(
+            .playSoundFileNamed(
+                "ThunderShock.wav",
+                waitForCompletion: false
+            )
+        )
+        
+        targetPokemonSpriteNode?.run(
             .sequence(
                 [
                     .wait(

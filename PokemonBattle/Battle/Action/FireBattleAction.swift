@@ -86,6 +86,13 @@ public struct FireBattleAction: BattleAction {
         battleFieldScene?.addChild(fireEmitterSpriteNode)
         
         targetPokemonSpriteNode?.run(
+            .playSoundFileNamed(
+                "FireBlast.wav",
+                waitForCompletion: false
+            )
+        )
+        
+        targetPokemonSpriteNode?.run(
             .sequence(
                 [
                     .wait(

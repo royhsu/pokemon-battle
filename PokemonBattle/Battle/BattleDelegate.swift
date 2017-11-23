@@ -18,6 +18,17 @@ public protocol BattleDelegate: class {
     )
 
     // If a performing action can't find the target battle pokemon with the given identifier, this action should be skipped.
+    // Please make sure to fire up .allBattleAnimationsDidComplete notification name after all battle animations are completed.
     func performAllBattleActions()
+    
+}
+
+// MARK: - Notification
+
+import Foundation
+
+extension Notification.Name {
+    
+    public static let allBattleAnimationsDidComplete = Notification.Name(rawValue: "battle-pokemon-delegate.all-battle-animations-did-complete")
     
 }

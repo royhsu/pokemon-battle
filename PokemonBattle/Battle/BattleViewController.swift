@@ -61,6 +61,12 @@ public final class BattleViewController: UIViewController {
             object: nil
         )
         
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .allBattleAnimationsDidComplete,
+            object: nil
+        )
+        
     }
     
     // MARK: View Life Cycle
@@ -78,6 +84,7 @@ public final class BattleViewController: UIViewController {
             battleFieldView: battleFieldView,
             battleMenuView: battleMenuView
         )
+        
         battleMenuTableViewController.didMove(toParentViewController: self)
         
         setUpStateMachine(stateMachine)
@@ -92,6 +99,13 @@ public final class BattleViewController: UIViewController {
             self,
             selector: #selector(update),
             name: .battlePokemonDataProviderDataDidChange,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(allBattleAnimationsDidComplete),
+            name: .allBattleAnimationsDidComplete,
             object: nil
         )
         
@@ -196,36 +210,9 @@ public final class BattleViewController: UIViewController {
         
     }
     
-    @objc final func selectActionFromMenu(_ sender: Any) {
-    
-        guard
-            let battleFieldScene = battleFieldScene,
-            let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider,
-            let homeBattlePokemon = battlePokemonDataProvider.homeBattlePokemon,
-            let guestBattlePokemon = battlePokemonDataProvider.guestBattlePokemon
-        else { return }
+    @objc public final func allBattleAnimationsDidComplete(_ sender: Any) {
         
-        let homePokemonFirstSkillType = homeBattlePokemon.pokemon.skillTypes.first!
-        
-        battleDelegate.addBattleAction(
-            homePokemonFirstSkillType.battleActionType.init(
-                pokemon: homeBattlePokemon.pokemon,
-                battleFieldScene: battleFieldScene
-            ),
-            targetBattlePokemonId: guestBattlePokemon.id
-        )
-        
-        let guestPokemonFirstSkillType = guestBattlePokemon.pokemon.skillTypes.first!
-        
-        battleDelegate.addBattleAction(
-            guestPokemonFirstSkillType.battleActionType.init(
-                pokemon: guestBattlePokemon.pokemon,
-                battleFieldScene: battleFieldScene
-            ),
-            targetBattlePokemonId: homeBattlePokemon.id
-        )
-        
-        battleDelegate.performAllBattleActions()
+        stateMachine.state = .result
         
     }
     
@@ -262,7 +249,27 @@ extension BattleViewController: BattleStateMachineDelegate {
             battleMenuTableViewController.menuDataProvider = battleDelegate.battlePokemonDataProvider as? BattleMenuDataProvider
             battleMenuTableViewController.tableView.reloadData()
             
-        default: break
+            battleMenuTableViewController.menuControllerDelegate = self
+            
+        case (.preparing, .fighting):
+            
+            battleMenuTableViewController.tableView.isUserInteractionEnabled = false
+            
+            battleMenuTableViewController.tableView.backgroundColor = .gray
+            
+        case (.fighting, .result):
+            
+            // Todo: determine whether the game is over.
+            
+            stateMachine.state = .preparing
+            
+        case (.result, .preparing):
+            
+            battleMenuTableViewController.tableView.isUserInteractionEnabled = true
+            
+            battleMenuTableViewController.tableView.backgroundColor = .white
+            
+        default: fatalError("Invalid state transition.")
             
         }
         
@@ -288,6 +295,50 @@ extension BattleViewController: BattleFieldSceneDataProvider {
     public final var guestBattlePokemon: BattlePokemon? {
         
         return battleDelegate.battlePokemonDataProvider?.guestBattlePokemon
+        
+    }
+    
+}
+
+// MARK - BattleMenuTableViewControllerDelegate
+
+extension  BattleViewController: BattleMenuTableViewControllerDelegate {
+    
+    public func tableViewController(
+        _ tableViewController: BattleMenuTableViewController,
+        didSelectSkillAt index: Int
+    ) {
+        
+        guard
+            let battleFieldScene = battleFieldScene,
+            let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider,
+            let homeBattlePokemon = battlePokemonDataProvider.homeBattlePokemon,
+            let guestBattlePokemon = battlePokemonDataProvider.guestBattlePokemon
+        else { return }
+        
+        stateMachine.state = .fighting
+        
+        let homePokemonFirstSkillType = homeBattlePokemon.pokemon.skillTypes[index]
+        
+        battleDelegate.addBattleAction(
+            homePokemonFirstSkillType.battleActionType.init(
+                pokemon: homeBattlePokemon.pokemon,
+                battleFieldScene: battleFieldScene
+            ),
+            targetBattlePokemonId: guestBattlePokemon.id
+        )
+        
+        let guestPokemonFirstSkillType = guestBattlePokemon.pokemon.skillTypes.first!
+        
+        battleDelegate.addBattleAction(
+            guestPokemonFirstSkillType.battleActionType.init(
+                pokemon: guestBattlePokemon.pokemon,
+                battleFieldScene: battleFieldScene
+            ),
+            targetBattlePokemonId: homeBattlePokemon.id
+        )
+        
+        battleDelegate.performAllBattleActions()
         
     }
     

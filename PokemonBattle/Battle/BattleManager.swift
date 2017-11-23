@@ -36,6 +36,8 @@ public protocol BattleManagerDelegate: class {
 
 // MARK: - BattleManager
 
+import Foundation
+
 public final class BattleManager: BattleDelegate {
     
     // MARK: Property
@@ -79,7 +81,16 @@ public final class BattleManager: BattleDelegate {
             
         }
         
-        if actions.isEmpty { return }
+        if actions.isEmpty {
+            
+            NotificationCenter.default.post(
+                name: .allBattleAnimationsDidComplete,
+                object: nil
+            )
+            
+            return
+            
+        }
         
         let action = actions.removeFirst()
         

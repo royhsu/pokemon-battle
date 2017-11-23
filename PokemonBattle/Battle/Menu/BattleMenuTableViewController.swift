@@ -6,6 +6,17 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
+// MARK: - BattleMenuTableViewControllerDelegate
+
+public protocol BattleMenuTableViewControllerDelegate: class {
+    
+    func tableViewController(
+        _ tableViewController: BattleMenuTableViewController,
+        didSelectSkillAt index: Int
+    )
+    
+}
+
 // MARK: - BattleMenuTableViewController
 
 import UIKit
@@ -15,6 +26,8 @@ public final class BattleMenuTableViewController: UITableViewController {
     // MARK: Property
     
     public final weak var menuDataProvider: BattleMenuDataProvider?
+    
+    public final weak var menuControllerDelegate: BattleMenuTableViewControllerDelegate?
     
     // MARK: UITableViewDataSource
     
@@ -40,6 +53,24 @@ public final class BattleMenuTableViewController: UITableViewController {
         cell.textLabel?.text = menuDataProvider?.titleForPokemonSkill(at: indexPath.section)
         
         return cell
+        
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    public final override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        
+        menuControllerDelegate?.tableViewController(
+            self,
+            didSelectSkillAt: indexPath.section
+        )
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        cell?.isSelected = false
         
     }
     

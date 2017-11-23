@@ -12,6 +12,6 @@ public enum BattleState {
     
     // MARK: Case
     
-    case start, preparing, fighting, result, end
+    case start, preparing, fighting, result(BattleResult), end
     
 }

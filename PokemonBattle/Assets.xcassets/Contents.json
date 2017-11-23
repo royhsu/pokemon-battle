@@ -101,12 +101,6 @@
       "idiom" : "ipad",
       "filename" : "iPad_Pro_App_iOS9-10_83.5pt@2x.png",
       "scale" : "2x"
-    },
-    {
-      "size" : "1024x1024",
-      "idiom" : "ios-marketing",
-      "filename" : "App Store.png",
-      "scale" : "1x"
     }
   ],
   "info" : {

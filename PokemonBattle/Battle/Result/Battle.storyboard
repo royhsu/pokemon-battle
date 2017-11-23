@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wf2-nd-798">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Battle Result View Controller-->
+        <scene sceneID="VQA-Uh-Lsr">
+            <objects>
+                <viewController storyboardIdentifier="BattleResultViewController" id="Wf2-nd-798" customClass="BattleResultViewController" customModule="PokemonBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cbq-gC-b8q">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTC-0G-eQF">
+                                <rect key="frame" x="20" y="137.5" width="627" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="FA4-gN-SZH"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="eBU-8A-pYg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrZ-Va-iuV">
+                                <rect key="frame" x="20" y="137.5" width="627" height="100"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a21-eY-ezB">
+                                <rect key="frame" x="20" y="20" width="627" height="60"/>
+                                <string key="text">Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="top" secondItem="mTC-0G-eQF" secondAttribute="top" id="CqX-05-3Iw"/>
+                            <constraint firstItem="a21-eY-ezB" firstAttribute="leading" secondItem="sTo-Hn-ecC" secondAttribute="leading" constant="20" id="LSY-PT-Kxk"/>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="trailing" secondItem="mTC-0G-eQF" secondAttribute="trailing" id="O0z-rg-MDD"/>
+                            <constraint firstItem="mTC-0G-eQF" firstAttribute="centerY" secondItem="cbq-gC-b8q" secondAttribute="centerY" id="Odl-Dd-LxV"/>
+                            <constraint firstItem="a21-eY-ezB" firstAttribute="top" secondItem="sTo-Hn-ecC" secondAttribute="top" constant="20" id="QHp-Sf-Qba"/>
+                            <constraint firstItem="mTC-0G-eQF" firstAttribute="centerX" secondItem="cbq-gC-b8q" secondAttribute="centerX" id="Tbq-Xf-JJu"/>
+                            <constraint firstItem="sTo-Hn-ecC" firstAttribute="trailing" secondItem="a21-eY-ezB" secondAttribute="trailing" constant="20" id="UMT-fM-08C"/>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="bottom" secondItem="mTC-0G-eQF" secondAttribute="bottom" id="crv-Qd-fEW"/>
+                            <constraint firstItem="sTo-Hn-ecC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mTC-0G-eQF" secondAttribute="trailing" constant="20" id="gkg-Sf-tS9"/>
+                            <constraint firstItem="mTC-0G-eQF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sTo-Hn-ecC" secondAttribute="leading" constant="20" id="kJO-O4-m0v"/>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="leading" secondItem="mTC-0G-eQF" secondAttribute="leading" id="w8h-cM-trD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sTo-Hn-ecC"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="PrZ-Va-iuV" id="RP0-d4-lbi"/>
+                        <outlet property="actionLabel" destination="mTC-0G-eQF" id="I68-8N-cIP"/>
+                        <outlet property="titleLabel" destination="a21-eY-ezB" id="Gg1-24-zew"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ave-HW-9tv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-124" y="175"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,20 +1,20 @@
 //
-//  PhysicalAttackBattleAction.swift
+//  FireBattleAction.swift
 //  PokemonBattle
 //
-//  Created by Roy Hsu on 21/11/2017.
+//  Created by Roy Hsu on 23/11/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - PhysicalAttackBattleAction
+// MARK: - FireBattleAction
 
 import SpriteKit
 
-public struct PhysicalAttackBattleAction: BattleAction {
+public struct FireBattleAction: BattleAction {
     
     // MARK: Property
     
-    public let attackPoint: Double
+    public let magicPowerPoint: Double
     
     public let battleFieldScene: BattleFieldScene?
     
@@ -24,7 +24,7 @@ public struct PhysicalAttackBattleAction: BattleAction {
         
         var updatedBattlePokemon = battlePokemon
         
-        updatedBattlePokemon.remainingHealthPoint -= attackPoint
+        updatedBattlePokemon.remainingHealthPoint -= magicPowerPoint * 1.1
         
         return updatedBattlePokemon
         
@@ -40,15 +40,11 @@ public struct PhysicalAttackBattleAction: BattleAction {
         
         var targetPokemonSpriteNode: SKSpriteNode?
         
-        var offsetX: CGFloat = 0.0
-        
         if oldValue.id == BattleField.homeName {
             
             attackingPokemonSpriteNode = battleFieldScene?.guestPokemonSpriteNode
             
             targetPokemonSpriteNode = battleFieldScene?.homePokemonSpriteNode
-            
-            offsetX -= 15.0
             
         }
         else if oldValue.id == BattleField.guestName {
@@ -57,12 +53,11 @@ public struct PhysicalAttackBattleAction: BattleAction {
             
             targetPokemonSpriteNode = battleFieldScene?.guestPokemonSpriteNode
             
-            offsetX += 15.0
-            
         }
-            
+        
         if
-            attackingPokemonSpriteNode == nil
+            battleFieldScene == nil
+            || attackingPokemonSpriteNode == nil
             || targetPokemonSpriteNode == nil {
             
             completion()
@@ -71,33 +66,21 @@ public struct PhysicalAttackBattleAction: BattleAction {
             
         }
         
-        attackingPokemonSpriteNode?.run(
-            .sequence(
-                [
-                    .moveBy(
-                        x: offsetX,
-                        y: 0.0,
-                        duration: 0.3
-                    ),
-                    .moveBy(
-                        x: -offsetX,
-                        y: 0.0,
-                        duration: 0.3
-                    )
-                ]
-            )
-        )
-       
+        let fireEmitterSpriteNode = SKEmitterNode(fileNamed: "Fire.sks")!
+        
+        fireEmitterSpriteNode.position = targetPokemonSpriteNode?.position ?? .zero
+        
+        battleFieldScene?.addChild(fireEmitterSpriteNode)
+        
         targetPokemonSpriteNode?.run(
             .sequence(
                 [
-                    .wait(forDuration: 0.2),
-                    .fadeOut(withDuration: 0.2),
-                    .fadeIn(withDuration: 0.2),
-                    .fadeOut(withDuration: 0.2),
-                    .fadeIn(withDuration: 0.2),
-                    .fadeOut(withDuration: 0.2),
-                    .fadeIn(withDuration: 0.2)
+                    .wait(
+                        forDuration: 1.5
+                    ),
+                    .run { fireEmitterSpriteNode.removeFromParent() },
+                    .fadeOut(withDuration: 0.4),
+                    .fadeIn(withDuration: 0.4)
                 ]
             ),
             completion: completion

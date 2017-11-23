@@ -259,8 +259,6 @@ extension BattleViewController: BattleStateMachineDelegate {
             
             battleMenuTableViewController.tableView.isUserInteractionEnabled = false
             
-            battleMenuTableViewController.tableView.backgroundColor = .gray
-            
         case (.fighting, .result):
             
             // Todo: determine whether the game is over.
@@ -271,7 +269,11 @@ extension BattleViewController: BattleStateMachineDelegate {
             
             battleMenuTableViewController.tableView.isUserInteractionEnabled = true
             
-            battleMenuTableViewController.tableView.backgroundColor = .white
+            battleMenuTableViewController.tableView.selectRow(
+                at: nil,
+                animated: true,
+                scrollPosition: .none
+            )
             
         default: fatalError("Invalid state transition.")
             

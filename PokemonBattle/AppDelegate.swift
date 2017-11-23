@@ -35,7 +35,14 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
     )
     -> Bool {
-        
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         let battleManager = BattleManager()

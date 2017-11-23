@@ -24,15 +24,22 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
     )
     -> Bool {
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
+        
+        setUpBattle(for: window)
+        
+        window.makeKeyAndVisible()
+        
+        self.window = window
+        
+        return true
+        
+    }
+    
+    // MARK: Set Up
+    
+    public final func setUpBattle(for window: UIWindow?) {
         
         let battleManager = BattleManager()
         
@@ -51,14 +58,69 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             battleDelegate: battleManager
         )
         
-        window.rootViewController = battleViewController
+        battleViewController.controllerDelegate = self
         
-        window.makeKeyAndVisible()
-        
-        self.window = window
-        
-        return true
+        window?.rootViewController = battleViewController
         
     }
+    
+}
 
+// MARK: - BattleViewControllerDelegate
+
+extension AppDelegate: BattleViewControllerDelegate {
+    
+    public final func battleViewController(
+        _ battleViewController: BattleViewController,
+        didEndWith result: BattleResult
+    ) {
+        
+        let battleStoryboard = UIStoryboard(
+            name: "Battle",
+            bundle:
+            nil
+        )
+        
+        let battleViewController = battleStoryboard.instantiateViewController(withIdentifier: "BattleResultViewController") as! BattleResultViewController
+        
+        switch result {
+            
+        case .win:
+            
+            // Todo: add transition.
+            
+            battleViewController.title = "YOU WON!"
+            
+            battleViewController.controllerDelegate = self
+            
+            window?.rootViewController = battleViewController
+            
+        case .lose:
+            
+            // Todo: add transition.
+            
+            battleViewController.title = "YOU LOST!"
+            
+            battleViewController.controllerDelegate = self
+            
+            window?.rootViewController = battleViewController
+            
+        case .tbd: fatalError()
+            
+        }
+        
+    }
+    
+}
+
+// MARK: - BattleResultViewControllerDelegate
+
+extension AppDelegate: BattleResultViewControllerDelegate {
+    
+    public func battleResultViewControllerDidSelectAction(_ battleResultViewController: BattleResultViewController) {
+        
+        setUpBattle(for: window)
+        
+    }
+    
 }

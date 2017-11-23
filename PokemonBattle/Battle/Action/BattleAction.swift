@@ -10,6 +10,7 @@
 
 public protocol BattleAction {
     
+    // You should declare battle field scene as weak property in order to avoid retain cycle.
     init(
         pokemon: Pokemon,
         battleFieldScene: BattleFieldScene?

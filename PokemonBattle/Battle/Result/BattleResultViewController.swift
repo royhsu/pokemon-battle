@@ -6,6 +6,14 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
+// MARK: - BattleResultViewControllerDelegate
+
+public protocol BattleResultViewControllerDelegate: class {
+    
+    func battleResultViewControllerDidSelectAction(_ battleResultViewController: BattleResultViewController)
+    
+}
+
 // MARK: - BattleResultViewController
 
 import UIKit
@@ -19,6 +27,8 @@ public final class BattleResultViewController: UIViewController {
     @IBOutlet fileprivate final weak var actionLabel: UILabel!
    
     @IBOutlet fileprivate final weak var actionButton: UIButton!
+    
+    public final weak var controllerDelegate: BattleResultViewControllerDelegate?
     
     // MARK: View Life Cycle
     
@@ -125,26 +135,7 @@ public final class BattleResultViewController: UIViewController {
     
     @objc public final func playAgain(_ sender: Any) {
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let battleManager = BattleManager()
-        
-        battleManager.battlePokemonDataProvider = BasicBattlePokemonDataProvider(
-            homeBattlePokemon: BattlePokemon(
-                id: "home",
-                pokemon: Pikachu()
-            ),
-            guestBattlePokemon: BattlePokemon(
-                id: "guest",
-                pokemon: Charmander()
-            )
-        )
-        
-        let battleViewController = BattleViewController(
-            battleDelegate: battleManager
-        )
-
-        appDelegate.window?.rootViewController = battleViewController
+        controllerDelegate?.battleResultViewControllerDidSelectAction(self)
         
     }
     

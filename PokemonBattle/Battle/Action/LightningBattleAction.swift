@@ -16,7 +16,7 @@ public struct LightningBattleAction: BattleAction {
     
     public let magicPowerPoint: Double
     
-    public let battleFieldScene: BattleFieldScene?
+    public weak var battleFieldScene: BattleFieldScene?
     
     // MARK: Init
     

@@ -6,16 +6,6 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleResult
-
-public enum BattleResult {
-    
-    // MARK: Case
-    
-    case win, lose, tbd
-    
-}
-
 // MARK: - BattleViewControllerDelegate
 
 public protocol BattleViewControllerDelegate: class {
@@ -76,8 +66,12 @@ public final class BattleViewController: UIViewController {
     
     public required init?(coder aDecoder: NSCoder) { fatalError("Not implemented.") }
     
+    // MARK: Deinit
+    
     deinit {
     
+        print("deinit")
+        
         NotificationCenter.default.removeObserver(
             self,
             name: .battlePokemonDataProviderDataDidChange,
@@ -306,39 +300,17 @@ extension BattleViewController: BattleStateMachineDelegate {
                 
             case .win:
                 
-                // Todo: add transition.
-                
-                let battleStoryboard = UIStoryboard(
-                    name: "Battle",
-                    bundle:
-                    nil
+                controllerDelegate?.battleViewController(
+                    self,
+                    didEndWith: .win
                 )
-                
-                let battleViewController = battleStoryboard.instantiateViewController(withIdentifier: "BattleResultViewController") as! BattleResultViewController
-                
-                battleViewController.title = "You won!"
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                appDelegate.window?.rootViewController = battleViewController
                 
             case .lose:
                 
-                // Todo: add transition.
-                
-                let battleStoryboard = UIStoryboard(
-                    name: "Battle",
-                    bundle:
-                    nil
+                controllerDelegate?.battleViewController(
+                    self,
+                    didEndWith: .lose
                 )
-                
-                let battleViewController = battleStoryboard.instantiateViewController(withIdentifier: "BattleResultViewController") as! BattleResultViewController
-                
-                battleViewController.title = "You lost!"
-                
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                
-                appDelegate.window?.rootViewController = battleViewController
                 
             case .tbd: stateMachine.state = .preparing
                 

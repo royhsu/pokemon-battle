@@ -48,7 +48,7 @@ public final class BattleManager: BattleDelegate {
     
     public final var battlePokemonDataProvider: BattlePokemonDataProvider?
     
-    public final var battleManagerDelegate: BattleManagerDelegate?
+    public final weak var battleManagerDelegate: BattleManagerDelegate?
     
     // MARK: BattleDelegate
     

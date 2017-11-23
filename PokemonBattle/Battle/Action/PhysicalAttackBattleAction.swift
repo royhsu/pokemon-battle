@@ -16,7 +16,7 @@ public struct PhysicalAttackBattleAction: BattleAction {
     
     public let attackPoint: Double
     
-    public let battleFieldScene: BattleFieldScene?
+    public weak var battleFieldScene: BattleFieldScene?
     
     // MARK: Init
     

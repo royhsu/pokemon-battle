@@ -14,7 +14,7 @@ public struct WaggingTailBattleAction: BattleAction {
     
     // MARK: Property
     
-    public let battleFieldScene: BattleFieldScene?
+    public weak var battleFieldScene: BattleFieldScene?
     
     // MARK: Init
     

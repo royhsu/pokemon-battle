@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wf2-nd-798">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Battle Win Result View Controller-->
+        <scene sceneID="VQA-Uh-Lsr">
+            <objects>
+                <viewController storyboardIdentifier="BattleWinResultViewController" id="Wf2-nd-798" customClass="BattleWinResultViewController" customModule="PokemonBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cbq-gC-b8q">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTC-0G-eQF">
+                                <rect key="frame" x="20" y="137.5" width="627" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="FA4-gN-SZH"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="eBU-8A-pYg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PrZ-Va-iuV">
+                                <rect key="frame" x="20" y="137.5" width="627" height="100"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="top" secondItem="mTC-0G-eQF" secondAttribute="top" id="CqX-05-3Iw"/>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="trailing" secondItem="mTC-0G-eQF" secondAttribute="trailing" id="O0z-rg-MDD"/>
+                            <constraint firstItem="mTC-0G-eQF" firstAttribute="centerY" secondItem="cbq-gC-b8q" secondAttribute="centerY" id="Odl-Dd-LxV"/>
+                            <constraint firstItem="mTC-0G-eQF" firstAttribute="centerX" secondItem="cbq-gC-b8q" secondAttribute="centerX" id="Tbq-Xf-JJu"/>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="bottom" secondItem="mTC-0G-eQF" secondAttribute="bottom" id="crv-Qd-fEW"/>
+                            <constraint firstItem="sTo-Hn-ecC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mTC-0G-eQF" secondAttribute="trailing" constant="20" id="gkg-Sf-tS9"/>
+                            <constraint firstItem="mTC-0G-eQF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sTo-Hn-ecC" secondAttribute="leading" constant="20" id="kJO-O4-m0v"/>
+                            <constraint firstItem="PrZ-Va-iuV" firstAttribute="leading" secondItem="mTC-0G-eQF" secondAttribute="leading" id="w8h-cM-trD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sTo-Hn-ecC"/>
+                    </view>
+                    <connections>
+                        <outlet property="actionButton" destination="PrZ-Va-iuV" id="RP0-d4-lbi"/>
+                        <outlet property="actionLabel" destination="mTC-0G-eQF" id="I68-8N-cIP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ave-HW-9tv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-124" y="175"/>
+        </scene>
+    </scenes>
+</document>

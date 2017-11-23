@@ -6,6 +6,27 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
+// MARK: - BattleResult
+
+public enum BattleResult {
+    
+    // MARK: Case
+    
+    case win, lose, tbd
+    
+}
+
+// MARK: - BattleViewControllerDelegate
+
+public protocol BattleViewControllerDelegate: class {
+    
+    func battleViewController(
+        _ battleViewController: BattleViewController,
+        didEndWith result: BattleResult
+    )
+    
+}
+
 // MARK: - BattleViewController
 
 import UIKit
@@ -37,6 +58,8 @@ public final class BattleViewController: UIViewController {
         return battleFieldView.scene as? BattleFieldScene
         
     }
+    
+    public final weak var controllerDelegate: BattleViewControllerDelegate?
     
     // MARK: Init
     
@@ -208,11 +231,28 @@ public final class BattleViewController: UIViewController {
         
         battleMenuTableViewController.tableView.reloadData()
         
+        guard
+            let battlePokemonDataProvider = battleDelegate.battlePokemonDataProvider,
+            let homeBattlePokemon = battlePokemonDataProvider.homeBattlePokemon,
+            let guestBattlePokemon = battlePokemonDataProvider.guestBattlePokemon
+        else { fatalError() }
+        
+        if guestBattlePokemon.remainingHealthPoint <= 0.0 {
+            
+            stateMachine.state = .result(.win)
+            
+        }
+        else if homeBattlePokemon.remainingHealthPoint <= 0.0 {
+            
+            stateMachine.state = .result(.lose)
+            
+        }
+        
     }
     
     @objc public final func allBattleAnimationsDidComplete(_ sender: Any) {
         
-        stateMachine.state = .result
+        stateMachine.state = .result(.tbd)
         
     }
     
@@ -251,6 +291,7 @@ extension BattleViewController: BattleStateMachineDelegate {
             )
             
             battleMenuTableViewController.menuDataProvider = battleDelegate.battlePokemonDataProvider as? BattleMenuDataProvider
+            
             battleMenuTableViewController.tableView.reloadData()
             
             battleMenuTableViewController.menuControllerDelegate = self
@@ -259,11 +300,34 @@ extension BattleViewController: BattleStateMachineDelegate {
             
             battleMenuTableViewController.tableView.isUserInteractionEnabled = false
             
-        case (.fighting, .result):
+        case (.fighting, .result(let value) ):
             
-            // Todo: determine whether the game is over.
-            
-            stateMachine.state = .preparing
+            switch value {
+                
+            case .win:
+                
+                // Todo: add transition.
+                
+                let battleWinViewController = UIStoryboard(
+                    name: "Battle",
+                    bundle:
+                    nil
+                )
+                .instantiateViewController(withIdentifier: "BattleWinResultViewController")
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.window?.rootViewController = battleWinViewController
+                
+            case .lose:
+                
+                // Todo: add lose view controller.
+                
+                print("You lost.")
+                
+            case .tbd: stateMachine.state = .preparing
+                
+            }
             
         case (.result, .preparing):
             

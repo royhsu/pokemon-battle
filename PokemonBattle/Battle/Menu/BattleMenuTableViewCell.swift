@@ -14,7 +14,7 @@ public final class BattleMenuTableViewCell: UITableViewCell {
     
     // MARK: Property
     
-    @IBOutlet fileprivate(set) final weak var skillLabel: UILabel!
+    @IBOutlet public fileprivate(set) final weak var skillLabel: UILabel!
     
     // MARK: Life Cycle
     

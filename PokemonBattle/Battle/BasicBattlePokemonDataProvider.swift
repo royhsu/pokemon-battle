@@ -10,7 +10,7 @@
 
 import Foundation
 
-public final class BasicBattlePokemonDataProvider: BattlePokemonDataProvider {
+public final class BasicBattlePokemonDataProvider: BattlePokemonDataProvider, BattleMenuDataProvider {
     
     // MARK: Property
     

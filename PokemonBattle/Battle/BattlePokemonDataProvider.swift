@@ -23,6 +23,30 @@ public protocol BattlePokemonDataProvider: class {
     
 }
 
+// MARK: - BattleMenuDataProvider
+
+extension BattlePokemonDataProvider
+where Self: BattleMenuDataProvider {
+    
+    public func numberOfPokemonSkills() -> Int {
+        
+        return homeBattlePokemon?.pokemon.skillTypes.count ?? 0
+        
+    }
+    
+    public func titleForPokemonSkill(at index: Int) -> String? {
+        
+        guard
+            let skillTypes = homeBattlePokemon?.pokemon.skillTypes,
+            index < skillTypes.count
+        else { return nil }
+        
+        return skillTypes[index].name
+        
+    }
+    
+}
+
 // MARK: - Notification
 
 import Foundation

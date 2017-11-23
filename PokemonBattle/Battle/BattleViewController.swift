@@ -20,7 +20,13 @@ public final class BattleViewController: UIViewController {
     
     public final let battleFieldView = SKView()
     
-    public final let battleMenuView = BattleMenuView()
+    public final let battleMenuTableViewController = BattleMenuTableViewController(style: .plain)
+    
+    public final var battleMenuView: UIView {
+        
+        return battleMenuTableViewController.view!
+        
+    }
     
     internal final let stateMachine = BattleStateMachine(initialState: .start)
     
@@ -65,13 +71,14 @@ public final class BattleViewController: UIViewController {
         
         super.viewDidLoad()
         
+        addChildViewController(battleMenuTableViewController)
+        
         setUpGameView(
             gameView,
             battleFieldView: battleFieldView,
             battleMenuView: battleMenuView
         )
-        
-        setUpBattleMenuView(battleMenuView)
+        battleMenuTableViewController.didMove(toParentViewController: self)
         
         setUpStateMachine(stateMachine)
 
@@ -169,21 +176,6 @@ public final class BattleViewController: UIViewController {
         
     }
     
-    fileprivate final func setUpBattleMenuView(_ view: BattleMenuView) {
-        
-        view.button.addTarget(
-            self,
-            action: #selector(selectActionFromMenu),
-            for: .touchUpInside
-        )
-        
-        view.button.setTitle(
-            "Attack",
-            for: .normal
-        )
-        
-    }
-    
     fileprivate final func setUpStateMachine(_ stateMachine: BattleStateMachine) {
         
         stateMachine.stateMachineDelegate = self
@@ -199,6 +191,8 @@ public final class BattleViewController: UIViewController {
     @objc public final func update(_ sender: Any) {
         
         battleFieldScene?.updateData()
+        
+        battleMenuTableViewController.tableView.reloadData()
         
     }
     
@@ -264,6 +258,9 @@ extension BattleViewController: BattleStateMachineDelegate {
             battleFieldScene.updateData()
             
             battleFieldView.presentScene(battleFieldScene)
+            
+            battleMenuTableViewController.menuDataProvider = battleDelegate.battlePokemonDataProvider as? BattleMenuDataProvider
+            battleMenuTableViewController.tableView.reloadData()
             
         default: break
             

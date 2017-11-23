@@ -35,6 +35,8 @@
 		B0CE4EFD1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4EFC1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift */; };
 		B0CE4EFF1FC6A04C00343937 /* PokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4EFE1FC6A04C00343937 /* PokemonSkill.swift */; };
 		B0CE4F011FC6A06800343937 /* FirePokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */; };
+		B0CE4F041FC6A21E00343937 /* BattleMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */; };
+		B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */; };
 		B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */; };
 		B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */; };
 		B0EAAA351FC3277C00FC633C /* BattleMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */; };
@@ -83,6 +85,8 @@
 		B0CE4EFC1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAttackPokemonSkill.swift; sourceTree = "<group>"; };
 		B0CE4EFE1FC6A04C00343937 /* PokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkill.swift; sourceTree = "<group>"; };
 		B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePokemonSkill.swift; sourceTree = "<group>"; };
+		B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuTableViewController.swift; sourceTree = "<group>"; };
+		B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuDataProvider.swift; sourceTree = "<group>"; };
 		B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0EAAA341FC3277C00FC633C /* BattleMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		B041FA861FC2AC9B00421C05 /* Battle */ = {
 			isa = PBXGroup;
 			children = (
+				B0CE4F021FC6A20E00343937 /* Menu */,
 				B041FA891FC2B46200421C05 /* BattleState.swift */,
 				B041FA8B1FC2B51400421C05 /* BattleStateMachine.swift */,
 				B041FA8D1FC2B98100421C05 /* BattleStateMachineError.swift */,
@@ -209,6 +214,15 @@
 				B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */,
 			);
 			path = Skill;
+			sourceTree = "<group>";
+		};
+		B0CE4F021FC6A20E00343937 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */,
+				B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +343,7 @@
 				B0CE4EFF1FC6A04C00343937 /* PokemonSkill.swift in Sources */,
 				B064E69E1FC45A76005476BA /* PhysicalAttackBattleAction.swift in Sources */,
 				B041FA8A1FC2B46200421C05 /* BattleState.swift in Sources */,
+				B0CE4F041FC6A21E00343937 /* BattleMenuTableViewController.swift in Sources */,
 				B064E6A61FC46E05005476BA /* BattleAction.swift in Sources */,
 				B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */,
 				B0012E131FC3108F00812D69 /* Charmander.swift in Sources */,
@@ -341,6 +356,7 @@
 				B0012E111FC3105600812D69 /* Pikachu.swift in Sources */,
 				B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */,
 				B0CE4F011FC6A06800343937 /* FirePokemonSkill.swift in Sources */,
+				B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

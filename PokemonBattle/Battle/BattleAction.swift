@@ -9,6 +9,11 @@
 // MARK: - BattleAction
 
 public protocol BattleAction {
+    
+    init(
+        pokemon: Pokemon,
+        battleFieldScene: BattleFieldScene?
+    )
 
     func apply(on battlePokemon: BattlePokemon) -> BattlePokemon
     

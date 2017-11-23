@@ -18,6 +18,19 @@ public struct PhysicalAttackBattleAction: BattleAction {
     
     public let battleFieldScene: BattleFieldScene?
     
+    // MARK: Init
+    
+    public init(
+        pokemon: Pokemon,
+        battleFieldScene: BattleFieldScene?
+    ) {
+    
+        self.attackPoint = pokemon.attackPoint
+        
+        self.battleFieldScene = battleFieldScene
+        
+    }
+    
     // MARK: BattleAction
     
     public func apply(on battlePokemon: BattlePokemon) -> BattlePokemon {

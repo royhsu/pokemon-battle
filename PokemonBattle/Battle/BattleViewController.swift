@@ -211,17 +211,21 @@ public final class BattleViewController: UIViewController {
             let guestBattlePokemon = battlePokemonDataProvider.guestBattlePokemon
         else { return }
         
+        let homePokemonFirstSkillType = homeBattlePokemon.pokemon.skillTypes.first!
+        
         battleDelegate.addBattleAction(
-            PhysicalAttackBattleAction(
-                attackPoint: homeBattlePokemon.pokemon.attackPoint,
+            homePokemonFirstSkillType.battleActionType.init(
+                pokemon: homeBattlePokemon.pokemon,
                 battleFieldScene: battleFieldScene
             ),
             targetBattlePokemonId: guestBattlePokemon.id
         )
         
+        let guestPokemonFirstSkillType = guestBattlePokemon.pokemon.skillTypes.first!
+        
         battleDelegate.addBattleAction(
-            FireBattleAction(
-                magicPowerPoint: guestBattlePokemon.pokemon.magicPowerPoint,
+            guestPokemonFirstSkillType.battleActionType.init(
+                pokemon: guestBattlePokemon.pokemon,
                 battleFieldScene: battleFieldScene
             ),
             targetBattlePokemonId: homeBattlePokemon.id

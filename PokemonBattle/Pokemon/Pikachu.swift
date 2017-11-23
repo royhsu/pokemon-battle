@@ -20,7 +20,8 @@ public struct Pikachu: Pokemon {
     
     public let skillTypes: [PokemonSkill.Type] = [
         PhysicalAttackPokemonSkill.self,
-        LightningPokemonSkill.self
+        LightningPokemonSkill.self,
+        WaggingTailPokemonSkill.self
     ]
     
 }

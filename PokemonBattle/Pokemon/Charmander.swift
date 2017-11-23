@@ -19,6 +19,8 @@ public struct Charmander: Pokemon {
     public let healthPoint = 46.0
     
     public let skillTypes: [PokemonSkill.Type] = [
+        PhysicalAttackPokemonSkill.self,
+        WaggingTailPokemonSkill.self,
         FirePokemonSkill.self
     ]
     

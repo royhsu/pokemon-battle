@@ -308,22 +308,37 @@ extension BattleViewController: BattleStateMachineDelegate {
                 
                 // Todo: add transition.
                 
-                let battleWinViewController = UIStoryboard(
+                let battleStoryboard = UIStoryboard(
                     name: "Battle",
                     bundle:
                     nil
                 )
-                .instantiateViewController(withIdentifier: "BattleWinResultViewController")
+                
+                let battleViewController = battleStoryboard.instantiateViewController(withIdentifier: "BattleResultViewController") as! BattleResultViewController
+                
+                battleViewController.title = "You won!"
                 
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 
-                appDelegate.window?.rootViewController = battleWinViewController
+                appDelegate.window?.rootViewController = battleViewController
                 
             case .lose:
                 
-                // Todo: add lose view controller.
+                // Todo: add transition.
                 
-                print("You lost.")
+                let battleStoryboard = UIStoryboard(
+                    name: "Battle",
+                    bundle:
+                    nil
+                )
+                
+                let battleViewController = battleStoryboard.instantiateViewController(withIdentifier: "BattleResultViewController") as! BattleResultViewController
+                
+                battleViewController.title = "You lost!"
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.window?.rootViewController = battleViewController
                 
             case .tbd: stateMachine.state = .preparing
                 

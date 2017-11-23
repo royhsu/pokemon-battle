@@ -17,17 +17,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var window: UIWindow?
     
-    public final let basicBattlePokemonDataProvider = BasicBattlePokemonDataProvider(
-        homeBattlePokemon: BattlePokemon(
-            id: "home",
-            pokemon: Pikachu()
-        ),
-        guestBattlePokemon: BattlePokemon(
-            id: "guest",
-            pokemon: Charmander()
-        )
-    )
-
     // MARK: UIApplicationDelegate
 
     public final func application(
@@ -47,7 +36,16 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let battleManager = BattleManager()
         
-        battleManager.battlePokemonDataProvider = basicBattlePokemonDataProvider
+        battleManager.battlePokemonDataProvider = BasicBattlePokemonDataProvider(
+            homeBattlePokemon: BattlePokemon(
+                id: "home",
+                pokemon: Pikachu()
+            ),
+            guestBattlePokemon: BattlePokemon(
+                id: "guest",
+                pokemon: Charmander()
+            )
+        )
         
         let battleViewController = BattleViewController(
             battleDelegate: battleManager

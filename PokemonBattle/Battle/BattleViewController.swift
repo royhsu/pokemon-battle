@@ -318,20 +318,22 @@ extension  BattleViewController: BattleMenuTableViewControllerDelegate {
         
         stateMachine.state = .fighting
         
-        let homePokemonFirstSkillType = homeBattlePokemon.pokemon.skillTypes[index]
+        let usingHomePokemonFirstSkillType = homeBattlePokemon.pokemon.skillTypes[index]
         
         battleDelegate.addBattleAction(
-            homePokemonFirstSkillType.battleActionType.init(
+            usingHomePokemonFirstSkillType.battleActionType.init(
                 pokemon: homeBattlePokemon.pokemon,
                 battleFieldScene: battleFieldScene
             ),
             targetBattlePokemonId: guestBattlePokemon.id
         )
         
-        let guestPokemonFirstSkillType = guestBattlePokemon.pokemon.skillTypes.first!
+        let randomGuestPokemonFirstSkillTypes = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: guestBattlePokemon.pokemon.skillTypes) as! [PokemonSkill.Type]
+        
+        let usingGuestPokemonFirstSkillType = randomGuestPokemonFirstSkillTypes.first!
         
         battleDelegate.addBattleAction(
-            guestPokemonFirstSkillType.battleActionType.init(
+            usingGuestPokemonFirstSkillType.battleActionType.init(
                 pokemon: guestBattlePokemon.pokemon,
                 battleFieldScene: battleFieldScene
             ),

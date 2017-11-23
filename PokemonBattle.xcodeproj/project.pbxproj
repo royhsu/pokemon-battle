@@ -36,6 +36,9 @@
 		B0CE4F011FC6A06800343937 /* FirePokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */; };
 		B0CE4F041FC6A21E00343937 /* BattleMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */; };
 		B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */; };
+		B0CE4F101FC6BD3700343937 /* Lightning.sks in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F0F1FC6BD3700343937 /* Lightning.sks */; };
+		B0CE4F121FC6C33900343937 /* LightningBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F111FC6C33900343937 /* LightningBattleAction.swift */; };
+		B0CE4F141FC6C3D500343937 /* LightningPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F131FC6C3D500343937 /* LightningPokemonSkill.swift */; };
 		B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */; };
 		B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +87,9 @@
 		B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePokemonSkill.swift; sourceTree = "<group>"; };
 		B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuTableViewController.swift; sourceTree = "<group>"; };
 		B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuDataProvider.swift; sourceTree = "<group>"; };
+		B0CE4F0F1FC6BD3700343937 /* Lightning.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Lightning.sks; sourceTree = "<group>"; };
+		B0CE4F111FC6C33900343937 /* LightningBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningBattleAction.swift; sourceTree = "<group>"; };
+		B0CE4F131FC6C3D500343937 /* LightningPokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningPokemonSkill.swift; sourceTree = "<group>"; };
 		B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,8 +194,9 @@
 		B0CE4EF21FC6931900343937 /* Effects */ = {
 			isa = PBXGroup;
 			children = (
-				B0CE4EF31FC6935800343937 /* Fire.sks */,
 				B0CE4EF41FC6935800343937 /* Assets.xcassets */,
+				B0CE4EF31FC6935800343937 /* Fire.sks */,
+				B0CE4F0F1FC6BD3700343937 /* Lightning.sks */,
 			);
 			path = Effects;
 			sourceTree = "<group>";
@@ -200,6 +207,7 @@
 				B0CE4EFE1FC6A04C00343937 /* PokemonSkill.swift */,
 				B0CE4EFC1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift */,
 				B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */,
+				B0CE4F131FC6C3D500343937 /* LightningPokemonSkill.swift */,
 			);
 			path = Skill;
 			sourceTree = "<group>";
@@ -247,6 +255,7 @@
 				B064E6A51FC46E05005476BA /* BattleAction.swift */,
 				B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */,
 				B0CE4EF71FC693F400343937 /* FireBattleAction.swift */,
+				B0CE4F111FC6C33900343937 /* LightningBattleAction.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -336,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */,
+				B0CE4F101FC6BD3700343937 /* Lightning.sks in Resources */,
 				B0CE4EF51FC6935800343937 /* Fire.sks in Resources */,
 				B041FA7F1FC2ABB000421C05 /* LaunchScreen.storyboard in Resources */,
 				B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */,
@@ -362,6 +372,7 @@
 				B0CE4EF81FC693F400343937 /* FireBattleAction.swift in Sources */,
 				B0124DA21FC2F68000A3A58C /* Pokemon.swift in Sources */,
 				B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */,
+				B0CE4F121FC6C33900343937 /* LightningBattleAction.swift in Sources */,
 				B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */,
 				B022155C1FC44D0E00E7AD76 /* BattleDelegate.swift in Sources */,
 				B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */,
@@ -376,6 +387,7 @@
 				B064E68B1FC45125005476BA /* BattleManager.swift in Sources */,
 				B0CE4EFD1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift in Sources */,
 				B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */,
+				B0CE4F141FC6C3D500343937 /* LightningPokemonSkill.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
 				B0012E111FC3105600812D69 /* Pikachu.swift in Sources */,
 				B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */,

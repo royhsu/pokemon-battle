@@ -27,6 +27,7 @@
 		B064E69E1FC45A76005476BA /* PhysicalAttackBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */; };
 		B064E6A01FC45A9E005476BA /* PhysicalAttackBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */; };
 		B064E6A61FC46E05005476BA /* BattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E6A51FC46E05005476BA /* BattleAction.swift */; };
+		B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; };
 		B0C34E641FC6F47D001B388E /* Pokemon GB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0C34E621FC6F39A001B388E /* Pokemon GB.ttf */; };
 		B0C34E691FC6F9A6001B388E /* BattleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C34E681FC6F9A6001B388E /* BattleResultViewController.swift */; };
 		B0C34E6B1FC6F9D5001B388E /* Battle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C34E6A1FC6F9D5001B388E /* Battle.storyboard */; };
@@ -92,6 +93,7 @@
 		B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAttackBattleAction.swift; sourceTree = "<group>"; };
 		B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicalAttackBattleAction.swift; sourceTree = "<group>"; };
 		B064E6A51FC46E05005476BA /* BattleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleAction.swift; sourceTree = "<group>"; };
+		B0A676521FD1363600278CBE /* TinyBattleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyBattleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0C34E621FC6F39A001B388E /* Pokemon GB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon GB.ttf"; sourceTree = "<group>"; };
 		B0C34E681FC6F9A6001B388E /* BattleResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleResultViewController.swift; sourceTree = "<group>"; };
 		B0C34E6A1FC6F9D5001B388E /* Battle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Battle.storyboard; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +160,7 @@
 				B041FA6D1FC2ABB000421C05 /* PokemonBattle */,
 				B064E6911FC458BB005476BA /* PokemonBattleTests */,
 				B041FA6C1FC2ABB000421C05 /* Products */,
+				B0A676501FD1363600278CBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,6 +224,14 @@
 				B064E69F1FC45A9E005476BA /* PhysicalAttackBattleAction.swift */,
 			);
 			path = Battle;
+			sourceTree = "<group>";
+		};
+		B0A676501FD1363600278CBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B0A676521FD1363600278CBE /* TinyBattleKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		B0C34E611FC6F393001B388E /* Fonts */ = {

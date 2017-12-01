@@ -9,6 +9,7 @@
 // MARK: - AppDelegate
 
 import UIKit
+import TinyBattleKit
 
 @UIApplicationMain
 public final class AppDelegate: UIResponder, UIApplicationDelegate {

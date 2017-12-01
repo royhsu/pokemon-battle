@@ -20,6 +20,20 @@
                ReferencedContainer = "container:PokemonBattle.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B024ED2F1FD0484200E6DB72"
+               BuildableName = "TinyBattleKit.framework"
+               BlueprintName = "TinyBattleKit"
+               ReferencedContainer = "container:tiny-battle-kit/TinyBattleKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

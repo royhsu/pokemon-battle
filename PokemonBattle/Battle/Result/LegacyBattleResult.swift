@@ -1,5 +1,5 @@
 //
-//  BattleResult.swift
+//  LegacyBattleResult.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 23/11/2017.
@@ -8,7 +8,7 @@
 
 // MARK: - BattleResult
 
-public enum BattleResult {
+public enum LegacyBattleResult {
     
     // MARK: Case
     

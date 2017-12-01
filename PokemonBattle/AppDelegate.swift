@@ -73,7 +73,7 @@ extension AppDelegate: BattleViewControllerDelegate {
     
     public final func battleViewController(
         _ battleViewController: BattleViewController,
-        didEndWith result: BattleResult
+        didEndWith result: LegacyBattleResult
     ) {
         
         let battleStoryboard = UIStoryboard(

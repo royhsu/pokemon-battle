@@ -12,7 +12,7 @@ public protocol BattleViewControllerDelegate: class {
     
     func battleViewController(
         _ battleViewController: BattleViewController,
-        didEndWith result: BattleResult
+        didEndWith result: LegacyBattleResult
     )
     
 }

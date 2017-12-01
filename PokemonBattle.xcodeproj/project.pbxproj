@@ -30,6 +30,8 @@
 		B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; };
 		B0A676541FD1378200278CBE /* BattleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676531FD1378200278CBE /* BattleSystem.swift */; };
 		B0A676561FD1389000278CBE /* BattleContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676551FD1389000278CBE /* BattleContext.swift */; };
+		B0A676591FD13A6900278CBE /* BattleSystemStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676581FD13A6900278CBE /* BattleSystemStateMachine.swift */; };
+		B0A6765B1FD13A7500278CBE /* BattleSystemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6765A1FD13A7500278CBE /* BattleSystemState.swift */; };
 		B0C34E641FC6F47D001B388E /* Pokemon GB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0C34E621FC6F39A001B388E /* Pokemon GB.ttf */; };
 		B0C34E691FC6F9A6001B388E /* BattleResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C34E681FC6F9A6001B388E /* BattleResultViewController.swift */; };
 		B0C34E6B1FC6F9D5001B388E /* Battle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C34E6A1FC6F9D5001B388E /* Battle.storyboard */; };
@@ -98,6 +100,8 @@
 		B0A676521FD1363600278CBE /* TinyBattleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyBattleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A676531FD1378200278CBE /* BattleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSystem.swift; sourceTree = "<group>"; };
 		B0A676551FD1389000278CBE /* BattleContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleContext.swift; sourceTree = "<group>"; };
+		B0A676581FD13A6900278CBE /* BattleSystemStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSystemStateMachine.swift; sourceTree = "<group>"; };
+		B0A6765A1FD13A7500278CBE /* BattleSystemState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSystemState.swift; sourceTree = "<group>"; };
 		B0C34E621FC6F39A001B388E /* Pokemon GB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pokemon GB.ttf"; sourceTree = "<group>"; };
 		B0C34E681FC6F9A6001B388E /* BattleResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleResultViewController.swift; sourceTree = "<group>"; };
 		B0C34E6A1FC6F9D5001B388E /* Battle.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Battle.storyboard; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 		B0A676571FD1389400278CBE /* Battle System */ = {
 			isa = PBXGroup;
 			children = (
+				B0A6765A1FD13A7500278CBE /* BattleSystemState.swift */,
+				B0A676581FD13A6900278CBE /* BattleSystemStateMachine.swift */,
 				B0A676531FD1378200278CBE /* BattleSystem.swift */,
 				B0A676551FD1389000278CBE /* BattleContext.swift */,
 			);
@@ -473,6 +479,7 @@
 				B0CE4EF81FC693F400343937 /* FireBattleAction.swift in Sources */,
 				B0124DA21FC2F68000A3A58C /* Pokemon.swift in Sources */,
 				B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */,
+				B0A6765B1FD13A7500278CBE /* BattleSystemState.swift in Sources */,
 				B0CE4F121FC6C33900343937 /* LightningBattleAction.swift in Sources */,
 				B0CE4F231FC6DA8F00343937 /* WaggingTailPokemonSkill.swift in Sources */,
 				B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */,
@@ -490,6 +497,7 @@
 				B0012E131FC3108F00812D69 /* Charmander.swift in Sources */,
 				B0C34E6D1FC70AA6001B388E /* LegacyBattleResult.swift in Sources */,
 				B022155A1FC4224000E7AD76 /* BattlePokemon.swift in Sources */,
+				B0A676591FD13A6900278CBE /* BattleSystemStateMachine.swift in Sources */,
 				B064E68B1FC45125005476BA /* BattleManager.swift in Sources */,
 				B0CE4EFD1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift in Sources */,
 				B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */,

@@ -18,4 +18,6 @@ public final class BattleSystem: TurnBasedBattle {
     
     public final var actionProviders: [Provider] = []
     
+    public final var stateMachine = BattleSystemStateMachine(state: .end)
+    
 }

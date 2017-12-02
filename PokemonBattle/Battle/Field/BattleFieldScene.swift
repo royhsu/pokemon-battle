@@ -48,7 +48,7 @@ public final class BattleFieldScene: SKScene {
         
         addChild(guestPokemonSpriteNode)
         
-        addChild(backgroundSound)
+//        addChild(backgroundSound)
         
         updateData()
         

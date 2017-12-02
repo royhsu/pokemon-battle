@@ -9,11 +9,20 @@
 // MARK: - PokemonBattleViewController
 
 import RealmSwift
+import SpriteKit
 import UIKit
 
 public final class PokemonBattleViewController: UIViewController {
     
     // MARK: Property
+    
+    private final let gameView = SKView()
+    
+    public final var battleFieldScene: BattleFieldScene? {
+        
+        return gameView.scene as? BattleFieldScene
+        
+    }
     
     private final var server: TurnBasedBattleServer!
     
@@ -74,6 +83,8 @@ public final class PokemonBattleViewController: UIViewController {
     
     // MARK: View Life Cycle
     
+    public final override func loadView() { self.view = gameView }
+    
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -88,6 +99,12 @@ public final class PokemonBattleViewController: UIViewController {
         )
         
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let startScene = SKScene(fileNamed: "BattleStartScene")!
+        
+        startScene.scaleMode = .aspectFill
+        
+        gameView.presentScene(startScene)
         
         let realm = serverDataProvider.realm
         
@@ -116,7 +133,13 @@ public final class PokemonBattleViewController: UIViewController {
         
         server.serverDelegate = self
         
-        server.resume()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        if server.state == .end { server.resume() }
         
     }
     
@@ -153,6 +176,18 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
         print("Server starts.")
+        
+        let battleFieldScene = BattleFieldScene(
+            size: gameView.bounds.size
+        )
+        
+        battleFieldScene.name = "battleScene"
+        
+        battleFieldScene.scaleMode = .aspectFill
+        
+        battleFieldScene.updateData()
+        
+        gameView.presentScene(battleFieldScene)
         
         server.respond(
             to: ContinueBattleRequest(ownerId: server.ownerId)

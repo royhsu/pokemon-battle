@@ -23,6 +23,15 @@
 		B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B041FA901FC2C03D00421C05 /* BattleStartScene.sks */; };
 		B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA921FC2C04600421C05 /* BattleStartScene.swift */; };
 		B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */; };
+		B04272AB1FD29BEC00ED3D74 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04272A91FD29BEC00ED3D74 /* Realm.framework */; };
+		B04272AC1FD29BEC00ED3D74 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04272AA1FD29BEC00ED3D74 /* RealmSwift.framework */; };
+		B04272AF1FD29C6900ED3D74 /* RealmServerDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04272AE1FD29C6900ED3D74 /* RealmServerDataProvider.swift */; };
+		B04272B31FD29D9C00ED3D74 /* BattlePlayerRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04272B01FD29D9B00ED3D74 /* BattlePlayerRealmObject.swift */; };
+		B04272B41FD29D9C00ED3D74 /* BattleTurnRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04272B11FD29D9B00ED3D74 /* BattleTurnRealmObject.swift */; };
+		B04272B51FD29D9C00ED3D74 /* BattleRecordRealmObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04272B21FD29D9C00ED3D74 /* BattleRecordRealmObject.swift */; };
+		B063D7D61FD2A01300C88D6E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063D7D51FD2A01300C88D6E /* Player.swift */; };
+		B063D7D81FD2A12D00C88D6E /* BattleTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063D7D71FD2A12D00C88D6E /* BattleTurn.swift */; };
+		B063D7DA1FD2A23600C88D6E /* BattleRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063D7D91FD2A23600C88D6E /* BattleRecord.swift */; };
 		B064E68B1FC45125005476BA /* BattleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E68A1FC45125005476BA /* BattleManager.swift */; };
 		B064E69C1FC4590B005476BA /* BattleManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69B1FC4590B005476BA /* BattleManagerTests.swift */; };
 		B064E69E1FC45A76005476BA /* PhysicalAttackBattleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B064E69D1FC45A76005476BA /* PhysicalAttackBattleAction.swift */; };
@@ -96,6 +105,15 @@
 		B041FA901FC2C03D00421C05 /* BattleStartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BattleStartScene.sks; sourceTree = "<group>"; };
 		B041FA921FC2C04600421C05 /* BattleStartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleStartScene.swift; sourceTree = "<group>"; };
 		B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleViewController.swift; sourceTree = "<group>"; };
+		B04272A91FD29BEC00ED3D74 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		B04272AA1FD29BEC00ED3D74 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		B04272AE1FD29C6900ED3D74 /* RealmServerDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServerDataProvider.swift; sourceTree = "<group>"; };
+		B04272B01FD29D9B00ED3D74 /* BattlePlayerRealmObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattlePlayerRealmObject.swift; sourceTree = "<group>"; };
+		B04272B11FD29D9B00ED3D74 /* BattleTurnRealmObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleTurnRealmObject.swift; sourceTree = "<group>"; };
+		B04272B21FD29D9C00ED3D74 /* BattleRecordRealmObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleRecordRealmObject.swift; sourceTree = "<group>"; };
+		B063D7D51FD2A01300C88D6E /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		B063D7D71FD2A12D00C88D6E /* BattleTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleTurn.swift; sourceTree = "<group>"; };
+		B063D7D91FD2A23600C88D6E /* BattleRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleRecord.swift; sourceTree = "<group>"; };
 		B064E68A1FC45125005476BA /* BattleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleManager.swift; sourceTree = "<group>"; };
 		B064E6901FC458BB005476BA /* PokemonBattleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonBattleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B064E6941FC458BB005476BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +166,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */,
+				B04272AB1FD29BEC00ED3D74 /* Realm.framework in Frameworks */,
+				B04272AC1FD29BEC00ED3D74 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +224,13 @@
 				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
 				B041FA801FC2ABB000421C05 /* Info.plist */,
 				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
+				B063D7D51FD2A01300C88D6E /* Player.swift */,
+				B063D7D71FD2A12D00C88D6E /* BattleTurn.swift */,
+				B063D7D91FD2A23600C88D6E /* BattleRecord.swift */,
+				B04272AE1FD29C6900ED3D74 /* RealmServerDataProvider.swift */,
+				B04272B01FD29D9B00ED3D74 /* BattlePlayerRealmObject.swift */,
+				B04272B21FD29D9C00ED3D74 /* BattleRecordRealmObject.swift */,
+				B04272B11FD29D9B00ED3D74 /* BattleTurnRealmObject.swift */,
 			);
 			path = PokemonBattle;
 			sourceTree = "<group>";
@@ -250,6 +277,8 @@
 		B0A676501FD1363600278CBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B04272A91FD29BEC00ED3D74 /* Realm.framework */,
+				B04272AA1FD29BEC00ED3D74 /* RealmSwift.framework */,
 				B0A676521FD1363600278CBE /* TinyBattleKit.framework */,
 			);
 			name = Frameworks;
@@ -399,6 +428,7 @@
 				B041FA671FC2ABB000421C05 /* Sources */,
 				B041FA681FC2ABB000421C05 /* Frameworks */,
 				B041FA691FC2ABB000421C05 /* Resources */,
+				B04272AD1FD29BF300ED3D74 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -500,14 +530,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B04272AD1FD29BF300ED3D74 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Realm.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B041FA671FC2ABB000421C05 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B063D7D61FD2A01300C88D6E /* Player.swift in Sources */,
 				B0CE4EF11FC5BA0B00343937 /* BattleField.swift in Sources */,
 				B041FA8C1FC2B51400421C05 /* BattleStateMachine.swift in Sources */,
 				B0CE4EF81FC693F400343937 /* FireBattleAction.swift in Sources */,
+				B04272B51FD29D9C00ED3D74 /* BattleRecordRealmObject.swift in Sources */,
 				B0124DA21FC2F68000A3A58C /* Pokemon.swift in Sources */,
 				B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */,
 				B0A6765B1FD13A7500278CBE /* BattleSystemState.swift in Sources */,
@@ -523,17 +576,21 @@
 				B064E69E1FC45A76005476BA /* PhysicalAttackBattleAction.swift in Sources */,
 				B041FA8A1FC2B46200421C05 /* BattleState.swift in Sources */,
 				B0CE4F1F1FC6D95700343937 /* WaggingTailBattleAction.swift in Sources */,
+				B063D7DA1FD2A23600C88D6E /* BattleRecord.swift in Sources */,
 				B0CE4F041FC6A21E00343937 /* BattleMenuTableViewController.swift in Sources */,
 				B064E6A61FC46E05005476BA /* BattleAction.swift in Sources */,
 				B0C34E691FC6F9A6001B388E /* BattleResultViewController.swift in Sources */,
 				B041FA771FC2ABB000421C05 /* BattleViewController.swift in Sources */,
 				B0012E131FC3108F00812D69 /* Charmander.swift in Sources */,
+				B04272B41FD29D9C00ED3D74 /* BattleTurnRealmObject.swift in Sources */,
 				B0C34E6D1FC70AA6001B388E /* LegacyBattleResult.swift in Sources */,
 				B022155A1FC4224000E7AD76 /* BattlePokemon.swift in Sources */,
+				B04272B31FD29D9C00ED3D74 /* BattlePlayerRealmObject.swift in Sources */,
 				B0A676591FD13A6900278CBE /* BattleSystemStateMachine.swift in Sources */,
 				B064E68B1FC45125005476BA /* BattleManager.swift in Sources */,
 				B0CE4EFD1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift in Sources */,
 				B041FA8E1FC2B98100421C05 /* BattleStateMachineError.swift in Sources */,
+				B04272AF1FD29C6900ED3D74 /* RealmServerDataProvider.swift in Sources */,
 				B0CE4F141FC6C3D500343937 /* LightningPokemonSkill.swift in Sources */,
 				B0A676681FD1597800278CBE /* BattleContextError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
@@ -541,6 +598,7 @@
 				B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */,
 				B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */,
 				B0A676561FD1389000278CBE /* BattleContext.swift in Sources */,
+				B063D7D81FD2A12D00C88D6E /* BattleTurn.swift in Sources */,
 				B0CE4F011FC6A06800343937 /* FirePokemonSkill.swift in Sources */,
 				B0CE4F271FC6EC8E00343937 /* BattleMenuTableViewCell.swift in Sources */,
 				B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */,
@@ -692,6 +750,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CE6946X84;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PokemonBattle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyworld.PokemonBattle;
@@ -707,6 +769,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5CE6946X84;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PokemonBattle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyworld.PokemonBattle;

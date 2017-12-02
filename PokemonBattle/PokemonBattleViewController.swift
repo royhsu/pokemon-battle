@@ -8,18 +8,18 @@
 
 // MARK: - PokemonBattleViewController
 
+import RealmSwift
 import UIKit
 
 public final class PokemonBattleViewController: UIViewController {
     
     // MARK: Property
     
-    private final let server = TurnBasedBattleServer(
-        ownerId: UUID().uuidString,
-        recordId: UUID().uuidString
-    )
+    private final var server: TurnBasedBattleServer!
     
     private final let system = BattleSystem()
+    
+    private final let serverDataProvider = RealmServerDataProvider()
     
     // MARK: Init
     
@@ -54,6 +54,35 @@ public final class PokemonBattleViewController: UIViewController {
         )
         
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let ownerId = UUID().uuidString
+        
+        let recordId = UUID().uuidString
+        
+        let realm = serverDataProvider.realm
+        
+        try! realm.write {
+            
+            let owner = BattlePlayerRealmObject(
+                value: [ "id": ownerId ]
+            )
+            
+            realm.add(owner)
+            
+            let record = BattleRecordRealmObject(
+                value: [ "id": recordId ]
+            )
+            
+            realm.add(record)
+            
+        }
+        
+        server = TurnBasedBattleServer(
+            ownerId: ownerId,
+            recordId: recordId
+        )
+        
+        server.serverDataProvider = serverDataProvider
         
         server.serverDelegate = self
         

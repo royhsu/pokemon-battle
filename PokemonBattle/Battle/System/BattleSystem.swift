@@ -18,7 +18,4 @@ public final class BattleSystem: TurnBasedBattle {
     
     public final var actionProviders: [Provider] = []
     
-    // Todo: remove unused state machine
-    public final var stateMachine = BattleSystemStateMachine(state: .end)
-    
 }

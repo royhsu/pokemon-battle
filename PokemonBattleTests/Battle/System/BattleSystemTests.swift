@@ -19,11 +19,6 @@ internal final class BattleSystemTests: XCTestCase {
         
         let system = BattleSystem()
         
-        XCTAssertEqual(
-            system.stateMachine.state,
-            .end
-        )
-        
         let pikachu = BattleEntity(
             id: UUID().uuidString,
             attack: 7.0,

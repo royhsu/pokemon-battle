@@ -10,9 +10,13 @@
 
 public protocol BattleFieldSceneDataProvider: class {
     
-    var homeBattlePokemon: BattlePokemon? { get }
+    var homeBattlePokemon: BattleEntity { get }
     
-    var guestBattlePokemon: BattlePokemon? { get }
+    var homeBattlePokemonImage: UIImage { get }
+    
+    var guestBattlePokemon: BattleEntity { get }
+    
+    var guestBattlePokemonImage: UIImage { get }
     
 }
 
@@ -48,34 +52,36 @@ public final class BattleFieldScene: SKScene {
         
         addChild(guestPokemonSpriteNode)
         
-//        addChild(backgroundSound)
-        
-        updateData()
+        addChild(backgroundSound)
         
     }
     
     // MARK: Update
     
     public final func updateData() {
+        
+        guard
+            let sceneDataProvider = sceneDataProvider
+        else { return }
     
         setUpHomeHpLabelNode(
             homeHpLabelNode,
-            battlePokemon: sceneDataProvider?.homeBattlePokemon
+            battlePokemon: sceneDataProvider.homeBattlePokemon
         )
         
         setUpHomePokemonSpriteNode(
             homePokemonSpriteNode,
-            battlePokemon: sceneDataProvider?.homeBattlePokemon
+            image: sceneDataProvider.homeBattlePokemonImage
         )
         
         setUpGuestHpLabelNode(
             guestHpLabelNode,
-            battlePokemon: sceneDataProvider?.guestBattlePokemon
+            battlePokemon: sceneDataProvider.guestBattlePokemon
         )
         
         setUpGuestPokemonSpriteNode(
             guestPokemonSpriteNode,
-            battlePokemon: sceneDataProvider?.guestBattlePokemon
+            image: sceneDataProvider.guestBattlePokemonImage
         )
         
     }
@@ -84,7 +90,7 @@ public final class BattleFieldScene: SKScene {
     
     fileprivate final func setUpHomePokemonSpriteNode(
         _ spriteNode: SKSpriteNode,
-        battlePokemon: BattlePokemon?
+        image: UIImage
     ) {
         
         spriteNode.size = CGSize(
@@ -99,19 +105,13 @@ public final class BattleFieldScene: SKScene {
         
         spriteNode.texture = nil
         
-        guard
-            let pokemon = battlePokemon?.pokemon
-        else { return }
-            
-        let pokemonType = type(of: pokemon)
-        
-        spriteNode.texture = SKTexture(image: pokemonType.image)
+        spriteNode.texture = SKTexture(image: image)
         
     }
     
     fileprivate final func setUpGuestPokemonSpriteNode(
         _ spriteNode: SKSpriteNode,
-        battlePokemon: BattlePokemon?
+        image: UIImage
     ) {
         
         spriteNode.size = CGSize(
@@ -126,19 +126,13 @@ public final class BattleFieldScene: SKScene {
         
         spriteNode.texture = nil
         
-        guard
-            let pokemon = battlePokemon?.pokemon
-        else { return }
-        
-        let pokemonType = type(of: pokemon)
-        
-        spriteNode.texture = SKTexture(image: pokemonType.image)
+        spriteNode.texture = SKTexture(image: image)
         
     }
     
     fileprivate final func setUpHomeHpLabelNode(
         _ labelNode: SKLabelNode,
-        battlePokemon: BattlePokemon?
+        battlePokemon: BattleEntity
     ) {
         
         labelNode.position = CGPoint(
@@ -146,25 +140,13 @@ public final class BattleFieldScene: SKScene {
             y: 100.0 + frame.minY
         )
         
-        guard
-            let battlePokemon = battlePokemon
-        else {
-            
-            labelNode.text = "HP: 0"
-            
-            return
-            
-        }
-        
-        let healthPoint = battlePokemon.remainingHealthPoint
-        
-        labelNode.text = "HP: \(healthPoint)"
+        labelNode.text = "HP: \(battlePokemon.remainingHealth)"
         
     }
     
     fileprivate final func setUpGuestHpLabelNode(
         _ labelNode: SKLabelNode,
-        battlePokemon: BattlePokemon?
+        battlePokemon: BattleEntity
     ) {
         
         labelNode.position = CGPoint(
@@ -172,19 +154,7 @@ public final class BattleFieldScene: SKScene {
             y: frame.maxY - 100.0
         )
         
-        guard
-            let battlePokemon = battlePokemon
-        else {
-            
-            labelNode.text = "HP: 0"
-            
-            return
-                
-        }
-        
-        let healthPoint = battlePokemon.remainingHealthPoint
-        
-        labelNode.text = "HP: \(healthPoint)"
+        labelNode.text = "HP: \(battlePokemon.remainingHealth)"
         
     }
  

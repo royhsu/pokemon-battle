@@ -343,17 +343,34 @@ extension BattleViewController: BattleStateMachineDelegate {
 
 extension BattleViewController: BattleFieldSceneDataProvider {
     
-    public final var homeBattlePokemon: BattlePokemon? {
-        
-        return battleDelegate.battlePokemonDataProvider?.homeBattlePokemon
-        
+    public var homeBattlePokemon: BattleEntity {
+        fatalError()
     }
     
-    public final var guestBattlePokemon: BattlePokemon? {
-        
-        return battleDelegate.battlePokemonDataProvider?.guestBattlePokemon
-        
+    public var homeBattlePokemonImage: UIImage {
+        fatalError()
     }
+    
+    public var guestBattlePokemon: BattleEntity {
+        fatalError()
+    }
+    
+    public var guestBattlePokemonImage: UIImage {
+        fatalError()
+    }
+    
+    
+//    public final var homeBattlePokemon: BattlePokemon? {
+//
+//        return battleDelegate.battlePokemonDataProvider?.homeBattlePokemon
+//
+//    }
+//
+//    public final var guestBattlePokemon: BattlePokemon? {
+//
+//        return battleDelegate.battlePokemonDataProvider?.guestBattlePokemon
+//
+//    }
     
 }
 

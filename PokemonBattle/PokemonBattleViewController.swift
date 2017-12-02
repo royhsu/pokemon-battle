@@ -167,6 +167,20 @@ public final class PokemonBattleViewController: UIViewController {
     
 }
 
+// MARK: - BattleFieldSceneDataProvider
+
+extension PokemonBattleViewController: BattleFieldSceneDataProvider {
+    
+    public final var homeBattlePokemon: BattleEntity { return pikachu }
+    
+    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
+    
+    public final var guestBattlePokemon: BattleEntity { return charmander }
+    
+    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
+    
+}
+
 // MARK: - TurnBasedBattleServerDelegate
 
 import TinyBattleKit
@@ -184,6 +198,8 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         battleFieldScene.name = "battleScene"
         
         battleFieldScene.scaleMode = .aspectFill
+        
+        battleFieldScene.sceneDataProvider = self
         
         battleFieldScene.updateData()
         
@@ -213,30 +229,16 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didEndTurn turn: TurnBasedBattleTurn
-    ) {
-        
-        print(
-            "Server ends a turn.",
-            turn.id,
-            currentContext
-        )
-        
-    }
+    ) { }
     
     public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool { return false }
     
-    public final func serverDidEnd(_ server: TurnBasedBattleServer) {
-        
-    }
+    public final func serverDidEnd(_ server: TurnBasedBattleServer) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didRespondTo request: BattleRequest
-    ) {
-        
-        print("Server responds to request", request)
-        
-    }
+    ) { print("Server responds to request", request) }
     
     public final func server(
         _ server: TurnBasedBattleServer,

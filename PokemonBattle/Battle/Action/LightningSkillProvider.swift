@@ -9,6 +9,7 @@
 // MARK: - LightningSkillProvider
 
 import TinyBattleKit
+import SpriteKit
 
 public final class LightningSkillProvider: BattleActionProvider {
     
@@ -27,16 +28,26 @@ public final class LightningSkillProvider: BattleActionProvider {
     // Todo: replace primetive type String with custom type PokemonID
     public final let destinationId: String
     
+    public final unowned let sourceNode: SKSpriteNode
+    
+    public final unowned let destinationNode: SKSpriteNode
+    
     // MARK: Init
     
     public init(
         sourceId: String,
-        destinationId: String
+        destinationId: String,
+        sourceNode: SKSpriteNode,
+        destinationNode: SKSpriteNode
     ) {
         
         self.sourceId = sourceId
         
         self.destinationId = destinationId
+        
+        self.sourceNode = sourceNode
+        
+        self.destinationNode = destinationNode
         
     }
     
@@ -60,7 +71,45 @@ public final class LightningSkillProvider: BattleActionProvider {
         
         updatedResult.replaceEntity(with: updatedDestination)
         
+        animate(
+            sourceNode: sourceNode,
+            destinationNode: destinationNode
+        )
+    
         return updatedResult
+        
+    }
+    
+    public final func animate(
+        sourceNode: SKSpriteNode,
+        destinationNode: SKSpriteNode
+    ) {
+       
+        let lightningEmitterNode = SKEmitterNode(fileNamed: "Lightning.sks")!
+        
+        lightningEmitterNode.position = destinationNode.anchorPoint
+        
+        destinationNode.addChild(lightningEmitterNode)
+        
+        destinationNode.run(
+            .playSoundFileNamed(
+                "ThunderShock.wav",
+                waitForCompletion: false
+            )
+        )
+        
+        destinationNode.run(
+            .sequence(
+                [
+                    .wait(
+                        forDuration: 1.2
+                    ),
+                    .run { lightningEmitterNode.removeFromParent() },
+                    .fadeOut(withDuration: 0.4),
+                    .fadeIn(withDuration: 0.4)
+                ]
+            )
+        )
         
     }
     
@@ -73,13 +122,17 @@ where Self.Result == BattleContext {
     
     public static func lightningSkill(
         sourceId: String,
-        destinationId: String
+        destinationId: String,
+        sourceNode: SKSpriteNode,
+        destinationNode: SKSpriteNode
     )
     -> AnyBattleActionProvider<Result> {
         
         let provider = LightningSkillProvider(
             sourceId: sourceId,
-            destinationId: destinationId
+            destinationId: destinationId,
+            sourceNode: sourceNode,
+            destinationNode: destinationNode
         )
         
         return AnyBattleActionProvider(provider)
@@ -87,4 +140,3 @@ where Self.Result == BattleContext {
     }
     
 }
-

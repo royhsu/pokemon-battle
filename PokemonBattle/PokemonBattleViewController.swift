@@ -153,18 +153,22 @@ public final class PokemonBattleViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.isEnabled = false
         
+        let battleFieldScene = self.battleFieldScene!
+        
         currentContext = system
             .respond(
                 to: .lightningSkill(
                     sourceId: pikachuId,
-                    destinationId: charmanderId
+                    destinationId: charmanderId,
+                    sourceNode: battleFieldScene.homePokemonSpriteNode,
+                    destinationNode: battleFieldScene.guestPokemonSpriteNode
                 )
             )
             .run(with: currentContext)
         
         system.actionProviders.removeAll()
         
-        battleFieldScene?.updateData()
+        battleFieldScene.updateData()
         
         server
             .respond(

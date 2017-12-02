@@ -86,13 +86,14 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
             forPrimaryKey: recordId
         )!
         
+        let player = realm.object(
+            ofType: BattlePlayerRealmObject.self,
+            forPrimaryKey: player.id
+        )!
+        
         try! realm.write {
             
-            record.turns.last!.invovledPlayers.append(
-                BattlePlayerRealmObject(
-                    value: [ "id": UUID().uuidString ]
-                )
-            )
+            record.turns.last!.invovledPlayers.append(player)
             
         }
         

@@ -21,6 +21,40 @@ public final class PokemonBattleViewController: UIViewController {
     
     private final let serverDataProvider = RealmServerDataProvider()
     
+    private final let ownerId = UUID().uuidString
+    
+    private final let recordId = UUID().uuidString
+    
+    private final let pikachu = BattleEntity(
+        id: UUID().uuidString,
+        attack: 7.0,
+        armor: 2.0,
+        magic: 10.0,
+        magicResistance: 3.0,
+        health: 45.0,
+        remainingHealth: 45.0
+    )
+    
+    private final let charmander = BattleEntity(
+        id: UUID().uuidString,
+        attack: 8.0,
+        armor: 2.0,
+        magic: 11.0,
+        magicResistance: 3.0,
+        health: 43.0,
+        remainingHealth: 43.0
+    )
+    
+    private final lazy var currentContext: BattleContext = {
+        
+        let initialContext = try! BattleContext(
+            entities: [ pikachu, charmander ]
+        )
+        
+        return initialContext
+        
+    }()
+    
     // MARK: Init
     
     public init() {
@@ -54,10 +88,6 @@ public final class PokemonBattleViewController: UIViewController {
         )
         
         navigationItem.rightBarButtonItem?.isEnabled = false
-        
-        let ownerId = UUID().uuidString
-        
-        let recordId = UUID().uuidString
         
         let realm = serverDataProvider.realm
         
@@ -96,6 +126,20 @@ public final class PokemonBattleViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.isEnabled = false
         
+        currentContext = system
+            .respond(
+                to: .lightningSkill(
+                    sourceId: pikachu.id,
+                    destinationId: charmander.id
+                )
+            )
+            .run(with: currentContext)
+        
+        server
+            .respond(
+                to: PlayerInvolvedRequest(playerId: ownerId)
+            )
+        
     }
     
 }
@@ -108,6 +152,8 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
+        print("Server starts.")
+        
         server.respond(
             to: ContinueBattleRequest(ownerId: server.ownerId)
         )
@@ -119,6 +165,12 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         didStartTurn turn: TurnBasedBattleTurn
     ) {
         
+        print(
+            "Server starts a turn",
+            turn.id,
+            currentContext
+        )
+        
         navigationItem.rightBarButtonItem?.isEnabled = true
         
     }
@@ -127,6 +179,12 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didEndTurn turn: TurnBasedBattleTurn
     ) {
+        
+        print(
+            "Server ends a turn.",
+            turn.id,
+            currentContext
+        )
         
     }
     
@@ -140,6 +198,8 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didRespondTo request: BattleRequest
     ) {
+        
+        print("Server responds to request", request)
         
     }
     

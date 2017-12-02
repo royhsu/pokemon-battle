@@ -162,6 +162,10 @@ public final class PokemonBattleViewController: UIViewController {
             )
             .run(with: currentContext)
         
+        system.actionProviders.removeAll()
+        
+        battleFieldScene?.updateData()
+        
         server
             .respond(
                 to: PlayerInvolvedRequest(playerId: ownerId)

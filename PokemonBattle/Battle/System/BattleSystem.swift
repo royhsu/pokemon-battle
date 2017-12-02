@@ -21,23 +21,23 @@ public final class BattleSystem: TurnBasedBattle {
     // Todo: remove unused state machine
     public final var stateMachine = BattleSystemStateMachine(state: .end)
     
-    public final let server: TurnBasedBattleServer
+//    public final let server: TurnBasedBattleServer
     
-    public init(
-        ownerId: String,
-        recordId: String
-    ) {
-        
-        let server = TurnBasedBattleServer(
-            ownerId: ownerId,
-            recordId: recordId
-        )
-        
-        self.server = server
-        
-        server.serverDelegate = self
-        
-    }
+//    public init(
+//        ownerId: String,
+//        recordId: String
+//    ) {
+//
+//        let server = TurnBasedBattleServer(
+//            ownerId: ownerId,
+//            recordId: recordId
+//        )
+//
+//        self.server = server
+//
+//        server.serverDelegate = self
+//
+//    }
     
 }
 

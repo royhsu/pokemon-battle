@@ -28,7 +28,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        setUpBattle(for: window)
+//        setUpBattle(for: window)
+        
+        window.rootViewController = UINavigationController(
+            rootViewController: PokemonBattleViewController()
+        )
         
         window.makeKeyAndVisible()
         

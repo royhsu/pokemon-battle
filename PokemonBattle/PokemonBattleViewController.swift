@@ -34,27 +34,31 @@ public final class PokemonBattleViewController: UIViewController {
     
     private final let recordId = UUID().uuidString
     
-    private final let pikachu = BattleEntity(
-        id: UUID().uuidString,
-        attack: 7.0,
-        armor: 2.0,
-        magic: 10.0,
-        magicResistance: 3.0,
-        health: 45.0,
-        remainingHealth: 45.0
-    )
+    private final let pikachuId = UUID().uuidString
     
-    private final let charmander = BattleEntity(
-        id: UUID().uuidString,
-        attack: 8.0,
-        armor: 2.0,
-        magic: 11.0,
-        magicResistance: 3.0,
-        health: 43.0,
-        remainingHealth: 43.0
-    )
+    private final let charmanderId = UUID().uuidString
     
     private final lazy var currentContext: BattleContext = {
+        
+        let pikachu = BattleEntity(
+            id: pikachuId,
+            attack: 7.0,
+            armor: 2.0,
+            magic: 10.0,
+            magicResistance: 3.0,
+            health: 45.0,
+            remainingHealth: 45.0
+        )
+        
+        let charmander = BattleEntity(
+            id: charmanderId,
+            attack: 8.0,
+            armor: 2.0,
+            magic: 11.0,
+            magicResistance: 3.0,
+            health: 43.0,
+            remainingHealth: 43.0
+        )
         
         let initialContext = try! BattleContext(
             entities: [ pikachu, charmander ]
@@ -152,8 +156,8 @@ public final class PokemonBattleViewController: UIViewController {
         currentContext = system
             .respond(
                 to: .lightningSkill(
-                    sourceId: pikachu.id,
-                    destinationId: charmander.id
+                    sourceId: pikachuId,
+                    destinationId: charmanderId
                 )
             )
             .run(with: currentContext)
@@ -171,11 +175,11 @@ public final class PokemonBattleViewController: UIViewController {
 
 extension PokemonBattleViewController: BattleFieldSceneDataProvider {
     
-    public final var homeBattlePokemon: BattleEntity { return pikachu }
+    public final var homeBattlePokemon: BattleEntity { return currentContext.entity(id: pikachuId)! }
     
     public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
     
-    public final var guestBattlePokemon: BattleEntity { return charmander }
+    public final var guestBattlePokemon: BattleEntity { return currentContext.entity(id: charmanderId)! }
     
     public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
     

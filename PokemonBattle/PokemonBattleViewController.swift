@@ -12,7 +12,7 @@ import RealmSwift
 import SpriteKit
 import UIKit
 
-public final class PokemonBattleViewController: UIViewController {
+public final class PokemonBattleViewController: UIViewController, BattlePokemonDataProvider {
     
     // MARK: Property
     
@@ -30,47 +30,30 @@ public final class PokemonBattleViewController: UIViewController {
     
     private final let serverDataProvider = RealmServerDataProvider()
     
+    public final let homeBattlePokemon: BattlePokemon
+    
+    public final let guestBattlePokemon: BattlePokemon
+    
     private final let ownerId = UUID().uuidString
     
     private final let recordId = UUID().uuidString
     
-    private final let pikachuId = UUID().uuidString
-    
-    private final let charmanderId = UUID().uuidString
-    
-    private final lazy var currentContext: PokemonBattleContext = {
-        
-        let pikachu = BattlePokemon(
-            id: pikachuId,
-            attack: 7.0,
-            armor: 2.0,
-            magic: 10.0,
-            magicResistance: 3.0,
-            health: 45.0,
-            remainingHealth: 45.0
-        )
-        
-        let charmander = BattlePokemon(
-            id: charmanderId,
-            attack: 8.0,
-            armor: 2.0,
-            magic: 11.0,
-            magicResistance: 3.0,
-            health: 43.0,
-            remainingHealth: 43.0
-        )
-        
-        let initialContext = try! PokemonBattleContext(
-            battlePokemons: [ pikachu, charmander ]
-        )
-        
-        return initialContext
-        
-    }()
+    private final var currentContext: PokemonBattleContext
     
     // MARK: Init
     
-    public init() {
+    public init(
+        homeBattlePokemon: BattlePokemon,
+        guestBattlePokemon: BattlePokemon
+    ) {
+        
+        self.homeBattlePokemon = homeBattlePokemon
+        
+        self.guestBattlePokemon = guestBattlePokemon
+        
+        self.currentContext = try! PokemonBattleContext(
+            battlePokemons: [ homeBattlePokemon, guestBattlePokemon ]
+        )
         
         super.init(
             nibName: nil,
@@ -79,11 +62,7 @@ public final class PokemonBattleViewController: UIViewController {
         
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        
-        super.init(coder: aDecoder)
-        
-    }
+    public required init?(coder aDecoder: NSCoder) { fatalError("Not implemented.") }
     
     // MARK: View Life Cycle
     
@@ -159,8 +138,8 @@ public final class PokemonBattleViewController: UIViewController {
             .respond(
                 to: .lightningSkill(
                     id: UUID().uuidString,
-                    sourceId: pikachuId,
-                    destinationId: charmanderId,
+                    sourceId: homeBattlePokemon.id,
+                    destinationId: guestBattlePokemon.id,
                     context: PokemonSkillAnimatorContext(
                         sourceNode: battleFieldScene.homePokemonSpriteNode,
                         destinationNode: battleFieldScene.guestPokemonSpriteNode

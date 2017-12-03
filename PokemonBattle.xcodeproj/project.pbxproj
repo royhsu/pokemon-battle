@@ -160,16 +160,16 @@
 				B0CE4EF21FC6931900343937 /* Effects */,
 				B041FA861FC2AC9B00421C05 /* Battle */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
-				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
-				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
-				B041FA801FC2ABB000421C05 /* Info.plist */,
 				B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */,
-				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
 				B0A676601FD13DB100278CBE /* LightningPokemonSkillProvider.swift */,
+				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
 				B04272AE1FD29C6900ED3D74 /* RealmServerDataProvider.swift */,
 				B04272B01FD29D9B00ED3D74 /* BattlePlayerRealmObject.swift */,
 				B04272B21FD29D9C00ED3D74 /* BattleRecordRealmObject.swift */,
 				B04272B11FD29D9B00ED3D74 /* BattleTurnRealmObject.swift */,
+				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
+				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
+				B041FA801FC2ABB000421C05 /* Info.plist */,
 			);
 			path = PokemonBattle;
 			sourceTree = "<group>";

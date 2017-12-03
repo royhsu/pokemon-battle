@@ -27,8 +27,33 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
+        let pikachu = BattlePokemon(
+            id: UUID().uuidString,
+            attack: 7.0,
+            armor: 2.0,
+            magic: 10.0,
+            magicResistance: 3.0,
+            health: 45.0,
+            remainingHealth: 45.0
+        )
+
+        let charmander = BattlePokemon(
+            id: UUID().uuidString,
+            attack: 8.0,
+            armor: 2.0,
+            magic: 11.0,
+            magicResistance: 3.0,
+            health: 43.0,
+            remainingHealth: 43.0
+        )
+        
+        let pokemonBattleViewController = PokemonBattleViewController(
+            homeBattlePokemon: pikachu,
+            guestBattlePokemon: charmander
+        )
+        
         window.rootViewController = UINavigationController(
-            rootViewController: PokemonBattleViewController()
+            rootViewController: pokemonBattleViewController
         )
         
         window.makeKeyAndVisible()

@@ -53,7 +53,9 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let pokemonBattleViewController = PokemonBattleViewController(
             homeBattlePokemonId: pikachu.id,
+            homeBattlePokemonImage: #imageLiteral(resourceName: "Pikachu"),
             guestBattlePokemonId: charmander.id,
+            guestBattlePokemonImage: #imageLiteral(resourceName: "Charmander"),
             context: context
         )
         

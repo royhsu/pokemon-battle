@@ -12,7 +12,7 @@ import RealmSwift
 import SpriteKit
 import UIKit
 
-public final class PokemonBattleViewController: UIViewController, BattlePokemonDataProvider {
+public final class PokemonBattleViewController: UIViewController, BattlePokemonDataProvider, BattleFieldSceneDataProvider {
     
     // MARK: Property
     
@@ -34,9 +34,13 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
     
     private final let recordId = UUID().uuidString
     
-    private final let homeBattlePokemonId: String
+    public final let homeBattlePokemonId: String
     
-    private final let guestBattlePokemonId: String
+    public final let homeBattlePokemonImage: UIImage
+    
+    public final let guestBattlePokemonId: String
+    
+    public final let guestBattlePokemonImage: UIImage
     
     private final var context: PokemonBattleContext
     
@@ -44,13 +48,19 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
     
     public init(
         homeBattlePokemonId: String,
+        homeBattlePokemonImage: UIImage,
         guestBattlePokemonId: String,
+        guestBattlePokemonImage: UIImage,
         context: PokemonBattleContext
     ) {
         
         self.homeBattlePokemonId = homeBattlePokemonId
         
+        self.homeBattlePokemonImage = homeBattlePokemonImage
+        
         self.guestBattlePokemonId = guestBattlePokemonId
+        
+        self.guestBattlePokemonImage = guestBattlePokemonImage
         
         self.context = context
         
@@ -166,7 +176,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
 
     }
     
-    // MARK: - BattlePokemonDataProvider
+    // MARK: BattlePokemonDataProvider
  
     public final var homeBattlePokemon: BattlePokemon {
         
@@ -181,20 +191,6 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
     }
     
 }
-
-// MARK: - BattleFieldSceneDataProvider
-
-//extension PokemonBattleViewController: BattleFieldSceneDataProvider {
-//
-//    public final var homeBattlePokemon: BattlePokemon { return currentContext.battlePokemon(id: homeBattlePokemon.id) }
-//
-//    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
-//
-//    public final var guestBattlePokemon: BattlePokemon { return currentContext.battlePokemon(id: charmanderId)! }
-//
-//    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
-//
-//}
 
 // MARK: - TurnBasedBattleServerDelegate
 
@@ -214,7 +210,7 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         
         battleFieldScene.scaleMode = .aspectFill
         
-//        battleFieldScene.sceneDataProvider = self
+        battleFieldScene.sceneDataProvider = self
         
         battleFieldScene.updateData()
         

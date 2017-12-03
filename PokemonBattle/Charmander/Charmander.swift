@@ -1,14 +1,14 @@
 //
-//  Pikachu.swift
+//  Charmander.swift
 //  PokemonBattle
 //
-//  Created by Roy Hsu on 03/12/2017.
+//  Created by Roy Hsu on 04/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - Pikachu
+// MARK: - Charmander
 
-public struct Pikachu: Pokemon {
+public struct Charmander: Pokemon {
     
     // MARK: Property
     
@@ -34,7 +34,7 @@ public struct Pikachu: Pokemon {
         magicResistance: Double,
         health: Double
     ) {
-    
+        
         self.id = id
         
         self.attack = attack

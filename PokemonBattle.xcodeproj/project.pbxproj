@@ -58,6 +58,8 @@
 		B0EF52FF1FD4510D0043014F /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52FE1FD4510D0043014F /* PokemonGenerator.swift */; };
 		B0EF53011FD457990043014F /* PokemonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53001FD457990043014F /* PokemonConfig.swift */; };
 		B0EF53031FD45F2A0043014F /* Pokemon+BattlePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53021FD45F2A0043014F /* Pokemon+BattlePokemon.swift */; };
+		B0EF53061FD47C100043014F /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53051FD47C100043014F /* Charmander.swift */; };
+		B0EF53081FD47C1F0043014F /* Charmander.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0EF53071FD47C1F0043014F /* Charmander.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +128,8 @@
 		B0EF52FE1FD4510D0043014F /* PokemonGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
 		B0EF53001FD457990043014F /* PokemonConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonConfig.swift; sourceTree = "<group>"; };
 		B0EF53021FD45F2A0043014F /* Pokemon+BattlePokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pokemon+BattlePokemon.swift"; sourceTree = "<group>"; };
+		B0EF53051FD47C100043014F /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
+		B0EF53071FD47C1F0043014F /* Charmander.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Charmander.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +193,7 @@
 				B0EF53021FD45F2A0043014F /* Pokemon+BattlePokemon.swift */,
 				B0EF53001FD457990043014F /* PokemonConfig.swift */,
 				B0EF52FE1FD4510D0043014F /* PokemonGenerator.swift */,
+				B0EF53041FD47BFD0043014F /* Charmander */,
 				B0EF52F71FD44EE70043014F /* Pikachu */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
 				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
@@ -314,6 +319,15 @@
 			path = Pikachu;
 			sourceTree = "<group>";
 		};
+		B0EF53041FD47BFD0043014F /* Charmander */ = {
+			isa = PBXGroup;
+			children = (
+				B0EF53071FD47C1F0043014F /* Charmander.plist */,
+				B0EF53051FD47C100043014F /* Charmander.swift */,
+			);
+			path = Charmander;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,6 +427,7 @@
 				B0CE4F1B1FC6D18B00343937 /* BodySlam.wav in Resources */,
 				B0EF52F91FD44EFE0043014F /* Pikachu.plist in Resources */,
 				B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */,
+				B0EF53081FD47C1F0043014F /* Charmander.plist in Resources */,
 				B0C34E641FC6F47D001B388E /* Pokemon GB.ttf in Resources */,
 				B0CE4EF61FC6935800343937 /* Assets.xcassets in Resources */,
 			);
@@ -485,6 +500,7 @@
 				B063D7D81FD2A12D00C88D6E /* PokemonBattleTurn.swift in Sources */,
 				B0CE4F271FC6EC8E00343937 /* BattleMenuTableViewCell.swift in Sources */,
 				B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */,
+				B0EF53061FD47C100043014F /* Charmander.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

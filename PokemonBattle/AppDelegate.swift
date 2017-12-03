@@ -47,9 +47,14 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             remainingHealth: 43.0
         )
         
+        let context = try! PokemonBattleContext(
+            battlePokemons: [ pikachu, charmander ]
+        )
+        
         let pokemonBattleViewController = PokemonBattleViewController(
-            homeBattlePokemon: pikachu,
-            guestBattlePokemon: charmander
+            homeBattlePokemonId: pikachu.id,
+            guestBattlePokemonId: charmander.id,
+            context: context
         )
         
         window.rootViewController = UINavigationController(

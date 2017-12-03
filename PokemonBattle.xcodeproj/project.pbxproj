@@ -50,6 +50,7 @@
 		B0EF52E31FD3B30D0043014F /* PokemonSkillAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E21FD3B30D0043014F /* PokemonSkillAnimator.swift */; };
 		B0EF52E51FD3B31B0043014F /* PokemonSkillAnimatorContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E41FD3B31B0043014F /* PokemonSkillAnimatorContext.swift */; };
 		B0EF52ED1FD4132D0043014F /* BattlePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */; };
+		B0EF52EF1FD418A90043014F /* BattleFieldSceneDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52EE1FD418A90043014F /* BattleFieldSceneDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		B0EF52E21FD3B30D0043014F /* PokemonSkillAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillAnimator.swift; sourceTree = "<group>"; };
 		B0EF52E41FD3B31B0043014F /* PokemonSkillAnimatorContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillAnimatorContext.swift; sourceTree = "<group>"; };
 		B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattlePokemon.swift; sourceTree = "<group>"; };
+		B0EF52EE1FD418A90043014F /* BattleFieldSceneDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldSceneDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 			children = (
 				B0CE4EF01FC5BA0B00343937 /* BattleField.swift */,
 				B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */,
+				B0EF52EE1FD418A90043014F /* BattleFieldSceneDataProvider.swift */,
 			);
 			path = Field;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
 				B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */,
 				B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */,
+				B0EF52EF1FD418A90043014F /* BattleFieldSceneDataProvider.swift in Sources */,
 				B063D7D81FD2A12D00C88D6E /* PokemonBattleTurn.swift in Sources */,
 				B0CE4F271FC6EC8E00343937 /* BattleMenuTableViewCell.swift in Sources */,
 				B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */,

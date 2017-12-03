@@ -6,20 +6,6 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleFieldSceneDataProvider
-
-public protocol BattleFieldSceneDataProvider: class {
-    
-    var homeBattlePokemon: BattlePokemon { get }
-    
-    var homeBattlePokemonImage: UIImage { get }
-    
-    var guestBattlePokemon: BattlePokemon { get }
-    
-    var guestBattlePokemonImage: UIImage { get }
-    
-}
-
 // MARK: - BattleFieldScene
 
 import SpriteKit

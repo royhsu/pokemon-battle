@@ -30,30 +30,29 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
     
     private final let serverDataProvider = RealmServerDataProvider()
     
-    public final let homeBattlePokemon: BattlePokemon
-    
-    public final let guestBattlePokemon: BattlePokemon
-    
     private final let ownerId = UUID().uuidString
     
     private final let recordId = UUID().uuidString
     
-    private final var currentContext: PokemonBattleContext
+    private final let homeBattlePokemonId: String
+    
+    private final let guestBattlePokemonId: String
+    
+    private final var context: PokemonBattleContext
     
     // MARK: Init
     
     public init(
-        homeBattlePokemon: BattlePokemon,
-        guestBattlePokemon: BattlePokemon
+        homeBattlePokemonId: String,
+        guestBattlePokemonId: String,
+        context: PokemonBattleContext
     ) {
         
-        self.homeBattlePokemon = homeBattlePokemon
+        self.homeBattlePokemonId = homeBattlePokemonId
         
-        self.guestBattlePokemon = guestBattlePokemon
+        self.guestBattlePokemonId = guestBattlePokemonId
         
-        self.currentContext = try! PokemonBattleContext(
-            battlePokemons: [ homeBattlePokemon, guestBattlePokemon ]
-        )
+        self.context = context
         
         super.init(
             nibName: nil,
@@ -146,10 +145,10 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
                     )
                 )
             )
-            .run(with: currentContext)
+            .run(with: context)
             .then(in: .main) { context in
 
-                self.currentContext = context
+                self.context = context
 
                 battleFieldScene.updateData()
 
@@ -164,20 +163,34 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
                 print("\(error)")
 
             }
+
+    }
+    
+    // MARK: - BattlePokemonDataProvider
+ 
+    public final var homeBattlePokemon: BattlePokemon {
+        
+        return context.battlePokemon(id: homeBattlePokemonId)!
+        
+    }
+    
+    public final var guestBattlePokemon: BattlePokemon {
+        
+        return context.battlePokemon(id: guestBattlePokemonId)!
         
     }
     
 }
 
 // MARK: - BattleFieldSceneDataProvider
-//
+
 //extension PokemonBattleViewController: BattleFieldSceneDataProvider {
 //
-//    public final var homeBattlePokemon: BattleEntity { return currentContext.entity(id: pikachuId)! }
+//    public final var homeBattlePokemon: BattlePokemon { return currentContext.battlePokemon(id: homeBattlePokemon.id) }
 //
 //    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
 //
-//    public final var guestBattlePokemon: BattleEntity { return currentContext.entity(id: charmanderId)! }
+//    public final var guestBattlePokemon: BattlePokemon { return currentContext.battlePokemon(id: charmanderId)! }
 //
 //    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
 //
@@ -221,7 +234,7 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         print(
             "Server starts a turn",
             turn.id,
-            currentContext
+            context
         )
         
         navigationItem.rightBarButtonItem?.isEnabled = true

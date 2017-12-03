@@ -1,21 +1,17 @@
 //
-//  LightningSkillProvider.swift
+//  LightningPokemonSkillProvider.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 01/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - LightningSkillProvider
+// MARK: - LightningPokemonSkillProvider
 
 import TinyBattleKit
 import SpriteKit
 
-public final class LightningSkillProvider: BattleActionProvider {
-    public func applyAction(on result: PokemonBattleContext) -> PokemonBattleContext {
-        fatalError()
-    }
-    
+public final class LightningPokemonSkillProvider: BattleActionProvider {
     
     public typealias Animator = PokemonSkillAnimator
     
@@ -69,27 +65,25 @@ public final class LightningSkillProvider: BattleActionProvider {
     
     // MARK: BattleActionProvider
     
-    public final func applyAction(on result: Context) -> Context {
+    public final func applyAction(on result: PokemonBattleContext) -> PokemonBattleContext {
         
-//        let source = result.battlePokemon(id: sourceId)!
-//
-//        let destination = result.battlePokemon(id: destinationId)!
-//
-//        let finalMagic = source.magic * (1.0 + extra)
-//
-//        let damage = finalMagic - destination.magicResistance
-//
-//        var updatedDestination = destination
-//
-//        updatedDestination.remainingHealth -= damage
-//
-//        var updatedResult = result
-//
-//        updatedResult.replaceBattlePokemon(with: updatedDestination)
-//
-//        return updatedResult
-        
-        return result
+        let source = result.battlePokemon(id: sourceId)!
+
+        let destination = result.battlePokemon(id: destinationId)!
+
+        let finalMagic = source.magic * (1.0 + extra)
+
+        let damage = finalMagic - destination.magicResistance
+
+        var updatedDestination = destination
+
+        updatedDestination.remainingHealth -= damage
+
+        var updatedResult = result
+
+        updatedResult.replaceBattlePokemon(with: updatedDestination)
+
+        return updatedResult
         
     }
     
@@ -108,7 +102,7 @@ where Self.Animator == PokemonSkillAnimator {
     )
     -> AnyBattleActionProvider<Animator> {
         
-        let provider = LightningSkillProvider(
+        let provider = LightningPokemonSkillProvider(
             id: id,
             sourceId: sourceId,
             destinationId: destinationId,

@@ -47,6 +47,3 @@ public extension BattleTurn {
     }
     
 }
-
-
-

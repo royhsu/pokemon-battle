@@ -9,7 +9,6 @@
 // MARK: - AppDelegate
 
 import UIKit
-import TinyBattleKit
 
 @UIApplicationMain
 public final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,80 +38,5 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
         
     }
-    
-    // MARK: Set Up
-    
-//    public final func setUpBattle(for window: UIWindow?) {
-//
-//        let battleManager = BattleManager()
-//
-//        battleManager.battlePokemonDataProvider = BasicBattlePokemonDataProvider(
-//            homeBattlePokemon: BattlePokemon(
-//                id: "home",
-//                pokemon: Pikachu()
-//            ),
-//            guestBattlePokemon: BattlePokemon(
-//                id: "guest",
-//                pokemon: Charmander()
-//            )
-//        )
-//
-//        let battleViewController = BattleViewController(
-//            battleDelegate: battleManager
-//        )
-//
-//        battleViewController.controllerDelegate = self
-//
-//        window?.rootViewController = battleViewController
-//
-//    }
-    
+
 }
-
-// MARK: - BattleViewControllerDelegate
-//
-//extension AppDelegate: BattleViewControllerDelegate {
-//
-//    public final func battleViewController(
-//        _ battleViewController: BattleViewController,
-//        didEndWith result: LegacyBattleResult
-//    ) {
-//
-//        let battleStoryboard = UIStoryboard(
-//            name: "Battle",
-//            bundle:
-//            nil
-//        )
-//
-//        let battleViewController = battleStoryboard.instantiateViewController(withIdentifier: "BattleResultViewController") as! BattleResultViewController
-//
-//        switch result {
-//
-//        case .win:
-//
-//            // Todo: add transition.
-//
-//            battleViewController.title = "YOU WON!"
-//
-//            battleViewController.controllerDelegate = self
-//
-//            window?.rootViewController = battleViewController
-//
-//        case .lose:
-//
-//            // Todo: add transition.
-//
-//            battleViewController.title = "YOU LOST!"
-//
-//            battleViewController.controllerDelegate = self
-//
-//            window?.rootViewController = battleViewController
-//
-//        case .tbd: fatalError()
-//
-//        }
-//
-//    }
-//
-//}
-

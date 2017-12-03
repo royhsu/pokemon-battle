@@ -153,37 +153,38 @@ public final class PokemonBattleViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.isEnabled = false
         
-//        let battleFieldScene = self.battleFieldScene!
+        let battleFieldScene = self.battleFieldScene!
         
-//        system
-//            .respond(
-//                to: .lightningSkill(
-//                    sourceId: pikachuId,
-//                    destinationId: charmanderId,
-//                    context: PokemonSkillAnimatorContext(
-//                        sourceNode: battleFieldScene.homePokemonSpriteNode,
-//                        destinationNode: battleFieldScene.guestPokemonSpriteNode
-//                    )
-//                )
-//            )
-//            .run(with: currentContext)
-//            .then(in: .main) { context in
-//
-//                self.currentContext = context
-//
-//                battleFieldScene.updateData()
-//
-//                self.server
-//                    .respond(
-//                        to: PlayerInvolvedRequest(playerId: self.ownerId)
-//                    )
-//
-//            }
-//            .catch(in: .main) { error in
-//
-//                print("\(error)")
-//
-//            }
+        system
+            .respond(
+                to: .lightningSkill(
+                    id: UUID().uuidString,
+                    sourceId: pikachuId,
+                    destinationId: charmanderId,
+                    context: PokemonSkillAnimatorContext(
+                        sourceNode: battleFieldScene.homePokemonSpriteNode,
+                        destinationNode: battleFieldScene.guestPokemonSpriteNode
+                    )
+                )
+            )
+            .run(with: currentContext)
+            .then(in: .main) { context in
+
+                self.currentContext = context
+
+                battleFieldScene.updateData()
+
+                self.server
+                    .respond(
+                        to: PlayerInvolvedRequest(playerId: self.ownerId)
+                    )
+
+            }
+            .catch(in: .main) { error in
+
+                print("\(error)")
+
+            }
         
     }
     

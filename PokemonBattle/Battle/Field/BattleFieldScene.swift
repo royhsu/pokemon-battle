@@ -10,11 +10,11 @@
 
 public protocol BattleFieldSceneDataProvider: class {
     
-    var homeBattlePokemon: BattleEntity { get }
+    var homeBattlePokemon: BattlePokemon { get }
     
     var homeBattlePokemonImage: UIImage { get }
     
-    var guestBattlePokemon: BattleEntity { get }
+    var guestBattlePokemon: BattlePokemon { get }
     
     var guestBattlePokemonImage: UIImage { get }
     
@@ -132,7 +132,7 @@ public final class BattleFieldScene: SKScene {
     
     fileprivate final func setUpHomeHpLabelNode(
         _ labelNode: SKLabelNode,
-        battlePokemon: BattleEntity
+        battlePokemon: BattlePokemon
     ) {
         
         labelNode.position = CGPoint(
@@ -146,7 +146,7 @@ public final class BattleFieldScene: SKScene {
     
     fileprivate final func setUpGuestHpLabelNode(
         _ labelNode: SKLabelNode,
-        battlePokemon: BattleEntity
+        battlePokemon: BattlePokemon
     ) {
         
         labelNode.position = CGPoint(

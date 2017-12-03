@@ -14,11 +14,11 @@ public struct PokemonSkillAnimator: BattleActionAnimator {
     
     public typealias Context = PokemonSkillAnimatorContext
     
-    public typealias Result = BattleContext
+    public typealias Result = PokemonBattleContext
     
     public typealias Animation = (
-        _ old: BattleContext,
-        _ new: BattleContext,
+        _ old: Result,
+        _ new: Result,
         _ completion: @escaping () -> Void
     )
     -> Void
@@ -45,8 +45,8 @@ public struct PokemonSkillAnimator: BattleActionAnimator {
     // MARK: BattleActionAnimator
     
     public func animate(
-        from oldResult: BattleContext,
-        to newResult: BattleContext,
+        from oldResult: Result,
+        to newResult: Result,
         completion: @escaping () -> Void
     ) {
         

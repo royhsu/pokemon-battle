@@ -18,10 +18,10 @@ public struct Pikachu: Pokemon {
     
     public let healthPoint = 40.0
     
-    public let skillTypes: [PokemonSkill.Type] = [
-        PhysicalAttackPokemonSkill.self,
-        LightningPokemonSkill.self,
-        WaggingTailPokemonSkill.self
-    ]
+//    public let skillTypes: [PokemonSkill.Type] = [
+//        PhysicalAttackPokemonSkill.self,
+//        LightningPokemonSkill.self,
+//        WaggingTailPokemonSkill.self
+//    ]
     
 }

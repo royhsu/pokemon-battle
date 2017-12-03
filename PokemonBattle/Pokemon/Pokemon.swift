@@ -18,7 +18,7 @@ public protocol Pokemon {
     
     var healthPoint: Double { get }
     
-    var skillTypes: [PokemonSkill.Type] { get }
+//    var skillTypes: [PokemonSkill.Type] { get }
     
 }
 

@@ -38,9 +38,9 @@ public final class PokemonBattleViewController: UIViewController {
     
     private final let charmanderId = UUID().uuidString
     
-    private final lazy var currentContext: BattleContext = {
+    private final lazy var currentContext: PokemonBattleContext = {
         
-        let pikachu = BattleEntity(
+        let pikachu = BattlePokemon(
             id: pikachuId,
             attack: 7.0,
             armor: 2.0,
@@ -50,7 +50,7 @@ public final class PokemonBattleViewController: UIViewController {
             remainingHealth: 45.0
         )
         
-        let charmander = BattleEntity(
+        let charmander = BattlePokemon(
             id: charmanderId,
             attack: 8.0,
             armor: 2.0,
@@ -60,8 +60,8 @@ public final class PokemonBattleViewController: UIViewController {
             remainingHealth: 43.0
         )
         
-        let initialContext = try! BattleContext(
-            entities: [ pikachu, charmander ]
+        let initialContext = try! PokemonBattleContext(
+            battlePokemons: [ pikachu, charmander ]
         )
         
         return initialContext
@@ -153,55 +153,55 @@ public final class PokemonBattleViewController: UIViewController {
         
         navigationItem.rightBarButtonItem?.isEnabled = false
         
-        let battleFieldScene = self.battleFieldScene!
+//        let battleFieldScene = self.battleFieldScene!
         
-        system
-            .respond(
-                to: .lightningSkill(
-                    sourceId: pikachuId,
-                    destinationId: charmanderId,
-                    context: PokemonSkillAnimatorContext(
-                        sourceNode: battleFieldScene.homePokemonSpriteNode,
-                        destinationNode: battleFieldScene.guestPokemonSpriteNode
-                    )
-                )
-            )
-            .run(with: currentContext)
-            .then(in: .main) { context in
-                
-                self.currentContext = context
-                
-                battleFieldScene.updateData()
-                
-                self.server
-                    .respond(
-                        to: PlayerInvolvedRequest(playerId: self.ownerId)
-                    )
-                
-            }
-            .catch(in: .main) { error in
-                
-                print("\(error)")
-                
-            }
+//        system
+//            .respond(
+//                to: .lightningSkill(
+//                    sourceId: pikachuId,
+//                    destinationId: charmanderId,
+//                    context: PokemonSkillAnimatorContext(
+//                        sourceNode: battleFieldScene.homePokemonSpriteNode,
+//                        destinationNode: battleFieldScene.guestPokemonSpriteNode
+//                    )
+//                )
+//            )
+//            .run(with: currentContext)
+//            .then(in: .main) { context in
+//
+//                self.currentContext = context
+//
+//                battleFieldScene.updateData()
+//
+//                self.server
+//                    .respond(
+//                        to: PlayerInvolvedRequest(playerId: self.ownerId)
+//                    )
+//
+//            }
+//            .catch(in: .main) { error in
+//
+//                print("\(error)")
+//
+//            }
         
     }
     
 }
 
 // MARK: - BattleFieldSceneDataProvider
-
-extension PokemonBattleViewController: BattleFieldSceneDataProvider {
-    
-    public final var homeBattlePokemon: BattleEntity { return currentContext.entity(id: pikachuId)! }
-    
-    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
-    
-    public final var guestBattlePokemon: BattleEntity { return currentContext.entity(id: charmanderId)! }
-    
-    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
-    
-}
+//
+//extension PokemonBattleViewController: BattleFieldSceneDataProvider {
+//
+//    public final var homeBattlePokemon: BattleEntity { return currentContext.entity(id: pikachuId)! }
+//
+//    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
+//
+//    public final var guestBattlePokemon: BattleEntity { return currentContext.entity(id: charmanderId)! }
+//
+//    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
+//
+//}
 
 // MARK: - TurnBasedBattleServerDelegate
 
@@ -221,7 +221,7 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         
         battleFieldScene.scaleMode = .aspectFill
         
-        battleFieldScene.sceneDataProvider = self
+//        battleFieldScene.sceneDataProvider = self
         
         battleFieldScene.updateData()
         

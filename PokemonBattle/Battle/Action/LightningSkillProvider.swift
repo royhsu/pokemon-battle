@@ -12,6 +12,10 @@ import TinyBattleKit
 import SpriteKit
 
 public final class LightningSkillProvider: BattleActionProvider {
+    public func applyAction(on result: PokemonBattleContext) -> PokemonBattleContext {
+        fatalError()
+    }
+    
     
     public typealias Animator = PokemonSkillAnimator
     
@@ -21,9 +25,17 @@ public final class LightningSkillProvider: BattleActionProvider {
     
     // MARK: Property
     
+    public final let id: String
+    
     public final let priority = 100.0
     
-    public final var animator: Animator? { return .lightning(context: context) }
+    public final var animator: Animator? {
+        
+        return nil
+        
+//        return .lightning(context: context)
+        
+    }
     
     // Extra damage ratio
     public final let extra = 0.2
@@ -39,10 +51,13 @@ public final class LightningSkillProvider: BattleActionProvider {
     // MARK: Init
     
     public init(
+        id: String,
         sourceId: String,
         destinationId: String,
         context: Context
     ) {
+        
+        self.id = id
         
         self.sourceId = sourceId
         
@@ -54,25 +69,27 @@ public final class LightningSkillProvider: BattleActionProvider {
     
     // MARK: BattleActionProvider
     
-    public final func applyAction(on result: BattleContext) -> BattleContext {
+    public final func applyAction(on result: Context) -> Context {
         
-        let source = result.entity(id: sourceId)!
+//        let source = result.battlePokemon(id: sourceId)!
+//
+//        let destination = result.battlePokemon(id: destinationId)!
+//
+//        let finalMagic = source.magic * (1.0 + extra)
+//
+//        let damage = finalMagic - destination.magicResistance
+//
+//        var updatedDestination = destination
+//
+//        updatedDestination.remainingHealth -= damage
+//
+//        var updatedResult = result
+//
+//        updatedResult.replaceBattlePokemon(with: updatedDestination)
+//
+//        return updatedResult
         
-        let destination = result.entity(id: destinationId)!
-        
-        let finalMagic = source.magic * (1.0 + extra)
-        
-        let damage = finalMagic - destination.magicResistance
-        
-        var updatedDestination = destination
-        
-        updatedDestination.remainingHealth -= damage
-        
-        var updatedResult = result
-        
-        updatedResult.replaceEntity(with: updatedDestination)
-    
-        return updatedResult
+        return result
         
     }
     
@@ -84,6 +101,7 @@ public extension BattleActionProvider
 where Self.Animator == PokemonSkillAnimator {
     
     public static func lightningSkill(
+        id: String,
         sourceId: String,
         destinationId: String,
         context: Animator.Context
@@ -91,6 +109,7 @@ where Self.Animator == PokemonSkillAnimator {
     -> AnyBattleActionProvider<Animator> {
         
         let provider = LightningSkillProvider(
+            id: id,
             sourceId: sourceId,
             destinationId: destinationId,
             context: context

@@ -30,18 +30,21 @@ where Self: BattleMenuDataProvider {
     
     public func numberOfPokemonSkills() -> Int {
         
-        return homeBattlePokemon?.pokemon.skillTypes.count ?? 0
+//        return homeBattlePokemon?.pokemon.skillTypes.count ?? 0
+        fatalError()
         
     }
     
     public func titleForPokemonSkill(at index: Int) -> String? {
         
-        guard
-            let skillTypes = homeBattlePokemon?.pokemon.skillTypes,
-            index < skillTypes.count
-        else { return nil }
+//        guard
+//            let skillTypes = homeBattlePokemon?.pokemon.skillTypes,
+//            index < skillTypes.count
+//        else { return nil }
+//
+//        return skillTypes[index].name
         
-        return skillTypes[index].name
+        fatalError()
         
     }
     

@@ -8,8 +8,8 @@
 
 // MARK: - LightningPokemonSkillProvider
 
-import TinyBattleKit
 import SpriteKit
+import TinyBattleKit
 
 public final class LightningPokemonSkillProvider: BattleActionProvider {
     

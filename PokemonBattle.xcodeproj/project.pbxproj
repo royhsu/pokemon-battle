@@ -76,6 +76,7 @@
 		B0D47FDB1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */; };
 		B0EF52E31FD3B30D0043014F /* PokemonSkillAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E21FD3B30D0043014F /* PokemonSkillAnimator.swift */; };
 		B0EF52E51FD3B31B0043014F /* PokemonSkillAnimatorContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E41FD3B31B0043014F /* PokemonSkillAnimatorContext.swift */; };
+		B0EF52E71FD3C4600043014F /* LightningSkillAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E61FD3C4600043014F /* LightningSkillAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,7 @@
 		B0D47FDA1FC56D540056ABFC /* BasicBattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicBattlePokemonDataProvider.swift; sourceTree = "<group>"; };
 		B0EF52E21FD3B30D0043014F /* PokemonSkillAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillAnimator.swift; sourceTree = "<group>"; };
 		B0EF52E41FD3B31B0043014F /* PokemonSkillAnimatorContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillAnimatorContext.swift; sourceTree = "<group>"; };
+		B0EF52E61FD3C4600043014F /* LightningSkillAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningSkillAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -356,6 +358,7 @@
 				B0CE4EFC1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift */,
 				B0CE4F001FC6A06800343937 /* FirePokemonSkill.swift */,
 				B0CE4F131FC6C3D500343937 /* LightningPokemonSkill.swift */,
+				B0EF52E61FD3C4600043014F /* LightningSkillAnimator.swift */,
 				B0CE4F221FC6DA8F00343937 /* WaggingTailPokemonSkill.swift */,
 			);
 			path = Skill;
@@ -594,6 +597,7 @@
 				B0C34E6D1FC70AA6001B388E /* LegacyBattleResult.swift in Sources */,
 				B022155A1FC4224000E7AD76 /* BattlePokemon.swift in Sources */,
 				B04272B31FD29D9C00ED3D74 /* BattlePlayerRealmObject.swift in Sources */,
+				B0EF52E71FD3C4600043014F /* LightningSkillAnimator.swift in Sources */,
 				B0A676591FD13A6900278CBE /* BattleSystemStateMachine.swift in Sources */,
 				B064E68B1FC45125005476BA /* BattleManager.swift in Sources */,
 				B0CE4EFD1FC69E1A00343937 /* PhysicalAttackPokemonSkill.swift in Sources */,

@@ -155,13 +155,15 @@ public final class PokemonBattleViewController: UIViewController {
         
         let battleFieldScene = self.battleFieldScene!
         
-        // Todo: inject animator
-        
         system
             .respond(
                 to: .lightningSkill(
                     sourceId: pikachuId,
-                    destinationId: charmanderId
+                    destinationId: charmanderId,
+                    context: PokemonSkillAnimatorContext(
+                        sourceNode: battleFieldScene.homePokemonSpriteNode,
+                        destinationNode: battleFieldScene.guestPokemonSpriteNode
+                    )
                 )
             )
             .run(with: currentContext)

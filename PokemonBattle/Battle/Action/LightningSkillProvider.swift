@@ -15,13 +15,15 @@ public final class LightningSkillProvider: BattleActionProvider {
     
     public typealias Animator = PokemonSkillAnimator
     
+    public typealias Context = Animator.Context
+    
     public typealias Result = Animator.Result
     
     // MARK: Property
     
     public final let priority = 100.0
     
-    public final let animator: Animator? = nil // Todo: replace with lightning animator
+    public final var animator: Animator? { return .lightning(context: context) }
     
     // Extra damage ratio
     public final let extra = 0.2
@@ -32,16 +34,21 @@ public final class LightningSkillProvider: BattleActionProvider {
     // Todo: replace primetive type String with custom type PokemonID
     public final let destinationId: String
     
+    public final let context: Context
+    
     // MARK: Init
     
     public init(
         sourceId: String,
-        destinationId: String
+        destinationId: String,
+        context: Context
     ) {
         
         self.sourceId = sourceId
         
         self.destinationId = destinationId
+        
+        self.context = context
         
     }
     
@@ -69,39 +76,6 @@ public final class LightningSkillProvider: BattleActionProvider {
         
     }
     
-//    public final func animate(
-//        sourceNode: SKSpriteNode,
-//        destinationNode: SKSpriteNode
-//    ) {
-//
-//        let lightningEmitterNode = SKEmitterNode(fileNamed: "Lightning.sks")!
-//
-//        lightningEmitterNode.position = destinationNode.anchorPoint
-//
-//        destinationNode.addChild(lightningEmitterNode)
-//
-//        destinationNode.run(
-//            .playSoundFileNamed(
-//                "ThunderShock.wav",
-//                waitForCompletion: false
-//            )
-//        )
-//
-//        destinationNode.run(
-//            .sequence(
-//                [
-//                    .wait(
-//                        forDuration: 1.2
-//                    ),
-//                    .run { lightningEmitterNode.removeFromParent() },
-//                    .fadeOut(withDuration: 0.4),
-//                    .fadeIn(withDuration: 0.4)
-//                ]
-//            )
-//        )
-//
-//    }
-    
 }
 
 // MARK: Factory
@@ -111,13 +85,15 @@ where Self.Animator == PokemonSkillAnimator {
     
     public static func lightningSkill(
         sourceId: String,
-        destinationId: String
+        destinationId: String,
+        context: Animator.Context
     )
     -> AnyBattleActionProvider<Animator> {
         
         let provider = LightningSkillProvider(
             sourceId: sourceId,
-            destinationId: destinationId
+            destinationId: destinationId,
+            context: context
         )
         
         return AnyBattleActionProvider(provider)

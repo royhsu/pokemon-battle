@@ -19,7 +19,7 @@ public struct PokemonSkillAnimator: BattleActionAnimator {
     public typealias Animation = (
         _ old: BattleContext,
         _ new: BattleContext,
-        _ completion: () -> Void
+        _ completion: @escaping () -> Void
     )
     -> Void
     
@@ -47,7 +47,7 @@ public struct PokemonSkillAnimator: BattleActionAnimator {
     public func animate(
         from oldResult: BattleContext,
         to newResult: BattleContext,
-        completion: () -> Void
+        completion: @escaping () -> Void
     ) {
         
         animation(

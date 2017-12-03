@@ -1,5 +1,5 @@
 //
-//  Player.swift
+//  PokemonBattlePlayer.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 02/12/2017.
@@ -10,7 +10,7 @@
 
 import TinyBattleKit
 
-public struct Player: BattlePlayer {
+public struct PokemonBattlePlayer: BattlePlayer {
     
     // MARK: Property
     
@@ -22,9 +22,9 @@ public struct Player: BattlePlayer {
     
 }
 
-// MARK: Realm
+// MARK: - Realm
 
-public extension Player {
+public extension PokemonBattlePlayer {
     
     public init(_ player: BattlePlayerRealmObject) {
         

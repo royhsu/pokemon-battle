@@ -30,7 +30,7 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
             )
         else { return nil }
         
-        return Player(player)
+        return PokemonBattlePlayer(player)
         
     }
     
@@ -43,7 +43,7 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
             )
         else { return nil }
         
-        return BattleRecord(record)
+        return PokemonBattleRecord(record)
         
     }
     
@@ -70,7 +70,7 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
             forPrimaryKey: id
         )!
         
-        return BattleRecord(updatedRecord)
+        return PokemonBattleRecord(updatedRecord)
         
     }
     
@@ -102,7 +102,7 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
             forPrimaryKey: recordId
         )!
         
-        return BattleRecord(updatedRecord)
+        return PokemonBattleRecord(updatedRecord)
         
     }
     

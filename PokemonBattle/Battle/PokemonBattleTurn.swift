@@ -1,16 +1,16 @@
 //
-//  BattleTurn.swift
+//  PokemonBattleTurn.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 02/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleTurn
+// MARK: - PokemonBattleTurn
 
 import TinyBattleKit
 
-public struct BattleTurn: TurnBasedBattleTurn {
+public struct PokemonBattleTurn: TurnBasedBattleTurn {
     
     // MARK: Property
     
@@ -33,15 +33,15 @@ public struct BattleTurn: TurnBasedBattleTurn {
     
 }
 
-// MARK: Realm
+// MARK: - Realm
 
-public extension BattleTurn {
+public extension PokemonBattleTurn {
     
     public init(_ turn: BattleTurnRealmObject) {
         
         self.init(
             id: turn.id!,
-            involvedPlayers: turn.invovledPlayers.map(Player.init)
+            involvedPlayers: turn.invovledPlayers.map(PokemonBattlePlayer.init)
         )
         
     }

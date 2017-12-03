@@ -1,16 +1,16 @@
 //
-//  BattleRecord.swift
+//  PokemonBattleRecord.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 02/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleRecord
+// MARK: - PokemonBattleRecord
 
 import TinyBattleKit
 
-public struct BattleRecord: TurnBasedBattleRecord {
+public struct PokemonBattleRecord: TurnBasedBattleRecord {
     
     // MARK: Property
     
@@ -45,13 +45,13 @@ public struct BattleRecord: TurnBasedBattleRecord {
 
 // MARK: - Realm
 
-public extension BattleRecord {
+public extension PokemonBattleRecord {
     
     public init(_ record: BattleRecordRealmObject) {
         
         self.init(
             id: record.id!,
-            turns: record.turns.map(BattleTurn.init),
+            turns: record.turns.map(PokemonBattleTurn.init),
             createdAtDate: record.createdAtDate,
             updatedAtDate: record.updatedAtDate
         )

@@ -27,15 +27,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        let pikachu = BattlePokemon(
-            id: UUID().uuidString,
-            attack: 7.0,
-            armor: 2.0,
-            magic: 10.0,
-            magicResistance: 3.0,
-            health: 45.0,
-            remainingHealth: 45.0
-        )
+        let pikachu = try! PokemonGenerator.make(Pikachu.self)
 
         let charmander = BattlePokemon(
             id: UUID().uuidString,
@@ -48,7 +40,10 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         let context = try! PokemonBattleContext(
-            battlePokemons: [ pikachu, charmander ]
+            battlePokemons: [
+                BattlePokemon(pikachu),
+                charmander
+            ]
         )
         
         let pokemonBattleViewController = PokemonBattleViewController(

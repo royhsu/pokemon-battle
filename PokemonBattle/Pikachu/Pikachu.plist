@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>attack</key>
+	<dict>
+		<key>maximum</key>
+		<real>8.199999999999999</real>
+		<key>minimum</key>
+		<real>6.9</real>
+	</dict>
+	<key>armor</key>
+	<dict>
+		<key>maximum</key>
+		<real>2.4</real>
+		<key>minimum</key>
+		<real>1.85</real>
+	</dict>
+	<key>magic</key>
+	<dict>
+		<key>maximum</key>
+		<real>12</real>
+		<key>minimum</key>
+		<real>9.300000000000001</real>
+	</dict>
+	<key>magicResistance</key>
+	<dict>
+		<key>maximum</key>
+		<real>3.27</real>
+		<key>minimum</key>
+		<real>2.1</real>
+	</dict>
+	<key>health</key>
+	<dict>
+		<key>maximum</key>
+		<real>47.6</real>
+		<key>minimum</key>
+		<real>41.8</real>
+	</dict>
+</dict>
+</plist>

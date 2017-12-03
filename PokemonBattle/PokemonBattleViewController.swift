@@ -155,6 +155,17 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
                     )
                 )
             )
+            .respond(
+                to: .fireSkill(
+                    id: UUID().uuidString,
+                    sourceId: guestBattlePokemon.id,
+                    destinationId: homeBattlePokemon.id,
+                    context: PokemonSkillAnimatorContext(
+                        sourceNode: battleFieldScene.guestPokemonSpriteNode,
+                        destinationNode: battleFieldScene.homePokemonSpriteNode
+                    )
+                )
+            )
             .run(with: context)
             .then(in: .main) { context in
 

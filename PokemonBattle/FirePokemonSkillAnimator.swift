@@ -1,19 +1,19 @@
 //
-//  LightningPokemonSkillAnimator.swift
+//  FirePokemonSkillAnimator.swift
 //  PokemonBattle
 //
-//  Created by Roy Hsu on 03/12/2017.
+//  Created by Roy Hsu on 04/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - LightningPokemonSkillAnimator
+// MARK: - FirePokemonSkillAnimator
 
 import SpriteKit
 import TinyBattleKit
 
 public extension PokemonSkillAnimator {
     
-    public static func lightning(context: Context) -> PokemonSkillAnimator {
+    public static func fire(context: Context) -> PokemonSkillAnimator {
         
         return PokemonSkillAnimator(
             context: context,
@@ -21,15 +21,15 @@ public extension PokemonSkillAnimator {
                 
                 let destinationNode = context.destinationNode
                 
-                let lightningNode = SKEmitterNode(fileNamed: "Lightning.sks")!
+                let fireNode = SKEmitterNode(fileNamed: "Fire.sks")!
                 
-                lightningNode.position = destinationNode.anchorPoint
+                fireNode.position = destinationNode.anchorPoint
                 
-                destinationNode.addChild(lightningNode)
+                destinationNode.addChild(fireNode)
                 
                 destinationNode.run(
                     .playSoundFileNamed(
-                        "ThunderShock.wav",
+                        "FireBlast.wav",
                         waitForCompletion: false
                     )
                 )
@@ -38,9 +38,9 @@ public extension PokemonSkillAnimator {
                     .sequence(
                         [
                             .wait(
-                                forDuration: 1.2
+                                forDuration: 1.5
                             ),
-                            .run { lightningNode.removeFromParent() },
+                            .run { fireNode.removeFromParent() },
                             .fadeOut(withDuration: 0.4),
                             .fadeIn(withDuration: 0.4)
                         ]

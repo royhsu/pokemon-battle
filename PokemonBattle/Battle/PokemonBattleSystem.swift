@@ -1,5 +1,5 @@
 //
-//  BattleSystem.swift
+//  PokemonBattleSystem.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 01/12/2017.
@@ -10,4 +10,4 @@
 
 import TinyBattleKit
 
-public final class BattleSystem: TurnBasedBattle<PokemonSkillAnimator> { }
+public final class PokemonBattleSystem: TurnBasedBattle<PokemonSkillAnimator> { }

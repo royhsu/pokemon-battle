@@ -26,7 +26,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
     
     private final var server: TurnBasedBattleServer!
     
-    private final let system = BattleSystem()
+    private final let system = PokemonBattleSystem()
     
     private final let serverDataProvider = RealmServerDataProvider()
     

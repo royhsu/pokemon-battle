@@ -30,10 +30,8 @@ public final class LightningPokemonSkillProvider: BattleActionProvider {
     // Extra damage ratio
     public final let extra = 0.2
     
-    // Todo: replace primetive type String with custom type PokemonID
     public final let sourceId: String
     
-    // Todo: replace primetive type String with custom type PokemonID
     public final let destinationId: String
     
     public final let context: Context

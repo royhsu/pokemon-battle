@@ -10,12 +10,4 @@
 
 import TinyBattleKit
 
-public final class BattleSystem: TurnBasedBattle {
-    
-    public typealias Provider = AnyBattleActionProvider<BattleContext>
-    
-    // MARK: Property
-    
-    public final var actionProviders: [Provider] = []
-    
-}
+public final class BattleSystem: TurnBasedBattle<PokemonSkillAnimator> { }

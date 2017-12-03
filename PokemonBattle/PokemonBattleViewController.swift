@@ -155,25 +155,33 @@ public final class PokemonBattleViewController: UIViewController {
         
         let battleFieldScene = self.battleFieldScene!
         
-        currentContext = system
+        // Todo: inject animator
+        
+        system
             .respond(
                 to: .lightningSkill(
                     sourceId: pikachuId,
-                    destinationId: charmanderId,
-                    sourceNode: battleFieldScene.homePokemonSpriteNode,
-                    destinationNode: battleFieldScene.guestPokemonSpriteNode
+                    destinationId: charmanderId
                 )
             )
             .run(with: currentContext)
-        
-        system.actionProviders.removeAll()
-        
-        battleFieldScene.updateData()
-        
-        server
-            .respond(
-                to: PlayerInvolvedRequest(playerId: ownerId)
-            )
+            .then(in: .main) { context in
+                
+                self.currentContext = context
+                
+                battleFieldScene.updateData()
+                
+                self.server
+                    .respond(
+                        to: PlayerInvolvedRequest(playerId: self.ownerId)
+                    )
+                
+            }
+            .catch(in: .main) { error in
+                
+                print("\(error)")
+                
+            }
         
     }
     

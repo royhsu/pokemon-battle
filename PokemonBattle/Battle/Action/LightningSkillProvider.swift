@@ -13,11 +13,15 @@ import SpriteKit
 
 public final class LightningSkillProvider: BattleActionProvider {
     
-    public typealias Result = BattleContext
+    public typealias Animator = PokemonSkillAnimator
+    
+    public typealias Result = Animator.Result
     
     // MARK: Property
     
     public final let priority = 100.0
+    
+    public final let animator: Animator? = nil // Todo: replace with lightning animator
     
     // Extra damage ratio
     public final let extra = 0.2
@@ -28,26 +32,16 @@ public final class LightningSkillProvider: BattleActionProvider {
     // Todo: replace primetive type String with custom type PokemonID
     public final let destinationId: String
     
-    public final unowned let sourceNode: SKSpriteNode
-    
-    public final unowned let destinationNode: SKSpriteNode
-    
     // MARK: Init
     
     public init(
         sourceId: String,
-        destinationId: String,
-        sourceNode: SKSpriteNode,
-        destinationNode: SKSpriteNode
+        destinationId: String
     ) {
         
         self.sourceId = sourceId
         
         self.destinationId = destinationId
-        
-        self.sourceNode = sourceNode
-        
-        self.destinationNode = destinationNode
         
     }
     
@@ -70,69 +64,60 @@ public final class LightningSkillProvider: BattleActionProvider {
         var updatedResult = result
         
         updatedResult.replaceEntity(with: updatedDestination)
-        
-        animate(
-            sourceNode: sourceNode,
-            destinationNode: destinationNode
-        )
     
         return updatedResult
         
     }
     
-    public final func animate(
-        sourceNode: SKSpriteNode,
-        destinationNode: SKSpriteNode
-    ) {
-       
-        let lightningEmitterNode = SKEmitterNode(fileNamed: "Lightning.sks")!
-        
-        lightningEmitterNode.position = destinationNode.anchorPoint
-        
-        destinationNode.addChild(lightningEmitterNode)
-        
-        destinationNode.run(
-            .playSoundFileNamed(
-                "ThunderShock.wav",
-                waitForCompletion: false
-            )
-        )
-        
-        destinationNode.run(
-            .sequence(
-                [
-                    .wait(
-                        forDuration: 1.2
-                    ),
-                    .run { lightningEmitterNode.removeFromParent() },
-                    .fadeOut(withDuration: 0.4),
-                    .fadeIn(withDuration: 0.4)
-                ]
-            )
-        )
-        
-    }
+//    public final func animate(
+//        sourceNode: SKSpriteNode,
+//        destinationNode: SKSpriteNode
+//    ) {
+//
+//        let lightningEmitterNode = SKEmitterNode(fileNamed: "Lightning.sks")!
+//
+//        lightningEmitterNode.position = destinationNode.anchorPoint
+//
+//        destinationNode.addChild(lightningEmitterNode)
+//
+//        destinationNode.run(
+//            .playSoundFileNamed(
+//                "ThunderShock.wav",
+//                waitForCompletion: false
+//            )
+//        )
+//
+//        destinationNode.run(
+//            .sequence(
+//                [
+//                    .wait(
+//                        forDuration: 1.2
+//                    ),
+//                    .run { lightningEmitterNode.removeFromParent() },
+//                    .fadeOut(withDuration: 0.4),
+//                    .fadeIn(withDuration: 0.4)
+//                ]
+//            )
+//        )
+//
+//    }
     
 }
 
 // MARK: Factory
 
 public extension BattleActionProvider
-where Self.Result == BattleContext {
+where Self.Animator == PokemonSkillAnimator {
     
     public static func lightningSkill(
         sourceId: String,
-        destinationId: String,
-        sourceNode: SKSpriteNode,
-        destinationNode: SKSpriteNode
+        destinationId: String
     )
-    -> AnyBattleActionProvider<Result> {
+    -> AnyBattleActionProvider<Animator> {
         
         let provider = LightningSkillProvider(
             sourceId: sourceId,
-            destinationId: destinationId,
-            sourceNode: sourceNode,
-            destinationNode: destinationNode
+            destinationId: destinationId
         )
         
         return AnyBattleActionProvider(provider)

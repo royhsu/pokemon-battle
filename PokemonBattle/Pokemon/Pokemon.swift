@@ -2,32 +2,33 @@
 //  Pokemon.swift
 //  PokemonBattle
 //
-//  Created by Roy Hsu on 20/11/2017.
+//  Created by Roy Hsu on 03/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
 // MARK: - Pokemon
 
-import UIKit
-
 public protocol Pokemon {
     
-    var attackPoint: Double { get }
+    var id: String { get }
     
-    var magicPowerPoint: Double { get }
+    var attack: Double { get }
     
-    var healthPoint: Double { get }
+    var armor: Double { get }
     
-    var skillTypes: [PokemonSkill.Type] { get }
+    var magic: Double { get }
     
-}
-
-// MARK: Image
-
-public extension Pokemon {
+    var magicResistance: Double { get }
     
-    public static var name: String { return String(describing: self) }
+    var health: Double { get }
     
-    public static var image: UIImage { return UIImage(named: name)! }
+    init(
+        id: String,
+        attack: Double,
+        armor: Double,
+        magic: Double,
+        magicResistance: Double,
+        health: Double
+    )
     
 }

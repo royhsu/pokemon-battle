@@ -8,10 +8,10 @@
 
 // MARK: - LightningPokemonSkill
 
-import Foundation
+import TinyBattleKit
 
 public struct LightningPokemonSkill: PokemonSkill {
-
+    
     // MARK: Property
     
     public let name = NSLocalizedString(
@@ -19,6 +19,25 @@ public struct LightningPokemonSkill: PokemonSkill {
         comment: ""
     )
     
-    public let providerType = LightningPokemonSkillProvider.self
+    // MARK: PokemonSkill
+    
+    public func makeSkillProvider(
+        id: String,
+        sourceId: String,
+        destinationIds: [String],
+        context: PokemonSkillAnimatorContext
+    )
+    -> AnyBattleActionProvider<PokemonSkillAnimator> {
+            
+        let provider = LightningPokemonSkillProvider(
+            id: id,
+            sourceId: sourceId,
+            destinationIds: destinationIds,
+            context: context
+        )
+        
+        return AnyBattleActionProvider(provider)
+        
+    }
     
 }

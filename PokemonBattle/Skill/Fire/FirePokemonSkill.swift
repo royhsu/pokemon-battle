@@ -8,7 +8,7 @@
 
 // MARK: - FirePokemonSkill
 
-import Foundation
+import TinyBattleKit
 
 public struct FirePokemonSkill: PokemonSkill {
     
@@ -19,6 +19,25 @@ public struct FirePokemonSkill: PokemonSkill {
         comment: ""
     )
     
-    public let providerType = FirePokemonSkillProvider.self
+    // MARK: PokemonSkill
+    
+    public func makeSkillProvider(
+        id: String,
+        sourceId: String,
+        destinationIds: [String],
+        context: PokemonSkillAnimatorContext
+    )
+    -> AnyBattleActionProvider<PokemonSkillAnimator> {
+            
+        let provider = FirePokemonSkillProvider(
+            id: id,
+            sourceId: sourceId,
+            destinationIds: destinationIds,
+            context: context
+        )
+        
+        return AnyBattleActionProvider(provider)
+            
+    }
     
 }

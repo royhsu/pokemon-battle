@@ -12,10 +12,18 @@ import TinyBattleKit
 
 public protocol PokemonSkill {
     
-    associatedtype Provider = PokemonSkillProvider
+//    associatedtype Provider = PokemonSkillProvider
     
     var name: String { get }
     
-    var providerType: Provider.Type { get }
+//    var providerType: Provider.Type { get }
+    
+    func makeSkillProvider(
+        id: String,
+        sourceId: String,
+        destinationIds: [String],
+        context: PokemonSkillAnimatorContext
+    )
+    -> AnyBattleActionProvider<PokemonSkillAnimator>
     
 }

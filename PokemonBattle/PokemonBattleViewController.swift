@@ -147,26 +147,12 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
         let fireSkill = FirePokemonSkill()
         
-//        let a: [PokemonSkill] = [
-//            AnyPokemonSkill(lightningSkill),
-//            AnyPokemonSkill(fireSkill)
-//        ]
+        let skills: [PokemonSkill] = [
+            lightningSkill,
+            fireSkill
+        ]
         
-//        let a = AnyPokemonSkill(lightningSkill)
-//        
-//        let b = AnyPokemonSkill(fireSkill)
-        
-//        let skillTypes = [
-//            AnyPokemonSkill(lightningSkill),
-//            AnyPokemonSkill(fireSkill)
-//        ]
-        
-//        let a = [
-//            LightningPokemonSkillProvider.self,
-//            FirePokemonSkillProvider.self
-//        ]
-        
-        let lightningSkillProvider = lightningSkill.providerType.init(
+        let lightningSkillProvider = lightningSkill.makeSkillProvider(
             id: UUID().uuidString,
             sourceId: homeBattlePokemon.id,
             destinationIds: [ guestBattlePokemon.id ],
@@ -176,7 +162,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             )
         )
 
-        let fireSkillProvider = fireSkill.providerType.init(
+        let fireSkillProvider = fireSkill.makeSkillProvider(
             id: UUID().uuidString,
             sourceId: guestBattlePokemon.id,
             destinationIds: [ homeBattlePokemon.id ],
@@ -186,18 +172,9 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             )
         )
         
-        let skillProviders = [
-            AnyPokemonSkillProvider(lightningSkillProvider),
-            AnyPokemonSkillProvider(fireSkillProvider)
-        ]
-        
         system
-            .respond(
-                to: AnyBattleActionProvider(AnyPokemonSkillProvider(lightningSkillProvider))
-            )
-            .respond(
-                to: AnyBattleActionProvider(AnyPokemonSkillProvider(fireSkillProvider))
-            )
+            .respond(to: lightningSkillProvider)
+            .respond(to: fireSkillProvider)
             .run(with: context)
             .then(in: .main) { context in
 

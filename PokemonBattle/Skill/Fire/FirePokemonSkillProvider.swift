@@ -11,7 +11,7 @@
 import SpriteKit
 import TinyBattleKit
 
-public final class FirePokemonSkillProvider: BattleActionProvider {
+public final class FirePokemonSkillProvider: PokemonSkillProvider {
     
     public typealias Animator = PokemonSkillAnimator
     
@@ -32,7 +32,7 @@ public final class FirePokemonSkillProvider: BattleActionProvider {
     
     public final let sourceId: String
     
-    public final let destinationId: String
+    public final let destinationIds: [String]
     
     public final let context: Context
     
@@ -41,7 +41,7 @@ public final class FirePokemonSkillProvider: BattleActionProvider {
     public init(
         id: String,
         sourceId: String,
-        destinationId: String,
+        destinationIds: [String],
         context: Context
     ) {
         
@@ -49,7 +49,7 @@ public final class FirePokemonSkillProvider: BattleActionProvider {
         
         self.sourceId = sourceId
         
-        self.destinationId = destinationId
+        self.destinationIds = destinationIds
         
         self.context = context
         
@@ -59,22 +59,26 @@ public final class FirePokemonSkillProvider: BattleActionProvider {
     
     public final func applyAction(on result: PokemonBattleContext) -> PokemonBattleContext {
         
-        let source = result.battlePokemon(id: sourceId)!
-        
-        let destination = result.battlePokemon(id: destinationId)!
-        
-        let finalMagic = source.magic * (1.0 + extra)
-        
-        let damage = finalMagic - destination.magicResistance
-        
-        var updatedDestination = destination
-        
-        updatedDestination.remainingHealth -= damage
-        
         var updatedResult = result
         
-        updatedResult.replaceBattlePokemon(with: updatedDestination)
+        let source = result.battlePokemon(id: sourceId)!
+
+        destinationIds.forEach { destinationId in
         
+            let destination = result.battlePokemon(id: destinationId)!
+
+            let finalMagic = source.magic * (1.0 + extra)
+
+            let damage = finalMagic - destination.magicResistance
+
+            var updatedDestination = destination
+
+            updatedDestination.remainingHealth -= damage
+            
+            updatedResult.replaceBattlePokemon(with: updatedDestination)
+            
+        }
+
         return updatedResult
         
     }
@@ -89,7 +93,7 @@ where Self.Animator == PokemonSkillAnimator {
     public static func fireSkill(
         id: String,
         sourceId: String,
-        destinationId: String,
+        destinationIds: [String],
         context: Animator.Context
     )
     -> AnyBattleActionProvider<Animator> {
@@ -97,7 +101,7 @@ where Self.Animator == PokemonSkillAnimator {
         let provider = FirePokemonSkillProvider(
             id: id,
             sourceId: sourceId,
-            destinationId: destinationId,
+            destinationIds: destinationIds,
             context: context
         )
         

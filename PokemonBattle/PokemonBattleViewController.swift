@@ -143,28 +143,32 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
         let battleFieldScene = self.battleFieldScene!
         
+        let lightningSkill = LightningPokemonSkill.Provider(
+            id: UUID().uuidString,
+            sourceId: homeBattlePokemon.id,
+            destinationId: guestBattlePokemon.id,
+            context: PokemonSkillAnimatorContext(
+                sourceNode: battleFieldScene.homePokemonSpriteNode,
+                destinationNode: battleFieldScene.guestPokemonSpriteNode
+            )
+        )
+        
+        let fireSkill = FirePokemonSkill.Provider(
+            id: UUID().uuidString,
+            sourceId: guestBattlePokemon.id,
+            destinationIds: [ homeBattlePokemon.id ],
+            context: PokemonSkillAnimatorContext(
+                sourceNode: battleFieldScene.guestPokemonSpriteNode,
+                destinationNode: battleFieldScene.homePokemonSpriteNode
+            )
+        )
+        
         system
             .respond(
-                to: .lightningSkill(
-                    id: UUID().uuidString,
-                    sourceId: homeBattlePokemon.id,
-                    destinationId: guestBattlePokemon.id,
-                    context: PokemonSkillAnimatorContext(
-                        sourceNode: battleFieldScene.homePokemonSpriteNode,
-                        destinationNode: battleFieldScene.guestPokemonSpriteNode
-                    )
-                )
+                to: AnyBattleActionProvider(lightningSkill)
             )
             .respond(
-                to: .fireSkill(
-                    id: UUID().uuidString,
-                    sourceId: guestBattlePokemon.id,
-                    destinationId: homeBattlePokemon.id,
-                    context: PokemonSkillAnimatorContext(
-                        sourceNode: battleFieldScene.guestPokemonSpriteNode,
-                        destinationNode: battleFieldScene.homePokemonSpriteNode
-                    )
-                )
+                to: AnyBattleActionProvider(fireSkill)
             )
             .run(with: context)
             .then(in: .main) { context in

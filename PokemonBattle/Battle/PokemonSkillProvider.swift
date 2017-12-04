@@ -10,9 +10,8 @@
 
 import TinyBattleKit
 
-public protocol PokemonSkillProvider: BattleActionProvider {
-    
-    associatedtype Animator = PokemonSkillAnimator
+public protocol PokemonSkillProvider: BattleActionProvider
+where Animator == PokemonSkillAnimator {
     
     typealias Context = Animator.Context
     
@@ -57,10 +56,7 @@ public class AnyPokemonSkillProvider: PokemonSkillProvider {
     
     // MARK: Init
 
-    public init
-    <Provider: PokemonSkillProvider>
-    (_ provider: Provider)
-    where Provider.Animator == Animator {
+    public init<Provider: PokemonSkillProvider>(_ provider: Provider) {
         
         self._id = provider.id
         

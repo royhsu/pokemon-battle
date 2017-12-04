@@ -163,11 +163,31 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             )
         )
         
-        let a = AnyPokemonSkillProvider(lightningSkill)
+        let context = PokemonSkillAnimatorContext(
+            sourceNode: battleFieldScene.homePokemonSpriteNode,
+            destinationNode: battleFieldScene.guestPokemonSpriteNode
+        )
         
-        let b = AnyBattleActionProvider(fireSkill)
+        let a = LightningPokemonSkillProvider(
+            id: "",
+            sourceId: "",
+            destinationIds: [],
+            context: context
+        )
         
-        let c = [ a, b ]
+        let b = FirePokemonSkillProvider(
+            id: "",
+            sourceId: "",
+            destinationIds: [],
+            context: context
+        )
+        
+        let c = [
+            AnyPokemonSkillProvider(a),
+            AnyPokemonSkillProvider(b)
+        ]
+        
+//        let c: [PokemonSkillProvider<PokemonSkillAnimator>] = [ a, b ]
         
 //        let skills: [Any] = [
 //            AnyPokemonSkill(
@@ -188,31 +208,31 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
 //
 
         
-        system
+//        system
 //            .respond(
 //                to: AnyBattleActionProvider(lightningSkill)
 //            )
 //            .respond(
 //                to: AnyBattleActionProvider(fireSkill)
 //            )
-            .run(with: context)
-            .then(in: .main) { context in
-
-                self.context = context
-
-                battleFieldScene.updateData()
-
-                self.server
-                    .respond(
-                        to: PlayerInvolvedRequest(playerId: self.ownerId)
-                    )
-
-            }
-            .catch(in: .main) { error in
-
-                print("\(error)")
-
-            }
+//            .run(with: context)
+//            .then(in: .main) { context in
+//
+//                self.context = context
+//
+//                battleFieldScene.updateData()
+//
+//                self.server
+//                    .respond(
+//                        to: PlayerInvolvedRequest(playerId: self.ownerId)
+//                    )
+//
+//            }
+//            .catch(in: .main) { error in
+//
+//                print("\(error)")
+//
+//            }
 
     }
     

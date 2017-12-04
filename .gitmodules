@@ -1,0 +1,3 @@
+[submodule "tiny-battle-kit"]
+	path = tiny-battle-kit
+	url = https://github.com/royhsu/tiny-battle-kit.git

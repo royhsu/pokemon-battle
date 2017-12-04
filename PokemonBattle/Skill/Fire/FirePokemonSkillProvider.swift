@@ -84,29 +84,3 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
     }
     
 }
-
-// MARK: Factory
-
-public extension BattleActionProvider
-where Self.Animator == PokemonSkillAnimator {
-    
-    public static func fireSkill(
-        id: String,
-        sourceId: String,
-        destinationIds: [String],
-        context: Animator.Context
-    )
-    -> AnyBattleActionProvider<Animator> {
-            
-        let provider = FirePokemonSkillProvider(
-            id: id,
-            sourceId: sourceId,
-            destinationIds: destinationIds,
-            context: context
-        )
-        
-        return AnyBattleActionProvider(provider)
-            
-    }
-    
-}

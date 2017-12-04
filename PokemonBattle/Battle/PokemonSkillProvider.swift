@@ -12,17 +12,21 @@ import TinyBattleKit
 
 public protocol PokemonSkillProvider: BattleActionProvider {
     
+    associatedtype Animator = PokemonSkillAnimator
+    
+    typealias Context = Animator.Context
+    
     var sourceId: String { get }
     
     var destinationIds: [String] { get }
     
-    var context: Animator.Context { get }
+    var context: Context { get }
     
     init(
         id: String,
         sourceId: String,
         destinationIds: [String],
-        context: Animator.Context
+        context: Context
     )
     
 }

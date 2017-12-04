@@ -32,7 +32,7 @@ public final class LightningPokemonSkillProvider: BattleActionProvider {
     
     public final let sourceId: String
     
-    public final let destinationId: String
+    public final let destinationIds: [String]
     
     public final let context: Context
     
@@ -41,7 +41,7 @@ public final class LightningPokemonSkillProvider: BattleActionProvider {
     public init(
         id: String,
         sourceId: String,
-        destinationId: String,
+        destinationIds: [String],
         context: Context
     ) {
         
@@ -49,7 +49,7 @@ public final class LightningPokemonSkillProvider: BattleActionProvider {
         
         self.sourceId = sourceId
         
-        self.destinationId = destinationId
+        self.destinationIds = destinationIds
         
         self.context = context
         
@@ -59,49 +59,27 @@ public final class LightningPokemonSkillProvider: BattleActionProvider {
     
     public final func applyAction(on result: PokemonBattleContext) -> PokemonBattleContext {
         
+        var updatedResult = result
+        
         let source = result.battlePokemon(id: sourceId)!
 
-        let destination = result.battlePokemon(id: destinationId)!
+        destinationIds.forEach { destinationId in
+        
+            let destination = result.battlePokemon(id: destinationId)!
 
-        let finalMagic = source.magic * (1.0 + extra)
+            let finalMagic = source.magic * (1.0 + extra)
 
-        let damage = finalMagic - destination.magicResistance
+            let damage = finalMagic - destination.magicResistance
 
-        var updatedDestination = destination
+            var updatedDestination = destination
 
-        updatedDestination.remainingHealth -= damage
+            updatedDestination.remainingHealth -= damage
 
-        var updatedResult = result
-
-        updatedResult.replaceBattlePokemon(with: updatedDestination)
+            updatedResult.replaceBattlePokemon(with: updatedDestination)
+            
+        }
 
         return updatedResult
-        
-    }
-    
-}
-
-// MARK: Factory
-
-public extension BattleActionProvider
-where Self.Animator == PokemonSkillAnimator {
-    
-    public static func lightningSkill(
-        id: String,
-        sourceId: String,
-        destinationId: String,
-        context: Animator.Context
-    )
-    -> AnyBattleActionProvider<Animator> {
-        
-        let provider = LightningPokemonSkillProvider(
-            id: id,
-            sourceId: sourceId,
-            destinationId: destinationId,
-            context: context
-        )
-        
-        return AnyBattleActionProvider(provider)
         
     }
     

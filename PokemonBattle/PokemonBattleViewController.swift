@@ -146,13 +146,13 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         let lightningSkill = LightningPokemonSkill.Provider(
             id: UUID().uuidString,
             sourceId: homeBattlePokemon.id,
-            destinationId: guestBattlePokemon.id,
+            destinationIds: [ guestBattlePokemon.id ],
             context: PokemonSkillAnimatorContext(
                 sourceNode: battleFieldScene.homePokemonSpriteNode,
                 destinationNode: battleFieldScene.guestPokemonSpriteNode
             )
         )
-        
+
         let fireSkill = FirePokemonSkill.Provider(
             id: UUID().uuidString,
             sourceId: guestBattlePokemon.id,

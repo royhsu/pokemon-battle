@@ -11,14 +11,14 @@
 import Foundation
 
 public struct LightningPokemonSkill: PokemonSkill {
-    
-    public typealias Provider = LightningPokemonSkillProvider
-    
+
     // MARK: Property
     
     public let name = NSLocalizedString(
         "Lightning",
         comment: ""
     )
+    
+    public let providerType = LightningPokemonSkillProvider.self
     
 }

@@ -12,13 +12,13 @@ import Foundation
 
 public struct FirePokemonSkill: PokemonSkill {
     
-    public typealias Provider = FirePokemonSkillProvider
-    
     // MARK: Property
     
     public let name = NSLocalizedString(
         "Fire",
         comment: ""
     )
+    
+    public let providerType = FirePokemonSkillProvider.self
     
 }

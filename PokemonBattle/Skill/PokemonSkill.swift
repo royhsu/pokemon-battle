@@ -11,9 +11,11 @@
 import TinyBattleKit
 
 public protocol PokemonSkill {
-
+    
     associatedtype Provider = PokemonSkillProvider
     
     var name: String { get }
+    
+    var providerType: Provider.Type { get }
     
 }

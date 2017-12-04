@@ -152,7 +152,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
                 destinationNode: battleFieldScene.guestPokemonSpriteNode
             )
         )
-
+        
         let fireSkill = FirePokemonSkill.Provider(
             id: UUID().uuidString,
             sourceId: guestBattlePokemon.id,
@@ -163,13 +163,38 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             )
         )
         
+        let a = AnyPokemonSkillProvider(lightningSkill)
+        
+        let b = AnyBattleActionProvider(fireSkill)
+        
+        let c = [ a, b ]
+        
+//        let skills: [Any] = [
+//            AnyPokemonSkill(
+//                FirePokemonSkill()
+//            ),
+//            AnyPokemonSkill(
+//                LightningPokemonSkill()
+//            )
+//        ]
+        
+//        AnyBattleActionProvider(FirePokemonSkillProvider)
+        
+        
+//        let skillType = PokemonSkillProvider<>.self
+        
+//        let skillType = AnyPokemonSkillProvider.self
+        
+//
+
+        
         system
-            .respond(
-                to: AnyBattleActionProvider(lightningSkill)
-            )
-            .respond(
-                to: AnyBattleActionProvider(fireSkill)
-            )
+//            .respond(
+//                to: AnyBattleActionProvider(lightningSkill)
+//            )
+//            .respond(
+//                to: AnyBattleActionProvider(fireSkill)
+//            )
             .run(with: context)
             .then(in: .main) { context in
 

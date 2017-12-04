@@ -11,7 +11,7 @@
 import SpriteKit
 import TinyBattleKit
 
-public final class LightningPokemonSkillProvider: BattleActionProvider {
+public final class LightningPokemonSkillProvider: PokemonSkillProvider {
     
     public typealias Animator = PokemonSkillAnimator
     

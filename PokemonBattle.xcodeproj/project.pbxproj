@@ -24,6 +24,15 @@
 		B063D7D81FD2A12D00C88D6E /* PokemonBattleTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063D7D71FD2A12D00C88D6E /* PokemonBattleTurn.swift */; };
 		B063D7DA1FD2A23600C88D6E /* PokemonBattleRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063D7D91FD2A23600C88D6E /* PokemonBattleRecord.swift */; };
 		B06B2A301FD47F4100B93DAF /* FirePokemonSkillProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A2F1FD47F4100B93DAF /* FirePokemonSkillProvider.swift */; };
+		B06B2A331FD4D7AA00B93DAF /* Fire.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B06B2A321FD4D7AA00B93DAF /* Fire.xcassets */; };
+		B06B2A4B1FD4DBCD00B93DAF /* Pikachu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A421FD4DBCD00B93DAF /* Pikachu.swift */; };
+		B06B2A4C1FD4DBCD00B93DAF /* Pikachu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B06B2A431FD4DBCD00B93DAF /* Pikachu.plist */; };
+		B06B2A4D1FD4DBCD00B93DAF /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A451FD4DBCD00B93DAF /* Charmander.swift */; };
+		B06B2A4E1FD4DBCD00B93DAF /* Charmander.plist in Resources */ = {isa = PBXBuildFile; fileRef = B06B2A461FD4DBCD00B93DAF /* Charmander.plist */; };
+		B06B2A4F1FD4DBCD00B93DAF /* Pokemon+BattlePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A471FD4DBCD00B93DAF /* Pokemon+BattlePokemon.swift */; };
+		B06B2A501FD4DBCD00B93DAF /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A481FD4DBCD00B93DAF /* Pokemon.swift */; };
+		B06B2A511FD4DBCD00B93DAF /* PokemonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A491FD4DBCD00B93DAF /* PokemonConfig.swift */; };
+		B06B2A521FD4DBCD00B93DAF /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A4A1FD4DBCD00B93DAF /* PokemonGenerator.swift */; };
 		B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; };
 		B0A676541FD1378200278CBE /* PokemonBattleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676531FD1378200278CBE /* PokemonBattleSystem.swift */; };
 		B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676551FD1389000278CBE /* PokemonBattleContext.swift */; };
@@ -35,12 +44,12 @@
 		B0C34E6D1FC70AA6001B388E /* LegacyBattleResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C34E6C1FC70AA6001B388E /* LegacyBattleResult.swift */; };
 		B0CE4EF11FC5BA0B00343937 /* BattleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4EF01FC5BA0B00343937 /* BattleField.swift */; };
 		B0CE4EF51FC6935800343937 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4EF31FC6935800343937 /* Fire.sks */; };
-		B0CE4EF61FC6935800343937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4EF41FC6935800343937 /* Assets.xcassets */; };
+		B0CE4EF61FC6935800343937 /* Lightning.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4EF41FC6935800343937 /* Lightning.xcassets */; };
 		B0CE4F041FC6A21E00343937 /* BattleMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */; };
 		B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */; };
 		B0CE4F101FC6BD3700343937 /* Lightning.sks in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F0F1FC6BD3700343937 /* Lightning.sks */; };
-		B0CE4F171FC6CEC000343937 /* ThunderShock.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F161FC6CEC000343937 /* ThunderShock.wav */; };
-		B0CE4F191FC6D0A900343937 /* FireBlast.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F181FC6D0A900343937 /* FireBlast.wav */; };
+		B0CE4F171FC6CEC000343937 /* Lightning.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F161FC6CEC000343937 /* Lightning.wav */; };
+		B0CE4F191FC6D0A900343937 /* Fire.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F181FC6D0A900343937 /* Fire.wav */; };
 		B0CE4F1B1FC6D18B00343937 /* BodySlam.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F1A1FC6D18B00343937 /* BodySlam.wav */; };
 		B0CE4F1D1FC6D28800343937 /* Battle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F1C1FC6D28800343937 /* Battle.mp3 */; };
 		B0CE4F211FC6D9F300343937 /* TailWhip.wav in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F201FC6D9F300343937 /* TailWhip.wav */; };
@@ -53,14 +62,6 @@
 		B0EF52ED1FD4132D0043014F /* BattlePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */; };
 		B0EF52EF1FD418A90043014F /* BattleFieldSceneDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52EE1FD418A90043014F /* BattleFieldSceneDataProvider.swift */; };
 		B0EF52F11FD41F1E0043014F /* LightningPokemonSkillAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52F01FD41F1E0043014F /* LightningPokemonSkillAnimator.swift */; };
-		B0EF52F91FD44EFE0043014F /* Pikachu.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0EF52F81FD44EFE0043014F /* Pikachu.plist */; };
-		B0EF52FB1FD450CE0043014F /* Pikachu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52FA1FD450CE0043014F /* Pikachu.swift */; };
-		B0EF52FD1FD450D90043014F /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52FC1FD450D90043014F /* Pokemon.swift */; };
-		B0EF52FF1FD4510D0043014F /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52FE1FD4510D0043014F /* PokemonGenerator.swift */; };
-		B0EF53011FD457990043014F /* PokemonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53001FD457990043014F /* PokemonConfig.swift */; };
-		B0EF53031FD45F2A0043014F /* Pokemon+BattlePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53021FD45F2A0043014F /* Pokemon+BattlePokemon.swift */; };
-		B0EF53061FD47C100043014F /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53051FD47C100043014F /* Charmander.swift */; };
-		B0EF53081FD47C1F0043014F /* Charmander.plist in Resources */ = {isa = PBXBuildFile; fileRef = B0EF53071FD47C1F0043014F /* Charmander.plist */; };
 		B0EF530A1FD47E140043014F /* FirePokemonSkillAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF53091FD47E140043014F /* FirePokemonSkillAnimator.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,15 @@
 		B064E6901FC458BB005476BA /* PokemonBattleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokemonBattleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B064E6941FC458BB005476BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B06B2A2F1FD47F4100B93DAF /* FirePokemonSkillProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePokemonSkillProvider.swift; sourceTree = "<group>"; };
+		B06B2A321FD4D7AA00B93DAF /* Fire.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Fire.xcassets; sourceTree = "<group>"; };
+		B06B2A421FD4DBCD00B93DAF /* Pikachu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pikachu.swift; sourceTree = "<group>"; };
+		B06B2A431FD4DBCD00B93DAF /* Pikachu.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Pikachu.plist; sourceTree = "<group>"; };
+		B06B2A451FD4DBCD00B93DAF /* Charmander.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
+		B06B2A461FD4DBCD00B93DAF /* Charmander.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Charmander.plist; sourceTree = "<group>"; };
+		B06B2A471FD4DBCD00B93DAF /* Pokemon+BattlePokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pokemon+BattlePokemon.swift"; sourceTree = "<group>"; };
+		B06B2A481FD4DBCD00B93DAF /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		B06B2A491FD4DBCD00B93DAF /* PokemonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonConfig.swift; sourceTree = "<group>"; };
+		B06B2A4A1FD4DBCD00B93DAF /* PokemonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
 		B0A676521FD1363600278CBE /* TinyBattleKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TinyBattleKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A676531FD1378200278CBE /* PokemonBattleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleSystem.swift; sourceTree = "<group>"; };
 		B0A676551FD1389000278CBE /* PokemonBattleContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleContext.swift; sourceTree = "<group>"; };
@@ -107,12 +117,12 @@
 		B0C34E6C1FC70AA6001B388E /* LegacyBattleResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyBattleResult.swift; sourceTree = "<group>"; };
 		B0CE4EF01FC5BA0B00343937 /* BattleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleField.swift; sourceTree = "<group>"; };
 		B0CE4EF31FC6935800343937 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
-		B0CE4EF41FC6935800343937 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B0CE4EF41FC6935800343937 /* Lightning.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Lightning.xcassets; sourceTree = "<group>"; };
 		B0CE4F031FC6A21E00343937 /* BattleMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuTableViewController.swift; sourceTree = "<group>"; };
 		B0CE4F051FC6A36800343937 /* BattleMenuDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuDataProvider.swift; sourceTree = "<group>"; };
 		B0CE4F0F1FC6BD3700343937 /* Lightning.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Lightning.sks; sourceTree = "<group>"; };
-		B0CE4F161FC6CEC000343937 /* ThunderShock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ThunderShock.wav; sourceTree = "<group>"; };
-		B0CE4F181FC6D0A900343937 /* FireBlast.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FireBlast.wav; sourceTree = "<group>"; };
+		B0CE4F161FC6CEC000343937 /* Lightning.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Lightning.wav; sourceTree = "<group>"; };
+		B0CE4F181FC6D0A900343937 /* Fire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Fire.wav; sourceTree = "<group>"; };
 		B0CE4F1A1FC6D18B00343937 /* BodySlam.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BodySlam.wav; sourceTree = "<group>"; };
 		B0CE4F1C1FC6D28800343937 /* Battle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Battle.mp3; sourceTree = "<group>"; };
 		B0CE4F201FC6D9F300343937 /* TailWhip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TailWhip.wav; sourceTree = "<group>"; };
@@ -125,14 +135,6 @@
 		B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattlePokemon.swift; sourceTree = "<group>"; };
 		B0EF52EE1FD418A90043014F /* BattleFieldSceneDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldSceneDataProvider.swift; sourceTree = "<group>"; };
 		B0EF52F01FD41F1E0043014F /* LightningPokemonSkillAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningPokemonSkillAnimator.swift; sourceTree = "<group>"; };
-		B0EF52F81FD44EFE0043014F /* Pikachu.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Pikachu.plist; sourceTree = "<group>"; };
-		B0EF52FA1FD450CE0043014F /* Pikachu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pikachu.swift; sourceTree = "<group>"; };
-		B0EF52FC1FD450D90043014F /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
-		B0EF52FE1FD4510D0043014F /* PokemonGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
-		B0EF53001FD457990043014F /* PokemonConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonConfig.swift; sourceTree = "<group>"; };
-		B0EF53021FD45F2A0043014F /* Pokemon+BattlePokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Pokemon+BattlePokemon.swift"; sourceTree = "<group>"; };
-		B0EF53051FD47C100043014F /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
-		B0EF53071FD47C1F0043014F /* Charmander.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Charmander.plist; sourceTree = "<group>"; };
 		B0EF53091FD47E140043014F /* FirePokemonSkillAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePokemonSkillAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,28 +181,16 @@
 		B041FA6D1FC2ABB000421C05 /* PokemonBattle */ = {
 			isa = PBXGroup;
 			children = (
-				B0C34E611FC6F393001B388E /* Fonts */,
-				B0CE4F151FC6CEB400343937 /* Sounds */,
-				B0CE4EF21FC6931900343937 /* Effects */,
+				B0C34E611FC6F393001B388E /* Font */,
+				B0CE4F151FC6CEB400343937 /* Sound */,
+				B06B2A3D1FD4DAEC00B93DAF /* Skill */,
+				B06B2A401FD4DBCD00B93DAF /* Pokemon */,
 				B041FA861FC2AC9B00421C05 /* Battle */,
+				B06B2A3F1FD4DB8B00B93DAF /* Realm */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
 				B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */,
-				B0A676601FD13DB100278CBE /* LightningPokemonSkillProvider.swift */,
-				B0EF52F01FD41F1E0043014F /* LightningPokemonSkillAnimator.swift */,
-				B0EF53091FD47E140043014F /* FirePokemonSkillAnimator.swift */,
-				B06B2A2F1FD47F4100B93DAF /* FirePokemonSkillProvider.swift */,
 				B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */,
 				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
-				B04272AE1FD29C6900ED3D74 /* RealmServerDataProvider.swift */,
-				B04272B01FD29D9B00ED3D74 /* BattlePlayerRealmObject.swift */,
-				B04272B21FD29D9C00ED3D74 /* BattleRecordRealmObject.swift */,
-				B04272B11FD29D9B00ED3D74 /* BattleTurnRealmObject.swift */,
-				B0EF52FC1FD450D90043014F /* Pokemon.swift */,
-				B0EF53021FD45F2A0043014F /* Pokemon+BattlePokemon.swift */,
-				B0EF53001FD457990043014F /* PokemonConfig.swift */,
-				B0EF52FE1FD4510D0043014F /* PokemonGenerator.swift */,
-				B0EF53041FD47BFD0043014F /* Charmander */,
-				B0EF52F71FD44EE70043014F /* Pikachu */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
 				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
 				B041FA801FC2ABB000421C05 /* Info.plist */,
@@ -235,6 +225,81 @@
 			path = PokemonBattleTests;
 			sourceTree = "<group>";
 		};
+		B06B2A311FD4D79400B93DAF /* Fire */ = {
+			isa = PBXGroup;
+			children = (
+				B0CE4F181FC6D0A900343937 /* Fire.wav */,
+				B06B2A321FD4D7AA00B93DAF /* Fire.xcassets */,
+				B0CE4EF31FC6935800343937 /* Fire.sks */,
+				B0EF53091FD47E140043014F /* FirePokemonSkillAnimator.swift */,
+				B06B2A2F1FD47F4100B93DAF /* FirePokemonSkillProvider.swift */,
+			);
+			path = Fire;
+			sourceTree = "<group>";
+		};
+		B06B2A381FD4D97C00B93DAF /* Lightning */ = {
+			isa = PBXGroup;
+			children = (
+				B0CE4F161FC6CEC000343937 /* Lightning.wav */,
+				B0CE4EF41FC6935800343937 /* Lightning.xcassets */,
+				B0CE4F0F1FC6BD3700343937 /* Lightning.sks */,
+				B0EF52F01FD41F1E0043014F /* LightningPokemonSkillAnimator.swift */,
+				B0A676601FD13DB100278CBE /* LightningPokemonSkillProvider.swift */,
+			);
+			path = Lightning;
+			sourceTree = "<group>";
+		};
+		B06B2A3D1FD4DAEC00B93DAF /* Skill */ = {
+			isa = PBXGroup;
+			children = (
+				B06B2A311FD4D79400B93DAF /* Fire */,
+				B06B2A381FD4D97C00B93DAF /* Lightning */,
+			);
+			path = Skill;
+			sourceTree = "<group>";
+		};
+		B06B2A3F1FD4DB8B00B93DAF /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				B04272AE1FD29C6900ED3D74 /* RealmServerDataProvider.swift */,
+				B04272B01FD29D9B00ED3D74 /* BattlePlayerRealmObject.swift */,
+				B04272B21FD29D9C00ED3D74 /* BattleRecordRealmObject.swift */,
+				B04272B11FD29D9B00ED3D74 /* BattleTurnRealmObject.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		B06B2A401FD4DBCD00B93DAF /* Pokemon */ = {
+			isa = PBXGroup;
+			children = (
+				B06B2A411FD4DBCD00B93DAF /* Pikachu */,
+				B06B2A441FD4DBCD00B93DAF /* Charmander */,
+				B06B2A471FD4DBCD00B93DAF /* Pokemon+BattlePokemon.swift */,
+				B06B2A481FD4DBCD00B93DAF /* Pokemon.swift */,
+				B06B2A491FD4DBCD00B93DAF /* PokemonConfig.swift */,
+				B06B2A4A1FD4DBCD00B93DAF /* PokemonGenerator.swift */,
+			);
+			path = Pokemon;
+			sourceTree = "<group>";
+		};
+		B06B2A411FD4DBCD00B93DAF /* Pikachu */ = {
+			isa = PBXGroup;
+			children = (
+				B06B2A421FD4DBCD00B93DAF /* Pikachu.swift */,
+				B06B2A431FD4DBCD00B93DAF /* Pikachu.plist */,
+			);
+			path = Pikachu;
+			sourceTree = "<group>";
+		};
+		B06B2A441FD4DBCD00B93DAF /* Charmander */ = {
+			isa = PBXGroup;
+			children = (
+				B06B2A451FD4DBCD00B93DAF /* Charmander.swift */,
+				B06B2A461FD4DBCD00B93DAF /* Charmander.plist */,
+			);
+			path = Charmander;
+			sourceTree = "<group>";
+		};
 		B0A676501FD1363600278CBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,12 +310,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B0C34E611FC6F393001B388E /* Fonts */ = {
+		B0C34E611FC6F393001B388E /* Font */ = {
 			isa = PBXGroup;
 			children = (
 				B0C34E621FC6F39A001B388E /* Pokemon GB.ttf */,
 			);
-			path = Fonts;
+			path = Font;
 			sourceTree = "<group>";
 		};
 		B0C34E651FC6F913001B388E /* Result */ = {
@@ -261,16 +326,6 @@
 				B0C34E6A1FC6F9D5001B388E /* Battle.storyboard */,
 			);
 			path = Result;
-			sourceTree = "<group>";
-		};
-		B0CE4EF21FC6931900343937 /* Effects */ = {
-			isa = PBXGroup;
-			children = (
-				B0CE4EF41FC6935800343937 /* Assets.xcassets */,
-				B0CE4EF31FC6935800343937 /* Fire.sks */,
-				B0CE4F0F1FC6BD3700343937 /* Lightning.sks */,
-			);
-			path = Effects;
 			sourceTree = "<group>";
 		};
 		B0CE4F021FC6A20E00343937 /* Menu */ = {
@@ -303,35 +358,15 @@
 			path = Field;
 			sourceTree = "<group>";
 		};
-		B0CE4F151FC6CEB400343937 /* Sounds */ = {
+		B0CE4F151FC6CEB400343937 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
 				B0CE4F1C1FC6D28800343937 /* Battle.mp3 */,
 				B0CE4F1A1FC6D18B00343937 /* BodySlam.wav */,
-				B0CE4F161FC6CEC000343937 /* ThunderShock.wav */,
-				B0CE4F181FC6D0A900343937 /* FireBlast.wav */,
 				B0CE4F201FC6D9F300343937 /* TailWhip.wav */,
 				B0CE4F241FC6DC6A00343937 /* PoisonPowder.wav */,
 			);
-			path = Sounds;
-			sourceTree = "<group>";
-		};
-		B0EF52F71FD44EE70043014F /* Pikachu */ = {
-			isa = PBXGroup;
-			children = (
-				B0EF52F81FD44EFE0043014F /* Pikachu.plist */,
-				B0EF52FA1FD450CE0043014F /* Pikachu.swift */,
-			);
-			path = Pikachu;
-			sourceTree = "<group>";
-		};
-		B0EF53041FD47BFD0043014F /* Charmander */ = {
-			isa = PBXGroup;
-			children = (
-				B0EF53071FD47C1F0043014F /* Charmander.plist */,
-				B0EF53051FD47C100043014F /* Charmander.swift */,
-			);
-			path = Charmander;
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,22 +455,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */,
+				B06B2A331FD4D7AA00B93DAF /* Fire.xcassets in Resources */,
+				B06B2A4C1FD4DBCD00B93DAF /* Pikachu.plist in Resources */,
 				B0CE4F251FC6DC6A00343937 /* PoisonPowder.wav in Resources */,
 				B0CE4F101FC6BD3700343937 /* Lightning.sks in Resources */,
 				B0CE4EF51FC6935800343937 /* Fire.sks in Resources */,
 				B041FA7F1FC2ABB000421C05 /* LaunchScreen.storyboard in Resources */,
+				B06B2A4E1FD4DBCD00B93DAF /* Charmander.plist in Resources */,
 				B0CE4F211FC6D9F300343937 /* TailWhip.wav in Resources */,
 				B0CE4F291FC6ECAB00343937 /* BattleMenuTableViewCell.xib in Resources */,
-				B0CE4F171FC6CEC000343937 /* ThunderShock.wav in Resources */,
+				B0CE4F171FC6CEC000343937 /* Lightning.wav in Resources */,
 				B0CE4F1D1FC6D28800343937 /* Battle.mp3 in Resources */,
 				B0C34E6B1FC6F9D5001B388E /* Battle.storyboard in Resources */,
-				B0CE4F191FC6D0A900343937 /* FireBlast.wav in Resources */,
+				B0CE4F191FC6D0A900343937 /* Fire.wav in Resources */,
 				B0CE4F1B1FC6D18B00343937 /* BodySlam.wav in Resources */,
-				B0EF52F91FD44EFE0043014F /* Pikachu.plist in Resources */,
 				B041FA911FC2C03D00421C05 /* BattleStartScene.sks in Resources */,
-				B0EF53081FD47C1F0043014F /* Charmander.plist in Resources */,
 				B0C34E641FC6F47D001B388E /* Pokemon GB.ttf in Resources */,
-				B0CE4EF61FC6935800343937 /* Assets.xcassets in Resources */,
+				B0CE4EF61FC6935800343937 /* Lightning.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,18 +515,21 @@
 				B0EF52F11FD41F1E0043014F /* LightningPokemonSkillAnimator.swift in Sources */,
 				B0EF52ED1FD4132D0043014F /* BattlePokemon.swift in Sources */,
 				B04272B51FD29D9C00ED3D74 /* BattleRecordRealmObject.swift in Sources */,
-				B0EF52FF1FD4510D0043014F /* PokemonGenerator.swift in Sources */,
+				B06B2A4B1FD4DBCD00B93DAF /* Pikachu.swift in Sources */,
 				B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */,
 				B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */,
+				B06B2A4D1FD4DBCD00B93DAF /* Charmander.swift in Sources */,
 				B0EF52E31FD3B30D0043014F /* PokemonSkillAnimator.swift in Sources */,
+				B06B2A521FD4DBCD00B93DAF /* PokemonGenerator.swift in Sources */,
 				B0A676611FD13DB100278CBE /* LightningPokemonSkillProvider.swift in Sources */,
 				B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */,
-				B0EF53011FD457990043014F /* PokemonConfig.swift in Sources */,
 				B0A676541FD1378200278CBE /* PokemonBattleSystem.swift in Sources */,
 				B063D7DA1FD2A23600C88D6E /* PokemonBattleRecord.swift in Sources */,
 				B0CE4F041FC6A21E00343937 /* BattleMenuTableViewController.swift in Sources */,
-				B0EF53031FD45F2A0043014F /* Pokemon+BattlePokemon.swift in Sources */,
+				B06B2A511FD4DBCD00B93DAF /* PokemonConfig.swift in Sources */,
+				B06B2A4F1FD4DBCD00B93DAF /* Pokemon+BattlePokemon.swift in Sources */,
 				B0C34E691FC6F9A6001B388E /* BattleResultViewController.swift in Sources */,
+				B06B2A501FD4DBCD00B93DAF /* Pokemon.swift in Sources */,
 				B04272B41FD29D9C00ED3D74 /* BattleTurnRealmObject.swift in Sources */,
 				B0EF52E51FD3B31B0043014F /* PokemonSkillAnimatorContext.swift in Sources */,
 				B0C34E6D1FC70AA6001B388E /* LegacyBattleResult.swift in Sources */,
@@ -500,15 +539,12 @@
 				B04272AF1FD29C6900ED3D74 /* RealmServerDataProvider.swift in Sources */,
 				B0A676681FD1597800278CBE /* PokemonBattleContextError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
-				B0EF52FB1FD450CE0043014F /* Pikachu.swift in Sources */,
 				B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */,
-				B0EF52FD1FD450D90043014F /* Pokemon.swift in Sources */,
 				B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */,
 				B0EF52EF1FD418A90043014F /* BattleFieldSceneDataProvider.swift in Sources */,
 				B063D7D81FD2A12D00C88D6E /* PokemonBattleTurn.swift in Sources */,
 				B0CE4F271FC6EC8E00343937 /* BattleMenuTableViewCell.swift in Sources */,
 				B0CE4F061FC6A36800343937 /* BattleMenuDataProvider.swift in Sources */,
-				B0EF53061FD47C100043014F /* Charmander.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@ public extension PokemonSkillAnimator {
                 
                 destinationNode.run(
                     .playSoundFileNamed(
-                        "FireBlast.wav",
+                        "Fire.wav",
                         waitForCompletion: false
                     )
                 )

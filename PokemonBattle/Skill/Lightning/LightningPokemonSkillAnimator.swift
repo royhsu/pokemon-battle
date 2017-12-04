@@ -29,7 +29,7 @@ public extension PokemonSkillAnimator {
                 
                 destinationNode.run(
                     .playSoundFileNamed(
-                        "ThunderShock.wav",
+                        "Lightning.wav",
                         waitForCompletion: false
                     )
                 )

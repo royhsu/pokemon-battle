@@ -143,7 +143,20 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
         let battleFieldScene = self.battleFieldScene!
         
-        let lightningSkill = LightningPokemonSkill.Provider(
+        let lightningSkill = LightningPokemonSkill()
+        
+        let fireSkill = FirePokemonSkill()
+        
+//        let a = AnyPokemonSkill(lightningSkill)
+//        
+//        let b = AnyPokemonSkill(fireSkill)
+        
+//        let skillTypes = [
+//            AnyPokemonSkill(lightningSkill),
+//            AnyPokemonSkill(fireSkill)
+//        ]
+        
+        let lightningSkillProvider = lightningSkill.providerType.init(
             id: UUID().uuidString,
             sourceId: homeBattlePokemon.id,
             destinationIds: [ guestBattlePokemon.id ],
@@ -152,8 +165,8 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
                 destinationNode: battleFieldScene.guestPokemonSpriteNode
             )
         )
-        
-        let fireSkill = FirePokemonSkill.Provider(
+
+        let fireSkillProvider = fireSkill.providerType.init(
             id: UUID().uuidString,
             sourceId: guestBattlePokemon.id,
             destinationIds: [ homeBattlePokemon.id ],
@@ -163,76 +176,36 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             )
         )
         
-        let context = PokemonSkillAnimatorContext(
-            sourceNode: battleFieldScene.homePokemonSpriteNode,
-            destinationNode: battleFieldScene.guestPokemonSpriteNode
-        )
-        
-        let a = LightningPokemonSkillProvider(
-            id: "",
-            sourceId: "",
-            destinationIds: [],
-            context: context
-        )
-        
-        let b = FirePokemonSkillProvider(
-            id: "",
-            sourceId: "",
-            destinationIds: [],
-            context: context
-        )
-        
-        let c = [
-            AnyPokemonSkillProvider(a),
-            AnyPokemonSkillProvider(b)
+        let skillProviders = [
+            AnyPokemonSkillProvider(lightningSkillProvider),
+            AnyPokemonSkillProvider(fireSkillProvider)
         ]
         
-//        let c: [PokemonSkillProvider<PokemonSkillAnimator>] = [ a, b ]
-        
-//        let skills: [Any] = [
-//            AnyPokemonSkill(
-//                FirePokemonSkill()
-//            ),
-//            AnyPokemonSkill(
-//                LightningPokemonSkill()
-//            )
-//        ]
-        
-//        AnyBattleActionProvider(FirePokemonSkillProvider)
-        
-        
-//        let skillType = PokemonSkillProvider<>.self
-        
-//        let skillType = AnyPokemonSkillProvider.self
-        
-//
+        system
+            .respond(
+                to: AnyBattleActionProvider(AnyPokemonSkillProvider(lightningSkillProvider))
+            )
+            .respond(
+                to: AnyBattleActionProvider(AnyPokemonSkillProvider(fireSkillProvider))
+            )
+            .run(with: context)
+            .then(in: .main) { context in
 
-        
-//        system
-//            .respond(
-//                to: AnyBattleActionProvider(lightningSkill)
-//            )
-//            .respond(
-//                to: AnyBattleActionProvider(fireSkill)
-//            )
-//            .run(with: context)
-//            .then(in: .main) { context in
-//
-//                self.context = context
-//
-//                battleFieldScene.updateData()
-//
-//                self.server
-//                    .respond(
-//                        to: PlayerInvolvedRequest(playerId: self.ownerId)
-//                    )
-//
-//            }
-//            .catch(in: .main) { error in
-//
-//                print("\(error)")
-//
-//            }
+                self.context = context
+
+                battleFieldScene.updateData()
+
+                self.server
+                    .respond(
+                        to: PlayerInvolvedRequest(playerId: self.ownerId)
+                    )
+
+            }
+            .catch(in: .main) { error in
+
+                print("\(error)")
+
+            }
 
     }
     

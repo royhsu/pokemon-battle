@@ -11,7 +11,7 @@ import TinyBattleKit
 
 public struct AnyPokemonSkill
 <Provider: PokemonSkillProvider>
-:PokemonSkill {
+: PokemonSkill {
     
     private let _name: String
     

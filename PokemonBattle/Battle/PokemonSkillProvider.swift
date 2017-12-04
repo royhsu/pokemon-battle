@@ -22,5 +22,3 @@ where Animator == PokemonSkillAnimator {
     var context: Context { get }
     
 }
-
-

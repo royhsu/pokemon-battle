@@ -147,6 +147,11 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
         let fireSkill = FirePokemonSkill()
         
+//        let a: [PokemonSkill] = [
+//            AnyPokemonSkill(lightningSkill),
+//            AnyPokemonSkill(fireSkill)
+//        ]
+        
 //        let a = AnyPokemonSkill(lightningSkill)
 //        
 //        let b = AnyPokemonSkill(fireSkill)
@@ -154,6 +159,11 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
 //        let skillTypes = [
 //            AnyPokemonSkill(lightningSkill),
 //            AnyPokemonSkill(fireSkill)
+//        ]
+        
+//        let a = [
+//            LightningPokemonSkillProvider.self,
+//            FirePokemonSkillProvider.self
 //        ]
         
         let lightningSkillProvider = lightningSkill.providerType.init(

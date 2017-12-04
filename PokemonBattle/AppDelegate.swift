@@ -28,10 +28,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         let pikachu = try! PokemonGenerator.make(Pikachu.self)
-
-        let test = BattlePokemon(pikachu)
-        
-//        let a = test.skillTypes[0].
         
         let charmander = try! PokemonGenerator.make(Charmander.self)
         

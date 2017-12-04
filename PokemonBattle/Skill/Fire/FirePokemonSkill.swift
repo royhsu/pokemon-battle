@@ -21,13 +21,13 @@ public struct FirePokemonSkill: PokemonSkill {
     
     // MARK: PokemonSkill
     
-    public func makeSkillProvider(
+    public func makeProvider(
         id: String,
         sourceId: String,
         destinationIds: [String],
-        context: PokemonSkillAnimatorContext
+        context: Animator.Context
     )
-    -> AnyBattleActionProvider<PokemonSkillAnimator> {
+    -> AnyBattleActionProvider<Animator> {
             
         let provider = FirePokemonSkillProvider(
             id: id,

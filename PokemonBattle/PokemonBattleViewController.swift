@@ -147,12 +147,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
         let fireSkill = FirePokemonSkill()
         
-        let skills: [PokemonSkill] = [
-            lightningSkill,
-            fireSkill
-        ]
-        
-        let lightningSkillProvider = lightningSkill.makeSkillProvider(
+        let lightningSkillProvider = lightningSkill.makeProvider(
             id: UUID().uuidString,
             sourceId: homeBattlePokemon.id,
             destinationIds: [ guestBattlePokemon.id ],
@@ -162,7 +157,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             )
         )
 
-        let fireSkillProvider = fireSkill.makeSkillProvider(
+        let fireSkillProvider = fireSkill.makeProvider(
             id: UUID().uuidString,
             sourceId: guestBattlePokemon.id,
             destinationIds: [ homeBattlePokemon.id ],

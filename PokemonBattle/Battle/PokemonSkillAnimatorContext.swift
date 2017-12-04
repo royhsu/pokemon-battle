@@ -15,20 +15,40 @@ public struct PokemonSkillAnimatorContext: BattleActionAnimatorContext {
     
     // MARK: Property
     
-    public unowned let sourceNode: SKSpriteNode
+    public let sourceId: String
     
-    public unowned let destinationNode: SKSpriteNode
+    public unowned let sourceSprite: SKSpriteNode
+    
+    public unowned let sourceHPLabel: SKLabelNode
+    
+    public let destinationId: String
+    
+    public unowned let destinationSprite: SKSpriteNode
+    
+    public unowned let destinationHPLabel: SKLabelNode
     
     // MARK: Init
     
     public init(
-        sourceNode: SKSpriteNode,
-        destinationNode: SKSpriteNode
+        sourceId: String,
+        sourceSprite: SKSpriteNode,
+        sourceHPLabel: SKLabelNode,
+        destinationId: String,
+        destinationSprite: SKSpriteNode,
+        destinationHPLabel: SKLabelNode
     ) {
         
-        self.sourceNode = sourceNode
+        self.sourceId = sourceId
         
-        self.destinationNode = destinationNode
+        self.sourceSprite = sourceSprite
+        
+        self.sourceHPLabel = sourceHPLabel
+        
+        self.destinationId = destinationId
+        
+        self.destinationSprite = destinationSprite
+        
+        self.destinationHPLabel = destinationHPLabel
         
     }
     

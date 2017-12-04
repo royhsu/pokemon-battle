@@ -152,8 +152,12 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             sourceId: homeBattlePokemon.id,
             destinationIds: [ guestBattlePokemon.id ],
             context: PokemonSkillAnimatorContext(
-                sourceNode: battleFieldScene.homePokemonSpriteNode,
-                destinationNode: battleFieldScene.guestPokemonSpriteNode
+                sourceId: homeBattlePokemon.id,
+                sourceSprite: battleFieldScene.homePokemonSpriteNode,
+                sourceHPLabel: battleFieldScene.homeHpLabelNode,
+                destinationId: guestBattlePokemon.id,
+                destinationSprite: battleFieldScene.guestPokemonSpriteNode,
+                destinationHPLabel: battleFieldScene.guestHpLabelNode
             )
         )
 
@@ -162,8 +166,12 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
             sourceId: guestBattlePokemon.id,
             destinationIds: [ homeBattlePokemon.id ],
             context: PokemonSkillAnimatorContext(
-                sourceNode: battleFieldScene.guestPokemonSpriteNode,
-                destinationNode: battleFieldScene.homePokemonSpriteNode
+                sourceId: guestBattlePokemon.id,
+                sourceSprite: battleFieldScene.guestPokemonSpriteNode,
+                sourceHPLabel: battleFieldScene.guestHpLabelNode,
+                destinationId: homeBattlePokemon.id,
+                destinationSprite: battleFieldScene.homePokemonSpriteNode,
+                destinationHPLabel: battleFieldScene.homeHpLabelNode
             )
         )
         

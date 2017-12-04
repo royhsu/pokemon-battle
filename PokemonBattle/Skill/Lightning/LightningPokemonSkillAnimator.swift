@@ -17,30 +17,41 @@ public extension PokemonSkillAnimator {
         
         return PokemonSkillAnimator(
             context: context,
-            animation: { _, _, completion in
+            animation: { _, new, completion in
                 
-                let destinationNode = context.destinationNode
+                let destinationId = context.destinationId
                 
-                let lightningNode = SKEmitterNode(fileNamed: "Lightning.sks")!
+                let destinationSprite = context.destinationSprite
                 
-                lightningNode.position = destinationNode.anchorPoint
+                let destinationHPLabel = context.destinationHPLabel
                 
-                destinationNode.addChild(lightningNode)
+                let lightningEmitter = SKEmitterNode(fileNamed: "Lightning.sks")!
                 
-                destinationNode.run(
+                lightningEmitter.position = destinationSprite.anchorPoint
+                
+                destinationSprite.addChild(lightningEmitter)
+                
+                destinationSprite.run(
                     .playSoundFileNamed(
                         "Lightning.wav",
                         waitForCompletion: false
                     )
                 )
                 
-                destinationNode.run(
+                destinationSprite.run(
                     .sequence(
                         [
                             .wait(
                                 forDuration: 1.2
                             ),
-                            .run { lightningNode.removeFromParent() },
+                            .run { lightningEmitter.removeFromParent() },
+                            .run {
+                              
+                                let battlePokemon = new.battlePokemon(id: destinationId)!
+                                
+                                destinationHPLabel.text = "HP: \(battlePokemon.remainingHealth)"
+                                
+                            },
                             .fadeOut(withDuration: 0.4),
                             .fadeIn(withDuration: 0.4)
                         ]

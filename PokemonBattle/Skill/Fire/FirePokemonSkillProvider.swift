@@ -23,7 +23,7 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
     
     public final let id: String
     
-    public final let priority = 100.0
+    public final let priority: Double
     
     public final var animator: Animator? { return .fire(context: context) }
     
@@ -40,12 +40,15 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
     
     public init(
         id: String,
+        priority: Double,
         sourceId: String,
         destinationIds: [String],
         context: Context
     ) {
         
         self.id = id
+        
+        self.priority = priority
         
         self.sourceId = sourceId
         

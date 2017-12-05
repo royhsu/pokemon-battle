@@ -23,6 +23,7 @@ public struct FirePokemonSkill: PokemonSkill {
     
     public func makeProvider(
         id: String,
+        priority: Double,
         sourceId: String,
         destinationIds: [String],
         context: Animator.Context
@@ -31,6 +32,7 @@ public struct FirePokemonSkill: PokemonSkill {
             
         let provider = FirePokemonSkillProvider(
             id: id,
+            priority: priority,
             sourceId: sourceId,
             destinationIds: destinationIds,
             context: context

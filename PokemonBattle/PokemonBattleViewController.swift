@@ -149,6 +149,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
         let lightningSkillProvider = lightningSkill.makeProvider(
             id: UUID().uuidString,
+            priority: 100.0 + homeBattlePokemon.speed,
             sourceId: homeBattlePokemon.id,
             destinationIds: [ guestBattlePokemon.id ],
             context: PokemonSkillAnimatorContext(
@@ -163,6 +164,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
 
         let fireSkillProvider = fireSkill.makeProvider(
             id: UUID().uuidString,
+            priority: 100.0 + guestBattlePokemon.speed,
             sourceId: guestBattlePokemon.id,
             destinationIds: [ homeBattlePokemon.id ],
             context: PokemonSkillAnimatorContext(
@@ -176,8 +178,8 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         )
         
         system
-            .respond(to: lightningSkillProvider)
             .respond(to: fireSkillProvider)
+            .respond(to: lightningSkillProvider)
             .run(with: context)
             .then(in: .main) { context in
 

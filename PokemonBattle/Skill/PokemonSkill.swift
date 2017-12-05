@@ -18,6 +18,7 @@ public protocol PokemonSkill {
     
     func makeProvider(
         id: String,
+        priority: Double,
         sourceId: String,
         destinationIds: [String],
         context: Animator.Context

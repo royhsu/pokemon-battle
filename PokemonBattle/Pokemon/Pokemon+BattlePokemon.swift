@@ -18,6 +18,7 @@ public extension BattlePokemon {
             armor: pokemon.armor,
             magic: pokemon.magic,
             magicResistance: pokemon.magicResistance,
+            speed: pokemon.speed,
             health: pokemon.health,
             remainingHealth: pokemon.health
         )

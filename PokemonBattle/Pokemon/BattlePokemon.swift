@@ -24,6 +24,8 @@ public struct BattlePokemon: BattleEntity {
     
     public let magicResistance: Double
     
+    public let speed: Double
+    
     public let health: Double
     
     public var remainingHealth: Double
@@ -36,6 +38,7 @@ public struct BattlePokemon: BattleEntity {
         armor: Double,
         magic: Double,
         magicResistance: Double,
+        speed: Double,
         health: Double,
         remainingHealth: Double
     ) {
@@ -51,6 +54,8 @@ public struct BattlePokemon: BattleEntity {
         self.magicResistance = magicResistance
         
         self.health = health
+        
+        self.speed = speed
         
         self.remainingHealth = remainingHealth
         

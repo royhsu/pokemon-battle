@@ -10,6 +10,9 @@
 		B00DCE211FD686AC0024185D /* PokemonBattleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */; };
 		B00DCE231FD686C00024185D /* PokemonBattleServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */; };
 		B00DCE251FD68CA10024185D /* BattlePokemonRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */; };
+		B00DCE291FD6DB760024185D /* BattleMatchServerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE281FD6DB760024185D /* BattleMatchServerTableViewController.swift */; };
+		B00DCE2D1FD6E4940024185D /* TinyBattleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; };
+		B00DCE2E1FD6E4940024185D /* TinyBattleKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */; };
 		B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */; };
 		B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B041FA7B1FC2ABB000421C05 /* Assets.xcassets */; };
@@ -42,7 +45,6 @@
 		B06B2A751FD4FE1300B93DAF /* LightningPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A741FD4FE1300B93DAF /* LightningPokemonSkill.swift */; };
 		B06B2A771FD516CA00B93DAF /* AnyPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A761FD516CA00B93DAF /* AnyPokemonSkill.swift */; };
 		B06B2A791FD535DC00B93DAF /* AnyPokemonSkillProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A781FD535DC00B93DAF /* AnyPokemonSkillProvider.swift */; };
-		B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; };
 		B0A676541FD1378200278CBE /* PokemonBattleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676531FD1378200278CBE /* PokemonBattleSystem.swift */; };
 		B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676551FD1389000278CBE /* PokemonBattleContext.swift */; };
 		B0A676611FD13DB100278CBE /* LightningPokemonSkillProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676601FD13DB100278CBE /* LightningPokemonSkillProvider.swift */; };
@@ -90,10 +92,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B00DCE2F1FD6E4940024185D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B00DCE2E1FD6E4940024185D /* TinyBattleKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleClient.swift; sourceTree = "<group>"; };
 		B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleServerManager.swift; sourceTree = "<group>"; };
 		B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonRole.swift; sourceTree = "<group>"; };
+		B00DCE281FD6DB760024185D /* BattleMatchServerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatchServerTableViewController.swift; sourceTree = "<group>"; };
 		B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldScene.swift; sourceTree = "<group>"; };
 		B041FA6B1FC2ABB000421C05 /* PokemonBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,7 +190,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0A676511FD1363600278CBE /* TinyBattleKit.framework in Frameworks */,
+				B00DCE2D1FD6E4940024185D /* TinyBattleKit.framework in Frameworks */,
 				B04272AB1FD29BEC00ED3D74 /* Realm.framework in Frameworks */,
 				B04272AC1FD29BEC00ED3D74 /* RealmSwift.framework in Frameworks */,
 			);
@@ -359,6 +376,7 @@
 				B0B1B6701FD640C70033A316 /* BattleMatchClientTableViewCell.swift */,
 				B0B1B6721FD641690033A316 /* BattleMatchDataProvider.swift */,
 				B0B1B6741FD641C60033A316 /* BattleMatch.swift */,
+				B00DCE281FD6DB760024185D /* BattleMatchServerTableViewController.swift */,
 			);
 			path = Match;
 			sourceTree = "<group>";
@@ -433,6 +451,7 @@
 				B041FA681FC2ABB000421C05 /* Frameworks */,
 				B041FA691FC2ABB000421C05 /* Resources */,
 				B04272AD1FD29BF300ED3D74 /* Carthage */,
+				B00DCE2F1FD6E4940024185D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -606,6 +625,7 @@
 				B0A676681FD1597800278CBE /* PokemonBattleContextError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
 				B00DCE211FD686AC0024185D /* PokemonBattleClient.swift in Sources */,
+				B00DCE291FD6DB760024185D /* BattleMatchServerTableViewController.swift in Sources */,
 				B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */,
 				B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */,
 				B0EF52EF1FD418A90043014F /* BattleFieldSceneDataProvider.swift in Sources */,

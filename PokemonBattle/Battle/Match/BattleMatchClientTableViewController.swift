@@ -55,6 +55,8 @@ public final class BattleMatchClientTableViewController: UITableViewController {
     
     fileprivate final func setUpNavigationItem(_ navigationItem: UINavigationItem) {
         
+        navigationItem.title = "Client"
+        
         let rightBarButtonItem = UIBarButtonItem(
             title: "Connect",
             style: .plain,

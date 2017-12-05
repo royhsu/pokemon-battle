@@ -12,6 +12,11 @@ public protocol PokemonBattleServerManagerDelegate: class {
     
     func manager(
         _ manager: PokemonBattleServerManager,
+        didJoin player: BattlePlayer
+    )
+    
+    func manager(
+        _ manager: PokemonBattleServerManager,
         didFailWith error: Error
     )
     
@@ -26,7 +31,7 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
     
     // MARK: Property
     
-    private final let server: TurnBasedBattleServer
+    public final let server: TurnBasedBattleServer
     
 //    private final let system = PokemonBattleSystem()
     
@@ -116,6 +121,13 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
         if let request = request as? PlayerJoinBattleRequest {
             
             // load guest pokemons from data provider into context.
+            
+            let player = server.serverDataProvider.fetchPlayer(id: request.playerId)!
+            
+            managerDelegate?.manager(
+                self,
+                didJoin: player
+            )
             
         }
         

@@ -24,11 +24,9 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         
     }
     
-    private final var server: TurnBasedBattleServer!
+    private final let server: TurnBasedBattleServer
     
     private final let system = PokemonBattleSystem()
-    
-    private final let serverDataProvider = RealmServerDataProvider()
     
     private final let ownerId = UUID().uuidString
     
@@ -47,12 +45,15 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
     // MARK: Init
     
     public init(
+        server: TurnBasedBattleServer,
         homeBattlePokemonId: String,
         homeBattlePokemonImage: UIImage,
         guestBattlePokemonId: String,
         guestBattlePokemonImage: UIImage,
         context: PokemonBattleContext
     ) {
+        
+        self.server = server
         
         self.homeBattlePokemonId = homeBattlePokemonId
         
@@ -97,31 +98,6 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
         startScene.scaleMode = .aspectFill
         
         gameView.presentScene(startScene)
-        
-        let realm = serverDataProvider.realm
-        
-        try! realm.write {
-            
-            let owner = BattlePlayerRealmObject(
-                value: [ "id": ownerId ]
-            )
-            
-            realm.add(owner)
-            
-            let record = BattleRecordRealmObject(
-                value: [ "id": recordId ]
-            )
-            
-            realm.add(record)
-            
-        }
-        
-        server = TurnBasedBattleServer(
-            ownerId: ownerId,
-            recordId: recordId
-        )
-        
-        server.serverDataProvider = serverDataProvider
         
         server.serverDelegate = self
         

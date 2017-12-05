@@ -15,9 +15,11 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
     
     // MARK: Property
     
-    public final let realm = try! Realm(
-        configuration: Realm.Configuration(inMemoryIdentifier: "battle-server")
-    )
+    public final unowned let realm: Realm
+    
+    // MARK: Init
+    
+    public init(realm: Realm) { self.realm = realm }
     
     // MARK: TurnBasedBattleServerDataProvider
     

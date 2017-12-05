@@ -9,6 +9,7 @@
 // MARK: - AppDelegate
 
 import RealmSwift
+import TinyBattleKit
 import UIKit
 
 @UIApplicationMain
@@ -16,9 +17,13 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: Property
     
+    public final let playerId = UUID().uuidString
+    
     public final var window: UIWindow?
     
     public final var realm: Realm?
+    
+    public final var realmServerDataProvider: RealmServerDataProvider?
     
     public final var realmBattleMatchDataProvider: RealmBattleMatchDataProvider?
     
@@ -35,8 +40,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         self.realm = realm
-        
-        let playerId = UUID().uuidString
         
         try! realm.write {
             
@@ -60,11 +63,13 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.realmBattleMatchDataProvider = realmBattleMatchDataProvider
         
+        let realmServerDataProvider = RealmServerDataProvider(realm: realm)
+        
+        self.realmServerDataProvider = realmServerDataProvider
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         window.rootViewController = makeBattleMatchViewController()
-        
-//        window.rootViewController = makeBattleViewController()
         
         window.makeKeyAndVisible()
         
@@ -80,11 +85,13 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         battleMatchClientTableViewController.matchDataProvider = realmBattleMatchDataProvider
         
+        battleMatchClientTableViewController.controllerDelegate = self
+        
         return UINavigationController(rootViewController: battleMatchClientTableViewController)
         
     }
     
-    fileprivate final func makeBattleViewController() -> UIViewController {
+    fileprivate final func makeBattleViewController(with match: BattleMatch) -> UIViewController {
         
         let pikachu = try! PokemonGenerator.make(Pikachu.self)
         
@@ -97,7 +104,15 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             ]
         )
         
+        let server = TurnBasedBattleServer(
+            ownerId: playerId,
+            recordId: match.id
+        )
+        
+        server.serverDataProvider = realmServerDataProvider
+        
         let pokemonBattleViewController = PokemonBattleViewController(
+            server: server,
             homeBattlePokemonId: pikachu.id,
             homeBattlePokemonImage: #imageLiteral(resourceName: "Pikachu"),
             guestBattlePokemonId: charmander.id,
@@ -109,4 +124,15 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
+}
+
+// MARK: - BattleMatchClientTableViewControllerDelegate
+
+extension AppDelegate: BattleMatchClientTableViewControllerDelegate {
+    
+    public func controller(
+        _ controller: BattleMatchClientTableViewController,
+        connectTo match: BattleMatch
+    ) { window?.rootViewController = makeBattleViewController(with: match) }
+    
 }

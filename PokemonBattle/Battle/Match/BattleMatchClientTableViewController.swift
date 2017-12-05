@@ -6,6 +6,17 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
+// MARK: - BattleMatchClientTableViewControllerDelegate
+
+public protocol BattleMatchClientTableViewControllerDelegate: class {
+    
+    func controller(
+        _ controller: BattleMatchClientTableViewController,
+        connectTo match: BattleMatch
+    )
+    
+}
+
 // MARK: - BattleMatchClientTableViewController
 
 import UIKit
@@ -25,6 +36,8 @@ public final class BattleMatchClientTableViewController: UITableViewController {
         }
         
     }
+    
+    public final weak var controllerDelegate: BattleMatchClientTableViewControllerDelegate?
     
     // MARK: View Life Cycle
     
@@ -68,9 +81,16 @@ public final class BattleMatchClientTableViewController: UITableViewController {
     
     @objc final func connectToServer(_ sender: Any) {
         
+        guard
+            let match = selectedMatch
+        else { return }
+        
         navigationItem.rightBarButtonItem?.isEnabled = false
  
-        print("connect")
+        controllerDelegate?.controller(
+            self,
+            connectTo: match
+        )
         
     }
     

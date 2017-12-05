@@ -47,6 +47,12 @@ public final class BattleMatchClientTableViewController: UITableViewController {
     
     public final override func tableView(
         _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    )
+    -> Int { return 1 }
+    
+    public final override func tableView(
+        _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     )
     -> UITableViewCell {

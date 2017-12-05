@@ -19,9 +19,13 @@ public final class BattleRecordRealmObject: Object {
     
     public final var turns = List<BattleTurnRealmObject>()
     
-    public final var createdAtDate = Date()
+    @objc public dynamic var createdAtDate = Date()
     
-    public final var updatedAtDate = Date()
+    @objc public dynamic var updatedAtDate = Date()
+    
+    @objc public dynamic var owner: BattlePlayerRealmObject?
+    
+    @objc public dynamic var isLocked: Bool = false
     
     public static override func primaryKey() -> String? { return "id" }
     

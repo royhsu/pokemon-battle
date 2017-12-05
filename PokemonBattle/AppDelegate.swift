@@ -8,6 +8,7 @@
 
 // MARK: - AppDelegate
 
+import RealmSwift
 import UIKit
 
 @UIApplicationMain
@@ -17,6 +18,10 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var window: UIWindow?
     
+    public final var realm: Realm?
+    
+    public final var realmBattleMatchDataProvider: RealmBattleMatchDataProvider?
+    
     // MARK: UIApplicationDelegate
 
     public final func application(
@@ -24,6 +29,36 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
     )
     -> Bool {
+        
+        let realm = try! Realm(
+            configuration: Realm.Configuration(inMemoryIdentifier: "battle-server")
+        )
+        
+        self.realm = realm
+        
+        let playerId = UUID().uuidString
+        
+        try! realm.write {
+            
+            let player = BattlePlayerRealmObject(
+                value: [ "id": playerId ]
+            )
+            
+            realm.add(player)
+            
+            let record = BattleRecordRealmObject(
+                value: [ "id": UUID().uuidString ]
+            )
+            
+            record.owner = player
+            
+            realm.add(record)
+            
+        }
+        
+        let realmBattleMatchDataProvider = RealmBattleMatchDataProvider(realm: realm)
+        
+        self.realmBattleMatchDataProvider = realmBattleMatchDataProvider
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -42,6 +77,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate final func makeBattleMatchViewController() -> UIViewController {
         
         let battleMatchClientTableViewController = BattleMatchClientTableViewController(style: .plain)
+        
+        battleMatchClientTableViewController.matchDataProvider = realmBattleMatchDataProvider
         
         return UINavigationController(rootViewController: battleMatchClientTableViewController)
         

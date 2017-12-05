@@ -23,6 +23,10 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var realm: Realm?
     
+    public final var player: BattlePlayerRealmObject?
+    
+    public final var record: BattleRecordRealmObject?
+    
     public final var realmServerDataProvider: RealmServerDataProvider?
     
     public final var realmBattleMatchDataProvider: RealmBattleMatchDataProvider?
@@ -49,6 +53,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             
             realm.add(player)
             
+            self.player = player
+            
             let record = BattleRecordRealmObject(
                 value: [ "id": UUID().uuidString ]
             )
@@ -56,6 +62,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             record.owner = player
             
             realm.add(record)
+            
+            self.record = record
             
         }
         
@@ -91,7 +99,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    fileprivate final func makeBattleViewController(with match: BattleMatch) -> UIViewController {
+    fileprivate final func makeBattleViewController(with record: TurnBasedBattleRecord) -> UIViewController {
         
         let pikachu = try! PokemonGenerator.make(Pikachu.self)
         
@@ -105,12 +113,11 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         let server = TurnBasedBattleServer(
-            ownerId: playerId,
-            recordId: match.id
+            dataProvider: realmServerDataProvider!,
+            player: PokemonBattlePlayer(player!),
+            record: record
         )
-        
-        server.serverDataProvider = realmServerDataProvider
-        
+
         let pokemonBattleViewController = PokemonBattleViewController(
             server: server,
             homeBattlePokemonId: pikachu.id,
@@ -119,7 +126,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             guestBattlePokemonImage: #imageLiteral(resourceName: "Charmander"),
             context: context
         )
-        
+
         return UINavigationController(rootViewController: pokemonBattleViewController)
         
     }
@@ -133,6 +140,12 @@ extension AppDelegate: BattleMatchClientTableViewControllerDelegate {
     public func controller(
         _ controller: BattleMatchClientTableViewController,
         connectTo match: BattleMatch
-    ) { window?.rootViewController = makeBattleViewController(with: match) }
+    ) {
+        
+        let record = match as! PokemonBattleRecord
+        
+        window?.rootViewController = makeBattleViewController(with: record)
+        
+    }
     
 }

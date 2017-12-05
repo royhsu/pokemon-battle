@@ -201,8 +201,6 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
-        print("Server starts.")
-        
         let battleFieldScene = BattleFieldScene(
             size: gameView.bounds.size
         )
@@ -217,26 +215,16 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
         
         gameView.presentScene(battleFieldScene)
         
-        server.respond(
-            to: ContinueBattleRequest(ownerId: server.ownerId)
-        )
+//        server.respond(
+//            to: ContinueBattleRequest(ownerId: server.owner.id)
+//        )
         
     }
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didStartTurn turn: TurnBasedBattleTurn
-    ) {
-        
-        print(
-            "Server starts a turn",
-            turn.id,
-            context
-        )
-        
-        navigationItem.rightBarButtonItem?.isEnabled = true
-        
-    }
+    ) { navigationItem.rightBarButtonItem?.isEnabled = true }
     
     public final func server(
         _ server: TurnBasedBattleServer,
@@ -250,7 +238,7 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didRespondTo request: BattleRequest
-    ) { print("Server responds to request", request) }
+    ) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,

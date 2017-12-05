@@ -49,8 +49,7 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
         
     }
     
-    // Todo: optional return type
-    public final func addNewTurnForRecord(id: String) -> TurnBasedBattleRecord {
+    public final func appendTurnForRecord(id: String) -> TurnBasedBattleRecord {
         
         let record = realm.object(
             ofType: BattleRecordRealmObject.self,
@@ -76,8 +75,7 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
         
     }
     
-    // Todo: optional return type
-    public final func addInvolvedPlayer(
+    public final func appendInvolvedPlayer(
         _ player: BattlePlayer,
         forCurrentTurnOfRecordId recordId: String
     )

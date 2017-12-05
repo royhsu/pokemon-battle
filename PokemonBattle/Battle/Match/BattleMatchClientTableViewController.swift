@@ -16,11 +16,23 @@ public final class BattleMatchClientTableViewController: UITableViewController {
     
     public final weak var matchDataProvider: BattleMatchDataProvider?
     
+    private final var selectedMatch: BattleMatch? {
+        
+        didSet {
+            
+            navigationItem.rightBarButtonItem?.isEnabled = (selectedMatch != nil)
+            
+        }
+        
+    }
+    
     // MARK: View Life Cycle
     
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        setUpNavigationItem(navigationItem)
         
         setUpTableView(tableView)
         
@@ -28,12 +40,37 @@ public final class BattleMatchClientTableViewController: UITableViewController {
     
     // MARK: Set Up
     
+    fileprivate final func setUpNavigationItem(_ navigationItem: UINavigationItem) {
+        
+        let rightBarButtonItem = UIBarButtonItem(
+            title: "Connect",
+            style: .plain,
+            target: self,
+            action: #selector(connectToServer)
+        )
+        
+        rightBarButtonItem.isEnabled = false
+        
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+    }
+    
     fileprivate final func setUpTableView(_ tableView: UITableView) {
         
         tableView.register(
             BattleMatchClientTableViewCell.self,
             forCellReuseIdentifier: BattleMatchClientTableViewCell.identifier
         )
+        
+    }
+    
+    // MARK: Action
+    
+    @objc final func connectToServer(_ sender: Any) {
+        
+        navigationItem.rightBarButtonItem?.isEnabled = false
+ 
+        print("connect")
         
     }
     
@@ -69,6 +106,21 @@ public final class BattleMatchClientTableViewController: UITableViewController {
         }
         
         return cell
+        
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    public final override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        
+        if let match = matchDataProvider?.match(at: indexPath.section) {
+            
+            selectedMatch = match
+            
+        }
         
     }
     

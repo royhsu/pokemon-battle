@@ -6,10 +6,22 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
+// MARK: - PokemonBattleServerManagerDelegate
+
+public protocol PokemonBattleServerManagerDelegate: class {
+    
+    func manager(
+        _ manager: PokemonBattleServerManager,
+        didFailWith error: Error
+    )
+    
+}
+
 // MARK: - PokemonBattleServerManager
 
 import TinyBattleKit
 
+// Onwer only
 public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
     
     // MARK: Property
@@ -20,11 +32,22 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
     
     private final var context = PokemonBattleContext(storage: [:])
     
-    public init(server: TurnBasedBattleServer) {
+    public final weak var managerDelegate: PokemonBattleServerManagerDelegate?
+    
+    // MARK: Init
+    
+    public init(
+        dataProvider: TurnBasedBattleServerDataProvider,
+        record: TurnBasedBattleRecord
+    ) {
+        
+        let server = TurnBasedBattleServer(
+            dataProvider: dataProvider,
+            player: record.owner,
+            record: record
+        )
         
         self.server = server
-        
-        server.serverDelegate = self
         
         // load pokemons for home into context.
         
@@ -43,7 +66,13 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
         
     }
     
-    public final func open() { server.resume() }
+    public final func resume() {
+        
+        server.serverDelegate = self
+        
+        server.resume()
+        
+    }
     
     // MARK: TurnBasedBattleServerDelegate
     

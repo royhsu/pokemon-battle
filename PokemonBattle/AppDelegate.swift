@@ -55,8 +55,14 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.player = player
             
+            let now = Date()
+            
             let record = BattleRecordRealmObject(
-                value: [ "id": UUID().uuidString ]
+                value: [
+                    "id": UUID().uuidString,
+                    "createdAtDate": now.addingTimeInterval(-20.0),
+                    "updatedAtDate": now.addingTimeInterval(-20.0)
+                ]
             )
             
             record.owner = player

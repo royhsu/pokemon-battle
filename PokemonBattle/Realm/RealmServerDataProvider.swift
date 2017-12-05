@@ -49,6 +49,28 @@ public final class RealmServerDataProvider: TurnBasedBattleServerDataProvider {
         
     }
     
+    public final func setOnlineForRecord(id: String) -> TurnBasedBattleRecord {
+        
+        let record = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: id
+        )!
+        
+        try! realm.write {
+            
+            record.updatedAtDate = Date()
+            
+        }
+        
+        let updatedRecord = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: id
+        )!
+        
+        return PokemonBattleRecord(updatedRecord)
+        
+    }
+    
     public final func appendTurnForRecord(id: String) -> TurnBasedBattleRecord {
         
         let record = realm.object(

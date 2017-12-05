@@ -1,5 +1,5 @@
 //
-//  BattleMatch.swift
+//  PokemonBattleRecord+BattleMatch.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 05/12/2017.
@@ -8,8 +8,4 @@
 
 // MARK: - BattleMatch
 
-public protocol BattleMatch {
-    
-    var id: String { get }
-    
-}
+extension PokemonBattleRecord: BattleMatch { }

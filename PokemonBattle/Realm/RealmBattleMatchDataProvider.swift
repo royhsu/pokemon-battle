@@ -58,6 +58,12 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     public final func numberOfMatches() -> Int { return records.count }
     
-    public final func match(at index: Int) -> BattleMatch { return records[index] }
+    public final func match(at index: Int) -> BattleMatch {
+    
+        return PokemonBattleRecord(
+            records[index]
+        )
+        
+    }
     
 }

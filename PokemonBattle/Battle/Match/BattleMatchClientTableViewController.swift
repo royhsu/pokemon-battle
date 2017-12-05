@@ -62,7 +62,11 @@ public final class BattleMatchClientTableViewController: UITableViewController {
             for: indexPath
         ) as! BattleMatchClientTableViewCell
         
-        cell.textLabel?.text = "Match: \(indexPath.section)"
+        if let match = matchDataProvider?.match(at: indexPath.section) {
+            
+            cell.textLabel?.text = "Match: \(match.id)"
+            
+        }
         
         return cell
         

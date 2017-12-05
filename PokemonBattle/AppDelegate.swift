@@ -27,6 +27,28 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
+        window.rootViewController = makeBattleMatchViewController()
+        
+//        window.rootViewController = makeBattleViewController()
+        
+        window.makeKeyAndVisible()
+        
+        self.window = window
+        
+        return true
+        
+    }
+    
+    fileprivate final func makeBattleMatchViewController() -> UIViewController {
+        
+        let battleMatchClientTableViewController = BattleMatchClientTableViewController(style: .plain)
+        
+        return UINavigationController(rootViewController: battleMatchClientTableViewController)
+        
+    }
+    
+    fileprivate final func makeBattleViewController() -> UIViewController {
+        
         let pikachu = try! PokemonGenerator.make(Pikachu.self)
         
         let charmander = try! PokemonGenerator.make(Charmander.self)
@@ -46,15 +68,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
             context: context
         )
         
-        window.rootViewController = UINavigationController(
-            rootViewController: pokemonBattleViewController
-        )
-        
-        window.makeKeyAndVisible()
-        
-        self.window = window
-        
-        return true
+        return UINavigationController(rootViewController: pokemonBattleViewController)
         
     }
 

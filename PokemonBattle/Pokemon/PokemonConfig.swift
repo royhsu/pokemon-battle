@@ -54,6 +54,8 @@ public struct PokemonConfig: Codable {
     
     public let magicResistance: Attribute
     
+    public let speed: Attribute
+    
     public let health: Attribute
     
     // MARK: Init
@@ -63,6 +65,7 @@ public struct PokemonConfig: Codable {
         armor: Attribute,
         magic: Attribute,
         magicResistance: Attribute,
+        speed: Attribute,
         health: Attribute
     ) {
         
@@ -73,6 +76,8 @@ public struct PokemonConfig: Codable {
         self.magic = magic
         
         self.magicResistance = magicResistance
+        
+        self.speed = speed
         
         self.health = health
         

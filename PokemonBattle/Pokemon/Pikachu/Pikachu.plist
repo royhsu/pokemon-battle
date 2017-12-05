@@ -30,6 +30,13 @@
 		<key>minimum</key>
 		<real>2.1</real>
 	</dict>
+	<key>speed</key>
+	<dict>
+		<key>maximum</key>
+		<real>6.1</real>
+		<key>minimum</key>
+		<real>5.39</real>
+	</dict>
 	<key>health</key>
 	<dict>
 		<key>maximum</key>

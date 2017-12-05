@@ -20,6 +20,8 @@ public protocol Pokemon {
     
     var magicResistance: Double { get }
     
+    var speed: Double { get }
+    
     var health: Double { get }
     
     init(
@@ -28,6 +30,7 @@ public protocol Pokemon {
         armor: Double,
         magic: Double,
         magicResistance: Double,
+        speed: Double,
         health: Double
     )
     

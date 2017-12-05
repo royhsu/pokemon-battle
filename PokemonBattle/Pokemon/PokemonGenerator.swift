@@ -60,6 +60,7 @@ public struct PokemonGenerator {
             armor: config.armor.random(),
             magic: config.magic.random(),
             magicResistance: config.magicResistance.random(),
+            speed: config.speed.random(),
             health: config.health.random()
         )
         

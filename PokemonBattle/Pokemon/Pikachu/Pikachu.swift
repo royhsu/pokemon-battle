@@ -22,6 +22,8 @@ public struct Pikachu: Pokemon {
     
     public let magicResistance: Double
     
+    public let speed: Double
+    
     public let health: Double
     
     // MARK: Init
@@ -32,6 +34,7 @@ public struct Pikachu: Pokemon {
         armor: Double,
         magic: Double,
         magicResistance: Double,
+        speed: Double,
         health: Double
     ) {
     
@@ -44,6 +47,8 @@ public struct Pikachu: Pokemon {
         self.magic = magic
         
         self.magicResistance = magicResistance
+        
+        self.speed = speed
         
         self.health = health
         

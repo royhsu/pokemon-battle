@@ -68,7 +68,7 @@
 		B0CE4F271FC6EC8E00343937 /* BattleMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE4F261FC6EC8E00343937 /* BattleMenuTableViewCell.swift */; };
 		B0CE4F291FC6ECAB00343937 /* BattleMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0CE4F281FC6ECAB00343937 /* BattleMenuTableViewCell.xib */; };
 		B0D1192B1FD652210024C27E /* PokemonBattleRecord+BattleMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D1192A1FD652210024C27E /* PokemonBattleRecord+BattleMatch.swift */; };
-		B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */; };
+		B0D47FD51FC554570056ABFC /* PokemonBattleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D47FD41FC554570056ABFC /* PokemonBattleDataProvider.swift */; };
 		B0EF52E31FD3B30D0043014F /* PokemonSkillAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E21FD3B30D0043014F /* PokemonSkillAnimator.swift */; };
 		B0EF52E51FD3B31B0043014F /* PokemonSkillAnimatorContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52E41FD3B31B0043014F /* PokemonSkillAnimatorContext.swift */; };
 		B0EF52ED1FD4132D0043014F /* BattlePokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */; };
@@ -153,7 +153,7 @@
 		B0CE4F261FC6EC8E00343937 /* BattleMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMenuTableViewCell.swift; sourceTree = "<group>"; };
 		B0CE4F281FC6ECAB00343937 /* BattleMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BattleMenuTableViewCell.xib; sourceTree = "<group>"; };
 		B0D1192A1FD652210024C27E /* PokemonBattleRecord+BattleMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonBattleRecord+BattleMatch.swift"; sourceTree = "<group>"; };
-		B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonDataProvider.swift; sourceTree = "<group>"; };
+		B0D47FD41FC554570056ABFC /* PokemonBattleDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleDataProvider.swift; sourceTree = "<group>"; };
 		B0EF52E21FD3B30D0043014F /* PokemonSkillAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillAnimator.swift; sourceTree = "<group>"; };
 		B0EF52E41FD3B31B0043014F /* PokemonSkillAnimatorContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillAnimatorContext.swift; sourceTree = "<group>"; };
 		B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattlePokemon.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 				B041FA861FC2AC9B00421C05 /* Battle */,
 				B06B2A3F1FD4DB8B00B93DAF /* Realm */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
-				B0D47FD41FC554570056ABFC /* BattlePokemonDataProvider.swift */,
+				B0D47FD41FC554570056ABFC /* PokemonBattleDataProvider.swift */,
 				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
 				B041FA7D1FC2ABB000421C05 /* LaunchScreen.storyboard */,
@@ -562,7 +562,7 @@
 				B04272B51FD29D9C00ED3D74 /* BattleRecordRealmObject.swift in Sources */,
 				B0B1B6711FD640C70033A316 /* BattleMatchClientTableViewCell.swift in Sources */,
 				B06B2A4B1FD4DBCD00B93DAF /* Pikachu.swift in Sources */,
-				B0D47FD51FC554570056ABFC /* BattlePokemonDataProvider.swift in Sources */,
+				B0D47FD51FC554570056ABFC /* PokemonBattleDataProvider.swift in Sources */,
 				B06B2A751FD4FE1300B93DAF /* LightningPokemonSkill.swift in Sources */,
 				B06B2A791FD535DC00B93DAF /* AnyPokemonSkillProvider.swift in Sources */,
 				B041FA931FC2C04600421C05 /* BattleStartScene.swift in Sources */,

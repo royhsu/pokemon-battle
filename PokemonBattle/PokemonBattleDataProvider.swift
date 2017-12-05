@@ -1,14 +1,14 @@
 //
-//  BattlePokemonDataProvider.swift
+//  PokemonBattleDataProvider.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 22/11/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattlePokemonDataProvider
+// MARK: - PokemonBattleDataProvider
 
-public protocol BattlePokemonDataProvider: class {
+public protocol PokemonBattleDataProvider: class {
     
     var homeBattlePokemon: BattlePokemon { get }
     
@@ -18,7 +18,7 @@ public protocol BattlePokemonDataProvider: class {
 
 // MARK: - BattleMenuDataProvider
 
-extension BattlePokemonDataProvider
+extension PokemonBattleDataProvider
 where Self: BattleMenuDataProvider {
     
     public func numberOfPokemonSkills() -> Int {

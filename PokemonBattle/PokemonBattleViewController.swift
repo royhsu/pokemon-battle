@@ -12,7 +12,7 @@ import RealmSwift
 import SpriteKit
 import UIKit
 
-public final class PokemonBattleViewController: UIViewController, BattlePokemonDataProvider, BattleFieldSceneDataProvider {
+public final class PokemonBattleViewController: UIViewController, PokemonBattleDataProvider, BattleFieldSceneDataProvider {
     
     // MARK: Property
     
@@ -177,7 +177,7 @@ public final class PokemonBattleViewController: UIViewController, BattlePokemonD
 
     }
     
-    // MARK: BattlePokemonDataProvider
+    // MARK: PokemonBattleDataProvider
  
     public final var homeBattlePokemon: BattlePokemon {
         

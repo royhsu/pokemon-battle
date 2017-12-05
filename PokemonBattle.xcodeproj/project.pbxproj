@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B00DCE211FD686AC0024185D /* PokemonBattleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */; };
+		B00DCE231FD686C00024185D /* PokemonBattleServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */; };
+		B00DCE251FD68CA10024185D /* BattlePokemonRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */; };
 		B0124D9F1FC2E0EA00A3A58C /* BattleFieldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */; };
 		B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */; };
 		B041FA7C1FC2ABB000421C05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B041FA7B1FC2ABB000421C05 /* Assets.xcassets */; };
@@ -88,6 +91,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleClient.swift; sourceTree = "<group>"; };
+		B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleServerManager.swift; sourceTree = "<group>"; };
+		B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonRole.swift; sourceTree = "<group>"; };
 		B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldScene.swift; sourceTree = "<group>"; };
 		B041FA6B1FC2ABB000421C05 /* PokemonBattle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonBattle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -212,6 +218,8 @@
 				B041FA861FC2AC9B00421C05 /* Battle */,
 				B06B2A3F1FD4DB8B00B93DAF /* Realm */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
+				B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */,
+				B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */,
 				B0D47FD41FC554570056ABFC /* PokemonBattleDataProvider.swift */,
 				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
@@ -310,6 +318,7 @@
 				B06B2A491FD4DBCD00B93DAF /* PokemonConfig.swift */,
 				B06B2A4A1FD4DBCD00B93DAF /* PokemonGenerator.swift */,
 				B0EF52EC1FD4132D0043014F /* BattlePokemon.swift */,
+				B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */,
 				B06B2A471FD4DBCD00B93DAF /* Pokemon+BattlePokemon.swift */,
 			);
 			path = Pokemon;
@@ -561,6 +570,7 @@
 				B0EF52ED1FD4132D0043014F /* BattlePokemon.swift in Sources */,
 				B04272B51FD29D9C00ED3D74 /* BattleRecordRealmObject.swift in Sources */,
 				B0B1B6711FD640C70033A316 /* BattleMatchClientTableViewCell.swift in Sources */,
+				B00DCE251FD68CA10024185D /* BattlePokemonRole.swift in Sources */,
 				B06B2A4B1FD4DBCD00B93DAF /* Pikachu.swift in Sources */,
 				B0D47FD51FC554570056ABFC /* PokemonBattleDataProvider.swift in Sources */,
 				B06B2A751FD4FE1300B93DAF /* LightningPokemonSkill.swift in Sources */,
@@ -591,9 +601,11 @@
 				B04272B31FD29D9C00ED3D74 /* BattlePlayerRealmObject.swift in Sources */,
 				B0D1192B1FD652210024C27E /* PokemonBattleRecord+BattleMatch.swift in Sources */,
 				B04272AF1FD29C6900ED3D74 /* RealmServerDataProvider.swift in Sources */,
+				B00DCE231FD686C00024185D /* PokemonBattleServerManager.swift in Sources */,
 				B0B1B66F1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift in Sources */,
 				B0A676681FD1597800278CBE /* PokemonBattleContextError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
+				B00DCE211FD686AC0024185D /* PokemonBattleClient.swift in Sources */,
 				B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */,
 				B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */,
 				B0EF52EF1FD418A90043014F /* BattleFieldSceneDataProvider.swift in Sources */,

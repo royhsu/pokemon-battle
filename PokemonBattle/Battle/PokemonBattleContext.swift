@@ -12,54 +12,17 @@ import TinyBattleKit
 
 public struct PokemonBattleContext: BattleResult {
     
+    public typealias BattlePlayerID = String
+    
+    public typealias Storage = [BattlePlayerID: BattlePokemon]
+    
     // MARK: Property
     
-    private var battlePokemonMap: [String: BattlePokemon] = [:]
+    // Todo: use [BattlePlayerID: BattlePokemon] to support multiple pokemons for a player.
+    public var storage: Storage
     
     // MARK: Init
     
-    public init(battlePokemons: [BattlePokemon]) throws {
-        
-        try battlePokemons.forEach { battlePokemon in
-            
-            let battlePokemonId = battlePokemon.id
-            
-            guard
-                battlePokemonMap[battlePokemonId] == nil
-            else {
-                
-                let error: PokemonBattleContextError = .duplicateBattlePokemon(id: battlePokemonId)
-                
-                throw error
-                
-            }
-            
-            battlePokemonMap[battlePokemonId] = battlePokemon
-            
-        }
-        
-    }
-    
-}
-
-// MARK: - PokemonBattle
-
-public extension PokemonBattleContext {
-    
-    public func battlePokemon(id: String) -> BattlePokemon? { return battlePokemonMap[id] }
-    
-    public mutating func replaceBattlePokemon(with newValue: BattlePokemon) {
-        
-        let battlePokemonId = newValue.id
-        
-        if battlePokemonMap[battlePokemonId] == nil {
-            
-            fatalError("Battle pokemon not found with the given id.")
-            
-        }
-        
-        battlePokemonMap[battlePokemonId] = newValue
-        
-    }
+    public init(storage: Storage) { self.storage = storage }
     
 }

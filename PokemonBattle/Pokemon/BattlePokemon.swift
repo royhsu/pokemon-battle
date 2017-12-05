@@ -30,6 +30,8 @@ public struct BattlePokemon: BattleEntity {
     
     public var remainingHealth: Double
     
+    public let role: BattlePokemonRole
+    
     // MARK: Init
     
     public init(
@@ -40,7 +42,8 @@ public struct BattlePokemon: BattleEntity {
         magicResistance: Double,
         speed: Double,
         health: Double,
-        remainingHealth: Double
+        remainingHealth: Double,
+        role: BattlePokemonRole
     ) {
      
         self.id = id
@@ -58,6 +61,8 @@ public struct BattlePokemon: BattleEntity {
         self.speed = speed
         
         self.remainingHealth = remainingHealth
+        
+        self.role = role
         
     }
     

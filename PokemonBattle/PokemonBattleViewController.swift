@@ -165,7 +165,7 @@ public final class PokemonBattleViewController: UIViewController, PokemonBattleD
 
                 self.server
                     .respond(
-                        to: PlayerInvolvedRequest(playerId: self.ownerId)
+                        to: PlayerInvolveBattleRequest(playerId: self.ownerId)
                     )
 
             }
@@ -181,13 +181,13 @@ public final class PokemonBattleViewController: UIViewController, PokemonBattleD
  
     public final var homeBattlePokemon: BattlePokemon {
         
-        return context.battlePokemon(id: homeBattlePokemonId)!
+        return context.storage[homeBattlePokemonId]!
         
     }
     
     public final var guestBattlePokemon: BattlePokemon {
         
-        return context.battlePokemon(id: guestBattlePokemonId)!
+        return context.storage[guestBattlePokemonId]!
         
     }
     

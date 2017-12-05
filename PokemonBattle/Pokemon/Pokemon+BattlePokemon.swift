@@ -10,7 +10,10 @@
 
 public extension BattlePokemon {
     
-    public init(_ pokemon: Pokemon) {
+    public init(
+        _ pokemon: Pokemon,
+        role: BattlePokemonRole
+    ) {
         
         self.init(
             id: pokemon.id,
@@ -20,7 +23,8 @@ public extension BattlePokemon {
             magicResistance: pokemon.magicResistance,
             speed: pokemon.speed,
             health: pokemon.health,
-            remainingHealth: pokemon.health
+            remainingHealth: pokemon.health,
+            role: role
         )
         
     }

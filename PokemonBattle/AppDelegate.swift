@@ -111,10 +111,16 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let charmander = try! PokemonGenerator.make(Charmander.self)
         
-        let context = try! PokemonBattleContext(
-            battlePokemons: [
-                BattlePokemon(pikachu),
-                BattlePokemon(charmander)
+        let context = PokemonBattleContext(
+            storage: [
+                pikachu.id: BattlePokemon(
+                    pikachu,
+                    role: .home
+                ),
+                charmander.id: BattlePokemon(
+                    charmander,
+                    role: .guest
+                )
             ]
         )
         

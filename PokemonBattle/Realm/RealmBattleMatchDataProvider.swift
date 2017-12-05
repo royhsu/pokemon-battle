@@ -8,6 +8,7 @@
 
 // MARK: - RealmBattleMatchDataProvider
 
+import Foundation
 import RealmSwift
 
 public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
@@ -26,9 +27,7 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
         
         self.realm = realm
         
-        self.records = realm
-            .objects(BattleRecordRealmObject.self)
-            .filter("isLocked = false")
+        self.records = RealmBattleMatchDataProvider.fetchRecords(with: realm)
         
         self.notificationToken = records.observe { change in
         
@@ -38,9 +37,7 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
                 
             case .update:
                 
-                self.records = realm
-                    .objects(BattleRecordRealmObject.self)
-                    .filter("isLocked = false")
+                self.records = RealmBattleMatchDataProvider.fetchRecords(with: realm)
                 
             case .error(let error):
                 
@@ -49,6 +46,19 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
             }
         
         }
+        
+    }
+    
+    fileprivate static func fetchRecords(with realm: Realm) -> Results<BattleRecordRealmObject> {
+        
+        let serverOnlineDate = Date().addingTimeInterval(-10.0)
+        
+        return realm
+            .objects(BattleRecordRealmObject.self)
+            .filter(
+                "(isLocked = false) AND (updatedAtDate >= %@)",
+                serverOnlineDate
+            )
         
     }
     

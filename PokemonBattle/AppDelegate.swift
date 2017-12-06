@@ -29,7 +29,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var client: TurnBasedBattleServer?
     
-    public final var realmServerDataProvider: RealmServerDataProvider?
+    public final var realmServerDataProvider: RealmBattleServerDataProvider?
     
     public final var realmBattleMatchDataProvider: RealmBattleMatchDataProvider?
     
@@ -51,7 +51,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        self.realmBattleMatchDataProvider = realmBattleMatchDataProvider
 //
-//        let realmServerDataProvider = RealmServerDataProvider(realm: realm)
+//        let realmServerDataProvider = RealmBattleServerDataProvider(realm: realm)
 //
 //        self.realmServerDataProvider = realmServerDataProvider
 //
@@ -153,7 +153,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         self.realmBattleMatchDataProvider = realmBattleMatchDataProvider
                         
-                        let realmServerDataProvider = RealmServerDataProvider(realm: realm)
+                        let realmServerDataProvider = RealmBattleServerDataProvider(realm: realm)
                         
                         self.realmServerDataProvider = realmServerDataProvider
                         

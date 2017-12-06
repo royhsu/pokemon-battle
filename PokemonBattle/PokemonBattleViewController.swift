@@ -107,7 +107,7 @@ public final class PokemonBattleViewController: UIViewController, PokemonBattleD
         
         super.viewDidAppear(animated)
         
-        if server.state == .end { server.resume() }
+//        if server.state == .end { server.resume() }
         
     }
     

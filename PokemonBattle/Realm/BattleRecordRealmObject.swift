@@ -10,6 +10,7 @@
 
 import Foundation
 import RealmSwift
+import TinyBattleKit
 
 public final class BattleRecordRealmObject: Object {
     
@@ -17,11 +18,17 @@ public final class BattleRecordRealmObject: Object {
     
     @objc public dynamic var id: String?
     
+    @objc public dynamic var state = TurnBasedBattleServerState.end.rawValue
+    
     @objc public dynamic var createdAtDate = Date()
     
     @objc public dynamic var updatedAtDate = Date()
     
     @objc public dynamic var owner: BattlePlayerRealmObject?
+    
+    public final var joinedPlayers = List<BattlePlayerRealmObject>()
+    
+    public final var readyPlayers = List<BattlePlayerRealmObject>()
     
     @objc public dynamic var isLocked: Bool = false
     

@@ -16,34 +16,49 @@ public struct PokemonBattleRecord: TurnBasedBattleRecord {
     
     public let id: String
     
+    public let state: TurnBasedBattleServerState
+    
     public let createdAtDate: Date
     
     public let updatedAtDate: Date
     
     public let owner: BattlePlayer
     
+    public let joinedPlayers: [BattlePlayer]
+    
+    public let readyPlayers: [BattlePlayer]
+    
     public let isLocked: Bool
     
-    public var turns: [TurnBasedBattleTurn]
+    public let turns: [TurnBasedBattleTurn]
     
     // MARK: Init
     
     public init(
         id: String,
+        state: TurnBasedBattleServerState,
         createdAtDate: Date,
         updatedAtDate: Date,
         owner: BattlePlayer,
+        joinedPlayers: [BattlePlayer],
+        readyPlayers: [BattlePlayer],
         isLocked: Bool,
         turns: [TurnBasedBattleTurn]
     ) {
     
         self.id = id
         
+        self.state = state
+        
         self.createdAtDate = createdAtDate
         
         self.updatedAtDate = updatedAtDate
         
         self.owner = owner
+        
+        self.joinedPlayers = joinedPlayers
+        
+        self.readyPlayers = readyPlayers
         
         self.isLocked = isLocked
         
@@ -61,9 +76,12 @@ public extension PokemonBattleRecord {
         
         self.init(
             id: record.id!,
+            state: TurnBasedBattleServerState(rawValue: record.state)!,
             createdAtDate: record.createdAtDate,
             updatedAtDate: record.updatedAtDate,
             owner: PokemonBattlePlayer(record.owner!),
+            joinedPlayers: record.joinedPlayers.map(PokemonBattlePlayer.init),
+            readyPlayers: record.readyPlayers.map(PokemonBattlePlayer.init),
             isLocked: record.isLocked,
             turns: record.turns.map(PokemonBattleTurn.init)
         )

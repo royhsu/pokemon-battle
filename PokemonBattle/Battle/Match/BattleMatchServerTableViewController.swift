@@ -183,7 +183,10 @@ extension BattleMatchServerTableViewController: TurnBasedBattleServerDelegate {
         
     }
     
-    public final func server(_ server: TurnBasedBattleServer, didRespondTo request: BattleRequest) {
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didRespondTo request: BattleRequest
+    ) {
         
     }
     

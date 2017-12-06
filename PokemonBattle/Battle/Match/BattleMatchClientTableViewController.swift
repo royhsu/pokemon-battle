@@ -20,6 +20,7 @@ public protocol BattleMatchClientTableViewControllerDelegate: class {
 // MARK: - BattleMatchClientTableViewController
 
 import UIKit
+import TinyBattleKit
 
 public final class BattleMatchClientTableViewController: UITableViewController {
     
@@ -38,6 +39,12 @@ public final class BattleMatchClientTableViewController: UITableViewController {
     }
     
     public final weak var controllerDelegate: BattleMatchClientTableViewControllerDelegate?
+    
+    // MARK: Init
+    
+    public init() { super.init(style: .plain) }
+    
+    public required init?(coder aDecoder: NSCoder) { fatalError("Not implmented.") }
     
     // MARK: View Life Cycle
     
@@ -88,7 +95,7 @@ public final class BattleMatchClientTableViewController: UITableViewController {
         else { return }
         
         navigationItem.rightBarButtonItem?.isEnabled = false
- 
+
         controllerDelegate?.controller(
             self,
             connectTo: match

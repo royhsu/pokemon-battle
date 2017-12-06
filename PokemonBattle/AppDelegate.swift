@@ -25,6 +25,8 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var realmBattleMatchDataProvider: RealmBattleMatchDataProvider?
     
+    public final var client: TurnBasedBattleServer?
+    
     // MARK: UIApplicationDelegate
 
     public final func application(
@@ -146,23 +148,34 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         self.realmServerDataProvider = realmServerDataProvider
                         
                         // Server
-                        let record = realm.object(
-                            ofType: BattleRecordRealmObject.self,
-                            forPrimaryKey: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8"
-                        )!
-
-                        let owner = realm.object(
-                            ofType: BattlePlayerRealmObject.self,
-                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
-                        )!
+//                        let record = realm.object(
+//                            ofType: BattleRecordRealmObject.self,
+//                            forPrimaryKey: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8"
+//                        )!
+//
+//                        let owner = realm.object(
+//                            ofType: BattlePlayerRealmObject.self,
+//                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
+//                        )!
+//
+//                        let matchServerViewController = BattleMatchServerTableViewController(
+//                            dataProvider: realmServerDataProvider,
+//                            owner: PokemonBattlePlayer(owner),
+//                            record: PokemonBattleRecord(record)
+//                        )
+//
+//                        self.window?.rootViewController = UINavigationController(rootViewController: matchServerViewController)
+//
+//                        return
                         
-                        let battleMatchServerTableViewController = BattleMatchServerTableViewController(
-                            dataProvider: realmServerDataProvider,
-                            owner: PokemonBattlePlayer(owner),
-                            record: PokemonBattleRecord(record)
-                        )
-
-                        self.window?.rootViewController = UINavigationController(rootViewController: battleMatchServerTableViewController)
+                        // Client
+                        let matchClientViewController = BattleMatchClientTableViewController()
+                        
+                        matchClientViewController.matchDataProvider = realmBattleMatchDataProvider
+                        
+                        matchClientViewController.controllerDelegate = self
+                        
+                        self.window?.rootViewController = UINavigationController(rootViewController: matchClientViewController)
                         
                     }
                     catch { fatalError("\(error)") }
@@ -223,20 +236,78 @@ extension AppDelegate: BattleMatchClientTableViewControllerDelegate {
         connectTo match: BattleMatch
     ) {
         
-//        let record = match as! PokemonBattleRecord
-//
-//        client = TurnBasedBattleServer(
-//            dataProvider: realmServerDataProvider!,
-//            player: PokemonBattlePlayer(player!),
-//            record: record
-//        )
-//
-//        client!.respond(
-//            to: PlayerJoinBattleRequest(playerId: player!.id!)
-//        )
-//
-//        window?.rootViewController = makeBattleViewController(with: record)
+        let player = realm!.object(
+            ofType: BattlePlayerRealmObject.self,
+            forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
+        )!
+        
+        let record = match as! PokemonBattleRecord
+        
+        client = TurnBasedBattleServer(
+            dataProvider: realmServerDataProvider!,
+            player: PokemonBattlePlayer(player),
+            record: record
+        )
+        
+        client!.serverDelegate = self
+        
+        client!.resume()
+
+    }
+    
+}
+
+extension AppDelegate: TurnBasedBattleServerDelegate {
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didUpdate record: TurnBasedBattleRecord
+    ) {
         
     }
+    
+    public final func serverDidStart(_ server: TurnBasedBattleServer) {
+        
+        server.respond(
+            to: PlayerJoinBattleRequest(playerId: server.player.id)
+        )
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didStartTurn turn: TurnBasedBattleTurn
+    ) {
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didEndTurn turn: TurnBasedBattleTurn
+    ) {
+        
+    }
+    
+    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool {
+        
+        return false
+        
+    }
+    
+    public final func serverDidEnd(_ server: TurnBasedBattleServer) {
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didRespondTo request: BattleRequest
+    ) {
+        
+    }
+    
+    public func server(
+        _ server: TurnBasedBattleServer,
+        didFailWith error: Error
+    ) { print("\(error)") }
     
 }

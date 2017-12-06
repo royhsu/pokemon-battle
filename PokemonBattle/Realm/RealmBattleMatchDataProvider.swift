@@ -51,14 +51,15 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     fileprivate static func fetchRecords(with realm: Realm) -> Results<BattleRecordRealmObject> {
         
-        let serverOnlineDate = Date().addingTimeInterval(-10.0)
+//        let serverOnlineDate = Date().addingTimeInterval(-10.0)
         
         return realm
             .objects(BattleRecordRealmObject.self)
-            .filter(
-                "(isLocked = false) AND (updatedAtDate >= %@)",
-                serverOnlineDate
-            )
+            .filter("isLocked = false")
+//            .filter(
+//                "(isLocked = false) AND (updatedAtDate >= %@)",
+//                serverOnlineDate
+//            )
         
     }
     

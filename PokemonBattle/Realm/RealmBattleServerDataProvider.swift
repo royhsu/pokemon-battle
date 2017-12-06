@@ -157,6 +157,8 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
             
             record.readyPlayers.removeAll()
             
+             Todo: should remove involved players for the current turn?
+            
             record.updatedAtDate = Date()
             
         }
@@ -184,7 +186,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
         
         let player = realm.object(
             ofType: BattlePlayerRealmObject.self,
-            forPrimaryKey: id
+            forPrimaryKey: player.id
         )!
         
         try! realm.write {
@@ -218,7 +220,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
         
         let player = realm.object(
             ofType: BattlePlayerRealmObject.self,
-            forPrimaryKey: id
+            forPrimaryKey: player.id
         )!
         
         try! realm.write {

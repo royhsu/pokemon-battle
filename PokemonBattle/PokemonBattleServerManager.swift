@@ -29,6 +29,13 @@ import TinyBattleKit
 // Onwer only
 public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
     
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didUpdate record: TurnBasedBattleRecord
+    ) {
+        
+    }
+    
     // MARK: Property
     
     public final let server: TurnBasedBattleServer

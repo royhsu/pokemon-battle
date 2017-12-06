@@ -142,6 +142,13 @@ public final class BattleMatchServerTableViewController: UITableViewController {
 
 extension BattleMatchServerTableViewController: TurnBasedBattleServerDelegate {
     
+    public func server(
+        _ server: TurnBasedBattleServer,
+        didUpdate record: TurnBasedBattleRecord
+    ) {
+        
+    }
+    
     public func serverDidStart(_ server: TurnBasedBattleServer) {
         
         

@@ -199,6 +199,13 @@ import TinyBattleKit
 
 extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didUpdate record: TurnBasedBattleRecord
+    ) {
+        
+    }
+    
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
         let battleFieldScene = BattleFieldScene(

@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B00DCE211FD686AC0024185D /* PokemonBattleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */; };
-		B00DCE231FD686C00024185D /* PokemonBattleServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */; };
+		B00DCE231FD686C00024185D /* NewPokemonBattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE221FD686C00024185D /* NewPokemonBattleViewController.swift */; };
 		B00DCE251FD68CA10024185D /* BattlePokemonRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */; };
 		B00DCE291FD6DB760024185D /* BattleMatchServerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00DCE281FD6DB760024185D /* BattleMatchServerTableViewController.swift */; };
 		B00DCE2D1FD6E4940024185D /* TinyBattleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A676521FD1363600278CBE /* TinyBattleKit.framework */; };
@@ -107,8 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleClient.swift; sourceTree = "<group>"; };
-		B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleServerManager.swift; sourceTree = "<group>"; };
+		B00DCE221FD686C00024185D /* NewPokemonBattleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPokemonBattleViewController.swift; sourceTree = "<group>"; };
 		B00DCE241FD68CA10024185D /* BattlePokemonRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattlePokemonRole.swift; sourceTree = "<group>"; };
 		B00DCE281FD6DB760024185D /* BattleMatchServerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatchServerTableViewController.swift; sourceTree = "<group>"; };
 		B0124D9E1FC2E0EA00A3A58C /* BattleFieldScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleFieldScene.swift; sourceTree = "<group>"; };
@@ -235,8 +233,7 @@
 				B041FA861FC2AC9B00421C05 /* Battle */,
 				B06B2A3F1FD4DB8B00B93DAF /* Realm */,
 				B041FA6E1FC2ABB000421C05 /* AppDelegate.swift */,
-				B00DCE201FD686AC0024185D /* PokemonBattleClient.swift */,
-				B00DCE221FD686C00024185D /* PokemonBattleServerManager.swift */,
+				B00DCE221FD686C00024185D /* NewPokemonBattleViewController.swift */,
 				B0D47FD41FC554570056ABFC /* PokemonBattleDataProvider.swift */,
 				B04272A71FD27CCA00ED3D74 /* PokemonBattleViewController.swift */,
 				B041FA7B1FC2ABB000421C05 /* Assets.xcassets */,
@@ -620,11 +617,10 @@
 				B04272B31FD29D9C00ED3D74 /* BattlePlayerRealmObject.swift in Sources */,
 				B0D1192B1FD652210024C27E /* PokemonBattleRecord+BattleMatch.swift in Sources */,
 				B04272AF1FD29C6900ED3D74 /* RealmBattleServerDataProvider.swift in Sources */,
-				B00DCE231FD686C00024185D /* PokemonBattleServerManager.swift in Sources */,
+				B00DCE231FD686C00024185D /* NewPokemonBattleViewController.swift in Sources */,
 				B0B1B66F1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift in Sources */,
 				B0A676681FD1597800278CBE /* PokemonBattleContextError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
-				B00DCE211FD686AC0024185D /* PokemonBattleClient.swift in Sources */,
 				B00DCE291FD6DB760024185D /* BattleMatchServerTableViewController.swift in Sources */,
 				B04272A81FD27CCA00ED3D74 /* PokemonBattleViewController.swift in Sources */,
 				B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */,

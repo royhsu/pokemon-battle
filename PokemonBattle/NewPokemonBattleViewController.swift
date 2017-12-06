@@ -8,33 +8,26 @@
 
 // MARK: - PokemonBattleServerManagerDelegate
 
-public protocol PokemonBattleServerManagerDelegate: class {
-    
-    func manager(
-        _ manager: PokemonBattleServerManager,
-        didJoin player: BattlePlayer
-    )
-    
-    func manager(
-        _ manager: PokemonBattleServerManager,
-        didFailWith error: Error
-    )
-    
-}
+//public protocol PokemonBattleServerManagerDelegate: class {
+//
+//    func manager(
+//        _ manager: NewPokemonBattleViewController,
+//        didJoin player: BattlePlayer
+//    )
+//
+//    func manager(
+//        _ manager: NewPokemonBattleViewController,
+//        didFailWith error: Error
+//    )
+//
+//}
 
-// MARK: - PokemonBattleServerManager
+// MARK: - PokemonBattleViewController
 
+import UIKit
 import TinyBattleKit
 
-// Onwer only
-public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
-    
-    public final func server(
-        _ server: TurnBasedBattleServer,
-        didUpdate record: TurnBasedBattleRecord
-    ) {
-        
-    }
+public final class NewPokemonBattleViewController: UIViewController {
     
     // MARK: Property
     
@@ -42,24 +35,30 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
     
 //    private final let system = PokemonBattleSystem()
     
-    private final var context = PokemonBattleContext(storage: [:])
+//    private final var context = PokemonBattleContext(storage: [:])
     
-    public final weak var managerDelegate: PokemonBattleServerManagerDelegate?
+//    public final weak var managerDelegate: PokemonBattleServerManagerDelegate?
     
     // MARK: Init
     
     public init(
         dataProvider: TurnBasedBattleServerDataProvider,
+        player: BattlePlayer,
         record: TurnBasedBattleRecord
     ) {
         
         let server = TurnBasedBattleServer(
             dataProvider: dataProvider,
-            player: record.owner,
+            player: player,
             record: record
         )
         
         self.server = server
+        
+        super.init(
+            nibName: nil,
+            bundle: nil
+        )
         
         // load pokemons for home into context.
         
@@ -78,7 +77,15 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
         
     }
     
-    public final func resume() {
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - View Life Cycle
+    
+    public final override func viewDidLoad() {
+        
+        super.viewDidLoad()
         
         server.serverDelegate = self
         
@@ -86,7 +93,18 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
         
     }
     
-    // MARK: TurnBasedBattleServerDelegate
+}
+
+// MARK: - TurnBasedBattleServerDelegate
+
+extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didUpdate record: TurnBasedBattleRecord
+    ) {
+        
+    }
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
@@ -98,8 +116,6 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didStartTurn turn: TurnBasedBattleTurn
     ) {
-        
-        
         
     }
     
@@ -125,19 +141,6 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
         didRespondTo request: BattleRequest
     ) {
         
-        if let request = request as? PlayerJoinBattleRequest {
-            
-            // load guest pokemons from data provider into context.
-            
-            let player = server.serverDataProvider.fetchPlayer(id: request.playerId)!
-            
-            managerDelegate?.manager(
-                self,
-                didJoin: player
-            )
-            
-        }
-        
     }
     
     public final func server(
@@ -148,10 +151,3 @@ public final class PokemonBattleServerManager: TurnBasedBattleServerDelegate {
     }
     
 }
-
-//TurnBasedBattleServer(
-//    dataProvider: realmServerDataProvider!,
-//    player: PokemonBattlePlayer(player!),
-//    record: record
-//)
-

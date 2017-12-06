@@ -15,21 +15,23 @@ public final class BattleMatchServerTableViewController: UITableViewController {
 
     // MARK: Property
     
-    public final let serverManager: PokemonBattleServerManager
-    
-    var client: TurnBasedBattleServer?
-    
-    public final weak var serverDataProvider: TurnBasedBattleServerDataProvider?
-    
-    public final var joinedPlayers: [BattlePlayer] = []
+    public final let server: TurnBasedBattleServer
     
     // MARK: Init
     
     public init(
-        serverManager: PokemonBattleServerManager
+        dataProvider: TurnBasedBattleServerDataProvider,
+        owner: BattlePlayer,
+        record: TurnBasedBattleRecord
     ) {
         
-        self.serverManager = serverManager
+        let server = TurnBasedBattleServer(
+            dataProvider: dataProvider,
+            player: owner,
+            record: record
+        )
+        
+        self.server = server
         
         super.init(style: .plain)
         
@@ -47,9 +49,9 @@ public final class BattleMatchServerTableViewController: UITableViewController {
         
         setUpTableView(tableView)
         
-        serverManager.managerDelegate = self
+        server.serverDelegate = self
         
-        serverManager.resume()
+        server.resume()
         
     }
     
@@ -59,16 +61,16 @@ public final class BattleMatchServerTableViewController: UITableViewController {
         
         navigationItem.title = "Server"
         
-        let rightBarButtonItem = UIBarButtonItem(
-            title: "Connect",
-            style: .plain,
-            target: self,
-            action: #selector(join)
-        )
-        
+//        let rightBarButtonItem = UIBarButtonItem(
+//            title: "Connect",
+//            style: .plain,
+//            target: self,
+//            action: #selector(join)
+//        )
+//
 //        rightBarButtonItem.isEnabled = false
-        
-        navigationItem.rightBarButtonItem = rightBarButtonItem
+//
+//        navigationItem.rightBarButtonItem = rightBarButtonItem
         
     }
     
@@ -85,31 +87,31 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     
     @objc public final func join(_ sender: Any) {
     
-        guard
-            let serverDataProvider = serverDataProvider,
-            let player = serverDataProvider.fetchPlayer(id: "24E0AD21-DA77-403C-83B4-549333DFD76F"),
-            let record = serverDataProvider.fetchRecord(id: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8")
-        else { return }
-        
-        let client = TurnBasedBattleServer(
-            dataProvider: serverDataProvider,
-            player: player,
-            record: record
-        )
-        
-        self.client = client
-        
-        client.serverDelegate = self
-        
-        client.resume()
-        
+//        guard
+//            let serverDataProvider = serverDataProvider,
+//            let player = serverDataProvider.fetchPlayer(id: "24E0AD21-DA77-403C-83B4-549333DFD76F"),
+//            let record = serverDataProvider.fetchRecord(id: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8")
+//        else { return }
+//
+//        let client = TurnBasedBattleServer(
+//            dataProvider: serverDataProvider,
+//            player: player,
+//            record: record
+//        )
+//
+//        self.client = client
+//
+//        client.serverDelegate = self
+//
+//        client.resume()
+//
     }
     
     // MARK: UITableViewDataSource
     
     public final override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return joinedPlayers.count
+        return server.record.joinedPlayers.count
         
     }
     
@@ -130,7 +132,7 @@ public final class BattleMatchServerTableViewController: UITableViewController {
             for: indexPath
         ) as! BattleMatchClientTableViewCell
         
-        let player = joinedPlayers[indexPath.section]
+        let player = server.record.joinedPlayers[indexPath.section]
             
         cell.textLabel?.text = "Player: \(player.id)"
         
@@ -140,84 +142,56 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     
 }
 
+// MARK: - TurnBasedBattleServerDelegate
+
 extension BattleMatchServerTableViewController: TurnBasedBattleServerDelegate {
     
-    public func server(
+    public final func server(
         _ server: TurnBasedBattleServer,
         didUpdate record: TurnBasedBattleRecord
+    ) {
+       
+        tableView.reloadData()
+        
+    }
+    
+    public final func serverDidStart(_ server: TurnBasedBattleServer) {
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didStartTurn turn: TurnBasedBattleTurn
     ) {
         
     }
     
-    public func serverDidStart(_ server: TurnBasedBattleServer) {
-        
-        
-        client?.respond(
-            to: PlayerJoinBattleRequest(playerId: "24E0AD21-DA77-403C-83B4-549333DFD76F")
-        )
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didEndTurn turn: TurnBasedBattleTurn
+    ) {
         
     }
     
-    public func server(_ server: TurnBasedBattleServer, didStartTurn turn: TurnBasedBattleTurn) {
-        
-    }
-    
-    public func server(_ server: TurnBasedBattleServer, didEndTurn turn: TurnBasedBattleTurn) {
-        
-    }
-    
-    public func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool {
+    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool {
         
         return false
         
     }
     
-    public func serverDidEnd(_ server: TurnBasedBattleServer) {
+    public final func serverDidEnd(_ server: TurnBasedBattleServer) {
         
     }
     
-    public func server(_ server: TurnBasedBattleServer, didRespondTo request: BattleRequest) {
-        
-        if let request = request as? PlayerJoinBattleRequest {
-            
-            let player = server.serverDataProvider.fetchPlayer(id: request.playerId)!
-            
-            joinedPlayers.append(player)
-            
-            tableView.reloadData()
-            
-        }
-        
+    public final func server(_ server: TurnBasedBattleServer, didRespondTo request: BattleRequest) {
         
     }
     
-    public func server(_ server: TurnBasedBattleServer, didFailWith error: Error) {
-        
-    }
-    
-    
-    
-    
-}
-
-// MARK: - PokemonBattleServerManagerDelegate
-
-extension BattleMatchServerTableViewController: PokemonBattleServerManagerDelegate {
-    
-    public final func manager(
-        _ manager: PokemonBattleServerManager,
-        didJoin player: BattlePlayer
+    public func server(
+        _ server: TurnBasedBattleServer,
+        didFailWith error: Error
     ) {
         
-        joinedPlayers.append(player)
-        
-        tableView.reloadData()
-        
     }
-    
-    public final func manager(
-        _ manager: PokemonBattleServerManager,
-        didFailWith error: Error
-    ) { print("\(error)") }
     
 }

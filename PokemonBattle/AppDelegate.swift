@@ -17,17 +17,9 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: Property
     
-    public final let playerId = UUID().uuidString
-    
     public final var window: UIWindow?
     
     public final var realm: Realm?
-    
-    public final var player: BattlePlayerRealmObject?
-    
-    public final var record: BattleRecordRealmObject?
-    
-    public final var client: TurnBasedBattleServer?
     
     public final var realmServerDataProvider: RealmBattleServerDataProvider?
     
@@ -85,10 +77,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-//        window.rootViewController = makeBattleMatchServerViewController()
-        
-//        window.rootViewController = makeBattleMatchClientViewController()
-        
         window.rootViewController = UIViewController()
         
         window.makeKeyAndVisible()
@@ -132,7 +120,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard
                     let user = user
-                    else { fatalError() }
+                else { fatalError() }
                 
                 DispatchQueue.main.async {
                     
@@ -157,54 +145,24 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         self.realmServerDataProvider = realmServerDataProvider
                         
-//                        try! realm.write {
-//
-//                            let player = BattlePlayerRealmObject(
-//                                value: [ "id": self.playerId ]
-//                            )
-//
-//                            realm.add(player)
-//
-//                            self.player = player
-//
-//                            let now = Date()
-//
-//                            let record = BattleRecordRealmObject(
-//                                value: [
-//                                    "id": UUID().uuidString,
-//                                    "createdAtDate": now.addingTimeInterval(-20.0),
-//                                    "updatedAtDate": now.addingTimeInterval(-20.0)
-//                                ]
-//                            )
-//
-//                            record.owner = player
-//
-//                            realm.add(record)
-//
-//                            self.record = record
-//
-//                        }
-                        
                         // Server
-                        self.record = realm.object(
+                        let record = realm.object(
                             ofType: BattleRecordRealmObject.self,
                             forPrimaryKey: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8"
-                        )
+                        )!
 
-                        self.player = realm.object(
+                        let owner = realm.object(
                             ofType: BattlePlayerRealmObject.self,
                             forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
+                        )!
+                        
+                        let battleMatchServerTableViewController = BattleMatchServerTableViewController(
+                            dataProvider: realmServerDataProvider,
+                            owner: PokemonBattlePlayer(owner),
+                            record: PokemonBattleRecord(record)
                         )
 
-                        self.window?.rootViewController = self.makeBattleMatchServerViewController()
-                        
-                        // Client
-//                        self.player = realm.object(
-//                            ofType: BattlePlayerRealmObject.self,
-//                            forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
-//                        )
-//
-//                        self.window?.rootViewController = self.makeBattleMatchClientViewController()
+                        self.window?.rootViewController = UINavigationController(rootViewController: battleMatchServerTableViewController)
                         
                     }
                     catch { fatalError("\(error)") }
@@ -216,72 +174,43 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    fileprivate final func makeBattleMatchServerViewController() -> UIViewController {
-        
-        let battleMatchServerTableViewController = BattleMatchServerTableViewController(
-            serverManager: PokemonBattleServerManager(
-                dataProvider: realmServerDataProvider!,
-                record: PokemonBattleRecord(record!)
-            )
-        )
-        
-        battleMatchServerTableViewController.serverDataProvider = realmServerDataProvider
-        
-//        battleMatchServerTableViewController.controllerDelegate = self
-        
-        return UINavigationController(rootViewController: battleMatchServerTableViewController)
-        
-    }
-    
-    fileprivate final func makeBattleMatchClientViewController() -> UIViewController {
-        
-        let battleMatchClientTableViewController = BattleMatchClientTableViewController(style: .plain)
-        
-        battleMatchClientTableViewController.matchDataProvider = realmBattleMatchDataProvider
-        
-        battleMatchClientTableViewController.controllerDelegate = self
-        
-        return UINavigationController(rootViewController: battleMatchClientTableViewController)
-        
-    }
-    
-    fileprivate final func makeBattleViewController(with record: TurnBasedBattleRecord) -> UIViewController {
-        
-        let pikachu = try! PokemonGenerator.make(Pikachu.self)
-        
-        let charmander = try! PokemonGenerator.make(Charmander.self)
-        
-        let context = PokemonBattleContext(
-            storage: [
-                pikachu.id: BattlePokemon(
-                    pikachu,
-                    role: .home
-                ),
-                charmander.id: BattlePokemon(
-                    charmander,
-                    role: .guest
-                )
-            ]
-        )
-        
-        let server = TurnBasedBattleServer(
-            dataProvider: realmServerDataProvider!,
-            player: PokemonBattlePlayer(player!),
-            record: record
-        )
-
-        let pokemonBattleViewController = PokemonBattleViewController(
-            server: server,
-            homeBattlePokemonId: pikachu.id,
-            homeBattlePokemonImage: #imageLiteral(resourceName: "Pikachu"),
-            guestBattlePokemonId: charmander.id,
-            guestBattlePokemonImage: #imageLiteral(resourceName: "Charmander"),
-            context: context
-        )
-
-        return UINavigationController(rootViewController: pokemonBattleViewController)
-        
-    }
+//    fileprivate final func makeBattleViewController(with record: TurnBasedBattleRecord) -> UIViewController {
+//
+//        let pikachu = try! PokemonGenerator.make(Pikachu.self)
+//
+//        let charmander = try! PokemonGenerator.make(Charmander.self)
+//
+//        let context = PokemonBattleContext(
+//            storage: [
+//                pikachu.id: BattlePokemon(
+//                    pikachu,
+//                    role: .home
+//                ),
+//                charmander.id: BattlePokemon(
+//                    charmander,
+//                    role: .guest
+//                )
+//            ]
+//        )
+//
+//        let server = TurnBasedBattleServer(
+//            dataProvider: realmServerDataProvider!,
+//            player: PokemonBattlePlayer(player!),
+//            record: record
+//        )
+//
+//        let pokemonBattleViewController = PokemonBattleViewController(
+//            server: server,
+//            homeBattlePokemonId: pikachu.id,
+//            homeBattlePokemonImage: #imageLiteral(resourceName: "Pikachu"),
+//            guestBattlePokemonId: charmander.id,
+//            guestBattlePokemonImage: #imageLiteral(resourceName: "Charmander"),
+//            context: context
+//        )
+//
+//        return UINavigationController(rootViewController: pokemonBattleViewController)
+//
+//    }
 
 }
 
@@ -294,17 +223,17 @@ extension AppDelegate: BattleMatchClientTableViewControllerDelegate {
         connectTo match: BattleMatch
     ) {
         
-        let record = match as! PokemonBattleRecord
-        
-        client = TurnBasedBattleServer(
-            dataProvider: realmServerDataProvider!,
-            player: PokemonBattlePlayer(player!),
-            record: record
-        )
-        
-        client!.respond(
-            to: PlayerJoinBattleRequest(playerId: player!.id!)
-        )
+//        let record = match as! PokemonBattleRecord
+//
+//        client = TurnBasedBattleServer(
+//            dataProvider: realmServerDataProvider!,
+//            player: PokemonBattlePlayer(player!),
+//            record: record
+//        )
+//
+//        client!.respond(
+//            to: PlayerJoinBattleRequest(playerId: player!.id!)
+//        )
 //
 //        window?.rootViewController = makeBattleViewController(with: record)
         

@@ -21,7 +21,29 @@ public final class BattleMatchLandingViewController: UIViewController {
     
     @IBAction public final func createBattle(_ sender: Any) {
         
-        print(#function)
+        guard
+            let matchDataProvider = matchDataProvider
+        else {
+            
+            // Todo: error handling
+            
+            return
+                
+        }
+        
+        let match = matchDataProvider.makeMatch()
+        
+        let server = matchDataProvider.makeServer(for: match)
+        
+        let matchLobbyViewController = BattleMatchLobbyViewController(server: server)
+        
+        let navigationController = UINavigationController(rootViewController: matchLobbyViewController)
+        
+        present(
+            navigationController,
+            animated: true,
+            completion: nil
+        )
         
     }
     

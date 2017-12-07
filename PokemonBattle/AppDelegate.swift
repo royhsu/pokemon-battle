@@ -148,6 +148,12 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                             ofType: BattlePlayerRealmObject.self,
                             forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
                         )!
+
+                        // Server
+//                        let player = realm.object(
+//                            ofType: BattlePlayerRealmObject.self,
+//                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
+//                        )!
                         
                         let realmMatchDataProvider = RealmBattleMatchDataProvider(
                             realm: realm,
@@ -164,25 +170,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         matchLandingViewController.matchDataProvider = realmMatchDataProvider
                         
                         self.window?.rootViewController = UINavigationController(rootViewController: matchLandingViewController)
-                        
-                        // Server
-//                        let record = realm.object(
-//                            ofType: BattleRecordRealmObject.self,
-//                            forPrimaryKey: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8"
-//                        )!
-//
-//                        let owner = realm.object(
-//                            ofType: BattlePlayerRealmObject.self,
-//                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
-//                        )!
-//
-//                        let matchServerViewController = BattleMatchServerTableViewController(
-//                            dataProvider: realmServerDataProvider,
-//                            owner: PokemonBattlePlayer(owner),
-//                            record: PokemonBattleRecord(record)
-//                        )
-//
-//                        self.window?.rootViewController = UINavigationController(rootViewController: matchServerViewController)
                         
                     }
                     catch { fatalError("\(error)") }
@@ -233,36 +220,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
 
 }
-
-// MARK: - BattleMatchClientTableViewControllerDelegate
-
-//extension AppDelegate: BattleMatchSearchViewControllerDelegate {
-//
-//    public func controller(
-//        _ controller: BattleMatchSearchViewController,
-//        connectTo match: BattleMatch
-//    ) {
-//
-//        let player = realm!.object(
-//            ofType: BattlePlayerRealmObject.self,
-//            forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
-//        )!
-//
-//        let record = match as! PokemonBattleRecord
-//
-//        client = TurnBasedBattleServer(
-//            dataProvider: realmServerDataProvider!,
-//            player: PokemonBattlePlayer(player),
-//            record: record
-//        )
-//
-//        client!.serverDelegate = self
-//
-//        client!.resume()
-//
-//    }
-//
-//}
 
 extension AppDelegate: TurnBasedBattleServerDelegate {
     

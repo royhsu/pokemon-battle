@@ -1,17 +1,17 @@
 //
-//  BattleMatchServerTableViewController.swift
+//  BattleMatchLobbyViewController.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 05/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleMatchServerTableViewController
+// MARK: - BattleMatchLobbyViewController
 
 import UIKit
 import TinyBattleKit
 
-public final class BattleMatchServerTableViewController: UITableViewController {
+public final class BattleMatchLobbyViewController: UITableViewController {
 
     // MARK: Property
     
@@ -19,17 +19,7 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     
     // MARK: Init
     
-    public init(
-        dataProvider: TurnBasedBattleServerDataProvider,
-        owner: BattlePlayer,
-        record: TurnBasedBattleRecord
-    ) {
-        
-        let server = TurnBasedBattleServer(
-            dataProvider: dataProvider,
-            player: owner,
-            record: record
-        )
+    public init(server: TurnBasedBattleServer) {
         
         self.server = server
         
@@ -59,13 +49,16 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     
     fileprivate final func setUpNavigationItem(_ navigationItem: UINavigationItem) {
         
-        navigationItem.title = "Server"
+        navigationItem.title = NSLocalizedString(
+            "Server",
+            comment: ""
+        )
         
 //        let rightBarButtonItem = UIBarButtonItem(
-//            title: "Connect",
+//            title: "Start",
 //            style: .plain,
 //            target: self,
-//            action: #selector(join)
+//            action: #selector(startBattle)
 //        )
 //
 //        rightBarButtonItem.isEnabled = false
@@ -77,15 +70,15 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     fileprivate final func setUpTableView(_ tableView: UITableView) {
         
         tableView.register(
-            BattleMatchClientTableViewCell.self,
-            forCellReuseIdentifier: BattleMatchClientTableViewCell.identifier
+            BattleMatchTableViewCell.self,
+            forCellReuseIdentifier: BattleMatchTableViewCell.identifier
         )
         
     }
     
     // MARK: Action
     
-    @objc public final func join(_ sender: Any) {
+    @objc public final func startBattle(_ sender: Any) {
     
 //        guard
 //            let serverDataProvider = serverDataProvider,
@@ -109,11 +102,7 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     
     // MARK: UITableViewDataSource
     
-    public final override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return server.record.joinedPlayers.count
-        
-    }
+    public final override func numberOfSections(in tableView: UITableView) -> Int { return server.record.joinedPlayers.count }
     
     public final override func tableView(
         _ tableView: UITableView,
@@ -128,9 +117,9 @@ public final class BattleMatchServerTableViewController: UITableViewController {
     -> UITableViewCell {
             
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: BattleMatchClientTableViewCell.identifier,
+            withIdentifier: BattleMatchTableViewCell.identifier,
             for: indexPath
-        ) as! BattleMatchClientTableViewCell
+        ) as! BattleMatchTableViewCell
         
         let player = server.record.joinedPlayers[indexPath.section]
             
@@ -144,16 +133,12 @@ public final class BattleMatchServerTableViewController: UITableViewController {
 
 // MARK: - TurnBasedBattleServerDelegate
 
-extension BattleMatchServerTableViewController: TurnBasedBattleServerDelegate {
+extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didUpdate record: TurnBasedBattleRecord
-    ) {
-       
-        tableView.reloadData()
-        
-    }
+    ) { tableView.reloadData() }
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         

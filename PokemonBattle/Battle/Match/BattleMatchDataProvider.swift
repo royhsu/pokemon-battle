@@ -14,6 +14,8 @@ public protocol BattleMatchDataProvider: class {
     
     var currentPlayer: BattlePlayer { get }
     
+    func makeMatch() -> BattleMatch
+    
     func makeServer(for match: BattleMatch) -> TurnBasedBattleServer
     
     func numberOfMatches() -> Int

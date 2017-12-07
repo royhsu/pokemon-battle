@@ -1,16 +1,16 @@
 //
-//  BattleMatchClientTableViewCell.swift
+//  BattleMatchTableViewCell.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 05/12/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleMatchClientTableViewCell
+// MARK: - BattleMatchTableViewCell
 
 import UIKit
 
-public final class BattleMatchClientTableViewCell: UITableViewCell {
+public final class BattleMatchTableViewCell: UITableViewCell {
     
     // MARK: Property
     

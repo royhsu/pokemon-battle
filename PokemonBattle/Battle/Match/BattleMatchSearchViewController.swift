@@ -118,8 +118,8 @@ public final class BattleMatchSearchViewController: UITableViewController {
     fileprivate final func setUpTableView(_ tableView: UITableView) {
         
         tableView.register(
-            BattleMatchClientTableViewCell.self,
-            forCellReuseIdentifier: BattleMatchClientTableViewCell.identifier
+            BattleMatchTableViewCell.self,
+            forCellReuseIdentifier: BattleMatchTableViewCell.identifier
         )
         
     }
@@ -173,9 +173,9 @@ public final class BattleMatchSearchViewController: UITableViewController {
     -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: BattleMatchClientTableViewCell.identifier,
+            withIdentifier: BattleMatchTableViewCell.identifier,
             for: indexPath
-        ) as! BattleMatchClientTableViewCell
+        ) as! BattleMatchTableViewCell
         
         if let match = matchDataProvider?.match(at: indexPath.section) {
             

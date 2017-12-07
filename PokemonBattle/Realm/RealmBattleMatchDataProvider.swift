@@ -80,6 +80,17 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     // MARK: BattleMatchDataProvider
     
+    public final func makeMatch() -> BattleMatch {
+        
+        let record = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8"
+        )!
+        
+        return PokemonBattleRecord(record)
+        
+    }
+    
     public final func makeServer(for match: BattleMatch) -> TurnBasedBattleServer {
         
         let record = match as! PokemonBattleRecord

@@ -157,7 +157,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
             
             record.readyPlayers.removeAll()
             
-             Todo: should remove involved players for the current turn?
+            // Todo: should remove involved players for the current turn?
             
             record.updatedAtDate = Date()
             

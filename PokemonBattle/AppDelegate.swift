@@ -147,6 +147,12 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         self.realmServerDataProvider = realmServerDataProvider
                         
+                        let matchStoryboard = UIStoryboard(name: "Match", bundle: nil)
+                        
+                        let matchLandingViewController = matchStoryboard.instantiateViewController(withIdentifier: "BattleMatchLandingViewController") as! BattleMatchLandingViewController
+                        
+                        self.window?.rootViewController = UINavigationController(rootViewController: matchLandingViewController)
+                        
                         // Server
 //                        let record = realm.object(
 //                            ofType: BattleRecordRealmObject.self,
@@ -169,13 +175,13 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
 //                        return
                         
                         // Client
-                        let matchClientViewController = BattleMatchClientTableViewController()
-                        
-                        matchClientViewController.matchDataProvider = realmBattleMatchDataProvider
-                        
-                        matchClientViewController.controllerDelegate = self
-                        
-                        self.window?.rootViewController = UINavigationController(rootViewController: matchClientViewController)
+//                        let matchClientViewController = BattleMatchClientTableViewController()
+//
+//                        matchClientViewController.matchDataProvider = realmBattleMatchDataProvider
+//
+//                        matchClientViewController.controllerDelegate = self
+//
+//                        self.window?.rootViewController = UINavigationController(rootViewController: matchClientViewController)
                         
                     }
                     catch { fatalError("\(error)") }

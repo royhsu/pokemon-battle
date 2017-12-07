@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Battle Match Landing View Controller-->
+        <scene sceneID="7TD-f1-IdG">
+            <objects>
+                <viewController storyboardIdentifier="BattleMatchLandingViewController" id="Hhf-8O-2GT" customClass="BattleMatchLandingViewController" customModule="PokemonBattle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bex-iw-IQK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="YEY-kF-Am5">
+                                <rect key="frame" x="20" y="288" width="335" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5V-r6-PL4">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                        <state key="normal" title="Create A Battle"/>
+                                        <connections>
+                                            <action selector="createBattle:" destination="Hhf-8O-2GT" eventType="touchUpInside" id="m6a-51-ald"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Id8-WU-Na4">
+                                        <rect key="frame" x="0.0" y="60" width="335" height="30"/>
+                                        <state key="normal" title="Search Battles"/>
+                                        <connections>
+                                            <action selector="searchBattles" destination="Hhf-8O-2GT" eventType="touchUpInside" id="Ro6-D2-t4c"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YEY-kF-Am5" firstAttribute="centerY" secondItem="Bex-iw-IQK" secondAttribute="centerY" id="JzG-RU-a6u"/>
+                            <constraint firstItem="YEY-kF-Am5" firstAttribute="leading" secondItem="Mw2-AR-zco" secondAttribute="leading" constant="20" id="VXZ-pZ-mqL"/>
+                            <constraint firstItem="YEY-kF-Am5" firstAttribute="centerX" secondItem="Bex-iw-IQK" secondAttribute="centerX" id="dWN-PT-eaR"/>
+                            <constraint firstItem="Mw2-AR-zco" firstAttribute="trailing" secondItem="YEY-kF-Am5" secondAttribute="trailing" constant="20" id="qHi-Km-YVQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mw2-AR-zco"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XZr-K4-IMh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-383" y="-23"/>
+        </scene>
+    </scenes>
+</document>

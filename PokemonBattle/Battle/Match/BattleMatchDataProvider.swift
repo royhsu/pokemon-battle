@@ -8,7 +8,13 @@
 
 // MARK: - BattleMatchDataProvider
 
+import TinyBattleKit
+
 public protocol BattleMatchDataProvider: class {
+    
+    var currentPlayer: BattlePlayer { get }
+    
+    func connect(to match: BattleMatch) -> Promise<TurnBasedBattleServer>
     
     func numberOfMatches() -> Int
     

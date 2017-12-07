@@ -50,7 +50,7 @@
 		B0A676561FD1389000278CBE /* PokemonBattleContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676551FD1389000278CBE /* PokemonBattleContext.swift */; };
 		B0A676611FD13DB100278CBE /* LightningPokemonSkillProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676601FD13DB100278CBE /* LightningPokemonSkillProvider.swift */; };
 		B0A676681FD1597800278CBE /* PokemonBattleContextError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A676671FD1597800278CBE /* PokemonBattleContextError.swift */; };
-		B0B1B66F1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B66E1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift */; };
+		B0B1B66F1FD63FFE0033A316 /* BattleMatchSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B66E1FD63FFE0033A316 /* BattleMatchSearchViewController.swift */; };
 		B0B1B6711FD640C70033A316 /* BattleMatchClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B6701FD640C70033A316 /* BattleMatchClientTableViewCell.swift */; };
 		B0B1B6731FD641690033A316 /* BattleMatchDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B6721FD641690033A316 /* BattleMatchDataProvider.swift */; };
 		B0B1B6751FD641C60033A316 /* BattleMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B6741FD641C60033A316 /* BattleMatch.swift */; };
@@ -154,7 +154,7 @@
 		B0A676551FD1389000278CBE /* PokemonBattleContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleContext.swift; sourceTree = "<group>"; };
 		B0A676601FD13DB100278CBE /* LightningPokemonSkillProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningPokemonSkillProvider.swift; sourceTree = "<group>"; };
 		B0A676671FD1597800278CBE /* PokemonBattleContextError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleContextError.swift; sourceTree = "<group>"; };
-		B0B1B66E1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatchClientTableViewController.swift; sourceTree = "<group>"; };
+		B0B1B66E1FD63FFE0033A316 /* BattleMatchSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatchSearchViewController.swift; sourceTree = "<group>"; };
 		B0B1B6701FD640C70033A316 /* BattleMatchClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatchClientTableViewCell.swift; sourceTree = "<group>"; };
 		B0B1B6721FD641690033A316 /* BattleMatchDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatchDataProvider.swift; sourceTree = "<group>"; };
 		B0B1B6741FD641C60033A316 /* BattleMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleMatch.swift; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				B020C8AE1FD8D00A00BBE17A /* Match.storyboard */,
-				B0B1B66E1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift */,
+				B0B1B66E1FD63FFE0033A316 /* BattleMatchSearchViewController.swift */,
 				B0B1B6701FD640C70033A316 /* BattleMatchClientTableViewCell.swift */,
 				B0B1B6721FD641690033A316 /* BattleMatchDataProvider.swift */,
 				B0B1B6741FD641C60033A316 /* BattleMatch.swift */,
@@ -625,7 +625,7 @@
 				B0D1192B1FD652210024C27E /* PokemonBattleRecord+BattleMatch.swift in Sources */,
 				B04272AF1FD29C6900ED3D74 /* RealmBattleServerDataProvider.swift in Sources */,
 				B00DCE231FD686C00024185D /* NewPokemonBattleViewController.swift in Sources */,
-				B0B1B66F1FD63FFE0033A316 /* BattleMatchClientTableViewController.swift in Sources */,
+				B0B1B66F1FD63FFE0033A316 /* BattleMatchSearchViewController.swift in Sources */,
 				B0A676681FD1597800278CBE /* PokemonBattleContextError.swift in Sources */,
 				B041FA6F1FC2ABB000421C05 /* AppDelegate.swift in Sources */,
 				B00DCE291FD6DB760024185D /* BattleMatchServerTableViewController.swift in Sources */,

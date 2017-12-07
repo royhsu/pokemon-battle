@@ -10,12 +10,17 @@
 
 import Foundation
 import RealmSwift
+import TinyBattleKit
 
 public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     // MARK: Property
     
-    public final unowned let realm: Realm
+    public final let realm: Realm
+    
+    public final let serverDataProvider: TurnBasedBattleServerDataProvider
+    
+    public final let currentPlayer: BattlePlayer
     
     private final var records: Results<BattleRecordRealmObject>
     
@@ -23,11 +28,19 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     // MARK: Init
     
-    public init(realm: Realm) {
+    public init(
+        realm: Realm,
+        serverDataProvider: TurnBasedBattleServerDataProvider,
+        currentPlayer: BattlePlayer
+    ) {
         
         self.realm = realm
         
-        self.records = RealmBattleMatchDataProvider.fetchRecords(with: realm)
+        self.serverDataProvider = serverDataProvider
+        
+        self.records = type(of: self).fetchRecords(with: realm)
+        
+        self.currentPlayer = currentPlayer
         
         self.notificationToken = records.observe { change in
         
@@ -37,7 +50,7 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
                 
             case .update:
                 
-                self.records = RealmBattleMatchDataProvider.fetchRecords(with: realm)
+                self.records = type(of: self).fetchRecords(with: realm)
                 
             case .error(let error):
                 
@@ -49,7 +62,7 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
         
     }
     
-    fileprivate static func fetchRecords(with realm: Realm) -> Results<BattleRecordRealmObject> {
+    public static func fetchRecords(with realm: Realm) -> Results<BattleRecordRealmObject> {
         
 //        let serverOnlineDate = Date().addingTimeInterval(-10.0)
         
@@ -66,6 +79,24 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     deinit { notificationToken?.invalidate() }
     
     // MARK: BattleMatchDataProvider
+    
+    public final func connect(to match: BattleMatch) -> Promise<TurnBasedBattleServer> {
+        
+        let record = match as! PokemonBattleRecord
+        
+        return Promise(in: .main) { fulfull, _, _ in
+        
+            let server = TurnBasedBattleServer(
+                dataProvider: self.serverDataProvider,
+                player: self.currentPlayer,
+                record: record
+            )
+            
+            fulfull(server)
+            
+        }
+        
+    }
     
     public final func numberOfMatches() -> Int { return records.count }
     

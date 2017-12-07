@@ -50,20 +50,29 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     fileprivate final func setUpNavigationItem(_ navigationItem: UINavigationItem) {
         
         navigationItem.title = NSLocalizedString(
-            "Server",
+            "Lobby",
             comment: ""
         )
         
-//        let rightBarButtonItem = UIBarButtonItem(
-//            title: "Start",
-//            style: .plain,
-//            target: self,
-//            action: #selector(startBattle)
-//        )
-//
-//        rightBarButtonItem.isEnabled = false
-//
-//        navigationItem.rightBarButtonItem = rightBarButtonItem
+        let rightBarButtonItem = UIBarButtonItem(
+            title:
+                server.isOwner
+                ? NSLocalizedString(
+                    "Battle",
+                    comment: ""
+                )
+                : NSLocalizedString(
+                    "Ready",
+                    comment: ""
+                ),
+            style: .plain,
+            target: self,
+            action: #selector(startBattle)
+        )
+
+        rightBarButtonItem.isEnabled = !server.isOwner
+
+        navigationItem.rightBarButtonItem = rightBarButtonItem
         
     }
     
@@ -80,6 +89,21 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     
     @objc public final func startBattle(_ sender: Any) {
     
+        if server.isOwner {
+            
+            
+            
+        }
+        else {
+            
+            // Todo: add ability to cancel ready.
+            
+            server.respond(
+                to: PlayerReadyBattleRequest(playerId: server.player.id)
+            )
+            
+        }
+        
 //        guard
 //            let serverDataProvider = serverDataProvider,
 //            let player = serverDataProvider.fetchPlayer(id: "24E0AD21-DA77-403C-83B4-549333DFD76F"),
@@ -125,6 +149,13 @@ public final class BattleMatchLobbyViewController: UITableViewController {
             
         cell.textLabel?.text = "Player: \(player.id)"
         
+        let isPlayerReady = server.record.readyPlayers.contains { $0.id == player.id }
+        
+        cell.accessoryType =
+            isPlayerReady
+            ? .checkmark
+            : .none
+        
         return cell
             
     }
@@ -138,7 +169,33 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didUpdate record: TurnBasedBattleRecord
-    ) { tableView.reloadData() }
+    ) {
+        
+        tableView.reloadData()
+        
+        if server.isOwner {
+        
+            let joinedPlayerIds = server.record.joinedPlayers.map { $0.id }
+            
+            let readyPlayerIds = server.record.readyPlayers.map { $0.id }
+            
+            let isBattleReady =
+                (joinedPlayerIds == readyPlayerIds)
+                && !joinedPlayerIds.isEmpty
+                && !readyPlayerIds.isEmpty
+
+            navigationItem.rightBarButtonItem?.isEnabled = isBattleReady
+            
+        }
+        else {
+            
+            let isPlayerReady = server.record.readyPlayers.contains { $0.id == server.player.id }
+            
+            navigationItem.rightBarButtonItem?.isEnabled = !isPlayerReady
+            
+        }
+        
+    }
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
@@ -171,9 +228,7 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didRespondTo request: BattleRequest
-    ) {
-        
-    }
+    ) { }
     
     public func server(
         _ server: TurnBasedBattleServer,

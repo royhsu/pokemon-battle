@@ -82,6 +82,8 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     public final func makeMatch() -> BattleMatch {
         
+        // Todo: create new match
+        
         let record = realm.object(
             ofType: BattleRecordRealmObject.self,
             forPrimaryKey: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8"

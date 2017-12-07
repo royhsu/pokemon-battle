@@ -215,6 +215,16 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
             to: PlayerJoinBattleRequest(playerId: server.player.id)
         )
         
+        let matchLobbyViewController = BattleMatchLobbyViewController(server: server)
+        
+        let navigationController = UINavigationController(rootViewController: matchLobbyViewController)
+        
+        present(
+            navigationController,
+            animated: false,
+            completion: nil
+        )
+        
     }
     
     public final func server(

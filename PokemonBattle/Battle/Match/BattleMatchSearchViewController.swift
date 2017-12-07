@@ -32,7 +32,31 @@ public final class BattleMatchSearchViewController: UITableViewController {
         
         didSet {
             
-            navigationItem.rightBarButtonItem?.isEnabled = (selectedMatch != nil)
+            let isConnecting = (connectingServer != nil)
+            
+            navigationItem.rightBarButtonItem?.isEnabled = !isConnecting
+            
+        }
+        
+    }
+    
+    private final var connectingServer: TurnBasedBattleServer? {
+        
+        didSet {
+            
+            let isConnecting = (connectingServer != nil)
+            
+            navigationItem.rightBarButtonItem?.isEnabled = !isConnecting
+                
+            navigationItem.leftBarButtonItem?.isEnabled = !isConnecting
+            
+            tableView.isUserInteractionEnabled = !isConnecting
+            
+            if !isConnecting {
+                
+                // Todo: finish loading
+                
+            }
             
         }
         
@@ -105,17 +129,17 @@ public final class BattleMatchSearchViewController: UITableViewController {
     @objc final func connectToMatch(_ sender: Any) {
         
         guard
-            let match = selectedMatch
+            let match = selectedMatch,
+            let server = matchDataProvider?.makeServer(for: match)
         else { return }
         
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        
-        navigationItem.leftBarButtonItem?.isEnabled = false
+        // Todo: add loading indicator
 
-        controllerDelegate?.controller(
-            self,
-            didSelect: match
-        )
+        connectingServer = server
+        
+        server.serverDelegate = self
+        
+        server.resume()
         
     }
     
@@ -170,11 +194,115 @@ public final class BattleMatchSearchViewController: UITableViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         
-        if let match = matchDataProvider?.match(at: indexPath.section) {
+        selectedMatch = matchDataProvider?.match(at: indexPath.section)
+        
+    }
+    
+}
+
+// MARK: - TurnBasedBattleServerDelegate
+
+extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didUpdate record: TurnBasedBattleRecord
+    ) { }
+    
+    public final func serverDidStart(_ server: TurnBasedBattleServer) {
+        
+        server.respond(
+            to: PlayerJoinBattleRequest(playerId: server.player.id)
+        )
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didStartTurn turn: TurnBasedBattleTurn
+    ) {
+        
+        // Todo: exception handling
+        
+        connectingServer = nil
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didEndTurn turn: TurnBasedBattleTurn
+    ) {
+        
+        // Todo: exception handling
+        
+        connectingServer = nil
+        
+    }
+    
+    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool {
+        
+        return false
+        
+    }
+    
+    public final func serverDidEnd(_ server: TurnBasedBattleServer) {
+        
+        // Todo: exception handling
+        
+        connectingServer = nil
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didRespondTo request: BattleRequest
+    ) {
+        
+        guard
+            let currentPlayer = matchDataProvider?.currentPlayer,
+            request is PlayerJoinBattleRequest
+        else { return }
+        
+        let hasCurrentPlayerJoined = server.record.joinedPlayers.contains { $0.id == currentPlayer.id }
+        
+        if hasCurrentPlayerJoined {
             
-            selectedMatch = match
+            // Todo: make transition to lobby.
+            print("Joined the match successfully.")
             
         }
+        
+    }
+    
+    public final func server(
+        _ server: TurnBasedBattleServer,
+        didFailWith error: Error
+    ) {
+        
+        connectingServer = nil
+        
+        let alertController = UIAlertController(
+            title: nil,
+            message: "\(error)",
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(
+            title: NSLocalizedString(
+                "OK",
+                comment: ""
+            ),
+            style: .cancel,
+            handler: nil
+        )
+        
+        alertController.addAction(okAction)
+        
+        present(
+            alertController,
+            animated: true,
+            completion: nil
+        )
         
     }
     

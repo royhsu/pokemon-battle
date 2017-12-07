@@ -80,21 +80,15 @@ public final class RealmBattleMatchDataProvider: BattleMatchDataProvider {
     
     // MARK: BattleMatchDataProvider
     
-    public final func connect(to match: BattleMatch) -> Promise<TurnBasedBattleServer> {
+    public final func makeServer(for match: BattleMatch) -> TurnBasedBattleServer {
         
         let record = match as! PokemonBattleRecord
         
-        return Promise(in: .main) { fulfull, _, _ in
-        
-            let server = TurnBasedBattleServer(
-                dataProvider: self.serverDataProvider,
-                player: self.currentPlayer,
-                record: record
-            )
-            
-            fulfull(server)
-            
-        }
+        return TurnBasedBattleServer(
+            dataProvider: serverDataProvider,
+            player: currentPlayer,
+            record: record
+        )
         
     }
     

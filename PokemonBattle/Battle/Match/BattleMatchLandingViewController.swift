@@ -66,59 +66,6 @@ extension BattleMatchLandingViewController: BattleMatchSearchViewControllerDeleg
         didSelect match: BattleMatch
     ) {
         
-        guard
-            let matchDataProvider = matchDataProvider
-        else {
-            
-            // Todo: error handling
-            
-            return
-                
-        }
-        
-        matchDataProvider
-            .connect(to: match)
-            .then { server in
-                
-                print(#function, server)
-//
-//                controller.dismiss(
-//                    animated: false,
-//                    completion: nil
-//                )
-                
-            }
-            .catch { error in
-                
-                controller.navigationItem.rightBarButtonItem?.isEnabled = true
-                
-                controller.navigationItem.leftBarButtonItem?.isEnabled = true
-                
-                let alertController = UIAlertController(
-                    title: nil,
-                    message: error.localizedDescription,
-                    preferredStyle: .alert
-                )
-                
-                let okAction = UIAlertAction(
-                    title: NSLocalizedString(
-                        "OK",
-                        comment: ""
-                    ),
-                    style: .cancel,
-                    handler: nil
-                )
-                
-                alertController.addAction(okAction)
-                
-                controller.present(
-                    alertController,
-                    animated: true,
-                    completion: nil
-                )
-                
-        }
-        
     }
     
 }

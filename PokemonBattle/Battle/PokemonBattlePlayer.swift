@@ -16,9 +16,20 @@ public struct PokemonBattlePlayer: BattlePlayer {
     
     public let id: String
     
+    public let entities: [BattleEntity]
+    
     // MARK: Init
     
-    public init(id: String) { self.id = id }
+    public init(
+        id: String,
+        entities: [BattleEntity]
+    ) {
+        
+        self.id = id
+        
+        self.entities = entities
+        
+    }
     
 }
 
@@ -29,7 +40,8 @@ public extension PokemonBattlePlayer {
     public init(_ player: BattlePlayerRealmObject) {
         
         self.init(
-            id: player.id!
+            id: player.id!,
+            entities: player.entities.map(BattlePokemon.init)
         )
         
     }

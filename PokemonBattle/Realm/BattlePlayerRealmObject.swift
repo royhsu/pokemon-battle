@@ -17,6 +17,8 @@ public final class BattlePlayerRealmObject: Object {
     
     @objc public dynamic var id: String?
     
+    public final let entities = List<BattleEntityRealmObject>()
+    
     public static override func primaryKey() -> String? { return "id" }
     
 }

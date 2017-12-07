@@ -8,10 +8,12 @@
 
 // MARK: - BattlePokemonRole
 
-public enum BattlePokemonRole {
+public enum BattlePokemonRole: String {
     
     // MARK: Case
     
-    case home, guest
+    case home = "HOME"
+    
+    case guest = "GUEST"
     
 }

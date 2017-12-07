@@ -30,8 +30,6 @@ public struct BattlePokemon: BattleEntity {
     
     public var remainingHealth: Double
     
-    public let role: BattlePokemonRole
-    
     // MARK: Init
     
     public init(
@@ -42,8 +40,7 @@ public struct BattlePokemon: BattleEntity {
         magicResistance: Double,
         speed: Double,
         health: Double,
-        remainingHealth: Double,
-        role: BattlePokemonRole
+        remainingHealth: Double
     ) {
      
         self.id = id
@@ -62,7 +59,26 @@ public struct BattlePokemon: BattleEntity {
         
         self.remainingHealth = remainingHealth
         
-        self.role = role
+    }
+    
+}
+
+// MARK: - Realm
+
+public extension BattlePokemon {
+    
+    public init(_ battlePokemon: BattleEntityRealmObject) {
+        
+        self.init(
+            id: battlePokemon.id!,
+            attack: battlePokemon.attack,
+            armor: battlePokemon.armor,
+            magic: battlePokemon.magic,
+            magicResistance: battlePokemon.magicResistance,
+            speed: battlePokemon.speed,
+            health: battlePokemon.health,
+            remainingHealth: battlePokemon.remainingHealth
+        )
         
     }
     

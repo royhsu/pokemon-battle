@@ -105,13 +105,13 @@ public final class BattleMatchSearchViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = rightBarButtonItem
         
-        let leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .cancel,
-            target: self,
-            action: #selector(cancel)
-        )
-        
-        navigationItem.leftBarButtonItem = leftBarButtonItem
+//        let leftBarButtonItem = UIBarButtonItem(
+//            barButtonSystemItem: .cancel,
+//            target: self,
+//            action: #selector(cancel)
+//        )
+//
+//        navigationItem.leftBarButtonItem = leftBarButtonItem
         
     }
     
@@ -223,13 +223,20 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
         
         let matchLobbyViewController = BattleMatchLobbyViewController(server: server)
         
-        let navigationController = UINavigationController(rootViewController: matchLobbyViewController)
+        matchLobbyViewController.navigationItem.hidesBackButton = true
         
-        present(
-            navigationController,
-            animated: false,
-            completion: nil
+        navigationController?.pushViewController(
+            matchLobbyViewController,
+            animated: false
         )
+        
+//        let navigationController = UINavigationController(rootViewController: matchLobbyViewController)
+//
+//        present(
+//            navigationController,
+//            animated: false,
+//            completion: nil
+//        )
         
     }
     

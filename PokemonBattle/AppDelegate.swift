@@ -23,7 +23,9 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var realmServerDataProvider: RealmBattleServerDataProvider?
     
-    public final var realmMatchDataProvider: RealmBattleMatchDataProvider?
+    public final var serverRealmMatchDataProvider: RealmBattleMatchDataProvider?
+    
+    public final var clientRealmMatchDataProvider: RealmBattleMatchDataProvider?
     
     public final var client: TurnBasedBattleServer?
     
@@ -143,33 +145,52 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         self.realmServerDataProvider = realmServerDataProvider
                         
+                        // Server
+                        let owner = realm.object(
+                            ofType: BattlePlayerRealmObject.self,
+                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
+                        )!
+                        
+                        let serverRealmMatchDataProvider = RealmBattleMatchDataProvider(
+                            realm: realm,
+                            serverDataProvider: realmServerDataProvider,
+                            currentPlayer: PokemonBattlePlayer(owner)
+                        )
+                        
+                        self.serverRealmMatchDataProvider = serverRealmMatchDataProvider
+                        
+                        let match = serverRealmMatchDataProvider.makeMatch()
+                        
+                        let server = serverRealmMatchDataProvider.makeServer(for: match)
+                        
+                        let serverMatchLobbyViewController = BattleMatchLobbyViewController(server: server)
+                        
+                        let serverNavigationController = UINavigationController(rootViewController: serverMatchLobbyViewController)
+                        
                         // Client
                         let player = realm.object(
                             ofType: BattlePlayerRealmObject.self,
                             forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
                         )!
-
-                        // Server
-//                        let player = realm.object(
-//                            ofType: BattlePlayerRealmObject.self,
-//                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
-//                        )!
                         
-                        let realmMatchDataProvider = RealmBattleMatchDataProvider(
+                        let clientRealmMatchDataProvider = RealmBattleMatchDataProvider(
                             realm: realm,
                             serverDataProvider: realmServerDataProvider,
                             currentPlayer: PokemonBattlePlayer(player)
                         )
                         
-                        self.realmMatchDataProvider = realmMatchDataProvider
+                        self.clientRealmMatchDataProvider = clientRealmMatchDataProvider
                         
-                        let matchStoryboard = UIStoryboard(name: "Match", bundle: nil)
+                        let clientMatchSearchViewController = BattleMatchSearchViewController()
                         
-                        let matchLandingViewController = matchStoryboard.instantiateViewController(withIdentifier: "BattleMatchLandingViewController") as! BattleMatchLandingViewController
+                        clientMatchSearchViewController.matchDataProvider = clientRealmMatchDataProvider
                         
-                        matchLandingViewController.matchDataProvider = realmMatchDataProvider
+                        let clientNavigationController = UINavigationController(rootViewController: clientMatchSearchViewController)
                         
-                        self.window?.rootViewController = UINavigationController(rootViewController: matchLandingViewController)
+                        self.window?.rootViewController = ParallelViewController(
+                            leftViewController: serverNavigationController,
+                            rightViewController: clientNavigationController
+                        )
                         
                     }
                     catch { fatalError("\(error)") }

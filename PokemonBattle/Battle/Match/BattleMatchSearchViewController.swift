@@ -212,7 +212,13 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
         server.respond(
-            to: PlayerJoinBattleRequest(playerId: server.player.id)
+            to: PlayerJoinBattleRequest(
+                player: PokemonJoinedBattlePlayer(
+                    id: server.player.id,
+                    entities: [],
+                    actions: []
+                )
+            )
         )
         
         let matchLobbyViewController = BattleMatchLobbyViewController(server: server)

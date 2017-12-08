@@ -10,10 +10,7 @@
 
 public extension BattlePokemon {
     
-    public init(
-        _ pokemon: Pokemon,
-        role: BattlePokemonRole // Todo: unused for now
-    ) {
+    public init(_ pokemon: Pokemon) {
         
         self.init(
             id: pokemon.id,

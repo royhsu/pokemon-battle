@@ -91,7 +91,17 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     
         if server.isOwner {
             
+            let pikachu = try! PokemonGenerator.make(Pikachu.self)
             
+            let ownerBattleEntity = BattlePokemon(pikachu)
+//
+//            server.respond(
+//                to: PlayerRegisterEntityRequest(
+//
+//                )
+//            )
+//
+//            let ownerBattleEntity = BattleEntityRealmObject
             
         }
         else {
@@ -99,7 +109,13 @@ public final class BattleMatchLobbyViewController: UITableViewController {
             // Todo: add ability to cancel ready.
             
             server.respond(
-                to: PlayerReadyBattleRequest(playerId: server.player.id)
+                to: PlayerReadyBattleRequest(
+                    player: PokemonReadyBattlePlayer(
+                        id: server.player.id,
+                        entities: [],
+                        actions: []
+                    )
+                )
             )
             
         }

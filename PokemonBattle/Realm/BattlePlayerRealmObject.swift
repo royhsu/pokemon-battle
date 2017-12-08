@@ -19,6 +19,8 @@ public final class BattlePlayerRealmObject: Object {
     
     public final let entities = List<BattleEntityRealmObject>()
     
+    public final let actions = List<BattleActionRealmObject>()
+    
     public static override func primaryKey() -> String? { return "id" }
     
 }

@@ -174,7 +174,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     }
     
     public final func appendJoinedPlayer(
-        _ player: BattlePlayer,
+        _ player: JoinedBattlePlayer,
         forRecordId id: String
     )
     -> TurnBasedBattleRecord {
@@ -208,7 +208,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     }
     
     public final func appendReadyPlayer(
-        _ player: BattlePlayer,
+        _ player: ReadyBattlePlayer,
         forRecordId id: String
     )
     -> TurnBasedBattleRecord {
@@ -242,7 +242,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     }
     
     public final func appendInvolvedPlayer(
-        _ player: BattlePlayer,
+        _ player: InvolvedBattlePlayer,
         forCurrentTurnOfRecordId recordId: String
     )
     -> TurnBasedBattleRecord {

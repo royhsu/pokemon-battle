@@ -16,13 +16,13 @@ public struct PokemonBattleTurn: TurnBasedBattleTurn {
     
     public let id: String
     
-    public var involvedPlayers: [BattlePlayer]
+    public var involvedPlayers: [InvolvedBattlePlayer]
     
     // MARK: Init
     
     public init(
         id: String,
-        involvedPlayers: [BattlePlayer]
+        involvedPlayers: [InvolvedBattlePlayer]
     ) {
     
         self.id = id
@@ -41,7 +41,7 @@ public extension PokemonBattleTurn {
         
         self.init(
             id: turn.id!,
-            involvedPlayers: turn.invovledPlayers.map(PokemonBattlePlayer.init)
+            involvedPlayers: turn.invovledPlayers.map(PokemonInvolvedBattlePlayer.init)
         )
         
     }

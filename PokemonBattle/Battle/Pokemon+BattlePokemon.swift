@@ -10,10 +10,13 @@
 
 public extension BattlePokemon {
     
-    public init(_ pokemon: Pokemon) {
+    public init(
+        id: String,
+        pokemon: Pokemon
+    ) {
         
         self.init(
-            id: pokemon.id,
+            id: id,
             attack: pokemon.attack,
             armor: pokemon.armor,
             magic: pokemon.magic,

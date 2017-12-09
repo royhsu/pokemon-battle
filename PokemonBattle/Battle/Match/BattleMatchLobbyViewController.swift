@@ -91,43 +91,46 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     
         if server.isOwner {
             
-           
-            
-        }
-        else {
-            
-            // Todo: add ability to cancel ready.
+            let pikachu = try! PokemonGenerator.make(Pikachu.self)
             
             server.respond(
                 to: ReadyBattleRequest(
                     ready: PokemonBattleReady(
                         id: UUID().uuidString,
                         player: server.player,
-                        entities: []
+                        entities: [
+                            BattlePokemon(
+                                id: UUID().uuidString,
+                                pokemon: pikachu
+                            )
+                        ]
+                    )
+                )
+            )
+            
+        }
+        else {
+            
+            // Todo: add ability to cancel ready.
+            let charmander = try! PokemonGenerator.make(Charmander.self)
+            
+            server.respond(
+                to: ReadyBattleRequest(
+                    ready: PokemonBattleReady(
+                        id: UUID().uuidString,
+                        player: server.player,
+                        entities: [
+                            BattlePokemon(
+                                id: UUID().uuidString,
+                                pokemon: charmander
+                            )
+                        ]
                     )
                 )
             )
             
         }
         
-//        guard
-//            let serverDataProvider = serverDataProvider,
-//            let player = serverDataProvider.fetchPlayer(id: "24E0AD21-DA77-403C-83B4-549333DFD76F"),
-//            let record = serverDataProvider.fetchRecord(id: "31CFED91-78A4-4FB6-9A0A-A93F88F692A8")
-//        else { return }
-//
-//        let client = TurnBasedBattleServer(
-//            dataProvider: serverDataProvider,
-//            player: player,
-//            record: record
-//        )
-//
-//        self.client = client
-//
-//        client.serverDelegate = self
-//
-//        client.resume()
-//
     }
     
     // MARK: UITableViewDataSource

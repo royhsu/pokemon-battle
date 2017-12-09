@@ -220,23 +220,6 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
             )
         )
         
-        let matchLobbyViewController = BattleMatchLobbyViewController(server: server)
-        
-        matchLobbyViewController.navigationItem.hidesBackButton = true
-        
-        navigationController?.pushViewController(
-            matchLobbyViewController,
-            animated: false
-        )
-        
-//        let navigationController = UINavigationController(rootViewController: matchLobbyViewController)
-//
-//        present(
-//            navigationController,
-//            animated: false,
-//            completion: nil
-//        )
-        
     }
     
     public final func server(
@@ -289,8 +272,14 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
         
         if hasCurrentPlayerJoined {
             
-            // Todo: make transition to lobby.
-            print("Joined the match successfully.")
+            let matchLobbyViewController = BattleMatchLobbyViewController(server: server)
+            
+            matchLobbyViewController.navigationItem.hidesBackButton = true
+            
+            navigationController?.pushViewController(
+                matchLobbyViewController,
+                animated: false
+            )
             
         }
         

@@ -6,22 +6,6 @@
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - PokemonBattleServerManagerDelegate
-
-//public protocol PokemonBattleServerManagerDelegate: class {
-//
-//    func manager(
-//        _ manager: NewPokemonBattleViewController,
-//        didJoin player: BattlePlayer
-//    )
-//
-//    func manager(
-//        _ manager: NewPokemonBattleViewController,
-//        didFailWith error: Error
-//    )
-//
-//}
-
 // MARK: - PokemonBattleViewController
 
 import UIKit
@@ -37,21 +21,9 @@ public final class NewPokemonBattleViewController: UIViewController {
     
 //    private final var context = PokemonBattleContext(storage: [:])
     
-//    public final weak var managerDelegate: PokemonBattleServerManagerDelegate?
-    
     // MARK: Init
     
-    public init(
-        dataProvider: TurnBasedBattleServerDataProvider,
-        player: BattlePlayer,
-        record: TurnBasedBattleRecord
-    ) {
-        
-        let server = TurnBasedBattleServer(
-            dataProvider: dataProvider,
-            player: player,
-            record: record
-        )
+    public init(server: TurnBasedBattleServer) {
         
         self.server = server
         
@@ -61,7 +33,6 @@ public final class NewPokemonBattleViewController: UIViewController {
         )
         
         // load pokemons for home into context.
-        
         
 //        if context.storage.isEmpty {
 //
@@ -77,9 +48,7 @@ public final class NewPokemonBattleViewController: UIViewController {
         
     }
     
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    public required init?(coder aDecoder: NSCoder) { fatalError("Not implemented.") }
     
     // MARK: - View Life Cycle
     
@@ -88,8 +57,6 @@ public final class NewPokemonBattleViewController: UIViewController {
         super.viewDidLoad()
         
         server.serverDelegate = self
-        
-        server.resume()
         
     }
     
@@ -102,15 +69,9 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didUpdate record: TurnBasedBattleRecord
-    ) {
-        
-    }
+    ) { }
     
-    public final func serverDidStart(_ server: TurnBasedBattleServer) {
-        
-        // waiting for clients
-        
-    }
+    public final func serverDidStart(_ server: TurnBasedBattleServer) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,
@@ -126,27 +87,24 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         
     }
     
-    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool {
+    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool { return true }
     
-        return true
-        
-    }
-    
-    public final func serverDidEnd(_ server: TurnBasedBattleServer) {
-        
-    }
+    public final func serverDidEnd(_ server: TurnBasedBattleServer) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didRespondTo request: BattleRequest
-    ) {
-        
-    }
+    ) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didFailWith error: Error
     ) {
+       
+        print(
+            #function,
+            "\(error)"
+        )
         
     }
     

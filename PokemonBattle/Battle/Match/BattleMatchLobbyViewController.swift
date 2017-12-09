@@ -55,24 +55,34 @@ public final class BattleMatchLobbyViewController: UITableViewController {
         )
         
         let rightBarButtonItem = UIBarButtonItem(
-            title:
-                server.isOwner
-                ? NSLocalizedString(
-                    "Battle",
-                    comment: ""
-                )
-                : NSLocalizedString(
-                    "Ready",
-                    comment: ""
-                ),
+            title: NSLocalizedString(
+                "Ready",
+                comment: ""
+            ),
             style: .plain,
             target: self,
-            action: #selector(startBattle)
+            action: #selector(getReady)
         )
 
-        rightBarButtonItem.isEnabled = !server.isOwner
-
         navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        if server.isOwner {
+        
+            let leftBatButtonItem = UIBarButtonItem(
+                title: NSLocalizedString(
+                    "Battle",
+                    comment: ""
+                ),
+                style: .plain,
+                target: self,
+                action: #selector(startBattle)
+            )
+            
+            leftBatButtonItem.isEnabled = !server.isOwner
+            
+            navigationItem.leftBarButtonItem = leftBatButtonItem
+            
+        }
         
     }
     
@@ -87,7 +97,8 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     
     // MARK: Action
     
-    @objc public final func startBattle(_ sender: Any) {
+    // Todo: add ability to cancel ready.
+    @objc public final func getReady(_ sender: Any) {
     
         if server.isOwner {
             
@@ -111,7 +122,6 @@ public final class BattleMatchLobbyViewController: UITableViewController {
         }
         else {
             
-            // Todo: add ability to cancel ready.
             let charmander = try! PokemonGenerator.make(Charmander.self)
             
             server.respond(
@@ -127,6 +137,18 @@ public final class BattleMatchLobbyViewController: UITableViewController {
                         ]
                     )
                 )
+            )
+            
+        }
+        
+    }
+    
+    @objc public final func startBattle(_ sender: Any) {
+        
+        if server.isOwner {
+            
+            server.respond(
+                to: ContinueBattleRequest(owner: server.player)
             )
             
         }
@@ -184,6 +206,10 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         
         tableView.reloadData()
         
+        let isPlayerReady = server.record.readys.contains { $0.player.id == server.player.id }
+        
+        navigationItem.rightBarButtonItem?.isEnabled = !isPlayerReady
+        
         if server.isOwner {
         
             let joinedPlayerIds = server.record.joineds.map { $0.player.id }
@@ -195,14 +221,7 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
                 && !joinedPlayerIds.isEmpty
                 && !readyPlayerIds.isEmpty
 
-            navigationItem.rightBarButtonItem?.isEnabled = isBattleReady
-            
-        }
-        else {
-            
-            let isPlayerReady = server.record.readys.contains { $0.player.id == server.player.id }
-            
-            navigationItem.rightBarButtonItem?.isEnabled = !isPlayerReady
+            navigationItem.leftBarButtonItem?.isEnabled = isBattleReady
             
         }
         
@@ -230,24 +249,25 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         didStartTurn turn: TurnBasedBattleTurn
     ) {
         
+        let battleViewController = NewPokemonBattleViewController(server: server)
+        
+        battleViewController.navigationItem.hidesBackButton = true
+        
+        navigationController?.pushViewController(
+            battleViewController,
+            animated: false
+        )
+        
     }
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didEndTurn turn: TurnBasedBattleTurn
-    ) {
-        
-    }
+    ) { }
     
-    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool {
-        
-        return false
-        
-    }
+    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool { return false }
     
-    public final func serverDidEnd(_ server: TurnBasedBattleServer) {
-        
-    }
+    public final func serverDidEnd(_ server: TurnBasedBattleServer) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,
@@ -258,6 +278,11 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didFailWith error: Error
     ) {
+       
+        print(
+            #function,
+            "\(error)"
+        )
         
     }
     

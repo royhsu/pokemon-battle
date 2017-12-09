@@ -300,11 +300,64 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
             ofType: BattleRecordRealmObject.self,
             forPrimaryKey: recordId
         )!
-
-        let involved = realm.object(
-            ofType: BattleInvolvedRealmObject.self,
-            forPrimaryKey: involved.id
+        
+        let player = realm.object(
+            ofType: BattlePlayerRealmObject.self,
+            forPrimaryKey: involved.player.id
         )!
+        
+        let entities: [BattleEntityRealmObject] = involved.entities.map { entity in
+            
+            let battlePokemon = entity as! BattlePokemon
+            
+            return
+                realm.object(
+                    ofType: BattleEntityRealmObject.self,
+                    forPrimaryKey: battlePokemon.id
+                )
+                ?? BattleEntityRealmObject(
+                    value: [
+                        "id": battlePokemon.id,
+                        "attack": battlePokemon.attack,
+                        "armor": battlePokemon.armor,
+                        "magic": battlePokemon.magic,
+                        "magicResistance": battlePokemon.magicResistance,
+                        "speed": battlePokemon.speed,
+                        "health": battlePokemon.health,
+                        "remainingHealth": battlePokemon.remainingHealth
+                    ]
+                )
+            
+        }
+        
+        let actions: [BattleActionRealmObject] = involved.actions.map { action in
+            
+            let battleAction = action as! PokemonBattleAction
+            
+            return
+                realm.object(
+                    ofType: BattleActionRealmObject.self,
+                    forPrimaryKey: battleAction.id
+                )
+                ?? BattleActionRealmObject(
+                    value: [ "id": battleAction.id ]
+                )
+            
+        }
+
+        let involved =
+            realm.object(
+                ofType: BattleInvolvedRealmObject.self,
+                forPrimaryKey: involved.id
+            )
+            ?? BattleInvolvedRealmObject(
+                value: [
+                    "id": involved.id,
+                    "player": player,
+                    "entities": entities,
+                    "actions": actions
+                ]
+            )
 
         try! realm.write {
 

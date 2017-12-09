@@ -16,9 +16,30 @@ public struct PokemonBattleAction: BattleAction {
     
     public let id: String
     
+    public let priority: Double
+    
+    public let source: BattleEntity
+    
+    public let destinations: [BattleEntity]
+    
     // MARK: Init
     
-    public init(id: String) { self.id = id }
+    public init(
+        id: String,
+        priority: Double,
+        source: BattleEntity,
+        destinations: [BattleEntity]
+    ) {
+        
+        self.id = id
+        
+        self.priority = priority
+        
+        self.source = source
+        
+        self.destinations = destinations
+        
+    }
     
 }
 
@@ -28,7 +49,12 @@ public extension PokemonBattleAction {
     
     public init(_ action: BattleActionRealmObject) {
         
-        self.init(id: action.id!)
+        self.init(
+            id: action.id!,
+            priority: action.priority,
+            source: BattlePokemon(action.source!),
+            destinations: action.destinations.map(BattlePokemon.init)
+        )
         
     }
     

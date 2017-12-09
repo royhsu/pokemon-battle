@@ -21,6 +21,7 @@ public struct PokemonSkillAnimatorContext: BattleActionAnimatorContext {
     
     public unowned let sourceHPLabel: SKLabelNode
     
+    // Todo: replace with destinationIds
     public let destinationId: String
     
     public unowned let destinationSprite: SKSpriteNode

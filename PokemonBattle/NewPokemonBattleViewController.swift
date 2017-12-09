@@ -18,11 +18,11 @@ public final class NewPokemonBattleViewController: UIViewController {
     
     public final let server: TurnBasedBattleServer
     
-//    private final let system = PokemonBattleSystem()
-    
     private final var context = PokemonBattleContext(
         storage: [:]
     )
+    
+    private final let system = PokemonBattleSystem()
     
     private final let gameView = SKView()
     
@@ -54,6 +54,8 @@ public final class NewPokemonBattleViewController: UIViewController {
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        setUpNavigationItem(navigationItem)
         
         let startScene = SKScene(fileNamed: "BattleStartScene")!
         
@@ -121,6 +123,48 @@ public final class NewPokemonBattleViewController: UIViewController {
         
     }
     
+    // MARK: Set Up
+    
+    fileprivate final func setUpNavigationItem(_ navigationItem: UINavigationItem) {
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: NSLocalizedString(
+                "Skill",
+                comment: ""
+            ),
+            style: .plain,
+            target: self,
+            action: #selector(performSkill)
+        )
+        
+    }
+    
+    // MARK: Action
+    
+    @objc public final func performSkill(_ sender: Any) {
+        
+        // Todo: replace with selected skills by battle entity
+        
+        let battleAction = PokemonBattleAction(
+            id: UUID().uuidString,
+            priority: 100.0 + homeBattlePokemon.speed,
+            source: homeBattlePokemon,
+            destinations: [ guestBattlePokemon ]
+        )
+        
+        server.respond(
+            to: InvolvedBattleRequest(
+                involved: PokemonBattleInvolved(
+                    id: UUID().uuidString,
+                    player: server.player,
+                    entities: context.storage[server.player.id]!,
+                    actions: [ battleAction ]
+                )
+            )
+        )
+        
+    }
+    
 }
 
 // MARK: - TurnBasedBattleServerDelegate
@@ -145,6 +189,57 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didEndTurn turn: TurnBasedBattleTurn
     ) {
+        
+        let actions = turn.involveds.flatMap { $0.actions as! [PokemonBattleAction] }
+        
+        actions.forEach { action in
+            
+            // Todo: source id is player id
+            let sourceId = action.source.id
+            
+            // Todo: destination id is player id
+            let destinationIds = action.destinations.map { $0.id }
+            
+            let lightningSkill = LightningPokemonSkill()
+            
+            let lightningSkillProvider = lightningSkill.makeProvider(
+                id: action.id,
+                priority: action.priority,
+                sourceId: sourceId,
+                destinationIds: destinationIds,
+                context: PokemonSkillAnimatorContext(
+                    sourceId: sourceId,
+                    sourceSprite: battleFieldScene!.homePokemonSpriteNode,
+                    sourceHPLabel: battleFieldScene!.homeHpLabelNode,
+                    destinationId: destinationIds.first!,
+                    destinationSprite: battleFieldScene!.guestPokemonSpriteNode,
+                    destinationHPLabel: battleFieldScene!.guestHpLabelNode
+                )
+            )
+            
+            _ = system.respond(to: lightningSkillProvider)
+            
+        }
+        
+        system
+            .run(with: context)
+            .then { updatedContext in
+                
+                self.context = updatedContext
+                
+                self.battleFieldScene!.updateData()
+                
+            }
+            .catch { error in
+                
+                // Todo: error handling
+                
+                print(
+                    #function,
+                    "\(error)"
+                )
+                
+            }
         
     }
     
@@ -177,6 +272,7 @@ extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
     
     public final var homeBattlePokemon: BattlePokemon {
         
+        // Todo: better handling
         let homePlayerId = server.player.id
         
         return context.storage[homePlayerId]!.first!
@@ -187,9 +283,14 @@ extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
     
     public final var guestBattlePokemon: BattlePokemon {
         
-        let guestPlayerId = server.player.id
+        // Todo: better handling
+        let guestPlayer = server
+            .record
+            .readys
+            .filter { $0.player.id != server.player.id }
+            .first!
         
-        return context.storage[guestPlayerId]!.first!
+        return context.storage[guestPlayer.player.id]!.first!
         
     }
     

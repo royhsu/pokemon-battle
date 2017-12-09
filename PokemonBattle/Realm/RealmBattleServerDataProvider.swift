@@ -331,17 +331,46 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
         }
         
         let actions: [BattleActionRealmObject] = involved.actions.map { action in
-            
+        
             let battleAction = action as! PokemonBattleAction
             
-            return
-                realm.object(
-                    ofType: BattleActionRealmObject.self,
-                    forPrimaryKey: battleAction.id
+            let action = BattleActionRealmObject(
+                value: [ "id": battleAction.id ]
+            )
+            
+            action.priority = battleAction.priority
+            
+            action.source = realm.object(
+                ofType: BattleEntityRealmObject.self,
+                forPrimaryKey: battleAction.source.id
+            )!
+            
+            battleAction.destinations.forEach { destination in
+                
+                action.destinations.append(
+                    realm.object(
+                        ofType: BattleEntityRealmObject.self,
+                        forPrimaryKey: destination.id
+                    )!
                 )
-                ?? BattleActionRealmObject(
-                    value: [ "id": battleAction.id ]
-                )
+                
+            }
+            
+            return action
+            
+//            return
+//                realm.object(
+//                    ofType: BattleActionRealmObject.self,
+//                    forPrimaryKey: battleAction.id
+//                )
+//                ?? BattleActionRealmObject(
+//                    value: [
+//                        "id": battleAction.id,
+//                        "priority": battleAction.priority,
+//                        "source": battleAction.source,
+//                        "destinations": battleAction.destinations
+//                    ]
+//                )
             
         }
 

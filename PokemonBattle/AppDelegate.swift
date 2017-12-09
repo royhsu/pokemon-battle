@@ -37,48 +37,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     )
     -> Bool {
         
-//        let realm = try! Realm(
-//            configuration: Realm.Configuration(inMemoryIdentifier: "battle-server")
-//        )
-//
-//        self.realm = realm
-//
-//        let realmBattleMatchDataProvider = RealmBattleMatchDataProvider(realm: realm)
-//
-//        self.realmBattleMatchDataProvider = realmBattleMatchDataProvider
-//
-//        let realmServerDataProvider = RealmBattleServerDataProvider(realm: realm)
-//
-//        self.realmServerDataProvider = realmServerDataProvider
-//
-//        try! realm.write {
-//
-//            let player = BattlePlayerRealmObject(
-//                value: [ "id": playerId ]
-//            )
-//
-//            realm.add(player)
-//
-//            self.player = player
-//
-//            let now = Date()
-//
-//            let record = BattleRecordRealmObject(
-//                value: [
-//                    "id": UUID().uuidString,
-//                    "createdAtDate": now.addingTimeInterval(-20.0),
-//                    "updatedAtDate": now.addingTimeInterval(-20.0)
-//                ]
-//            )
-//
-//            record.owner = player
-//
-//            realm.add(record)
-//
-//            self.record = record
-//
-//        }
-        
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         window.rootViewController = UIViewController()
@@ -128,7 +86,7 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 DispatchQueue.main.async {
                     
-                    let configuration = Realm.Configuration(
+                    let config = Realm.Configuration(
                         syncConfiguration: SyncConfiguration(
                             user: user,
                             realmURL: realmUrl
@@ -137,13 +95,41 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     do {
                         
-                        let realm = try Realm(configuration: configuration)
+                        let realm = try Realm(configuration: config)
                         
                         self.realm = realm
                         
                         let realmServerDataProvider = RealmBattleServerDataProvider(realm: realm)
                         
                         self.realmServerDataProvider = realmServerDataProvider
+                        
+                        // Todo: test only
+                        
+//                        let playerA = BattlePlayerRealmObject(
+//                            value: [ "id": "8FB6201A-133C-4174-B7AE-5EFE72E66C24" ]
+//                        )
+//
+//                        let playerB = BattlePlayerRealmObject(
+//                            value: [ "id": "24E0AD21-DA77-403C-83B4-549333DFD76F" ]
+//                        )
+//
+//                        let record = BattleRecordRealmObject(
+//                            value: [ "id": "31CFED91-78A4-4FB6-9A0A-A93F88F692A8" ]
+//                        )
+//
+//                        record.owner = playerA
+//
+//                        try! realm.write {
+//
+//                            realm.add(playerA)
+//
+//                            realm.add(playerB)
+//
+//                            realm.add(record)
+//
+//                        }
+//
+//                        return
                         
                         // Server
                         let owner = realm.object(

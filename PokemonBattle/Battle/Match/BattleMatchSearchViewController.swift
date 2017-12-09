@@ -105,14 +105,6 @@ public final class BattleMatchSearchViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = rightBarButtonItem
         
-//        let leftBarButtonItem = UIBarButtonItem(
-//            barButtonSystemItem: .cancel,
-//            target: self,
-//            action: #selector(cancel)
-//        )
-//
-//        navigationItem.leftBarButtonItem = leftBarButtonItem
-        
     }
     
     fileprivate final func setUpTableView(_ tableView: UITableView) {
@@ -140,15 +132,6 @@ public final class BattleMatchSearchViewController: UITableViewController {
         server.serverDelegate = self
         
         server.resume()
-        
-    }
-    
-    @objc final func cancel(_ sender: Any) {
-        
-        dismiss(
-            animated: true,
-            completion: nil
-        )
         
     }
     

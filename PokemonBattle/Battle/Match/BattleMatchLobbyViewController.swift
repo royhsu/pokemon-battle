@@ -91,17 +91,7 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     
         if server.isOwner {
             
-            let pikachu = try! PokemonGenerator.make(Pikachu.self)
-            
-            let ownerBattleEntity = BattlePokemon(pikachu)
-//
-//            server.respond(
-//                to: PlayerRegisterEntityRequest(
-//
-//                )
-//            )
-//
-//            let ownerBattleEntity = BattleEntityRealmObject
+           
             
         }
         else {
@@ -216,6 +206,19 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
     }
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
+        
+        if server.isOwner {
+            
+            server.respond(
+                to: JoinedBattleRequest(
+                    joined: PokemonBattleJoined(
+                        id: UUID().uuidString,
+                        player: server.player
+                    )
+                )
+            )
+            
+        }
         
     }
     

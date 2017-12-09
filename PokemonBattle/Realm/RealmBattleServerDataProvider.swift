@@ -179,33 +179,43 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     )
     -> TurnBasedBattleRecord {
         
-        fatalError()
+        let record = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: id
+        )!
         
-//        let record = realm.object(
-//            ofType: BattleRecordRealmObject.self,
-//            forPrimaryKey: id
-//        )!
-//
-//        let player = realm.object(
-//            ofType: BattlePlayerRealmObject.self,
-//            forPrimaryKey: joined.player.id
-//        )!
-//
-//        try! realm.write {
-//
-//            record.joinedPlayers.append(player)
-//
-//            record.updatedAtDate = Date()
-//
-//        }
-//
-//        let updatedRecord = realm.object(
-//            ofType: BattleRecordRealmObject.self,
-//            forPrimaryKey: id
-//        )!
-//
-//        // Todo: use better concrete record
-//        return PokemonBattleRecord(updatedRecord)
+        let player = realm.object(
+            ofType: BattlePlayerRealmObject.self,
+            forPrimaryKey: joined.player.id
+        )!
+        
+        let joined =
+            realm.object(
+                ofType: BattleJoinedRealmObject.self,
+                forPrimaryKey: joined.id
+            )
+            ?? BattleJoinedRealmObject(
+                value: [
+                    "id": joined.id,
+                    "player": player
+                ]
+            )
+        
+        try! realm.write {
+            
+            record.joineds.append(joined)
+
+            record.updatedAtDate = Date()
+
+        }
+
+        let updatedRecord = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: id
+        )!
+
+        // Todo: use better concrete record
+        return PokemonBattleRecord(updatedRecord)
         
     }
     
@@ -215,33 +225,68 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     )
     -> TurnBasedBattleRecord {
         
-        fatalError()
+        let record = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: id
+        )!
         
-//        let record = realm.object(
-//            ofType: BattleRecordRealmObject.self,
-//            forPrimaryKey: id
-//        )!
-//
-//        let player = realm.object(
-//            ofType: BattlePlayerRealmObject.self,
-//            forPrimaryKey: player.id
-//        )!
-//
-//        try! realm.write {
-//
-//            record.readyPlayers.append(player)
-//
-//            record.updatedAtDate = Date()
-//
-//        }
-//
-//        let updatedRecord = realm.object(
-//            ofType: BattleRecordRealmObject.self,
-//            forPrimaryKey: id
-//        )!
-//
-//        // Todo: use better concrete record
-//        return PokemonBattleRecord(updatedRecord)
+        let player = realm.object(
+            ofType: BattlePlayerRealmObject.self,
+            forPrimaryKey: ready.player.id
+        )!
+        
+        let entities: [BattleEntityRealmObject] = ready.entities.map { entity in
+            
+            let battlePokemon = entity as! BattlePokemon
+            
+            return
+                realm.object(
+                    ofType: BattleEntityRealmObject.self,
+                    forPrimaryKey: battlePokemon.id
+                )
+                ?? BattleEntityRealmObject(
+                    value: [
+                        "id": battlePokemon.id,
+                        "attack": battlePokemon.attack,
+                        "armor": battlePokemon.armor,
+                        "magic": battlePokemon.magic,
+                        "magicResistance": battlePokemon.magicResistance,
+                        "speed": battlePokemon.speed,
+                        "health": battlePokemon.health,
+                        "remainingHealth": battlePokemon.remainingHealth
+                    ]
+                )
+            
+        }
+
+        let ready =
+            realm.object(
+                ofType: BattleReadyRealmObject.self,
+                forPrimaryKey: ready.id
+            )
+            ?? BattleReadyRealmObject(
+                value: [
+                    "id": ready.id,
+                    "player": player,
+                    "entities": entities
+                ]
+            )
+
+        try! realm.write {
+
+            record.readys.append(ready)
+
+            record.updatedAtDate = Date()
+
+        }
+
+        let updatedRecord = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: id
+        )!
+
+        // Todo: use better concrete record
+        return PokemonBattleRecord(updatedRecord)
         
     }
     
@@ -251,33 +296,31 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     )
     -> TurnBasedBattleRecord {
         
-        fatalError()
-//        
-//        let record = realm.object(
-//            ofType: BattleRecordRealmObject.self,
-//            forPrimaryKey: recordId
-//        )!
-//
-//        let player = realm.object(
-//            ofType: BattlePlayerRealmObject.self,
-//            forPrimaryKey: player.id
-//        )!
-//
-//        try! realm.write {
-//
-//            record.turns.last!.invovledPlayers.append(player)
-//
-//            record.updatedAtDate = Date()
-//
-//        }
-//
-//        let updatedRecord = realm.object(
-//            ofType: BattleRecordRealmObject.self,
-//            forPrimaryKey: recordId
-//        )!
-//
-//        // Todo: use better concrete player
-//        return PokemonBattleRecord(updatedRecord)
+        let record = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: recordId
+        )!
+
+        let involved = realm.object(
+            ofType: BattleInvolvedRealmObject.self,
+            forPrimaryKey: involved.id
+        )!
+
+        try! realm.write {
+
+            record.turns.last!.involveds.append(involved)
+
+            record.updatedAtDate = Date()
+
+        }
+
+        let updatedRecord = realm.object(
+            ofType: BattleRecordRealmObject.self,
+            forPrimaryKey: recordId
+        )!
+
+        // Todo: use better concrete player
+        return PokemonBattleRecord(updatedRecord)
         
     }
     

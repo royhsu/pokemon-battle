@@ -14,7 +14,7 @@ public struct PokemonBattleContext: BattleResult {
     
     public typealias BattlePlayerID = String
     
-    public typealias Storage = [BattlePlayerID: BattlePokemon]
+    public typealias Storage = [BattlePlayerID: [BattlePokemon]]
     
     // MARK: Property
     
@@ -23,6 +23,8 @@ public struct PokemonBattleContext: BattleResult {
     
     // MARK: Init
     
-    public init(storage: Storage) { self.storage = storage }
+    public init(
+        storage: Storage
+    ) { self.storage = storage }
     
 }

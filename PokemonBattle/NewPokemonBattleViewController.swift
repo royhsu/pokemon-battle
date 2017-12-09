@@ -9,6 +9,7 @@
 // MARK: - PokemonBattleViewController
 
 import UIKit
+import SpriteKit
 import TinyBattleKit
 
 public final class NewPokemonBattleViewController: UIViewController {
@@ -19,7 +20,17 @@ public final class NewPokemonBattleViewController: UIViewController {
     
 //    private final let system = PokemonBattleSystem()
     
-//    private final var context = PokemonBattleContext(storage: [:])
+    private final var context = PokemonBattleContext(
+        storage: [:]
+    )
+    
+    private final let gameView = SKView()
+    
+    public final var battleFieldScene: BattleFieldScene? {
+        
+        return gameView.scene as? BattleFieldScene
+        
+    }
     
     // MARK: Init
     
@@ -32,31 +43,81 @@ public final class NewPokemonBattleViewController: UIViewController {
             bundle: nil
         )
         
-        // load pokemons for home into context.
-        
-//        if context.storage.isEmpty {
-//
-//            print("No battle pokemons.")
-//
-//            return
-//
-//        }
-        
-        // save battle pokemons for context into database.
-        
-        // load context.
-        
     }
     
     public required init?(coder aDecoder: NSCoder) { fatalError("Not implemented.") }
     
     // MARK: - View Life Cycle
     
+    public final override func loadView() { self.view = gameView }
+    
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        let startScene = SKScene(fileNamed: "BattleStartScene")!
+        
+        startScene.scaleMode = .aspectFill
+        
+        gameView.presentScene(startScene)
+        
+        guard
+            let currentTurn = server.record.turns.last
+        else { fatalError() }
+            
+        let isFirstTurn = (server.record.turns.count == 1)
+        
+        if isFirstTurn {
+            
+            if !currentTurn.involveds.isEmpty {
+                
+                // Todo: restore context from involveds of last turn.
+                print("Not implemented.")
+            
+            }
+            else {
+                
+                server.record.readys.forEach { ready in
+                    
+                    let battlePokemons = ready.entities as! [BattlePokemon]
+                    
+                    self.context.storage[ready.player.id] = battlePokemons
+                    
+                }
+                
+            }
+            
+        }
+        else {
+            
+            // Todo: restore context from the last turn.
+            print("Not implemented.")
+            
+        }
+        
         server.serverDelegate = self
+        
+    }
+    
+    public final override func viewDidAppear(_ animated: Bool) {
+        
+        if battleFieldScene?.view == nil {
+            
+            let battleFieldScene = BattleFieldScene(
+                size: gameView.bounds.size
+            )
+            
+            battleFieldScene.name = "battleScene"
+            
+            battleFieldScene.scaleMode = .aspectFill
+            
+            battleFieldScene.sceneDataProvider = self
+            
+            battleFieldScene.updateData()
+            
+            gameView.presentScene(battleFieldScene)
+            
+        }
         
     }
     
@@ -107,5 +168,31 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         )
         
     }
+    
+}
+
+// MARK: - BattleFieldSceneDataProvider
+
+extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
+    
+    public final var homeBattlePokemon: BattlePokemon {
+        
+        let homePlayerId = server.player.id
+        
+        return context.storage[homePlayerId]!.first!
+        
+    }
+    
+    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
+    
+    public final var guestBattlePokemon: BattlePokemon {
+        
+        let guestPlayerId = server.player.id
+        
+        return context.storage[guestPlayerId]!.first!
+        
+    }
+    
+    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
     
 }

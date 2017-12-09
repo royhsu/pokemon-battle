@@ -212,9 +212,15 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         
         if server.isOwner {
         
-            let joinedPlayerIds = server.record.joineds.map { $0.player.id }
+            // Todo: should use set instead of array for comparing joineds and readys in whole project.
             
-            let readyPlayerIds = server.record.readys.map { $0.player.id }
+            let joinedPlayerIds = Set(
+                server.record.joineds.map { $0.player.id }
+            )
+            
+            let readyPlayerIds = Set(
+                server.record.readys.map { $0.player.id }
+            )
             
             let isBattleReady =
                 (joinedPlayerIds == readyPlayerIds)

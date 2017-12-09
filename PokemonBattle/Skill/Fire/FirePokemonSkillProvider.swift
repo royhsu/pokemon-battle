@@ -64,11 +64,11 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
         
         var updatedResult = result
         
-        let source = result.storage[sourceId]!
+        let source = result.storage[sourceId]!.first!
 
         destinationIds.forEach { destinationId in
         
-            let destination = result.storage[destinationId]!
+            let destination = result.storage[destinationId]!.first!
 
             let finalMagic = source.magic * (1.0 + extra)
 
@@ -78,7 +78,7 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
 
             updatedDestination.remainingHealth -= damage
             
-            updatedResult.storage[destinationId] = updatedDestination
+            updatedResult.storage[destinationId]![0] = updatedDestination
             
         }
 

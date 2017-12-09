@@ -47,7 +47,7 @@ public extension PokemonSkillAnimator {
                             .run { fireEmitter.removeFromParent() },
                             .run {
                                 
-                                let battlePokemon = new.storage[destinationId]!
+                                let battlePokemon = new.storage[destinationId]!.first!
                                 
                                 destinationHPLabel.text = "HP: \(battlePokemon.remainingHealth)"
                                 

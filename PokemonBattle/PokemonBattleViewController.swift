@@ -188,13 +188,13 @@ public final class PokemonBattleViewController: UIViewController, PokemonBattleD
  
     public final var homeBattlePokemon: BattlePokemon {
         
-        return context.storage[homeBattlePokemonId]!
+        return context.storage[homeBattlePokemonId]!.first!
         
     }
     
     public final var guestBattlePokemon: BattlePokemon {
         
-        return context.storage[guestBattlePokemonId]!
+        return context.storage[guestBattlePokemonId]!.first!
         
     }
     

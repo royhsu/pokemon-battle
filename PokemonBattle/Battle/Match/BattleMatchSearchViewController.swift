@@ -212,11 +212,10 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
     public final func serverDidStart(_ server: TurnBasedBattleServer) {
         
         server.respond(
-            to: PlayerJoinBattleRequest(
-                player: PokemonJoinedBattlePlayer(
-                    id: server.player.id,
-                    entities: [],
-                    actions: []
+            to: JoinedBattleRequest(
+                joined: PokemonBattleJoined(
+                    id: UUID().uuidString,
+                    player: server.player
                 )
             )
         )
@@ -283,10 +282,10 @@ extension BattleMatchSearchViewController: TurnBasedBattleServerDelegate {
         
         guard
             let currentPlayer = matchDataProvider?.currentPlayer,
-            request is PlayerJoinBattleRequest
+            request is JoinedBattleRequest
         else { return }
         
-        let hasCurrentPlayerJoined = server.record.joinedPlayers.contains { $0.id == currentPlayer.id }
+        let hasCurrentPlayerJoined = server.record.joineds.contains { $0.player.id == currentPlayer.id }
         
         if hasCurrentPlayerJoined {
             

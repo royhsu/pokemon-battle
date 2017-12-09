@@ -17,7 +17,7 @@ public final class BattleTurnRealmObject: Object {
     
     @objc public dynamic var id: String?
     
-    public final var invovledPlayers = List<BattlePlayerRealmObject>()
+    public final var involveds = List<BattleInvolvedRealmObject>()
     
     public static override func primaryKey() -> String? { return "id" }
     

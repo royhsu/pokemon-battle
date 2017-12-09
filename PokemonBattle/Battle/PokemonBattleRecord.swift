@@ -24,9 +24,9 @@ public struct PokemonBattleRecord: TurnBasedBattleRecord {
     
     public let owner: BattlePlayer
     
-    public let joinedPlayers: [JoinedBattlePlayer]
+    public let joineds: [BattleJoined]
     
-    public let readyPlayers: [ReadyBattlePlayer]
+    public let readys: [BattleReady]
     
     public let isLocked: Bool
     
@@ -40,8 +40,8 @@ public struct PokemonBattleRecord: TurnBasedBattleRecord {
         createdAtDate: Date,
         updatedAtDate: Date,
         owner: BattlePlayer,
-        joinedPlayers: [JoinedBattlePlayer],
-        readyPlayers: [ReadyBattlePlayer],
+        joineds: [BattleJoined],
+        readys: [BattleReady],
         isLocked: Bool,
         turns: [TurnBasedBattleTurn]
     ) {
@@ -56,9 +56,9 @@ public struct PokemonBattleRecord: TurnBasedBattleRecord {
         
         self.owner = owner
         
-        self.joinedPlayers = joinedPlayers
+        self.joineds = joineds
         
-        self.readyPlayers = readyPlayers
+        self.readys = readys
         
         self.isLocked = isLocked
         
@@ -73,15 +73,15 @@ public struct PokemonBattleRecord: TurnBasedBattleRecord {
 public extension PokemonBattleRecord {
     
     public init(_ record: BattleRecordRealmObject) {
-        
+    
         self.init(
             id: record.id!,
             state: TurnBasedBattleServerState(rawValue: record.state)!,
             createdAtDate: record.createdAtDate,
             updatedAtDate: record.updatedAtDate,
             owner: PokemonBattlePlayer(record.owner!),
-            joinedPlayers: record.joinedPlayers.map(PokemonJoinedBattlePlayer.init),
-            readyPlayers: record.readyPlayers.map(PokemonReadyBattlePlayer.init),
+            joineds: record.joineds.map(PokemonBattleJoined.init),
+            readys: record.readys.map(PokemonBattleReady.init),
             isLocked: record.isLocked,
             turns: record.turns.map(PokemonBattleTurn.init)
         )

@@ -109,11 +109,11 @@ public final class BattleMatchLobbyViewController: UITableViewController {
             // Todo: add ability to cancel ready.
             
             server.respond(
-                to: PlayerReadyBattleRequest(
-                    player: PokemonReadyBattlePlayer(
-                        id: server.player.id,
-                        entities: [],
-                        actions: []
+                to: ReadyBattleRequest(
+                    ready: PokemonBattleReady(
+                        id: UUID().uuidString,
+                        player: server.player,
+                        entities: []
                     )
                 )
             )
@@ -142,7 +142,7 @@ public final class BattleMatchLobbyViewController: UITableViewController {
     
     // MARK: UITableViewDataSource
     
-    public final override func numberOfSections(in tableView: UITableView) -> Int { return server.record.joinedPlayers.count }
+    public final override func numberOfSections(in tableView: UITableView) -> Int { return server.record.joineds.count }
     
     public final override func tableView(
         _ tableView: UITableView,
@@ -161,11 +161,13 @@ public final class BattleMatchLobbyViewController: UITableViewController {
             for: indexPath
         ) as! BattleMatchTableViewCell
         
-        let player = server.record.joinedPlayers[indexPath.section]
-            
+        let joined = server.record.joineds[indexPath.section]
+        
+        let player = joined.player
+        
         cell.textLabel?.text = "Player: \(player.id)"
         
-        let isPlayerReady = server.record.readyPlayers.contains { $0.id == player.id }
+        let isPlayerReady = server.record.readys.contains { $0.player.id == player.id }
         
         cell.accessoryType =
             isPlayerReady
@@ -191,9 +193,9 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         
         if server.isOwner {
         
-            let joinedPlayerIds = server.record.joinedPlayers.map { $0.id }
+            let joinedPlayerIds = server.record.joineds.map { $0.player.id }
             
-            let readyPlayerIds = server.record.readyPlayers.map { $0.id }
+            let readyPlayerIds = server.record.readys.map { $0.player.id }
             
             let isBattleReady =
                 (joinedPlayerIds == readyPlayerIds)
@@ -205,7 +207,7 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         }
         else {
             
-            let isPlayerReady = server.record.readyPlayers.contains { $0.id == server.player.id }
+            let isPlayerReady = server.record.readys.contains { $0.player.id == server.player.id }
             
             navigationItem.rightBarButtonItem?.isEnabled = !isPlayerReady
             

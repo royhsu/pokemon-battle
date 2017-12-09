@@ -26,9 +26,9 @@ public final class BattleRecordRealmObject: Object {
     
     @objc public dynamic var owner: BattlePlayerRealmObject?
     
-    public final var joinedPlayers = List<BattlePlayerRealmObject>()
+    public final var joineds = List<BattleJoinedRealmObject>()
     
-    public final var readyPlayers = List<BattlePlayerRealmObject>()
+    public final var readys = List<BattleReadyRealmObject>()
     
     @objc public dynamic var isLocked: Bool = false
     

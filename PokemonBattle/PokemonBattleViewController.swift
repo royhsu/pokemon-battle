@@ -165,9 +165,10 @@ public final class PokemonBattleViewController: UIViewController, PokemonBattleD
 
                 self.server
                     .respond(
-                        to: PlayerInvolveBattleRequest(
-                            player: PokemonInvolvedBattlePlayer(
-                                id: self.server.player.id,
+                        to: InvolvedBattleRequest(
+                            involved: PokemonBattleInvolved(
+                                id: UUID().uuidString,
+                                player: self.server.player,
                                 entities: [],
                                 actions: []
                             )

@@ -153,9 +153,9 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
         
         try! realm.write {
             
-            record.joinedPlayers.removeAll()
+            record.joineds.removeAll()
             
-            record.readyPlayers.removeAll()
+            record.readys.removeAll()
             
             // Todo: should remove involved players for the current turn?
             
@@ -173,105 +173,111 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
         
     }
     
-    public final func appendJoinedPlayer(
-        _ player: JoinedBattlePlayer,
+    public final func appendJoined(
+        _ joined: BattleJoined,
         forRecordId id: String
     )
     -> TurnBasedBattleRecord {
         
-        let record = realm.object(
-            ofType: BattleRecordRealmObject.self,
-            forPrimaryKey: id
-        )!
+        fatalError()
         
-        let player = realm.object(
-            ofType: BattlePlayerRealmObject.self,
-            forPrimaryKey: player.id
-        )!
-        
-        try! realm.write {
-            
-            record.joinedPlayers.append(player)
-            
-            record.updatedAtDate = Date()
-            
-        }
-        
-        let updatedRecord = realm.object(
-            ofType: BattleRecordRealmObject.self,
-            forPrimaryKey: id
-        )!
-        
-        // Todo: use better concrete record
-        return PokemonBattleRecord(updatedRecord)
+//        let record = realm.object(
+//            ofType: BattleRecordRealmObject.self,
+//            forPrimaryKey: id
+//        )!
+//
+//        let player = realm.object(
+//            ofType: BattlePlayerRealmObject.self,
+//            forPrimaryKey: joined.player.id
+//        )!
+//
+//        try! realm.write {
+//
+//            record.joinedPlayers.append(player)
+//
+//            record.updatedAtDate = Date()
+//
+//        }
+//
+//        let updatedRecord = realm.object(
+//            ofType: BattleRecordRealmObject.self,
+//            forPrimaryKey: id
+//        )!
+//
+//        // Todo: use better concrete record
+//        return PokemonBattleRecord(updatedRecord)
         
     }
     
-    public final func appendReadyPlayer(
-        _ player: ReadyBattlePlayer,
+    public final func appendReady(
+        _ ready: BattleReady,
         forRecordId id: String
     )
     -> TurnBasedBattleRecord {
         
-        let record = realm.object(
-            ofType: BattleRecordRealmObject.self,
-            forPrimaryKey: id
-        )!
+        fatalError()
         
-        let player = realm.object(
-            ofType: BattlePlayerRealmObject.self,
-            forPrimaryKey: player.id
-        )!
-        
-        try! realm.write {
-            
-            record.readyPlayers.append(player)
-            
-            record.updatedAtDate = Date()
-            
-        }
-        
-        let updatedRecord = realm.object(
-            ofType: BattleRecordRealmObject.self,
-            forPrimaryKey: id
-        )!
-        
-        // Todo: use better concrete record
-        return PokemonBattleRecord(updatedRecord)
+//        let record = realm.object(
+//            ofType: BattleRecordRealmObject.self,
+//            forPrimaryKey: id
+//        )!
+//
+//        let player = realm.object(
+//            ofType: BattlePlayerRealmObject.self,
+//            forPrimaryKey: player.id
+//        )!
+//
+//        try! realm.write {
+//
+//            record.readyPlayers.append(player)
+//
+//            record.updatedAtDate = Date()
+//
+//        }
+//
+//        let updatedRecord = realm.object(
+//            ofType: BattleRecordRealmObject.self,
+//            forPrimaryKey: id
+//        )!
+//
+//        // Todo: use better concrete record
+//        return PokemonBattleRecord(updatedRecord)
         
     }
     
-    public final func appendInvolvedPlayer(
-        _ player: InvolvedBattlePlayer,
+    public final func appendInvolved(
+        _ involved: BattleInvolved,
         forCurrentTurnOfRecordId recordId: String
     )
     -> TurnBasedBattleRecord {
         
-        let record = realm.object(
-            ofType: BattleRecordRealmObject.self,
-            forPrimaryKey: recordId
-        )!
-        
-        let player = realm.object(
-            ofType: BattlePlayerRealmObject.self,
-            forPrimaryKey: player.id
-        )!
-        
-        try! realm.write {
-            
-            record.turns.last!.invovledPlayers.append(player)
-            
-            record.updatedAtDate = Date()
-            
-        }
-        
-        let updatedRecord = realm.object(
-            ofType: BattleRecordRealmObject.self,
-            forPrimaryKey: recordId
-        )!
-        
-        // Todo: use better concrete player
-        return PokemonBattleRecord(updatedRecord)
+        fatalError()
+//        
+//        let record = realm.object(
+//            ofType: BattleRecordRealmObject.self,
+//            forPrimaryKey: recordId
+//        )!
+//
+//        let player = realm.object(
+//            ofType: BattlePlayerRealmObject.self,
+//            forPrimaryKey: player.id
+//        )!
+//
+//        try! realm.write {
+//
+//            record.turns.last!.invovledPlayers.append(player)
+//
+//            record.updatedAtDate = Date()
+//
+//        }
+//
+//        let updatedRecord = realm.object(
+//            ofType: BattleRecordRealmObject.self,
+//            forPrimaryKey: recordId
+//        )!
+//
+//        // Todo: use better concrete player
+//        return PokemonBattleRecord(updatedRecord)
         
     }
     

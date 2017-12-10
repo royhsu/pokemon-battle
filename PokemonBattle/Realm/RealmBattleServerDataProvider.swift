@@ -153,9 +153,15 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
         
         try! realm.write {
             
-            record.joineds.removeAll()
+            if let involveds = record.turns.last?.involveds {
             
-            record.readys.removeAll()
+                self.realm.delete(involveds)
+                
+            }
+            
+            self.realm.delete(record.joineds)
+            
+            self.realm.delete(record.readys)
             
             // Todo: should remove involved players for the current turn?
             

@@ -20,7 +20,21 @@ public final class NewPokemonBattleViewController: UIViewController {
     
     private final var context = PokemonBattleContext(
         storage: [:]
-    )
+    ) {
+        
+        didSet {
+            
+            // Todo: bad workaround
+            if context.storage.count > 1 {
+            
+                battleFieldScene?.updateData()
+                
+            }
+            
+            
+        }
+        
+    }
     
     private final let system = PokemonBattleSystem()
     
@@ -71,14 +85,14 @@ public final class NewPokemonBattleViewController: UIViewController {
         
         if isFirstTurn {
             
-            if !currentTurn.involveds.isEmpty {
-                
-                // Todo: restore context from involveds of last turn.
-                print("Not implemented.")
+//            if !currentTurn.involveds.isEmpty {
+//
+//                // Todo: restore context from involveds of last turn.
+//                print("Not implemented.")
+//
+//            }
+//            else {
             
-            }
-            else {
-                
                 server.record.readys.forEach { ready in
                     
                     let battlePokemons = ready.entities as! [BattlePokemon]
@@ -87,7 +101,7 @@ public final class NewPokemonBattleViewController: UIViewController {
                     
                 }
                 
-            }
+//            }
             
         }
         else {
@@ -103,6 +117,8 @@ public final class NewPokemonBattleViewController: UIViewController {
     
     public final override func viewDidAppear(_ animated: Bool) {
         
+        super.viewDidAppear(animated)
+        
         if battleFieldScene?.view == nil {
             
             let battleFieldScene = BattleFieldScene(
@@ -115,7 +131,12 @@ public final class NewPokemonBattleViewController: UIViewController {
             
             battleFieldScene.sceneDataProvider = self
             
-            battleFieldScene.updateData()
+            // Todo: bad workaround
+            if context.storage.count > 1 {
+                
+                battleFieldScene.updateData()
+                
+            }
             
             gameView.presentScene(battleFieldScene)
             
@@ -174,7 +195,10 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didUpdate record: TurnBasedBattleRecord
-    ) { }
+    ) {
+        
+        
+    }
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) { }
     
@@ -189,6 +213,11 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didEndTurn turn: TurnBasedBattleTurn
     ) {
+        
+        print(
+            #function,
+            server.player.id
+        )
         
         let actions = turn.involveds.flatMap { $0.actions as! [PokemonBattleAction] }
         
@@ -227,8 +256,6 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
                 
                 self.context = updatedContext
                 
-                self.battleFieldScene!.updateData()
-                
             }
             .catch { error in
                 
@@ -243,7 +270,7 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         
     }
     
-    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool { return true }
+    public final func serverShouldEnd(_ server: TurnBasedBattleServer) -> Bool { return false }
     
     public final func serverDidEnd(_ server: TurnBasedBattleServer) { }
     
@@ -275,6 +302,7 @@ extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
         // Todo: better handling
         let homePlayerId = server.player.id
         
+        // Todo: client may access context too early that server doesn't set it up.
         return context.storage[homePlayerId]!.first!
         
     }

@@ -25,7 +25,7 @@ public final class LightningPokemonSkillProvider: PokemonSkillProvider {
     
     public final let priority: Double
     
-    public final var animator: Animator? { return .lightning(context: context) }
+    public final var animator: Animator? { return nil; return .lightning(context: context) }
     
     // Extra damage ratio
     public final let extra = 0.2
@@ -64,21 +64,38 @@ public final class LightningPokemonSkillProvider: PokemonSkillProvider {
         
         var updatedResult = result
         
-        let source = result.storage[sourceId]!.first!
+        let source = result
+            .storage
+            .values
+            .flatMap { $0 }
+            .filter { $0.id == sourceId }
+            .first!
 
         destinationIds.forEach { destinationId in
         
-            let destination = result.storage[destinationId]!.first!
-
-            let finalMagic = source.magic * (1.0 + extra)
-
-            let damage = finalMagic - destination.magicResistance
-
-            var updatedDestination = destination
-
-            updatedDestination.remainingHealth -= damage
-
-            updatedResult.storage[destinationId]![0] = updatedDestination
+            for (playerId, battlePokemons) in result.storage {
+                
+                guard
+                    let index = battlePokemons.index(
+                        where: { $0.id == destinationId }
+                    )
+                else { continue }
+                
+                let destination = battlePokemons[index]
+                
+                let finalMagic = source.magic * (1.0 + extra)
+                
+                let damage = finalMagic - destination.magicResistance
+                
+                var updatedDestination = destination
+                
+                updatedDestination.remainingHealth -= damage
+                
+                updatedResult.storage[playerId]![index] = updatedDestination
+                
+                break
+                
+            }
             
         }
 

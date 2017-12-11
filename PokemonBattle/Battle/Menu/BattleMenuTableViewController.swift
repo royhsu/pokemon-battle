@@ -25,9 +25,15 @@ public final class BattleMenuTableViewController: UITableViewController {
     
     // MARK: Property
     
-    public final weak var menuDataProvider: BattleMenuDataProvider?
+    public final weak var controllerDataSource: BattleMenuTableViewControllerDataSource?
     
-    public final weak var menuControllerDelegate: BattleMenuTableViewControllerDelegate?
+    public final weak var controllerDelegate: BattleMenuTableViewControllerDelegate?
+    
+    // MARK: Init
+    
+    public init() { super.init(style: .plain) }
+    
+    public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
     
     // MARK: View Life Cycle
     
@@ -66,7 +72,7 @@ public final class BattleMenuTableViewController: UITableViewController {
     
     public final override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return menuDataProvider?.numberOfPokemonSkills() ?? 0
+        return controllerDataSource?.numberOfPokemonSkills() ?? 0
         
     }
     
@@ -84,7 +90,7 @@ public final class BattleMenuTableViewController: UITableViewController {
         let verticalMargin: CGFloat = 10.0
         
         let numberOfPokemonSkills =
-            menuDataProvider?.numberOfPokemonSkills()
+            controllerDataSource?.numberOfPokemonSkills()
             ?? 0
         
         if numberOfPokemonSkills == 0 { return 0.0 }
@@ -112,7 +118,7 @@ public final class BattleMenuTableViewController: UITableViewController {
             for: indexPath
         ) as! BattleMenuTableViewCell
         
-        let skillTitle = menuDataProvider?.titleForPokemonSkill(at: indexPath.section)
+        let skillTitle = controllerDataSource?.titleForPokemonSkill(at: indexPath.section)
         
         cell.skillLabel.text = skillTitle
         
@@ -127,7 +133,7 @@ public final class BattleMenuTableViewController: UITableViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         
-        menuControllerDelegate?.tableViewController(
+        controllerDelegate?.tableViewController(
             self,
             didSelectSkillAt: indexPath.section
         )

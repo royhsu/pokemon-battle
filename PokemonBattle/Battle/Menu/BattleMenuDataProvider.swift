@@ -1,14 +1,14 @@
 //
-//  BattleMenuDataProvider.swift
+//  BattleMenuTableViewControllerDataSource.swift
 //  PokemonBattle
 //
 //  Created by Roy Hsu on 23/11/2017.
 //  Copyright © 2017 TinyWorld. All rights reserved.
 //
 
-// MARK: - BattleMenuDataProvider
+// MARK: - BattleMenuTableViewControllerDataSource
 
-public protocol BattleMenuDataProvider: class {
+public protocol BattleMenuTableViewControllerDataSource: class {
     
     func numberOfPokemonSkills() -> Int
     

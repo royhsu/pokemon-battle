@@ -40,7 +40,11 @@ public final class NewPokemonBattleViewController: UIViewController {
     
     private final let gameView = SKView()
     
-    public final var battleFieldScene: BattleFieldScene? {
+    private final var menuView: UIView { return menuViewController.view! }
+    
+    private final let menuViewController = BattleMenuTableViewController()
+    
+    private final var battleFieldScene: BattleFieldScene? {
         
         return gameView.scene as? BattleFieldScene
         
@@ -63,19 +67,17 @@ public final class NewPokemonBattleViewController: UIViewController {
     
     // MARK: - View Life Cycle
     
-    public final override func loadView() { self.view = gameView }
-    
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setUpNavigationItem(navigationItem)
         
-        let startScene = SKScene(fileNamed: "BattleStartScene")!
-        
-        startScene.scaleMode = .aspectFill
-        
-        gameView.presentScene(startScene)
+        setUpRootView(
+            view,
+            gameView: gameView,
+            menuView: menuView
+        )
         
         guard
             let currentTurn = server.record.turns.last
@@ -150,6 +152,71 @@ public final class NewPokemonBattleViewController: UIViewController {
         
     }
     
+    fileprivate final func setUpRootView(
+        _ rootView: UIView,
+        gameView: SKView,
+        menuView: UIView
+    ) {
+        
+        gameView.translatesAutoresizingMaskIntoConstraints = false
+        
+        menuView.translatesAutoresizingMaskIntoConstraints = false
+        
+        rootView.addSubview(gameView)
+        
+        rootView.addSubview(menuView)
+        
+        gameView
+            .leadingAnchor
+            .constraint(equalTo: rootView.leadingAnchor)
+            .isActive = true
+        
+        gameView
+            .topAnchor
+            .constraint(equalTo: rootView.topAnchor)
+            .isActive = true
+        
+        gameView
+            .bottomAnchor
+            .constraint(equalTo: rootView.bottomAnchor)
+            .isActive = true
+        
+        menuView
+            .trailingAnchor
+            .constraint(equalTo: rootView.trailingAnchor)
+            .isActive = true
+        
+        menuView
+            .topAnchor
+            .constraint(equalTo: rootView.topAnchor)
+            .isActive = true
+        
+        menuView
+            .bottomAnchor
+            .constraint(equalTo: rootView.bottomAnchor)
+            .isActive = true
+        
+        gameView
+            .trailingAnchor
+            .constraint(equalTo: menuView.leadingAnchor)
+            .isActive = true
+        
+        gameView
+            .widthAnchor
+            .constraint(
+                equalTo: menuView.widthAnchor,
+                multiplier: 3.0 / 1.0
+            )
+            .isActive = true
+        
+        let startScene = SKScene(fileNamed: "BattleStartScene")!
+
+        startScene.scaleMode = .aspectFill
+
+        gameView.presentScene(startScene)
+        
+    }
+    
     // MARK: Action
     
     @objc public final func performSkill(_ sender: Any) {
@@ -198,11 +265,6 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         _ server: TurnBasedBattleServer,
         didEndTurn turn: TurnBasedBattleTurn
     ) {
-        
-        print(
-            #function,
-            server.player.id
-        )
         
         let actions = turn.involveds.flatMap { $0.actions as! [PokemonBattleAction] }
         

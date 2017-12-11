@@ -19,7 +19,7 @@ public protocol PokemonBattleDataProvider: class {
 // MARK: - BattleMenuDataProvider
 
 extension PokemonBattleDataProvider
-where Self: BattleMenuDataProvider {
+where Self: BattleMenuTableViewControllerDataSource {
     
     public func numberOfPokemonSkills() -> Int {
         
@@ -40,15 +40,5 @@ where Self: BattleMenuDataProvider {
         fatalError()
         
     }
-    
-}
-
-// MARK: - Notification
-
-import Foundation
-
-extension Notification.Name {
-    
-    public static let battlePokemonDataProviderDataDidChange = Notification.Name(rawValue: "battle-pokemon-data-provider.data-did-change")
     
 }

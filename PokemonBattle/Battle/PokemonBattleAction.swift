@@ -16,6 +16,8 @@ public struct PokemonBattleAction: BattleAction {
     
     public let id: String
     
+    public let skill: PokemonSkill
+    
     public let priority: Double
     
     public let source: BattleEntity
@@ -26,12 +28,15 @@ public struct PokemonBattleAction: BattleAction {
     
     public init(
         id: String,
+        skill: PokemonSkill,
         priority: Double,
         source: BattleEntity,
         destinations: [BattleEntity]
     ) {
         
         self.id = id
+        
+        self.skill = skill
         
         self.priority = priority
         
@@ -51,6 +56,7 @@ public extension PokemonBattleAction {
         
         self.init(
             id: action.id!,
+            skill: PokemonSkill(action.skill!),
             priority: action.priority,
             source: BattlePokemon(action.source!),
             destinations: action.destinations.map(BattlePokemon.init)

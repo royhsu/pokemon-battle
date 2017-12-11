@@ -90,6 +90,8 @@ public final class NewPokemonBattleViewController: UIViewController {
         )
         
         menuViewController.controllerDataSource = self
+        
+        menuViewController.controllerDelegate = self
             
         let isFirstTurn = (server.record.turns.count == 1)
         
@@ -242,16 +244,14 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
             
             let destinationIds = action.destinations.map { $0.id }
             
-            let skillName = action.id
-            
             var pokemonSkillProvider: AnyBattleActionProvider<PokemonSkillAnimator>?
             
-            switch skillName {
+            switch action.skill.name {
                 
             case "LIGHTNING":
                 
                 let provider = LightningPokemonSkillProvider(
-                    id: skillName,
+                    id: action.id,
                     priority: action.priority,
                     sourceId: sourceId,
                     destinationIds: destinationIds,
@@ -270,7 +270,7 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
             case "FIRE":
                 
                 let provider = FirePokemonSkillProvider(
-                    id: skillName,
+                    id: action.id,
                     priority: action.priority,
                     sourceId: sourceId,
                     destinationIds: destinationIds,
@@ -286,7 +286,7 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
                 
                 pokemonSkillProvider = AnyBattleActionProvider(provider)
                 
-            default: print("Undefined skill: \(skillName).")
+            default: print("Undefined skill: \(action.skill.name).")
                 
             }
     
@@ -409,7 +409,8 @@ extension NewPokemonBattleViewController: BattleMenuTableViewControllerDelegate 
             entities: [ homeBattlePokemon ],
             actions: [
                 PokemonBattleAction(
-                    id: selectedSkill.name,
+                    id: UUID().uuidString,
+                    skill: selectedSkill,
                     priority: 100.0 + homeBattlePokemon.speed,
                     source: homeBattlePokemon,
                     destinations: [ guestBattlePokemon ]

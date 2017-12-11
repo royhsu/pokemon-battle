@@ -17,6 +17,8 @@ public final class BattleActionRealmObject: Object {
     
     @objc public dynamic var id: String?
     
+    @objc public dynamic var skill: BattleSkillRealmObject?
+    
     @objc public dynamic var priority: Double = 0.0
     
     @objc public dynamic var source: BattleEntityRealmObject?

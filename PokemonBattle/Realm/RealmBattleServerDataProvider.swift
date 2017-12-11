@@ -254,34 +254,38 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
                     value: [ "id": battlePokemon.id ]
                 )
             
-            entity.attack = battlePokemon.attack
+            try! realm.write {
             
-            entity.armor = battlePokemon.armor
-            
-            entity.magic = battlePokemon.magic
-            
-            entity.magicResistance = battlePokemon.magicResistance
-            
-            entity.speed = battlePokemon.speed
-            
-            entity.health = battlePokemon.health
-            
-            entity.remainingHealth = battlePokemon.remainingHealth
-            
-            entity.skills = List()
-            
-            battlePokemon.skills.forEach { skill in
+                entity.attack = battlePokemon.attack
                 
-                let skill =
-                    realm.object(
-                        ofType: BattleSkillRealmObject.self,
-                        forPrimaryKey: skill.name
-                    )
-                    ?? BattleSkillRealmObject(
-                        value: [ "name": skill.name ]
-                    )
+                entity.armor = battlePokemon.armor
                 
-                entity.skills.append(skill)
+                entity.magic = battlePokemon.magic
+                
+                entity.magicResistance = battlePokemon.magicResistance
+                
+                entity.speed = battlePokemon.speed
+                
+                entity.health = battlePokemon.health
+                
+                entity.remainingHealth = battlePokemon.remainingHealth
+                
+                entity.skills = List()
+                
+                battlePokemon.skills.forEach { skill in
+                    
+                    let skill =
+                        realm.object(
+                            ofType: BattleSkillRealmObject.self,
+                            forPrimaryKey: skill.name
+                        )
+                        ?? BattleSkillRealmObject(
+                            value: [ "name": skill.name ]
+                        )
+                    
+                    entity.skills.append(skill)
+                    
+                }
                 
             }
             
@@ -327,104 +331,133 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
     )
     -> TurnBasedBattleRecord {
         
-        let record = realm.object(
+        let recordObject = realm.object(
             ofType: BattleRecordRealmObject.self,
             forPrimaryKey: recordId
         )!
         
-        let player = realm.object(
+        let playerObject = realm.object(
             ofType: BattlePlayerRealmObject.self,
             forPrimaryKey: involved.player.id
         )!
         
-        let entities: [BattleEntityRealmObject] = involved.entities.map { entity in
-            
-            let battlePokemon = entity as! BattlePokemon
-            
-            return
-                realm.object(
-                    ofType: BattleEntityRealmObject.self,
-                    forPrimaryKey: battlePokemon.id
-                )
-                ?? BattleEntityRealmObject(
-                    value: [
-                        "id": battlePokemon.id,
-                        "attack": battlePokemon.attack,
-                        "armor": battlePokemon.armor,
-                        "magic": battlePokemon.magic,
-                        "magicResistance": battlePokemon.magicResistance,
-                        "speed": battlePokemon.speed,
-                        "health": battlePokemon.health,
-                        "remainingHealth": battlePokemon.remainingHealth
-                    ]
-                )
-            
-        }
-        
-        let actions: [BattleActionRealmObject] = involved.actions.map { action in
-        
-            let battleAction = action as! PokemonBattleAction
-            
-            let action = BattleActionRealmObject(
-                value: [ "id": battleAction.id ]
-            )
-            
-            action.priority = battleAction.priority
-            
-            action.source = realm.object(
-                ofType: BattleEntityRealmObject.self,
-                forPrimaryKey: battleAction.source.id
-            )!
-            
-            battleAction.destinations.forEach { destination in
-                
-                action.destinations.append(
-                    realm.object(
-                        ofType: BattleEntityRealmObject.self,
-                        forPrimaryKey: destination.id
-                    )!
-                )
-                
-            }
-            
-            return action
-            
-//            return
-//                realm.object(
-//                    ofType: BattleActionRealmObject.self,
-//                    forPrimaryKey: battleAction.id
-//                )
-//                ?? BattleActionRealmObject(
-//                    value: [
-//                        "id": battleAction.id,
-//                        "priority": battleAction.priority,
-//                        "source": battleAction.source,
-//                        "destinations": battleAction.destinations
-//                    ]
-//                )
-            
-        }
-
-        let involved =
+        let involvedObject =
             realm.object(
                 ofType: BattleInvolvedRealmObject.self,
                 forPrimaryKey: involved.id
             )
             ?? BattleInvolvedRealmObject(
-                value: [
-                    "id": involved.id,
-                    "player": player,
-                    "entities": entities,
-                    "actions": actions
-                ]
+                value: [ "id": involved.id ]
             )
-
+        
         try! realm.write {
-
-            record.turns.last!.involveds.append(involved)
-
-            record.updatedAtDate = Date()
-
+            
+            involvedObject.player = playerObject
+        
+            involvedObject.entities = List()
+        
+            involvedObject.actions = List()
+            
+            involved.entities.forEach { entity in
+            
+                let battlePokemon = entity as! BattlePokemon
+            
+                let entityObject =
+                    realm.object(
+                        ofType: BattleEntityRealmObject.self,
+                        forPrimaryKey: battlePokemon.id
+                    )
+                    ?? BattleEntityRealmObject(
+                        value: [ "id": battlePokemon.id ]
+                    )
+                
+                entityObject.attack = battlePokemon.attack
+                
+                entityObject.armor = battlePokemon.armor
+                
+                entityObject.magic = battlePokemon.magic
+                
+                entityObject.magicResistance = battlePokemon.magicResistance
+                
+                entityObject.speed = battlePokemon.speed
+                
+                entityObject.health = battlePokemon.health
+                
+                entityObject.remainingHealth = battlePokemon.remainingHealth
+                
+                entityObject.skills = List()
+                
+                battlePokemon.skills.forEach { skill in
+                    
+                    let skillObject =
+                        realm.object(
+                            ofType: BattleSkillRealmObject.self,
+                            forPrimaryKey: skill.name
+                        )
+                        ?? BattleSkillRealmObject(
+                            value: [ "name": skill.name ]
+                        )
+                    
+                    entityObject.skills.append(skillObject)
+                    
+                }
+                
+                involvedObject.entities.append(entityObject)
+                
+            }
+            
+            involved.actions.forEach { action in
+        
+                let battleAction = action as! PokemonBattleAction
+            
+                let actionObject =
+                    realm.object(
+                        ofType: BattleActionRealmObject.self,
+                        forPrimaryKey: battleAction.id
+                    )
+                    ?? BattleActionRealmObject(
+                        value: [ "id": battleAction.id ]
+                    )
+            
+                let skillName = battleAction.skill.name
+                
+                let skillObject =
+                    realm.object(
+                        ofType: BattleSkillRealmObject.self,
+                        forPrimaryKey: skillName
+                    )
+                    ?? BattleSkillRealmObject(
+                        value: [ "name": skillName ]
+                    )
+                
+                actionObject.skill = skillObject
+                
+                actionObject.priority = battleAction.priority
+            
+                actionObject.source = realm.object(
+                    ofType: BattleEntityRealmObject.self,
+                    forPrimaryKey: battleAction.source.id
+                )!
+            
+                battleAction.destinations.forEach { destination in
+                    
+                    actionObject.destinations.append(
+                        realm.object(
+                            ofType: BattleEntityRealmObject.self,
+                            forPrimaryKey: destination.id
+                        )!
+                    )
+                    
+                }
+            
+                involvedObject.actions.append(actionObject)
+                
+            }
+         
+            recordObject.turns.last!.involveds.append(involvedObject)
+            
+            recordObject.updatedAtDate = Date()
+            
         }
 
         let updatedRecord = realm.object(

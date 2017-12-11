@@ -74,6 +74,10 @@ public final class NewPokemonBattleViewController: UIViewController {
     
     // MARK: - View Life Cycle
     
+//    public override func loadView() {
+//        view = gameView
+//    }
+    
     public final override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -117,9 +121,9 @@ public final class NewPokemonBattleViewController: UIViewController {
         
     }
     
-    public final override func viewDidAppear(_ animated: Bool) {
+    public final override func viewDidLayoutSubviews() {
         
-        super.viewDidAppear(animated)
+        super.viewDidLayoutSubviews()
         
         if battleFieldScene?.view == nil {
             
@@ -153,6 +157,8 @@ public final class NewPokemonBattleViewController: UIViewController {
         gameView: SKView,
         menuView: UIView
     ) {
+        
+        addChildViewController(menuViewController)
         
         gameView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -211,6 +217,8 @@ public final class NewPokemonBattleViewController: UIViewController {
 
         gameView.presentScene(startScene)
         
+        menuViewController.didMove(toParentViewController: self)
+        
     }
     
 }
@@ -244,6 +252,35 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
             
             let destinationIds = action.destinations.map { $0.id }
             
+            let sourceSprite =
+                (sourceId == homeBattlePokemon.id)
+                ? battleFieldScene!.homePokemonSpriteNode
+                : battleFieldScene!.guestPokemonSpriteNode
+            
+            let sourceHpLabel =
+                (sourceId == homeBattlePokemon.id)
+                ? battleFieldScene!.homeHpLabelNode
+                : battleFieldScene!.guestHpLabelNode
+            
+            let guestSprite =
+                (sourceId == guestBattlePokemon.id)
+                ? battleFieldScene!.homePokemonSpriteNode
+                : battleFieldScene!.guestPokemonSpriteNode
+            
+            let guestHpLabel =
+                (sourceId == guestBattlePokemon.id)
+                ? battleFieldScene!.homeHpLabelNode
+                : battleFieldScene!.guestHpLabelNode
+            
+            let context = PokemonSkillAnimatorContext(
+                sourceId: sourceId,
+                sourceSprite: sourceSprite,
+                sourceHPLabel: sourceHpLabel,
+                destinationId: destinationIds.first!,
+                destinationSprite: guestSprite,
+                destinationHPLabel: guestHpLabel
+            )
+            
             var pokemonSkillProvider: AnyBattleActionProvider<PokemonSkillAnimator>?
             
             switch action.skill.name {
@@ -255,14 +292,7 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
                     priority: action.priority,
                     sourceId: sourceId,
                     destinationIds: destinationIds,
-                    context: PokemonSkillAnimatorContext(
-                        sourceId: sourceId,
-                        sourceSprite: battleFieldScene!.homePokemonSpriteNode,
-                        sourceHPLabel: battleFieldScene!.homeHpLabelNode,
-                        destinationId: destinationIds.first!,
-                        destinationSprite: battleFieldScene!.guestPokemonSpriteNode,
-                        destinationHPLabel: battleFieldScene!.guestHpLabelNode
-                    )
+                    context: context
                 )
                 
                 pokemonSkillProvider = AnyBattleActionProvider(provider)
@@ -274,14 +304,7 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
                     priority: action.priority,
                     sourceId: sourceId,
                     destinationIds: destinationIds,
-                    context: PokemonSkillAnimatorContext(
-                        sourceId: sourceId,
-                        sourceSprite: battleFieldScene!.homePokemonSpriteNode,
-                        sourceHPLabel: battleFieldScene!.homeHpLabelNode,
-                        destinationId: destinationIds.first!,
-                        destinationSprite: battleFieldScene!.guestPokemonSpriteNode,
-                        destinationHPLabel: battleFieldScene!.guestHpLabelNode
-                    )
+                    context: context
                 )
                 
                 pokemonSkillProvider = AnyBattleActionProvider(provider)
@@ -355,7 +378,13 @@ extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
         
     }
     
-    public final var homeBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Pikachu") }
+    public final var homeBattlePokemonImage: UIImage {
+        
+        let isPikachu = homeBattlePokemon.skills.contains { $0.name == "LIGHTNING" }
+        
+        return isPikachu ? #imageLiteral(resourceName: "Pikachu") : #imageLiteral(resourceName: "Charmander")
+        
+    }
     
     public final var guestBattlePokemon: BattlePokemon {
         
@@ -370,7 +399,13 @@ extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
         
     }
     
-    public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
+    public final var guestBattlePokemonImage: UIImage {
+        
+        let isChamander = guestBattlePokemon.skills.contains { $0.name == "FIRE" }
+        
+        return isChamander ? #imageLiteral(resourceName: "Charmander") : #imageLiteral(resourceName: "Pikachu")
+        
+    }
     
 }
 

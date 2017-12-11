@@ -73,7 +73,7 @@ public final class LightningPokemonSkillProvider: PokemonSkillProvider {
 
         destinationIds.forEach { destinationId in
         
-            for (playerId, battlePokemons) in result.storage {
+            for (_, battlePokemons) in result.storage {
                 
                 guard
                     let index = battlePokemons.index(
@@ -91,7 +91,7 @@ public final class LightningPokemonSkillProvider: PokemonSkillProvider {
                 
                 updatedDestination.remainingHealth -= damage
                 
-                updatedResult.storage[playerId]![index] = updatedDestination
+                updatedResult.storage[destinationId]![0] = updatedDestination
                 
                 break
                 

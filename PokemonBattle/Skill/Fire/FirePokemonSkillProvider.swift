@@ -64,21 +64,36 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
         
         var updatedResult = result
         
-        let source = result.storage[sourceId]!.first!
+        let source = result
+            .storage
+            .values
+            .flatMap { $0 }
+            .filter { $0.id == sourceId }
+            .first!
 
         destinationIds.forEach { destinationId in
         
-            let destination = result.storage[destinationId]!.first!
-
-            let finalMagic = source.magic * (1.0 + extra)
-
-            let damage = finalMagic - destination.magicResistance
-
-            var updatedDestination = destination
-
-            updatedDestination.remainingHealth -= damage
+            for (_, battlePokemons) in result.storage {
+                
+                guard
+                    let index = battlePokemons.index(
+                        where: { $0.id == destinationId }
+                    )
+                else { continue }
             
-            updatedResult.storage[destinationId]![0] = updatedDestination
+                let destination = battlePokemons[index]
+
+                let finalMagic = source.magic * (1.0 + extra)
+
+                let damage = finalMagic - destination.magicResistance
+
+                var updatedDestination = destination
+
+                updatedDestination.remainingHealth -= damage
+                
+                updatedResult.storage[destinationId]![0] = updatedDestination
+                
+            }
             
         }
 

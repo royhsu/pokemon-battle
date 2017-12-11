@@ -71,7 +71,10 @@ public final class NewPokemonBattleViewController: UIViewController {
         
         super.viewDidLoad()
         
-        setUpNavigationItem(navigationItem)
+        navigationController?.setNavigationBarHidden(
+            true,
+            animated: false
+        )
         
         setUpRootView(
             view,
@@ -80,10 +83,6 @@ public final class NewPokemonBattleViewController: UIViewController {
         )
         
         menuViewController.controllerDataSource = self
-        
-        guard
-            let currentTurn = server.record.turns.last
-        else { fatalError() }
             
         let isFirstTurn = (server.record.turns.count == 1)
         
@@ -139,20 +138,6 @@ public final class NewPokemonBattleViewController: UIViewController {
     }
     
     // MARK: Set Up
-    
-    fileprivate final func setUpNavigationItem(_ navigationItem: UINavigationItem) {
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: NSLocalizedString(
-                "Skill",
-                comment: ""
-            ),
-            style: .plain,
-            target: self,
-            action: #selector(performSkill)
-        )
-        
-    }
     
     fileprivate final func setUpRootView(
         _ rootView: UIView,

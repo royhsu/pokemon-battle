@@ -85,27 +85,7 @@ public final class BattleMenuTableViewController: UITableViewController {
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
     )
-    -> CGFloat {
-        
-        let verticalMargin: CGFloat = 10.0
-        
-        let numberOfPokemonSkills =
-            controllerDataSource?.numberOfPokemonSkills()
-            ?? 0
-        
-        if numberOfPokemonSkills == 0 { return 0.0 }
-        
-        let totalVerticalMargin =
-            CGFloat(numberOfPokemonSkills + 1)
-            * verticalMargin
-        
-        let height =
-            (view.bounds.height - totalVerticalMargin)
-            / CGFloat(numberOfPokemonSkills)
-        
-        return height
-        
-    }
+    -> CGFloat { return 150.0 }
     
     public final override func tableView(
         _ tableView: UITableView,

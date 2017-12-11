@@ -79,6 +79,8 @@ public final class NewPokemonBattleViewController: UIViewController {
             menuView: menuView
         )
         
+        menuViewController.controllerDataSource = self
+        
         guard
             let currentTurn = server.record.turns.last
         else { fatalError() }
@@ -370,5 +372,23 @@ extension NewPokemonBattleViewController: BattleFieldSceneDataProvider {
     }
     
     public final var guestBattlePokemonImage: UIImage { return #imageLiteral(resourceName: "Charmander") }
+    
+}
+
+// MARK: - BattleMenuTableViewControllerDataSource
+
+extension NewPokemonBattleViewController: BattleMenuTableViewControllerDataSource {
+    
+    public final func numberOfPokemonSkills() -> Int {
+        
+        return 10
+        
+    }
+    
+    public final func titleForPokemonSkill(at index: Int) -> String? {
+        
+        return "Skill \(index)"
+        
+    }
     
 }

@@ -73,7 +73,7 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
 
         destinationIds.forEach { destinationId in
         
-            for (_, battlePokemons) in result.storage {
+            for (playerId, battlePokemons) in result.storage {
                 
                 guard
                     let index = battlePokemons.index(
@@ -91,7 +91,9 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
 
                 updatedDestination.remainingHealth -= damage
                 
-                updatedResult.storage[destinationId]![0] = updatedDestination
+                updatedResult.storage[playerId]![index] = updatedDestination
+                
+                break
                 
             }
             

@@ -85,23 +85,13 @@ public final class NewPokemonBattleViewController: UIViewController {
         
         if isFirstTurn {
             
-//            if !currentTurn.involveds.isEmpty {
-//
-//                // Todo: restore context from involveds of last turn.
-//                print("Not implemented.")
-//
-//            }
-//            else {
-            
-                server.record.readys.forEach { ready in
-                    
-                    let battlePokemons = ready.entities as! [BattlePokemon]
-                    
-                    self.context.storage[ready.player.id] = battlePokemons
-                    
-                }
+            server.record.readys.forEach { ready in
                 
-//            }
+                let battlePokemons = ready.entities as! [BattlePokemon]
+                
+                self.context.storage[ready.player.id] = battlePokemons
+                
+            }
             
         }
         else {
@@ -195,19 +185,14 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didUpdate record: TurnBasedBattleRecord
-    ) {
-        
-        
-    }
+    ) { }
     
     public final func serverDidStart(_ server: TurnBasedBattleServer) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,
         didStartTurn turn: TurnBasedBattleTurn
-    ) {
-        
-    }
+    ) { }
     
     public final func server(
         _ server: TurnBasedBattleServer,

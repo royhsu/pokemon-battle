@@ -10,6 +10,8 @@
 
 import TinyBattleKit
 
+// Todo: add a way to removeFromResponderChain
+
 public protocol PokemonSkillProvider: BattleActionProvider
 where Animator == PokemonSkillAnimator {
     

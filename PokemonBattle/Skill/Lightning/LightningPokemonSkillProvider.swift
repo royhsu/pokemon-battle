@@ -25,7 +25,7 @@ public final class LightningPokemonSkillProvider: PokemonSkillProvider {
     
     public final let priority: Double
     
-    public final var animator: Animator? { return nil; return .lightning(context: context) }
+    public final var animator: Animator? { return .lightning(context: context) }
     
     // Extra damage ratio
     public final let extra = 0.2

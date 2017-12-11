@@ -173,9 +173,9 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         let clientNavigationController = UINavigationController(rootViewController: clientMatchSearchViewController)
                         
-                        self.window?.rootViewController = ParallelViewController(
-                            leftViewController: serverNavigationController,
-                            rightViewController: clientNavigationController
+                        self.window?.rootViewController = DualViewController(
+                            topViewController: clientNavigationController,
+                            bottomViewController: serverNavigationController
                         )
                         
                     }

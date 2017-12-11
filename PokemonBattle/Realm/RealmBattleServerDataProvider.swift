@@ -195,6 +195,7 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
             forPrimaryKey: joined.player.id
         )!
         
+        // Todo: unify coding style
         let joined =
             realm.object(
                 ofType: BattleJoinedRealmObject.self,
@@ -245,26 +246,50 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
             
             let battlePokemon = entity as! BattlePokemon
             
-            return
-                realm.object(
+            let entity = realm.object(
                     ofType: BattleEntityRealmObject.self,
                     forPrimaryKey: battlePokemon.id
                 )
                 ?? BattleEntityRealmObject(
-                    value: [
-                        "id": battlePokemon.id,
-                        "attack": battlePokemon.attack,
-                        "armor": battlePokemon.armor,
-                        "magic": battlePokemon.magic,
-                        "magicResistance": battlePokemon.magicResistance,
-                        "speed": battlePokemon.speed,
-                        "health": battlePokemon.health,
-                        "remainingHealth": battlePokemon.remainingHealth
-                    ]
+                    value: [ "id": battlePokemon.id ]
                 )
+            
+            entity.attack = battlePokemon.attack
+            
+            entity.armor = battlePokemon.armor
+            
+            entity.magic = battlePokemon.magic
+            
+            entity.magicResistance = battlePokemon.magicResistance
+            
+            entity.speed = battlePokemon.speed
+            
+            entity.health = battlePokemon.health
+            
+            entity.remainingHealth = battlePokemon.remainingHealth
+            
+            entity.skills = List()
+            
+            battlePokemon.skills.forEach { skill in
+                
+                let skill =
+                    realm.object(
+                        ofType: BattleSkillRealmObject.self,
+                        forPrimaryKey: skill.name
+                    )
+                    ?? BattleSkillRealmObject(
+                        value: [ "name": skill.name ]
+                    )
+                
+                entity.skills.append(skill)
+                
+            }
+            
+            return entity
             
         }
 
+        // Todo: unify coding style
         let ready =
             realm.object(
                 ofType: BattleReadyRealmObject.self,

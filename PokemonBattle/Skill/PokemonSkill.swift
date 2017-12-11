@@ -10,19 +10,34 @@
 
 import TinyBattleKit
 
-public protocol PokemonSkill {
+public struct PokemonSkill {
     
-    typealias Animator = PokemonSkillAnimator
+    // MARK: Property
     
-    var name: String { get }
+    public let name: String
     
-    func makeProvider(
-        id: String,
-        priority: Double,
-        sourceId: String,
-        destinationIds: [String],
-        context: Animator.Context
-    )
-    -> AnyBattleActionProvider<Animator>
+    // MARK: Init
+    
+    public init(name: String) { self.name = name }
+    
+//    func makeProvider(
+//        priority: Double,
+//        sourceId: String,
+//        destinationIds: [String],
+//        context: PokemonSkillAnimator.Context
+//    )
+//    -> AnyBattleActionProvider<PokemonSkillAnimator>
+    
+}
+
+// MARK: - Realm
+
+public extension PokemonSkill {
+    
+    public init(_ skill: BattleSkillRealmObject) {
+        
+        self.init(name: skill.name!)
+        
+    }
     
 }

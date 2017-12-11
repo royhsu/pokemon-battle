@@ -8,38 +8,50 @@
 
 // MARK: - FirePokemonSkill
 
-import TinyBattleKit
+//import TinyBattleKit
+//
+//public struct FirePokemonSkill: PokemonSkill {
+//    
+//    // MARK: Property
+//    
+//    public let id: String
+//    
+//    public let name: String
+//    
+//    // MARK: Init
+//    
+//    public init(
+//        id: String,
+//        name: String
+//    ) {
+//        
+//        self.id = id
+//        
+//        self.name = name
+//        
+//    }
+//    
+//    // MARK: PokemonSkill
+//    
+//    public func makeProvider(
+//        priority: Double,
+//        sourceId: String,
+//        destinationIds: [String],
+//        context: Animator.Context
+//    )
+//    -> AnyBattleActionProvider<Animator> {
+//            
+//        let provider = FirePokemonSkillProvider(
+//            id: id,
+//            priority: priority,
+//            sourceId: sourceId,
+//            destinationIds: destinationIds,
+//            context: context
+//        )
+//        
+//        return AnyBattleActionProvider(provider)
+//            
+//    }
+//    
+//}
 
-public struct FirePokemonSkill: PokemonSkill {
-    
-    // MARK: Property
-    
-    public let name = NSLocalizedString(
-        "Fire",
-        comment: ""
-    )
-    
-    // MARK: PokemonSkill
-    
-    public func makeProvider(
-        id: String,
-        priority: Double,
-        sourceId: String,
-        destinationIds: [String],
-        context: Animator.Context
-    )
-    -> AnyBattleActionProvider<Animator> {
-            
-        let provider = FirePokemonSkillProvider(
-            id: id,
-            priority: priority,
-            sourceId: sourceId,
-            destinationIds: destinationIds,
-            context: context
-        )
-        
-        return AnyBattleActionProvider(provider)
-            
-    }
-    
-}

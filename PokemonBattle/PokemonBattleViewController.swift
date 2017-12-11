@@ -119,68 +119,80 @@ public final class PokemonBattleViewController: UIViewController, PokemonBattleD
         
         let battleFieldScene = self.battleFieldScene!
         
-        let lightningSkill = LightningPokemonSkill()
-        
-        let fireSkill = FirePokemonSkill()
-        
-        let lightningSkillProvider = lightningSkill.makeProvider(
-            id: UUID().uuidString,
-            priority: 100.0 + homeBattlePokemon.speed,
-            sourceId: homeBattlePokemon.id,
-            destinationIds: [ guestBattlePokemon.id ],
-            context: PokemonSkillAnimatorContext(
-                sourceId: homeBattlePokemon.id,
-                sourceSprite: battleFieldScene.homePokemonSpriteNode,
-                sourceHPLabel: battleFieldScene.homeHpLabelNode,
-                destinationId: guestBattlePokemon.id,
-                destinationSprite: battleFieldScene.guestPokemonSpriteNode,
-                destinationHPLabel: battleFieldScene.guestHpLabelNode
-            )
-        )
-
-        let fireSkillProvider = fireSkill.makeProvider(
-            id: UUID().uuidString,
-            priority: 100.0 + guestBattlePokemon.speed,
-            sourceId: guestBattlePokemon.id,
-            destinationIds: [ homeBattlePokemon.id ],
-            context: PokemonSkillAnimatorContext(
-                sourceId: guestBattlePokemon.id,
-                sourceSprite: battleFieldScene.guestPokemonSpriteNode,
-                sourceHPLabel: battleFieldScene.guestHpLabelNode,
-                destinationId: homeBattlePokemon.id,
-                destinationSprite: battleFieldScene.homePokemonSpriteNode,
-                destinationHPLabel: battleFieldScene.homeHpLabelNode
-            )
-        )
-        
-        system
-            .respond(to: fireSkillProvider)
-            .respond(to: lightningSkillProvider)
-            .run(with: context)
-            .then(in: .main) { context in
-
-                self.context = context
-
-                battleFieldScene.updateData()
-
-                self.server
-                    .respond(
-                        to: InvolvedBattleRequest(
-                            involved: PokemonBattleInvolved(
-                                id: UUID().uuidString,
-                                player: self.server.player,
-                                entities: [],
-                                actions: []
-                            )
-                        )
-                    )
-
-            }
-            .catch(in: .main) { error in
-
-                print("\(error)")
-
-            }
+//        let lightningSkill = LightningPokemonSkill(
+//            id: UUID().uuidString,
+//            name: NSLocalizedString(
+//                "Lightning",
+//                comment: ""
+//            )
+//        )
+//        
+//        let fireSkill = FirePokemonSkill(
+//            id: UUID().uuidString,
+//            name: NSLocalizedString(
+//                "Fire",
+//                comment: ""
+//            )
+//        )
+//        
+//        let lightningSkillProvider = lightningSkill.makeProvider(
+//            priority: 100.0 + homeBattlePokemon.speed,
+//            sourceId: homeBattlePokemon.id,
+//            destinationIds: [ guestBattlePokemon.id ],
+//            context: PokemonSkillAnimatorContext(
+//                sourceId: homeBattlePokemon.id,
+//                sourceSprite: battleFieldScene.homePokemonSpriteNode,
+//                sourceHPLabel: battleFieldScene.homeHpLabelNode,
+//                destinationId: guestBattlePokemon.id,
+//                destinationSprite: battleFieldScene.guestPokemonSpriteNode,
+//                destinationHPLabel: battleFieldScene.guestHpLabelNode
+//            )
+//        )
+//
+//        let fireSkillProvider = fireSkill.makeProvider(
+//            priority: 100.0 + guestBattlePokemon.speed,
+//            sourceId: guestBattlePokemon.id,
+//            destinationIds: [ homeBattlePokemon.id ],
+//            context: PokemonSkillAnimatorContext(
+//                sourceId: guestBattlePokemon.id,
+//                sourceSprite: battleFieldScene.guestPokemonSpriteNode,
+//                sourceHPLabel: battleFieldScene.guestHpLabelNode,
+//                destinationId: homeBattlePokemon.id,
+//                destinationSprite: battleFieldScene.homePokemonSpriteNode,
+//                destinationHPLabel: battleFieldScene.homeHpLabelNode
+//            )
+//        )
+//        
+//        let a: [PokemonSkill] = [ lightningSkill, fireSkill ]
+//        
+//        system
+//            .respond(to: fireSkillProvider)
+//            .respond(to: lightningSkillProvider)
+//            .run(with: context)
+//            .then(in: .main) { context in
+//
+//                self.context = context
+//
+//                battleFieldScene.updateData()
+//
+//                self.server
+//                    .respond(
+//                        to: InvolvedBattleRequest(
+//                            involved: PokemonBattleInvolved(
+//                                id: UUID().uuidString,
+//                                player: self.server.player,
+//                                entities: [],
+//                                actions: []
+//                            )
+//                        )
+//                    )
+//
+//            }
+//            .catch(in: .main) { error in
+//
+//                print("\(error)")
+//
+//            }
 
     }
     

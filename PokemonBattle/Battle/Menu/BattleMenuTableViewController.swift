@@ -10,8 +10,8 @@
 
 public protocol BattleMenuTableViewControllerDelegate: class {
     
-    func tableViewController(
-        _ tableViewController: BattleMenuTableViewController,
+    func controller(
+        _ controller: BattleMenuTableViewController,
         didSelectSkillAt index: Int
     )
     
@@ -113,7 +113,7 @@ public final class BattleMenuTableViewController: UITableViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         
-        controllerDelegate?.tableViewController(
+        controllerDelegate?.controller(
             self,
             didSelectSkillAt: indexPath.section
         )

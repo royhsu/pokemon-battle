@@ -10,36 +10,40 @@
 
 import TinyBattleKit
 
-public struct LightningPokemonSkill: PokemonSkill {
-    
+public struct LightningPokemonSkill {
+
     // MARK: Property
-    
-    public let name = NSLocalizedString(
-        "Lightning",
-        comment: ""
-    )
-    
-    // MARK: PokemonSkill
-    
-    public func makeProvider(
+
+    public let id: String
+
+    public let name: String
+
+    // MARK: Init
+
+    public init(
         id: String,
-        priority: Double,
-        sourceId: String,
-        destinationIds: [String],
-        context: Animator.Context
-    )
-    -> AnyBattleActionProvider<Animator> {
-            
-        let provider = LightningPokemonSkillProvider(
-            id: id,
-            priority: priority,
-            sourceId: sourceId,
-            destinationIds: destinationIds,
-            context: context
-        )
-        
-        return AnyBattleActionProvider(provider)
-        
+        name: String
+    ) {
+
+        self.id = id
+
+        self.name = name
+
     }
-    
+
+    // MARK: PokemonSkill
+
+//    public func makeProvider(
+//        priority: Double,
+//        sourceId: String,
+//        destinationIds: [String],
+//        context: Animator.Context
+//    )
+//    -> AnyBattleActionProvider<Animator> {
+//
+//        
+//
+//    }
+
 }
+

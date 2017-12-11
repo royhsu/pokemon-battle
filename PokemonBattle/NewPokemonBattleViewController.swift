@@ -50,11 +50,18 @@ public final class NewPokemonBattleViewController: UIViewController {
         
     }
     
+    private final let pokedex: Pokedex
+    
     // MARK: Init
     
-    public init(server: TurnBasedBattleServer) {
+    public init(
+        server: TurnBasedBattleServer,
+        pokedex: Pokedex
+    ) {
         
         self.server = server
+        
+        self.pokedex = pokedex
         
         super.init(
             nibName: nil,
@@ -204,32 +211,6 @@ public final class NewPokemonBattleViewController: UIViewController {
         
     }
     
-    // MARK: Action
-    
-    @objc public final func performSkill(_ sender: Any) {
-        
-        // Todo: replace with selected skills by battle entity
-        
-        let battleAction = PokemonBattleAction(
-            id: UUID().uuidString,
-            priority: 100.0 + homeBattlePokemon.speed,
-            source: homeBattlePokemon,
-            destinations: [ guestBattlePokemon ]
-        )
-        
-        server.respond(
-            to: InvolvedBattleRequest(
-                involved: PokemonBattleInvolved(
-                    id: UUID().uuidString,
-                    player: server.player,
-                    entities: context.storage[server.player.id]!,
-                    actions: [ battleAction ]
-                )
-            )
-        )
-        
-    }
-    
 }
 
 // MARK: - TurnBasedBattleServerDelegate
@@ -257,30 +238,63 @@ extension NewPokemonBattleViewController: TurnBasedBattleServerDelegate {
         
         actions.forEach { action in
             
-            // Todo: source id is player id
             let sourceId = action.source.id
             
-            // Todo: destination id is player id
             let destinationIds = action.destinations.map { $0.id }
             
-            let lightningSkill = LightningPokemonSkill()
+            let skillName = action.id
             
-            let lightningSkillProvider = lightningSkill.makeProvider(
-                id: action.id,
-                priority: action.priority,
-                sourceId: sourceId,
-                destinationIds: destinationIds,
-                context: PokemonSkillAnimatorContext(
+            var pokemonSkillProvider: AnyBattleActionProvider<PokemonSkillAnimator>?
+            
+            switch skillName {
+                
+            case "LIGHTNING":
+                
+                let provider = LightningPokemonSkillProvider(
+                    id: skillName,
+                    priority: action.priority,
                     sourceId: sourceId,
-                    sourceSprite: battleFieldScene!.homePokemonSpriteNode,
-                    sourceHPLabel: battleFieldScene!.homeHpLabelNode,
-                    destinationId: destinationIds.first!,
-                    destinationSprite: battleFieldScene!.guestPokemonSpriteNode,
-                    destinationHPLabel: battleFieldScene!.guestHpLabelNode
+                    destinationIds: destinationIds,
+                    context: PokemonSkillAnimatorContext(
+                        sourceId: sourceId,
+                        sourceSprite: battleFieldScene!.homePokemonSpriteNode,
+                        sourceHPLabel: battleFieldScene!.homeHpLabelNode,
+                        destinationId: destinationIds.first!,
+                        destinationSprite: battleFieldScene!.guestPokemonSpriteNode,
+                        destinationHPLabel: battleFieldScene!.guestHpLabelNode
+                    )
                 )
-            )
-            
-            _ = system.respond(to: lightningSkillProvider)
+                
+                pokemonSkillProvider = AnyBattleActionProvider(provider)
+                
+            case "FIRE":
+                
+                let provider = FirePokemonSkillProvider(
+                    id: skillName,
+                    priority: action.priority,
+                    sourceId: sourceId,
+                    destinationIds: destinationIds,
+                    context: PokemonSkillAnimatorContext(
+                        sourceId: sourceId,
+                        sourceSprite: battleFieldScene!.homePokemonSpriteNode,
+                        sourceHPLabel: battleFieldScene!.homeHpLabelNode,
+                        destinationId: destinationIds.first!,
+                        destinationSprite: battleFieldScene!.guestPokemonSpriteNode,
+                        destinationHPLabel: battleFieldScene!.guestHpLabelNode
+                    )
+                )
+                
+                pokemonSkillProvider = AnyBattleActionProvider(provider)
+                
+            default: print("Undefined skill: \(skillName).")
+                
+            }
+    
+            guard
+                let skillProvider = pokemonSkillProvider
+            else { return }
+
+            system.respond(to: skillProvider)
             
         }
         
@@ -366,13 +380,46 @@ extension NewPokemonBattleViewController: BattleMenuTableViewControllerDataSourc
     
     public final func numberOfPokemonSkills() -> Int {
         
-        return 10
+        return homeBattlePokemon.skills.count
         
     }
     
     public final func titleForPokemonSkill(at index: Int) -> String? {
         
-        return "Skill \(index)"
+        return homeBattlePokemon.skills[index].name
+        
+    }
+    
+}
+
+// MARK: - BattleMenuTableViewControllerDelegate
+
+extension NewPokemonBattleViewController: BattleMenuTableViewControllerDelegate {
+    
+    public final func controller(
+        _ controller: BattleMenuTableViewController,
+        didSelectSkillAt index: Int
+    ) {
+    
+        let selectedSkill = homeBattlePokemon.skills[index]
+        
+        let involved = PokemonBattleInvolved(
+            id: UUID().uuidString,
+            player: server.player,
+            entities: [ homeBattlePokemon ],
+            actions: [
+                PokemonBattleAction(
+                    id: selectedSkill.name,
+                    priority: 100.0 + homeBattlePokemon.speed,
+                    source: homeBattlePokemon,
+                    destinations: [ guestBattlePokemon ]
+                )
+            ]
+        )
+        
+        server.respond(
+            to: InvolvedBattleRequest(involved: involved)
+        )
         
     }
     

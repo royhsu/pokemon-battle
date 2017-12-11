@@ -112,7 +112,8 @@ public final class BattleMatchLobbyViewController: UITableViewController {
                         entities: [
                             BattlePokemon(
                                 id: UUID().uuidString,
-                                pokemon: pikachu
+                                pokemon: pikachu,
+                                skills: [ PokemonSkill(name: "LIGHTNING") ]
                             )
                         ]
                     )
@@ -132,7 +133,8 @@ public final class BattleMatchLobbyViewController: UITableViewController {
                         entities: [
                             BattlePokemon(
                                 id: UUID().uuidString,
-                                pokemon: charmander
+                                pokemon: charmander,
+                                skills: [ PokemonSkill(name: "FIRE") ]
                             )
                         ]
                     )
@@ -255,7 +257,10 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         didStartTurn turn: TurnBasedBattleTurn
     ) {
         
-        let battleViewController = NewPokemonBattleViewController(server: server)
+        let battleViewController = NewPokemonBattleViewController(
+            server: server,
+            pokedex: Pokedex()
+        )
         
         battleViewController.navigationItem.hidesBackButton = true
         

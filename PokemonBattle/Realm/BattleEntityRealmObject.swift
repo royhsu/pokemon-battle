@@ -31,6 +31,8 @@ public final class BattleEntityRealmObject: Object {
     
     @objc public dynamic var remainingHealth = 0.0
     
+    public final var skills = List<BattleSkillRealmObject>()
+    
     public static override func primaryKey() -> String? { return "id" }
     
 }

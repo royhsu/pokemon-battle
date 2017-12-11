@@ -12,7 +12,8 @@ public extension BattlePokemon {
     
     public init(
         id: String,
-        pokemon: Pokemon
+        pokemon: Pokemon,
+        skills: [PokemonSkill]
     ) {
         
         self.init(
@@ -23,7 +24,8 @@ public extension BattlePokemon {
             magicResistance: pokemon.magicResistance,
             speed: pokemon.speed,
             health: pokemon.health,
-            remainingHealth: pokemon.health
+            remainingHealth: pokemon.health,
+            skills: skills
         )
         
     }

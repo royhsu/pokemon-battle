@@ -101,8 +101,18 @@ public final class PokemonBattleViewController: UIViewController {
         }
         else {
             
-            // Todo: restore context from the last turn.
-            print("Not implemented.")
+            // Todo: find an efficient way to restore entities.
+            server.record.turns.forEach { turn in
+                
+                turn.involveds.forEach { involved in
+                    
+                    let battlePokemons = involved.entities as! [BattlePokemon]
+                    
+                    self.context.storage[involved.player.id] = battlePokemons
+                    
+                }
+                
+            }
             
         }
         
@@ -226,7 +236,19 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
     public final func server(
         _ server: TurnBasedBattleServer,
         didStartTurn turn: TurnBasedBattleTurn
-    ) { }
+    ) {
+        
+        let tableView = menuViewController.tableView!
+        
+        tableView.selectRow(
+            at: nil,
+            animated: true,
+            scrollPosition: .none
+        )
+        
+        tableView.isUserInteractionEnabled = true
+        
+    }
     
     public final func server(
         _ server: TurnBasedBattleServer,
@@ -289,6 +311,14 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
             .then { updatedContext in
                 
                 self.context = updatedContext
+                
+                if self.server.isOwner {
+                
+                    self.server.respond(
+                        to: NextTurnBattleRequest(owner: self.server.player)
+                    )
+                    
+                }
                 
             }
             .catch { error in
@@ -386,7 +416,10 @@ extension PokemonBattleViewController: BattleMenuTableViewControllerDataSource {
     
     public final func numberOfPokemonSkills() -> Int {
         
-        return homeBattlePokemon.skills.count
+        return
+            context.storage.isEmpty
+            ? 0
+            : homeBattlePokemon.skills.count
         
     }
     

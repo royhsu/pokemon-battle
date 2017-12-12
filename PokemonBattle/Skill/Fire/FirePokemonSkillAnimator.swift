@@ -31,6 +31,7 @@ public extension PokemonSkillAnimator {
                 
                 destinationSprite.addChild(fireEmitter)
                 
+                // Todo: find an efficient way to load sound.
                 destinationSprite.run(
                     .playSoundFileNamed(
                         "Fire.wav",
@@ -54,7 +55,9 @@ public extension PokemonSkillAnimator {
                                     .filter { $0.id == destinationId }
                                     .first!
                                 
-                                destinationHPLabel.text = "HP: \(battlePokemon.remainingHealth)"
+                                let remainingHealth = Int(battlePokemon.remainingHealth)
+                                
+                                destinationHPLabel.text = "HP: \(remainingHealth)"
                                 
                             },
                             .fadeOut(withDuration: 0.4),

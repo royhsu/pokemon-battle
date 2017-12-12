@@ -126,7 +126,9 @@ public final class BattleFieldScene: SKScene {
             y: 100.0 + frame.minY
         )
         
-        labelNode.text = "HP: \(battlePokemon.remainingHealth)"
+        let remainingHealth = Int(battlePokemon.remainingHealth)
+        
+        labelNode.text = "HP: \(remainingHealth)"
         
     }
     
@@ -140,7 +142,9 @@ public final class BattleFieldScene: SKScene {
             y: frame.maxY - 100.0
         )
         
-        labelNode.text = "HP: \(battlePokemon.remainingHealth)"
+        let remainingHealth = Int(battlePokemon.remainingHealth)
+        
+        labelNode.text = "HP: \(remainingHealth)"
         
     }
  

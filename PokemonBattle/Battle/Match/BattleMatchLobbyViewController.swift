@@ -257,7 +257,7 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         didStartTurn turn: TurnBasedBattleTurn
     ) {
         
-        let battleViewController = NewPokemonBattleViewController(
+        let battleViewController = PokemonBattleViewController(
             server: server,
             pokedex: Pokedex()
         )

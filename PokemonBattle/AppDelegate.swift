@@ -203,44 +203,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
     }
-    
-//    fileprivate final func makeBattleViewController(with record: TurnBasedBattleRecord) -> UIViewController {
-//
-//        let pikachu = try! PokemonGenerator.make(Pikachu.self)
-//
-//        let charmander = try! PokemonGenerator.make(Charmander.self)
-//
-//        let context = PokemonBattleContext(
-//            storage: [
-//                pikachu.id: BattlePokemon(
-//                    pikachu,
-//                    role: .home
-//                ),
-//                charmander.id: BattlePokemon(
-//                    charmander,
-//                    role: .guest
-//                )
-//            ]
-//        )
-//
-//        let server = TurnBasedBattleServer(
-//            dataProvider: realmServerDataProvider!,
-//            player: PokemonBattlePlayer(player!),
-//            record: record
-//        )
-//
-//        let pokemonBattleViewController = PokemonBattleViewController(
-//            server: server,
-//            homeBattlePokemonId: pikachu.id,
-//            homeBattlePokemonImage: #imageLiteral(resourceName: "Pikachu"),
-//            guestBattlePokemonId: charmander.id,
-//            guestBattlePokemonImage: #imageLiteral(resourceName: "Charmander"),
-//            context: context
-//        )
-//
-//        return UINavigationController(rootViewController: pokemonBattleViewController)
-//
-//    }
 
 }
 

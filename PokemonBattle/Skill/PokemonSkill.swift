@@ -10,23 +10,58 @@
 
 import TinyBattleKit
 
-public struct PokemonSkill {
+public enum PokemonSkill: String {
+    
+    // MARK: Case
+    
+    case lightning = "LIGHTNING"
+    
+    case fire = "FIRE"
     
     // MARK: Property
     
-    public let name: String
+    public var name: String { return rawValue }
     
-    // MARK: Init
+    // MARK: Provider
     
-    public init(name: String) { self.name = name }
-    
-//    func makeProvider(
-//        priority: Double,
-//        sourceId: String,
-//        destinationIds: [String],
-//        context: PokemonSkillAnimator.Context
-//    )
-//    -> AnyBattleActionProvider<PokemonSkillAnimator>
+    func makeProvider(
+        id: String,
+        priority: Double,
+        sourceId: String,
+        destinationIds: [String],
+        context: PokemonSkillAnimator.Context
+    )
+    -> AnyBattleActionProvider<PokemonSkillAnimator> {
+        
+        switch self {
+            
+        case .lightning:
+            
+            let provider = LightningPokemonSkillProvider(
+                id: id,
+                priority: priority,
+                sourceId: sourceId,
+                destinationIds: destinationIds,
+                context: context
+            )
+            
+            return AnyBattleActionProvider(provider)
+            
+        case .fire:
+            
+            let provider = FirePokemonSkillProvider(
+                id: id,
+                priority: priority,
+                sourceId: sourceId,
+                destinationIds: destinationIds,
+                context: context
+            )
+            
+            return AnyBattleActionProvider(provider)
+            
+        }
+            
+    }
     
 }
 
@@ -36,7 +71,7 @@ public extension PokemonSkill {
     
     public init(_ skill: BattleSkillRealmObject) {
         
-        self.init(name: skill.name!)
+        self.init(rawValue: skill.name!)!
         
     }
     

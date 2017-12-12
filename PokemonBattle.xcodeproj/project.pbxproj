@@ -46,7 +46,6 @@
 		B06B2A711FD4F2A700B93DAF /* FirePokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A701FD4F2A700B93DAF /* FirePokemonSkill.swift */; };
 		B06B2A731FD4F7F300B93DAF /* PokemonSkillProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A721FD4F7F300B93DAF /* PokemonSkillProvider.swift */; };
 		B06B2A751FD4FE1300B93DAF /* LightningPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A741FD4FE1300B93DAF /* LightningPokemonSkill.swift */; };
-		B06B2A771FD516CA00B93DAF /* AnyPokemonSkill.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A761FD516CA00B93DAF /* AnyPokemonSkill.swift */; };
 		B06B2A791FD535DC00B93DAF /* AnyPokemonSkillProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B2A781FD535DC00B93DAF /* AnyPokemonSkillProvider.swift */; };
 		B0885E1B1FDA76AA00629629 /* PokemonBattleJoined.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0885E1A1FDA76AA00629629 /* PokemonBattleJoined.swift */; };
 		B0885E1D1FDA76B600629629 /* PokemonBattleReady.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0885E1C1FDA76B600629629 /* PokemonBattleReady.swift */; };
@@ -158,7 +157,6 @@
 		B06B2A701FD4F2A700B93DAF /* FirePokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirePokemonSkill.swift; sourceTree = "<group>"; };
 		B06B2A721FD4F7F300B93DAF /* PokemonSkillProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSkillProvider.swift; sourceTree = "<group>"; };
 		B06B2A741FD4FE1300B93DAF /* LightningPokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightningPokemonSkill.swift; sourceTree = "<group>"; };
-		B06B2A761FD516CA00B93DAF /* AnyPokemonSkill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPokemonSkill.swift; sourceTree = "<group>"; };
 		B06B2A781FD535DC00B93DAF /* AnyPokemonSkillProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPokemonSkillProvider.swift; sourceTree = "<group>"; };
 		B0885E1A1FDA76AA00629629 /* PokemonBattleJoined.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleJoined.swift; sourceTree = "<group>"; };
 		B0885E1C1FDA76B600629629 /* PokemonBattleReady.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBattleReady.swift; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 				B06B2A311FD4D79400B93DAF /* Fire */,
 				B06B2A381FD4D97C00B93DAF /* Lightning */,
 				B06B2A531FD4DCA200B93DAF /* PokemonSkill.swift */,
-				B06B2A761FD516CA00B93DAF /* AnyPokemonSkill.swift */,
 			);
 			path = Skill;
 			sourceTree = "<group>";
@@ -614,7 +611,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B02429C21FDEB6F300F8644F /* BattleSkillRealmObject.swift in Sources */,
-				B06B2A771FD516CA00B93DAF /* AnyPokemonSkill.swift in Sources */,
 				B063D7D61FD2A01300C88D6E /* PokemonBattlePlayer.swift in Sources */,
 				B0CE4EF11FC5BA0B00343937 /* BattleField.swift in Sources */,
 				B0EF52F11FD41F1E0043014F /* LightningPokemonSkillAnimator.swift in Sources */,

@@ -113,7 +113,7 @@ public final class BattleMatchLobbyViewController: UITableViewController {
                             BattlePokemon(
                                 id: UUID().uuidString,
                                 pokemon: pikachu,
-                                skills: [ PokemonSkill(name: "LIGHTNING") ]
+                                skills: [ .lightning ]
                             )
                         ]
                     )
@@ -134,7 +134,7 @@ public final class BattleMatchLobbyViewController: UITableViewController {
                             BattlePokemon(
                                 id: UUID().uuidString,
                                 pokemon: charmander,
-                                skills: [ PokemonSkill(name: "FIRE") ]
+                                skills: [ .fire ]
                             )
                         ]
                     )

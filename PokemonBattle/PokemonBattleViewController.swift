@@ -277,41 +277,15 @@ extension PokemonBattleViewController: TurnBasedBattleServerDelegate {
                 destinationHPLabel: guestHpLabel
             )
             
-            var pokemonSkillProvider: AnyBattleActionProvider<PokemonSkillAnimator>?
+            let skill = PokemonSkill(rawValue: action.skill.name)!
             
-            switch action.skill.name {
-                
-            case "LIGHTNING":
-                
-                let provider = LightningPokemonSkillProvider(
-                    id: action.id,
-                    priority: action.priority,
-                    sourceId: sourceId,
-                    destinationIds: destinationIds,
-                    context: context
-                )
-                
-                pokemonSkillProvider = AnyBattleActionProvider(provider)
-                
-            case "FIRE":
-                
-                let provider = FirePokemonSkillProvider(
-                    id: action.id,
-                    priority: action.priority,
-                    sourceId: sourceId,
-                    destinationIds: destinationIds,
-                    context: context
-                )
-                
-                pokemonSkillProvider = AnyBattleActionProvider(provider)
-                
-            default: print("Undefined skill: \(action.skill.name).")
-                
-            }
-    
-            guard
-                let skillProvider = pokemonSkillProvider
-            else { return }
+            let skillProvider = skill.makeProvider(
+                id: action.id,
+                priority: action.priority,
+                sourceId: sourceId,
+                destinationIds: destinationIds,
+                context: context
+            )
 
             system.respond(to: skillProvider)
             

@@ -29,12 +29,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     public final var client: TurnBasedBattleServer?
     
-    public final let lightningSkillId = UUID().uuidString
-    
-    public final let fireSkillId = UUID().uuidString
-    
-    public final let pokedex = Pokedex()
-    
     // MARK: UIApplicationDelegate
 
     public final func application(
@@ -51,16 +45,6 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = window
 
-//        pokedex.registerSkillType(
-//            LightningPokemonSkill.self,
-//            withIdentifier: lightningSkillId
-//        )
-//
-//        pokedex.registerSkillType(
-//            FirePokemonSkill.self,
-//            withIdentifier: fireSkillId
-//        )
-        
         setUpRealm(
             username: "realm-admin",
             password: ""

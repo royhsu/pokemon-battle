@@ -16,6 +16,8 @@ public struct BattlePokemon: BattleEntity {
     
     public let id: String
     
+    public let species: String
+    
     public let attack: Double
     
     public let armor: Double
@@ -36,6 +38,7 @@ public struct BattlePokemon: BattleEntity {
     
     public init(
         id: String,
+        species: String,
         attack: Double,
         armor: Double,
         magic: Double,
@@ -47,6 +50,8 @@ public struct BattlePokemon: BattleEntity {
     ) {
      
         self.id = id
+        
+        self.species = species
         
         self.attack = attack
         
@@ -76,6 +81,7 @@ public extension BattlePokemon {
         
         self.init(
             id: entity.id!,
+            species: entity.species!,
             attack: entity.attack,
             armor: entity.armor,
             magic: entity.magic,

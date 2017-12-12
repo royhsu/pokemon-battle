@@ -17,6 +17,8 @@ public final class BattleEntityRealmObject: Object {
     
     @objc public dynamic var id: String?
     
+    @objc public dynamic var species: String?
+    
     @objc public dynamic var attack = 0.0
     
     @objc public dynamic var armor = 0.0

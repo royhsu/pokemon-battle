@@ -258,6 +258,8 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
             
                 entity.attack = battlePokemon.attack
                 
+                entity.species = battlePokemon.species
+                
                 entity.armor = battlePokemon.armor
                 
                 entity.magic = battlePokemon.magic
@@ -372,6 +374,8 @@ public final class RealmBattleServerDataProvider: TurnBasedBattleServerDataProvi
                     )
                 
                 entityObject.attack = battlePokemon.attack
+                
+                entityObject.species = battlePokemon.species
                 
                 entityObject.armor = battlePokemon.armor
                 

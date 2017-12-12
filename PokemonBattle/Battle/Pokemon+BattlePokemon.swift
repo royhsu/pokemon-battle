@@ -16,8 +16,16 @@ public extension BattlePokemon {
         skills: [PokemonSkill]
     ) {
         
+        let pokemonType = type(of: pokemon)
+        
+        let species = String(describing: pokemonType)
+            .splitBefore(separator: { $0.isUpperCase })
+            .map { String($0).uppercased() }
+            .joined(separator: "_")
+        
         self.init(
             id: id,
+            species: species,
             attack: pokemon.attack,
             armor: pokemon.armor,
             magic: pokemon.magic,

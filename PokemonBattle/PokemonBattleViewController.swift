@@ -50,18 +50,11 @@ public final class PokemonBattleViewController: UIViewController {
         
     }
     
-    private final let pokedex: Pokedex
-    
     // MARK: Init
     
-    public init(
-        server: TurnBasedBattleServer,
-        pokedex: Pokedex
-    ) {
+    public init(server: TurnBasedBattleServer) {
         
         self.server = server
-        
-        self.pokedex = pokedex
         
         super.init(
             nibName: nil,
@@ -350,9 +343,13 @@ extension PokemonBattleViewController: BattleFieldSceneDataProvider {
     
     public final var homeBattlePokemonImage: UIImage {
         
-        let isPikachu = homeBattlePokemon.skills.contains { $0.name == "LIGHTNING" }
+        let typeName = homeBattlePokemon
+            .species
+            .components(separatedBy: "_")
+            .map { $0.lowercased().capitalized }
+            .joined()
         
-        return isPikachu ? #imageLiteral(resourceName: "Pikachu") : #imageLiteral(resourceName: "Charmander")
+        return UIImage(named: typeName)!
         
     }
     
@@ -371,9 +368,13 @@ extension PokemonBattleViewController: BattleFieldSceneDataProvider {
     
     public final var guestBattlePokemonImage: UIImage {
         
-        let isChamander = guestBattlePokemon.skills.contains { $0.name == "FIRE" }
+        let typeName = guestBattlePokemon
+            .species
+            .components(separatedBy: "_")
+            .map { $0.lowercased().capitalized }
+            .joined()
         
-        return isChamander ? #imageLiteral(resourceName: "Charmander") : #imageLiteral(resourceName: "Pikachu")
+        return UIImage(named: typeName)!
         
     }
     
@@ -405,6 +406,8 @@ extension PokemonBattleViewController: BattleMenuTableViewControllerDelegate {
         _ controller: BattleMenuTableViewController,
         didSelectSkillAt index: Int
     ) {
+        
+        controller.tableView.isUserInteractionEnabled = false
     
         let selectedSkill = homeBattlePokemon.skills[index]
         

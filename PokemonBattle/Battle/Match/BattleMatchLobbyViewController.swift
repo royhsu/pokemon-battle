@@ -257,10 +257,7 @@ extension BattleMatchLobbyViewController: TurnBasedBattleServerDelegate {
         didStartTurn turn: TurnBasedBattleTurn
     ) {
         
-        let battleViewController = PokemonBattleViewController(
-            server: server,
-            pokedex: Pokedex()
-        )
+        let battleViewController = PokemonBattleViewController(server: server)
         
         battleViewController.navigationItem.hidesBackButton = true
         

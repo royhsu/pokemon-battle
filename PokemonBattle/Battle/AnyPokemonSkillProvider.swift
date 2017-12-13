@@ -24,6 +24,8 @@ public class AnyPokemonSkillProvider: PokemonSkillProvider {
     
     private final let _applyAction: (Result) -> Result
     
+    private final let _shouldRemoveAfterApplyAction: () -> Bool
+    
     private final let _sourceId: String
     
     private final let _destinationIds: [String]
@@ -42,6 +44,8 @@ public class AnyPokemonSkillProvider: PokemonSkillProvider {
         
         self._applyAction = provider.applyAction
         
+        self._shouldRemoveAfterApplyAction = provider.shouldRemoveAfterApplyAction
+        
         self._sourceId = provider.sourceId
         
         self._destinationIds = provider.destinationIds
@@ -57,6 +61,8 @@ public class AnyPokemonSkillProvider: PokemonSkillProvider {
     public final var priority: Double { return _priority }
     
     public final var animator: PokemonSkillAnimator? { return _animator }
+    
+    public final func shouldRemoveAfterApplyAction() -> Bool { return _shouldRemoveAfterApplyAction() }
     
     public final func applyAction(on result: PokemonBattleContext) -> PokemonBattleContext { return _applyAction(result) }
     

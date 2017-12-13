@@ -84,102 +84,105 @@ public final class AppDelegate: UIResponder, UIApplicationDelegate {
                     let user = user
                 else { fatalError() }
                 
-                DispatchQueue.main.async {
-                    
-                    let config = Realm.Configuration(
-                        syncConfiguration: SyncConfiguration(
-                            user: user,
-                            realmURL: realmUrl
-                        )
+                let config = Realm.Configuration(
+                    syncConfiguration: SyncConfiguration(
+                        user: user,
+                        realmURL: realmUrl
                     )
+                )
+                
+                Realm.asyncOpen(configuration: config) { realm, error in
                     
-                    do {
+                    if let error = error {
                         
-                        let realm = try Realm(configuration: config)
-                        
-                        self.realm = realm
-                        
-                        let realmServerDataProvider = RealmBattleServerDataProvider(realm: realm)
-                        
-                        self.realmServerDataProvider = realmServerDataProvider
-                        
-                        // Todo: test only
-                        
-//                        let playerA = BattlePlayerRealmObject(
-//                            value: [ "id": "8FB6201A-133C-4174-B7AE-5EFE72E66C24" ]
-//                        )
-//
-//                        let playerB = BattlePlayerRealmObject(
-//                            value: [ "id": "24E0AD21-DA77-403C-83B4-549333DFD76F" ]
-//                        )
-//
-//                        let record = BattleRecordRealmObject(
-//                            value: [ "id": "31CFED91-78A4-4FB6-9A0A-A93F88F692A8" ]
-//                        )
-//
-//                        record.owner = playerA
-//
-//                        try! realm.write {
-//
-//                            realm.add(playerA)
-//
-//                            realm.add(playerB)
-//
-//                            realm.add(record)
-//
-//                        }
-//
-//                        return
-                        
-                        // Server
-                        let owner = realm.object(
-                            ofType: BattlePlayerRealmObject.self,
-                            forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
-                        )!
-                        
-                        let serverRealmMatchDataProvider = RealmBattleMatchDataProvider(
-                            realm: realm,
-                            serverDataProvider: realmServerDataProvider,
-                            currentPlayer: PokemonBattlePlayer(owner)
-                        )
-                        
-                        self.serverRealmMatchDataProvider = serverRealmMatchDataProvider
-                        
-                        let match = serverRealmMatchDataProvider.makeMatch()
-                        
-                        let server = serverRealmMatchDataProvider.makeServer(for: match)
-                        
-                        let serverMatchLobbyViewController = BattleMatchLobbyViewController(server: server)
-                        
-                        let serverNavigationController = UINavigationController(rootViewController: serverMatchLobbyViewController)
-                        
-                        // Client
-                        let player = realm.object(
-                            ofType: BattlePlayerRealmObject.self,
-                            forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
-                        )!
-                        
-                        let clientRealmMatchDataProvider = RealmBattleMatchDataProvider(
-                            realm: realm,
-                            serverDataProvider: realmServerDataProvider,
-                            currentPlayer: PokemonBattlePlayer(player)
-                        )
-                        
-                        self.clientRealmMatchDataProvider = clientRealmMatchDataProvider
-                        
-                        let clientMatchSearchViewController = BattleMatchSearchViewController()
-                        
-                        clientMatchSearchViewController.matchDataProvider = clientRealmMatchDataProvider
-                        
-                        let clientNavigationController = UINavigationController(rootViewController: clientMatchSearchViewController)
-                        
-                        self.window?.rootViewController = DualViewController(
-                            topViewController: clientNavigationController,
-                            bottomViewController: serverNavigationController
-                        )
+                        print("\(error)")
                         
                     }
-                    catch { fatalError("\(error)") }
+                    
+                    guard
+                        let realm = realm
+                    else { return }
+                    
+                    self.realm = realm
+                    
+                    let realmServerDataProvider = RealmBattleServerDataProvider(realm: realm)
+                    
+                    self.realmServerDataProvider = realmServerDataProvider
+                    
+                    // Todo: test only
+                    
+//                    let playerA = BattlePlayerRealmObject(
+//                        value: [ "id": "8FB6201A-133C-4174-B7AE-5EFE72E66C24" ]
+//                    )
+//
+//                    let playerB = BattlePlayerRealmObject(
+//                        value: [ "id": "24E0AD21-DA77-403C-83B4-549333DFD76F" ]
+//                    )
+//
+//                    let record = BattleRecordRealmObject(
+//                        value: [ "id": "31CFED91-78A4-4FB6-9A0A-A93F88F692A8" ]
+//                    )
+//
+//                    record.owner = playerA
+//
+//                    try! realm.write {
+//
+//                        realm.add(playerA)
+//
+//                        realm.add(playerB)
+//
+//                        realm.add(record)
+//
+//                    }
+//
+//                    return
+                    
+                    // Server
+                    let owner = realm.object(
+                        ofType: BattlePlayerRealmObject.self,
+                        forPrimaryKey: "8FB6201A-133C-4174-B7AE-5EFE72E66C24"
+                    )!
+                    
+                    let serverRealmMatchDataProvider = RealmBattleMatchDataProvider(
+                        realm: realm,
+                        serverDataProvider: realmServerDataProvider,
+                        currentPlayer: PokemonBattlePlayer(owner)
+                    )
+                    
+                    self.serverRealmMatchDataProvider = serverRealmMatchDataProvider
+                    
+                    let match = serverRealmMatchDataProvider.makeMatch()
+                    
+                    let server = serverRealmMatchDataProvider.makeServer(for: match)
+                    
+                    let serverMatchLobbyViewController = BattleMatchLobbyViewController(server: server)
+                    
+                    let serverNavigationController = UINavigationController(rootViewController: serverMatchLobbyViewController)
+                    
+                    // Client
+                    let player = realm.object(
+                        ofType: BattlePlayerRealmObject.self,
+                        forPrimaryKey: "24E0AD21-DA77-403C-83B4-549333DFD76F"
+                    )!
+                    
+                    let clientRealmMatchDataProvider = RealmBattleMatchDataProvider(
+                        realm: realm,
+                        serverDataProvider: realmServerDataProvider,
+                        currentPlayer: PokemonBattlePlayer(player)
+                    )
+                    
+                    self.clientRealmMatchDataProvider = clientRealmMatchDataProvider
+                    
+                    let clientMatchSearchViewController = BattleMatchSearchViewController()
+                    
+                    clientMatchSearchViewController.matchDataProvider = clientRealmMatchDataProvider
+                    
+                    let clientNavigationController = UINavigationController(rootViewController: clientMatchSearchViewController)
+                    
+                    self.window?.rootViewController = DualViewController(
+                        topViewController: clientNavigationController,
+                        bottomViewController: serverNavigationController
+                    )
                     
                 }
                 

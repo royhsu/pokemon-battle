@@ -103,4 +103,6 @@ public final class FirePokemonSkillProvider: PokemonSkillProvider {
         
     }
     
+    public final func shouldRemoveAfterApplyAction() -> Bool { return true }
+    
 }
